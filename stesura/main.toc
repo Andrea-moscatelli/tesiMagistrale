@@ -1,0 +1,12 @@
+\select@language {italian}
+\select@language {italian}
+\contentsline {chapter}{Prefazione}{iii}
+\contentsline {chapter}{Introduzione}{iv}
+\contentsline {chapter}{\numberline {1}DensePose}{1}
+\contentsline {chapter}{\numberline {2}Detectron2}{2}
+\contentsline {chapter}{\numberline {3}PoseNet}{3}
+\contentsline {chapter}{\numberline {4}Tecniche di classificazione}{4}
+\contentsline {chapter}{\numberline {5}Risultati ottenuti}{5}
+\contentsline {chapter}{\numberline {6}Conclusioni}{6}
+\contentsline {chapter}{\numberline {7}Sviluppi futuri}{7}
+\contentsline {chapter}{Bibliografia}{8}

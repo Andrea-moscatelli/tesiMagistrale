@@ -1,0 +1,136 @@
+\documentclass[a4paper,12pt,dvips]{thesis}
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsfonts}
+\usepackage{amssymb,amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{latexsym}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{remark}{Osservazione}[section]
+\newtheorem{definition}{Definizione}[section]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macro algoritmi in un frame, con caption e label. Si usano cosi':
+
+
+
+\newcommand{\algoritmo}{
+\begin{figure}[htbp]%
+\begin{center}%
+\begin{framepage}{\textwidth}%
+\singlespace\small%
+\begin{tabbing}%
+}
+
+\newcommand{\finealgoritmo}[2]{
+\end{tabbing}%
+\end{framepage}%
+\end{center}%
+\caption{#2}%
+\label{fi:#1}%
+\end{figure}%
+\noindent%
+}
+
+\newenvironment{chapterAbstract}
+         {\singlespace \begin{quote}\begin{itshape}\begin{small}  \hugeinitial}
+         {\newline \line(1,0){200} \end{small}\end{itshape}\end{quote} \onehalfspace}
+                                           
+
+\university{Firenze} \faculty{Ingegneria} \dept{Ingegneria dell'Informazione} \course{Ingegneria Informatica}
+\accademicyear{2019 - 2020} 
+\supervisor{Marco Bertini}
+\supervisor{Secondo Supervisore}
+\advisor{Correlatore 1}
+\author{Andrea Moscatelli}
+\title{Riconoscimento di movimenti corporei tramite concatenazioni di reti neurali}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\conclusionname{Conclusioni}
+\def\conclusion{
+  \chapter*{\conclusionname
+        %\@mkboth{\uppercase{\conclusionname}}{\uppercase{\conclusionname}}
+        }%
+  \addcontentsline{toc}{chapter}{\conclusionname}%
+}
+
+
+
+\begin{document}
+\sffamily
+\maketitle
+
+\onehalfspace
+\oddsidemargin  1.75cm 
+\evensidemargin 1.75cm
+\hyphenation{words}
+
+\tableofcontents
+
+\newpage
+
+\algoritmo
+1. \= iscriviti ad Ingegneria \\
+2. \> finch\a'e non ti stufi o non finisci gli esami \\
+   \> 2.1. \= prova a dare l' esame $i$ \\
+   \> 2.2. \> se superi l'esame $i$ \\
+   \>      \> 2.2.1. \= $i=i+1$ \\
+3. \> prepara la tesi oppure fattela fare (CEPU) \\
+4. \> scrivila in \LaTeX :) \\
+5. \> laureati
+\finealgoritmo{laurea}{Algoritmo per conseguire la Laurea in Ingegneria}
+
+
+ ora si puo' fare riferimento all' algoritmo con \ref{fi:laurea}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\preface{
+prefazione
+}
+
+\introduction{
+Introduzione
+}
+
+\chapter{DensePose}
+Descrizione di cosè DensePose
+
+\chapter{Detectron2}
+Descrizione di cosè Detectron2
+
+\chapter{PoseNet}
+Descrizione di cosè PoseNet
+
+\chapter{Tecniche di classificazione}
+Descrizione dei vari approcci testati per la classificazione di movimenti corporei. 
+
+\begin{itemize}
+\item Semplice
+\item Semplice normalizzato
+\item Con tecnica dei centri
+\item Con tecnica dei centri normalizzato
+\item Con tecnica delle differenze
+\item Con tecnica delle differenze normalizzato
+\item ...
+\end{itemize}
+
+\chapter{Risultati ottenuti}
+
+\chapter{Conclusioni}
+
+\chapter{Sviluppi futuri}
+
+\thebibliography{}
+
+\end{document}
