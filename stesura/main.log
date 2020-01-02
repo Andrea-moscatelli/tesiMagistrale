@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  1 JAN 2020 19:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  2 JAN 2020 18:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -265,30 +265,31 @@ Package pdftex.def Info: imgs/stemma.pdf used on input line 65.
 [0
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./imgs/
-stemma.pdf>] (./main.toc)
+stemma.pdf>] (./main.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 6.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+))
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
  [1
 
+] [2] [3
+
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 79.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 79.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for U+lasy on input line 79.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [2] [3
-
-] [4
+[4
 
 ]
 Capitolo 1.
@@ -322,13 +323,13 @@ Capitolo 7.
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3431 strings out of 492995
- 44509 string characters out of 6132704
- 114910 words of memory out of 5000000
- 6914 multiletter control sequences out of 15000+600000
- 14393 words of font info for 56 fonts, out of 8000000 for 9000
+ 3434 strings out of 492995
+ 44561 string characters out of 6132704
+ 116910 words of memory out of 5000000
+ 6917 multiletter control sequences out of 15000+600000
+ 15306 words of font info for 59 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 39i,6n,25p,790b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,6n,25p,790b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
@@ -337,13 +338,12 @@ m/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 r8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss1
 2.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx
-10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
-.pfb>
-Output written on main.pdf (13 pages, 178035 bytes).
+10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb>
+Output written on main.pdf (13 pages, 172020 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 99 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
