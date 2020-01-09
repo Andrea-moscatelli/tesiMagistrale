@@ -1,0 +1,69 @@
+### DETECTRON 2 #####
+  test_acc val_acc
+2-L 55.204 55.018 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToNextFrame-norm.h5
+2-L 92.227 93.480 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfVideo-norm.h5
+2-L 91.436 93.333 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToVideoCenter-norm.h5
+
+   val_acc test_acc
+1-L 91.502 91.700 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToNextFrame-norm.h5
+1-L 91.282 90.514 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfVideo-norm.h5
+1-L 91.575 89.855 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToVideoCenter-norm.h5
+1-L 91.062 89.723 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfFrame-norm.h5
+1-L 88.791 89.460 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfFrame.h5
+1-L 90.623 88.801 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToFrameCenter-norm.h5
+1-L 90.916 88.801 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToVideoCenter.h5
+1-L 89.744 88.142 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfVideo.h5
+1-L 90.330 87.747 keypoint_rcnn_X_101_32x8d_FPN_3x-norm.h5
+1-L 90.183 87.615 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToFrameCenter.h5
+1-L 86.300 86.825 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToNextFrame.h5
+1-L 27.399 26.350 keypoint_rcnn_X_101_32x8d_FPN_3x.h5
+
+
+
+### POSENET 101 #####
+  test_acc val_acc
+2-L 88.011 89.963 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo-norm.h5
+2-L 87.615 88.864 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo.h5
+2-L 87.879 89.451 PoseNet-101-relativeToVideoCenter-norm.h5
+
+
+   val_acc test_acc
+1-L 86.960 87.352 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo.h5
+1-L 88.132 86.693 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo-norm.h5
+1-L 89.231 86.693 PoseNet-101-relativeToVideoCenter-norm.h5
+1-L 87.546 85.375 PoseNet-101-relativeToUpperMiddleBottomCentersOfFrame-norm.h5
+1-L 87.399 84.321 PoseNet-101-relativeToVideoCenter.h5
+1-L 86.886 83.926 PoseNet-101-relativeToFrameCenter.h5
+1-L 86.520 83.267 PoseNet-101-relativeToFrameCenter-norm.h5
+1-L 86.520 83.267 PoseNet-101-relativeToUpperMiddleBottomCentersOfFrame.h5
+1-L 84.615 81.028 PoseNet-101-norm.h5
+1-L 70.916 68.379 PoseNet-101-relativeToNextFrame.h5
+1-L 53.040 53.887 PoseNet-101-relativeToNextFrame-norm.h5
+1-L 27.766 24.506 PoseNet-101.h5
+
+
+
+
+#### TOTAL ##########
+   val_acc test_acc
+1-L 91.062 89.723 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfFrame-norm.h5
+1-L 88.791 89.460 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfFrame.h5
+1-L 90.623 88.801 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToFrameCenter-norm.h5
+1-L 90.916 88.801 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToVideoCenter.h5
+1-L 89.744 88.142 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToUpperMiddleBottomCentersOfVideo.h5
+1-L 90.330 87.747 keypoint_rcnn_X_101_32x8d_FPN_3x-norm.h5
+1-L 90.183 87.615 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToFrameCenter.h5
+1-L 86.960 87.352 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo.h5
+1-L 86.300 86.825 keypoint_rcnn_X_101_32x8d_FPN_3x-relativeToNextFrame.h5
+1-L 88.132 86.693 PoseNet-101-relativeToUpperMiddleBottomCentersOfVideo-norm.h5
+1-L 89.231 86.693 PoseNet-101-relativeToVideoCenter-norm.h5
+1-L 87.546 85.375 PoseNet-101-relativeToUpperMiddleBottomCentersOfFrame-norm.h5
+1-L 87.399 84.321 PoseNet-101-relativeToVideoCenter.h5
+1-L 86.886 83.926 PoseNet-101-relativeToFrameCenter.h5
+1-L 86.520 83.267 PoseNet-101-relativeToFrameCenter-norm.h5
+1-L 86.520 83.267 PoseNet-101-relativeToUpperMiddleBottomCentersOfFrame.h5
+1-L 84.615 81.028 PoseNet-101-norm.h5
+1-L 70.916 68.379 PoseNet-101-relativeToNextFrame.h5
+1-L 53.040 53.887 PoseNet-101-relativeToNextFrame-norm.h5
+1-L 27.399 26.350 keypoint_rcnn_X_101_32x8d_FPN_3x.h5
+1-L 27.766 24.506 PoseNet-101.h5
