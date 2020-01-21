@@ -1,20 +1,19 @@
 \select@language {italian}
 \select@language {italian}
-\contentsline {chapter}{Prefazione}{iii}
-\contentsline {chapter}{Introduzione}{iv}
-\contentsline {chapter}{\numberline {1}DensePose}{1}
-\contentsline {section}{\numberline {1.1}COCO-Dataset}{1}
-\contentsline {section}{\numberline {1.2}Struttura della rete}{1}
-\contentsline {chapter}{\numberline {2}Detectron2}{2}
-\contentsline {chapter}{\numberline {3}PoseNet}{3}
-\contentsline {section}{\numberline {3.1}Struttura della rete}{3}
-\contentsline {chapter}{\numberline {4}Classificazione}{4}
-\contentsline {section}{\numberline {4.1}Struttura della rete}{4}
-\contentsline {section}{\numberline {4.2}Tecniche}{4}
-\contentsline {subsection}{\numberline {4.2.1}Semplice}{4}
-\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{4}
-\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{4}
-\contentsline {chapter}{\numberline {5}Risultati ottenuti}{5}
-\contentsline {chapter}{\numberline {6}Conclusioni}{6}
-\contentsline {chapter}{\numberline {7}Sviluppi futuri}{7}
-\contentsline {chapter}{Bibliografia}{8}
+\contentsline {chapter}{Prefazione}{ii}
+\contentsline {chapter}{Introduzione}{iii}
+\contentsline {chapter}{\numberline {1}Stima della posa}{1}
+\contentsline {chapter}{\numberline {2}PoseNet}{4}
+\contentsline {section}{\numberline {2.1}Stima dei key-points}{5}
+\contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{6}
+\contentsline {chapter}{\numberline {3}Detectron2}{7}
+\contentsline {chapter}{\numberline {4}Classificazione}{8}
+\contentsline {section}{\numberline {4.1}Struttura della rete}{8}
+\contentsline {section}{\numberline {4.2}Tecniche}{8}
+\contentsline {subsection}{\numberline {4.2.1}Semplice}{8}
+\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{8}
+\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{8}
+\contentsline {chapter}{\numberline {5}Risultati ottenuti}{9}
+\contentsline {chapter}{\numberline {6}Conclusioni}{10}
+\contentsline {chapter}{\numberline {7}Sviluppi futuri}{11}
+\contentsline {chapter}{Bibliografia}{12}

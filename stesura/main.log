@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  2 JAN 2020 18:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  20 JAN 2020 20:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -171,20 +171,20 @@ LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Info: Redefining \it@ocap on input line 63.
-LaTeX Info: Redefining \it@ccap on input line 63.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Info: Redefining \it@ocap on input line 66.
+LaTeX Info: Redefining \it@ccap on input line 66.
 
 
 File italian.ldf warning: 
@@ -192,7 +192,7 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 63.
+italian.ldf    on input line 66.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -259,24 +259,24 @@ e
 <imgs/stemma.pdf, id=1, 428.29613pt x 483.6971pt>
 File: imgs/stemma.pdf Graphic file (type pdf)
  <use imgs/stemma.pdf>
-Package pdftex.def Info: imgs/stemma.pdf used on input line 65.
+Package pdftex.def Info: imgs/stemma.pdf used on input line 68.
 (pdftex.def)             Requested size: 72.80937pt x 82.22742pt.
 
 [0
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./imgs/
 stemma.pdf>] (./main.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 6.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 7.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -286,64 +286,96 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
  [1
 
-] [2] [3
+] [2
 
-]
-[4
+] [3
 
 ]
 Capitolo 1.
-[1
+<imgs/stimaPosaEsempi.jpeg, id=37, 513.92pt x 392.46625pt>
+File: imgs/stimaPosaEsempi.jpeg Graphic file (type jpg)
 
-]
+<use imgs/stimaPosaEsempi.jpeg>
+Package pdftex.def Info: imgs/stimaPosaEsempi.jpeg used on input line 117.
+(pdftex.def)             Requested size: 390.0pt x 297.83427pt.
+ [1
+
+ <./imgs/stimaPosaEsempi.jpeg>]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 122.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
+
+ []
+
+<imgs/stimaPosaEsempioFisio.jpeg, id=42, 1493.58pt x 849.1725pt>
+File: imgs/stimaPosaEsempioFisio.jpeg Graphic file (type jpg)
+
+<use imgs/stimaPosaEsempioFisio.jpeg>
+Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 130
+.
+(pdftex.def)             Requested size: 272.99881pt x 155.20268pt.
+ [2 <./imgs/stimaPosaEsempioFisio.jpeg>]
+[3]
 Capitolo 2.
-[2
+[4
 
-]
+] [5] [6]
 Capitolo 3.
-[3
+[7
 
 ]
 Capitolo 4.
-[4
+[8
 
 ]
 Capitolo 5.
-[5
+[9
 
 ]
 Capitolo 6.
-[6
+[10
 
 ]
 Capitolo 7.
-[7
+[11
 
-] [8
+] [12
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3434 strings out of 492995
- 44561 string characters out of 6132704
- 116910 words of memory out of 5000000
- 6917 multiletter control sequences out of 15000+600000
- 15306 words of font info for 59 fonts, out of 8000000 for 9000
+ 3451 strings out of 492995
+ 44889 string characters out of 6132704
+ 117897 words of memory out of 5000000
+ 6927 multiletter control sequences out of 15000+600000
+ 14664 words of font info for 55 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 39i,6n,25p,790b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,8n,25p,806b,232s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss1
+cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl
+10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss1
 2.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx
-10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
-2.pfb>
-Output written on main.pdf (13 pages, 172020 bytes).
+10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi
+12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
+.pfb>
+Output written on main.pdf (16 pages, 868204 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 122 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
