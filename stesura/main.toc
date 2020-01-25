@@ -5,15 +5,15 @@
 \contentsline {chapter}{\numberline {1}Stima della posa}{1}
 \contentsline {chapter}{\numberline {2}PoseNet}{4}
 \contentsline {section}{\numberline {2.1}Stima dei key-points}{5}
-\contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{6}
-\contentsline {chapter}{\numberline {3}Detectron2}{7}
-\contentsline {chapter}{\numberline {4}Classificazione}{8}
-\contentsline {section}{\numberline {4.1}Struttura della rete}{8}
-\contentsline {section}{\numberline {4.2}Tecniche}{8}
-\contentsline {subsection}{\numberline {4.2.1}Semplice}{8}
-\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{8}
-\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{8}
-\contentsline {chapter}{\numberline {5}Risultati ottenuti}{9}
-\contentsline {chapter}{\numberline {6}Conclusioni}{10}
-\contentsline {chapter}{\numberline {7}Sviluppi futuri}{11}
-\contentsline {chapter}{Bibliografia}{12}
+\contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{7}
+\contentsline {chapter}{\numberline {3}Detectron2}{9}
+\contentsline {chapter}{\numberline {4}Classificazione}{13}
+\contentsline {section}{\numberline {4.1}Struttura della rete}{13}
+\contentsline {section}{\numberline {4.2}Tecniche}{13}
+\contentsline {subsection}{\numberline {4.2.1}Semplice}{13}
+\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{13}
+\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{13}
+\contentsline {chapter}{\numberline {5}Risultati ottenuti}{14}
+\contentsline {chapter}{\numberline {6}Conclusioni}{15}
+\contentsline {chapter}{\numberline {7}Sviluppi futuri}{16}
+\contentsline {chapter}{Bibliografia}{17}
