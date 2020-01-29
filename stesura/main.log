@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  20 JAN 2020 20:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  25 JAN 2020 20:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -328,54 +328,172 @@ Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 130
 Capitolo 2.
 [4
 
-] [5] [6]
+] <imgs/heatmaps-posenet.jpg, id=55, 965.10562pt x 255.95625pt>
+File: imgs/heatmaps-posenet.jpg Graphic file (type jpg)
+
+<use imgs/heatmaps-posenet.jpg>
+Package pdftex.def Info: imgs/heatmaps-posenet.jpg used on input line 160.
+(pdftex.def)             Requested size: 390.0pt x 103.43127pt.
+ [5]
+<imgs/short-range-Posenet.jpg, id=62, 965.10562pt x 255.95625pt>
+File: imgs/short-range-Posenet.jpg Graphic file (type jpg)
+
+<use imgs/short-range-Posenet.jpg>
+Package pdftex.def Info: imgs/short-range-Posenet.jpg used on input line 170.
+(pdftex.def)             Requested size: 390.0pt x 103.43127pt.
+
+<imgs/legamiKeypointsPoseNet.jpeg, id=63, 732.7375pt x 937.5025pt>
+File: imgs/legamiKeypointsPoseNet.jpeg Graphic file (type jpg)
+
+<use imgs/legamiKeypointsPoseNet.jpeg>
+Package pdftex.def Info: imgs/legamiKeypointsPoseNet.jpeg used on input line 17
+7.
+(pdftex.def)             Requested size: 155.99762pt x 199.58499pt.
+ [6 <./imgs/heatmaps-posenet.jpg> <./imgs/short-range-Posenet.jpg>]
+<imgs/mid-range-Posenet.jpg, id=67, 900.86563pt x 255.95625pt>
+File: imgs/mid-range-Posenet.jpg Graphic file (type jpg)
+
+<use imgs/mid-range-Posenet.jpg>
+Package pdftex.def Info: imgs/mid-range-Posenet.jpg used on input line 185.
+(pdftex.def)             Requested size: 390.0pt x 110.8089pt.
+
+<imgs/overview-posenet.jpg, id=68, 955.57pt x 573.14125pt>
+File: imgs/overview-posenet.jpg Graphic file (type jpg)
+
+<use imgs/overview-posenet.jpg>
+Package pdftex.def Info: imgs/overview-posenet.jpg used on input line 192.
+(pdftex.def)             Requested size: 429.00238pt x 257.30774pt.
+
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 192--193
+ [][] 
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 193--193
+ []\OT1/cmr/m/n/10.95 Figura 2.5. Com-bi-na-zio-ne del-le fa-si adot-ta-te da P
+o-se-Net per il 
+ []
+
+[7 <./imgs/legamiKeypointsPoseNet.jpeg>] [8 <./imgs/mid-range-Posenet.jpg> <./i
+mgs/overview-posenet.jpg>]
 Capitolo 3.
-[7
 
-]
-Capitolo 4.
-[8
+Overfull \hbox (1.8913pt too wide) in paragraph at lines 202--203
+\OT1/cmss/m/n/12 Detectron2 ^^Re un pro-get-to open-source lan-cia-to dal-la \O
+T1/cmss/m/sl/12 Fa-ce-book AI Re-search (FAIR)
+ []
 
-]
-Capitolo 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+
+ []
+
 [9
 
 ]
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 221
+.
+LaTeX Font Info:    No file OMScmss.fd. on input line 221.
+
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 221.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
+
+ []
+
+[10] <imgs/typesOfDetection.jpeg, id=82, 1860.9525pt x 1166.3575pt>
+File: imgs/typesOfDetection.jpeg Graphic file (type jpg)
+
+<use imgs/typesOfDetection.jpeg>
+Package pdftex.def Info: imgs/typesOfDetection.jpeg used on input line 235.
+(pdftex.def)             Requested size: 429.00238pt x 268.87949pt.
+
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 235--236
+ [][] 
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 236--236
+ []\OT1/cmr/m/n/10.95 Figura 3.1. Com-bi-na-zio-ne del-le fa-si adot-ta-te da P
+o-se-Net per il 
+ []
+
+<imgs/instanceSeg.jpeg, id=83, 1858.945pt x 1397.22pt>
+File: imgs/instanceSeg.jpeg Graphic file (type jpg)
+
+<use imgs/instanceSeg.jpeg>
+Package pdftex.def Info: imgs/instanceSeg.jpeg used on input line 242.
+(pdftex.def)             Requested size: 429.00238pt x 322.44116pt.
+
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 242--243
+ [][] 
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 243--243
+ []\OT1/cmr/m/n/10.95 Figura 3.2. Com-bi-na-zio-ne del-le fa-si adot-ta-te da P
+o-se-Net per il 
+ []
+
+[11 <./imgs/typesOfDetection.jpeg>] [12 <./imgs/instanceSeg.jpeg>]
+Capitolo 4.
+[13
+
+]
+Capitolo 5.
+[14
+
+]
 Capitolo 6.
-[10
+[15
 
 ]
 Capitolo 7.
-[11
+[16
 
-] [12
+] [17
 
-] (./main.aux) ) 
+] [18] (./main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3451 strings out of 492995
- 44889 string characters out of 6132704
- 117897 words of memory out of 5000000
- 6927 multiletter control sequences out of 15000+600000
+ 3512 strings out of 492995
+ 46227 string characters out of 6132704
+ 118994 words of memory out of 5000000
+ 6979 multiletter control sequences out of 15000+600000
  14664 words of font info for 55 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 39i,8n,25p,806b,232s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl
-10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss1
-2.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx
-10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi
-12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
-.pfb>
-Output written on main.pdf (16 pages, 868204 bytes).
+ 39i,8n,25p,1147b,244s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (22 pages, 5100573 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 148 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

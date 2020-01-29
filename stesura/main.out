@@ -1,0 +1,17 @@
+\BOOKMARK [0][-]{chapter*.2}{Prefazione}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Introduzione}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Stima della posa}{}% 3
+\BOOKMARK [0][-]{chapter.2}{PoseNet}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Stima dei key-points}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Raggruppamento dei key-points in istanze di persona}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Detectron2}{}% 7
+\BOOKMARK [0][-]{chapter.4}{Classificazione}{}% 8
+\BOOKMARK [1][-]{section.4.1}{Struttura della rete}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.2}{Tecniche}{chapter.4}% 10
+\BOOKMARK [2][-]{subsection.4.2.1}{Semplice}{section.4.2}% 11
+\BOOKMARK [2][-]{subsection.4.2.2}{Tecnica dei centri}{section.4.2}% 12
+\BOOKMARK [2][-]{subsection.4.2.3}{Tecnica delle differenze}{section.4.2}% 13
+\BOOKMARK [0][-]{chapter.5}{Risultati ottenuti}{}% 14
+\BOOKMARK [0][-]{chapter.6}{Conclusioni}{}% 15
+\BOOKMARK [0][-]{chapter.7}{Sviluppi futuri}{}% 16
+\BOOKMARK [0][-]{chapter*.4}{Bibliografia}{}% 17

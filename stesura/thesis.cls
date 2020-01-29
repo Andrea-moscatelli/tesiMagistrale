@@ -1077,7 +1077,7 @@
 \def\universityname{Universit\`a degli Studi di }
 \def\facultyname{Scuola di }
 \def\deptname{Dipartimento di }
-\def\coursename{Tesi di laurea in }
+\def\coursename{Tesi di laurea Magistrale in }
 \def\accademicyearname{Anno Accademico }
 \def\authorname{Candidato}
 \def\supervisorname{Relatore}
@@ -1138,7 +1138,7 @@
  \uppercase\expandafter{\universityname}\uppercase\expandafter{\@university} \par%
 %                Facolta' (\normalsize)
  \small\sc
- \facultyname \@faculty\ - \deptname \@dept \par
+ \facultyname \@faculty \\\deptname \@dept \par
  \rule{7em}{0.4pt}
 %                Corso di laurea (\normalsize)
  \vskip 1ex
@@ -1146,7 +1146,7 @@
  \coursename \@course \par
  }
 %                Titolo centrato (\LARGE)
- \vskip 33mm
+ \vskip 27mm
  {\centering \LARGE\sc \@title \par}%
  \vfill
 %                Spazio per le firme (\normalsize)

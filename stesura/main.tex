@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt,dvips]{thesis}
+
 \usepackage[latin1]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{amsfonts}
@@ -13,7 +14,6 @@
 \newtheorem{definition}{Definizione}[section]
 
 \usepackage{amsmath}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macro algoritmi in un frame, con caption e label. Si usano cosi':
@@ -43,10 +43,10 @@
          {\newline \line(1,0){200} \end{small}\end{itshape}\end{quote} \onehalfspace}
                                            
 
-\university{Firenze} \faculty{Ingegneria} \dept{Ingegneria dell'Informazione} \course{Ingegneria Informatica}
+\university{Firenze} \faculty{Scienze Matematiche Fisiche e Naturali} \dept{Informatica} \course{Informatica - Data Science}
 \accademicyear{2019 - 2020} 
 \supervisor{Marco Bertini}
-\supervisor{Secondo Supervisore}
+%\supervisor{Secondo Supervisore}
 \advisor{Correlatore 1}
 \author{Andrea Moscatelli}
 \title{Riconoscimento di azioni umane usando tecniche di apprendimento profondo per la stima della posa}
@@ -135,16 +135,17 @@ La maggior parte dei software in circolazione in grado di stimare in maniera suf
 
 
 %% PoseNet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{PoseNet}
 I recenti progressi nel campo della visione artificiale hanno permesso alla comunità scientifica di spostarsi verso problemi ancora più articolati rispetto a quelli classici, come ad esempio il riconoscimento facciale, con l'obiettivo di riconoscere figure umane in contesti non vincolati e molto variabili. 
 
-L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, anche in contesti "affollati", ed essere in grado di identificare l'istanza di ogni persona stimandone i suoi \emph{punti chiave} (o \emph{key-points}).
+L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, anche in contesti ``affollati", ed essere in grado di identificare l'istanza di ogni persona stimandone i suoi \emph{punti chiave} (o \emph{key-points}).
 
-Esistono due approcci principali per affrontare il rilevamento di più persone, la stima della posa e la segmentazione. L'approccio \emph{top-down} inizia identificando e localizzando approssimativamente le singole istanze di persona identificando il riquadro dell'immagine dentro le quali sono contenute, seguito da una fase di stima della posa o di separazione "primo piano-sfondo" nell'area identificata. Al contrario, l'approccio \emph{bottom-up} inizia localizzando entità semantiche individuali, come ad esempio gambe, braccia, mani, etc, seguito dal loro raggruppamento in istanze di persone complete. PoseNet adotta questo secondo approccio.
+Esistono due approcci principali per affrontare il rilevamento di più persone, la stima della posa e la segmentazione. L'approccio \emph{top-down} inizia identificando e localizzando approssimativamente le singole istanze di persona identificando il riquadro dell'immagine dentro le quali sono contenute, seguito da una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. Al contrario, l'approccio \emph{bottom-up} inizia localizzando entità semantiche individuali, come ad esempio gambe, braccia, mani, etc, seguito dal loro raggruppamento in istanze di persone complete. PoseNet adotta questo secondo approccio.
 
 In particolare PoseNet utilizza una rete neurale convoluzionale nella quale il costo computazionale del riconoscimento delle pose è essenzialmente indipendente dal numero di persone raffigurate nella scena ma dipende esclusivamente dalla scelta delle features della rete.
 
-L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave di ogni persona nell'immagine e successivamente raggrupparli in istanze utilizzando un processo "greedy", ovvero partendo dal rilevamento "più sicuro", e non come spesso accade da un punto fisso di riferimento (ad esempio il naso), avendo come vantaggio quello di funzionare bene anche se in disordine.
+L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave di ogni persona nell'immagine e successivamente raggrupparli in istanze utilizzando un processo ``greedy", ovvero partendo dal rilevamento ``più sicuro", e non come spesso accade da un punto fisso di riferimento (ad esempio il naso), avendo come vantaggio quello di funzionare bene anche se in disordine.
 
 Oltre a stimare punti chiave sparsi, PoseNet stima anche maschere di segmentazione per ogni persona. Per fare ciò, viene allenata una seconda rete neurale con la quale viene associato ad ogni pixel $x_i$ dell'immagine la probabilità di appartenenza di quel pixel ad ogni candidato $j$ identificato. Se la probabilità è sufficientemente alta allora viene associato il pixel $x_i$ al candidato $j$.
 
@@ -153,22 +154,95 @@ Questo algoritmo è stato allenato utilizzando il dataset COCO \cite{COCO} che an
 Questo metodo essendo molto semplice è anche quindi molto rapido, poiché non richiede alcuna fase supplementare di raffinamento dei risultati con tecniche di tipo \emph{box-based} o \emph{clustering}, facendo di PoseNet uno degli algoritmi più facilmente installabili su rete mobile.
 
 \section{Stima dei key-points}
-L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i key-points visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo vengono prodotte delle \emph{heatmaps}, ovvero dei canali della rete neurale dediti al riconoscimento di particolari caratteristiche dell'immagine (una canale per ogni key-point) e degli \emph{offset} (due canali per ogni key-point per gli spostamenti in orizzontale e verticale). Sia $x_i$ la posizione 2-D nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero di pixels; $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato in $y$ e $y_{j,k}$ la posizione 2-D del $k$-esimo key-point della j-esima istanza di persona, con $j = 1, ..., M$, dove $M$ è il numero di istanze nell'immagine. 
+L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i key-points visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo vengono prodotte delle \emph{heat-maps}, ovvero dei canali della rete neurale dediti al riconoscimento di particolari caratteristiche dell'immagine (una canale per ogni key-point) e degli \emph{offset} (due canali per ogni key-point per gli spostamenti in orizzontale e verticale). Sia $x_i$ la posizione 2-D nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero di pixels; $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato in $y$ e $y_{j,k}$ la posizione 2-D del $k$-esimo key-point della j-esima istanza di persona, con $j = 1, ..., M$, dove $M$ è il numero di istanze nell'immagine. 
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{imgs/heatmaps-posenet}
+\caption{Generazione con PoseNet delle heat-maps per ogni tipologia di key-point}
+\end{figure}
 
-Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue. Viene generata una heatmap $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. Abbiamo quindi $K$ tasks di classificazione binaria indipendenti, una per ogni tipo di key-point. Ciascuno equivale a prevedere un disco di raggio $R$ attorno a un tipo di key-point specifico di qualsiasi persona nell'immagine.
+Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue. Viene generata una heat-map $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. Abbiamo quindi $K$ tasks di classificazione binaria indipendenti, una per ogni tipo di key-point. Ciascuno equivale a prevedere un disco di raggio $R$ attorno a un tipo di key-point specifico di qualsiasi persona nell'immagine.
 
-Oltre alle heatmaps, vengono anche usati vettori di offset a \emph{corto raggio} $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei key-points. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2-D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo key-point della $j$-esima persona. Vengono cosi generati $K$ vettori per ogni punto $x$ all'interno del disco definito che, combinati insieme, miglioreranno l'accuratezza della posizione predetta per ogni key-point. 
+Oltre alle heat-maps, vengono anche usati vettori di offset a \emph{corto raggio} $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei key-points. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2-D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo key-point della $j$-esima persona. Vengono cosi generati $K$ vettori per ogni punto $x$ all'interno del disco definito che, combinati insieme in una \emph{trasformata di Hough} $h_k(x)$, miglioreranno l'accuratezza della posizione predetta per ogni key-point. 
+Solo i punti che superano una certa soglia di Hough (0.01, come indicato nel lavoro del team di PoseNet\cite{PosenetArticle}) vengono considerati dei key-point, gli altri invece vengono scartati.
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{imgs/short-range-Posenet}
+\caption{Esempio di stima degli offset a corto raggio con PoseNet}
+\end{figure}
 
 \section{Raggruppamento dei key-points in istanze di persona}
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{imgs/legamiKeypointsPoseNet}
+\caption{Struttura ad albero utilizzata da PoseNet per raggruppare i key-points appartenenti alla stessa persona}
+\label{fig:strutturakeypoints}
+\end{figure}
+A questo punto è però necessario capire come associare ogni key-point alle persone raffigurate nell'immagine (nel caso ce ne sia più di una). 
+Seguendo lo schema delle connessioni fra tipi di key-points (rappresentati in figura \ref{fig:strutturakeypoints}) la rete viene allenata per restituire in output anche i cosiddetti \emph{offset a medio raggio}, ovvero probabilità di connessioni fra key-points, col lo scopo di raggruppare quelli appartenenti alla stessa persona. Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset}.
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{imgs/mid-range-Posenet}
+\caption{Esempio di stima degli offset a medio raggio con PoseNet. L'intento è quello di raggruppare i keypoints appartenenti alla stessa persona.}
+\label{fig:midRangeOffset}
+\end{figure}
+Una raffigurazione completa del sistema adottato da PoseNet per il riconoscimento delle pose di persone raffigurate in un'immagine è rappresentato in figura \ref{fig:overview-posenet}.
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/overview-posenet}
+\caption{Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}
+\label{fig:overview-posenet}
+\end{figure}
 
-A questo è necessario però capire come associare ogni key-point stimato ad ogni persona nell'immagine (nel caso ce ne sia più di una). 
+
 
 
 %% Detecron 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Detectron2}
-Descrizione di cosè Detectron2
+Detectron2 è un progetto open-source lanciato dalla \emph{Facebook AI Research (FAIR)} ampiamente usato dalla comunità di ricerca in ambito \emph{computer vision} che rappresenta, ad oggi, una piattaforma per il riconoscimento di oggetti allo stato dell'arte.\\
 
+Il suo predecessore \emph{Detectron} \cite{DetectronLink} fu un progetto cominciato nel 2016 con l'obiettivo di creare un sistema rapido e flessibile per il riconoscimento di oggetti in immagini originariamente basato su \emph{Caffe2} \cite{caffe2} (un framework ideato per facilitare la sperimentazione e la divulgazione di nuovi modelli e algoritmi in ambito \emph{deep learning}) e scritto in \emph{Python}. Negli ultimi anni è stato perfezionato e supportato da una grande quantità di progetti, compreso ``\emph{Mask-R-CNN}" \cite{maskRCNN} e ``\emph{Focal Loss for Dense Object Detection}" \cite{focalLossDetection}, vincitori rispettivamente del \emph{Premio Marr} e di \emph{Miglior articolo scientifico studentesco} all'\emph{Internation Conference on Compuer Vision} (ICCV) del 2017. L'intuitività e l'efficacia di questi algoritmi hanno permesso un notevole sviluppo nella risoluzione di problemi complessi nell'ambito della computer vision, come ad esempio l'\emph{instance segmentation}, e hanno sicuramente giocato un ruolo rilevante nell'avanzamento tecnologico dei sistemi di riconoscimento visivo.\\
 
+Detectron2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al machine learning ed ampiamente usata nel campo della computer-vision che ha inglobato in se anche il precedente framework Caffe2.  Più nello specifico Detectron2 include le implementazioni dei seguenti algoritmi di object-detection:
+\begin{itemize}
+\item Cascade R-CNN \cite{cascadeRCNN}
+\item Panoptic FPN \cite{panopticFeatures}
+\item TensorMask \cite{tensorMask}
+\item Mask R-CNN \cite{maskRCNN}
+\item RetinaNet \cite{focalLossDetection}
+\item Faster R-CNN \cite{fasterRCNN}
+\item RPN \cite{fasterRCNN}
+\item Fast R-CNN \cite{fastRCNN}
+\item R-FCN \cite{RFCN}
+\end{itemize}
+
+utilizzando le seguenti reti \emph{backbone} (ovvero reti precedentemente allenate con lo scopo di estrarre in maniera efficiente le \emph{features} di un'immagine):
+\begin{itemize}
+\item ResNeXt\{50,101,152\} \cite{resNetXt}
+\item ResNet\{50,101,152\} \cite{resNet}
+\item Feature Pyramid Networks (con ResNet/ResNeXt) \cite{featurePyramid}
+\item VGG16 \cite{vgg16}
+\end{itemize}
+
+e nel caso fosse necessario implementare nuove reti backbone, con Detectron2 è possibile farlo facilmente grazie alla struttura modulare di Pytorch, che permette di separare il nuovo modello dagli algoritmi di Detectron2.\\
+
+Essendo stato interamente riscritto in Pytorch, Detectron2 è più rapido del suo predecessore nei compiti di \emph{object-detection}, \emph{instance segmentation} e \emph{human-pose prediction}, ed in più è in grado di fornire supporto per i nuovi task di \emph{semantic segmentation} e \emph{panoptic segmentation}, ovvero la combinazione fra instance-segmentation e semantic-segmentation.
+
+Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team di Facebook (e non solo) per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity} (ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni).
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/typesOfDetection}
+\caption{Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}
+\label{xxx}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/instanceSeg}
+\caption{Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}
+\label{xxx}
+\end{figure}
 
 \chapter{Classificazione}
 \section{Struttura della rete}
@@ -188,14 +262,46 @@ Descrizione di cosè Detectron2
 
 \begin{thebibliography}{100}  % 100 is a random guess of the total number of references
 
-\bibitem{PosenetArticle} \emph{"PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model"} - George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy - 2018
-\bibitem{COCO}    Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P. -  Coco 2016 keypoint challenge. - 2016
+\bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - 2018
+\bibitem{COCO} Coco 2016 keypoint challenge - Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P. - 2016
 \bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5}
 
-\bibitem{Detectron2Link} Detectron2 - \emph{https://research.fb.com/wp-content/uploads/2019/12/4.-detectron2.pdf}
+\bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2}, 2019
+
+\bibitem{DetectronLink} Detectron - \emph{Ross Girshick, Ilija Radosavovic, Georgia Gkioxari, Piotr Dollàr, Kaiming He - https://github.com/facebookresearch/detectron}, 2018
+
+\bibitem{caffe2} Caffe2 - \emph{https://caffe2.ai/docs}
+
+\bibitem{maskRCNN} Mask R-CNN - \emph{Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick}, 2017
+
+\bibitem{focalLossDetection} Focal Loss for Dense Object Detection - \emph{Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár}, 2017
+
+\bibitem{fasterRCNN} Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks - \emph{Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun}, 2015
+
+\bibitem{fastRCNN} Fast R-CNN - \emph{Ross Girshick}, 2015
+
+\bibitem{RFCN} R-FCN: Object Detection via Region-based Fully Convolutional Networks - \emph{Jifeng Dai, Yi Li, Kaiming He, Jian Sun}, 2016
+
+\bibitem{resNetXt} Aggregated Residual Transformations for Deep Neural Networks - \emph{Saining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He}, 2016
+
+\bibitem{resNet} Deep Residual Learning for Image Recognition - \emph{Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun}, 2015
+
+\bibitem{featurePyramid} Feature Pyramid Networks for Object Detection - \emph{Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, Serge Belongie}, 2016
+
+\bibitem{vgg16} Very Deep Convolutional Networks for Large-Scale Image Recognition - \emph{Karen Simonyan, Andrew Zisserman}, 2014
+
+\bibitem{cascadeRCNN} Cascade R-CNN: High Quality Object Detection and Instance Segmentation - \emph{Zhaowei Cai, Nuno Vasconcelos} - 2019
+
+\bibitem{panopticFeatures} Panoptic Feature Pyramid Networks - \emph{Alexander Kirillov, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
+
+\bibitem{tensorMask} TensorMask: A Foundation for Dense Object Segmentation - \emph{Xinlei Chen, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
+
+
+
+
+
+
 \end{thebibliography}
-
-
 
 
 \end{document}
