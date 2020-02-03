@@ -14,6 +14,8 @@
 \newtheorem{definition}{Definizione}[section]
 
 \usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{makecell}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macro algoritmi in un frame, con caption e label. Si usano cosi':
@@ -44,7 +46,7 @@
                                            
 
 \university{Firenze} \faculty{Scienze Matematiche Fisiche e Naturali} \dept{Informatica} \course{Informatica - Data Science}
-\accademicyear{2019 - 2020} 
+\accademicyear{2018 - 2019} 
 \supervisor{Marco Bertini}
 %\supervisor{Secondo Supervisore}
 \advisor{Correlatore 1}
@@ -119,10 +121,10 @@ Introduzione
 \end{figure}
 \newpage
 Cos è la stima della posa?\\
-Quando parliamo di \textit{stima della posa} ci riferiamo ad una tecnica di \textit{computer vision} dedita al riconoscimento di figure umane all'interno di video ed immagini, così da poter riconosce ad esempio dove, all'interno dell'immagine, si trova la testa, il braccio, la gamba destra, etc.. del soggetto inquadrato. \\
+Quando parliamo di \textit{stima della posa} ci riferiamo ad una tecnica di \textit{computer vision} dedita al riconoscimento di figure umane all'interno di video ed immagini, così da poter localizzare ad esempio dove, all'interno dell'immagine, si trova la testa, il braccio, la gamba destra, etc.. della persona inquadrata. \\
 Questa tecnica non va assolutamente confusa con tecniche di riconoscimento di persone, infatti la stima della posa è in grado solo di riconoscere dove le parti del corpo di un individuo sono situate all'interno dell'immagine, non \textit{chi} è inquadrato. \\
 
-I campi di applicazione della stima della posa sono i più svariati: software interattivi che reagiscono al movimento della posa, robotica, realtà aumentata, animazione, fotoritocco intelligente, fitness, riabilitazione, etc. Stiamo parlando di un problema tutt'altro che semplice, infatti la condizione di luce dell'immagine, la variabilità dell'ambiente circostante, l'inclinazione del soggetto inquadrato, rendono il riconoscimento della posa un problema non affatto banale. \\
+I campi di applicazione della stima della posa sono i più svariati: software interattivi che reagiscono al movimento della persona, robotica, realtà aumentata, animazione, fotoritocco intelligente, fitness, riabilitazione, etc. Stiamo parlando di un problema tutt'altro che semplice, infatti la condizione di luce dell'immagine, la variabilità dell'ambiente circostante, l'inclinazione del soggetto inquadrato, rendono il riconoscimento della posa un problema non affatto banale. \\
 
 Spinti dal crescente interesse, negli ultimi anni sono stati sviluppati diversi algoritmi per la stima della posa, raggiungendo in molti casi risultati davvero sorprendenti con un'accuratezza prossima alla perfezione. \\ 
 \begin{figure}
@@ -137,21 +139,26 @@ La maggior parte dei software in circolazione in grado di stimare in maniera suf
 %% PoseNet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{PoseNet}
-I recenti progressi nel campo della visione artificiale hanno permesso alla comunità scientifica di spostarsi verso problemi ancora più articolati rispetto a quelli classici, come ad esempio il riconoscimento facciale, con l'obiettivo di riconoscere figure umane in contesti non vincolati e molto variabili. 
+I recenti progressi nel campo della visione artificiale hanno permesso alla comunità scientifica di spostarsi verso problemi ancora più articolati rispetto a quelli classici, con l'obiettivo di riconoscere figure umane in contesti non vincolati e molto variabili. 
 
-L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, anche in contesti ``affollati", ed essere in grado di identificare l'istanza di ogni persona stimandone i suoi \emph{punti chiave} (o \emph{key-points}).
+L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, anche in quelli ``affollati", ed essere in grado di identificare ogni persona stimandone i suoi \emph{punti chiave} (o \emph{key-points}).
 
-Esistono due approcci principali per affrontare il rilevamento di più persone, la stima della posa e la segmentazione. L'approccio \emph{top-down} inizia identificando e localizzando approssimativamente le singole istanze di persona identificando il riquadro dell'immagine dentro le quali sono contenute, seguito da una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. Al contrario, l'approccio \emph{bottom-up} inizia localizzando entità semantiche individuali, come ad esempio gambe, braccia, mani, etc, seguito dal loro raggruppamento in istanze di persone complete. PoseNet adotta questo secondo approccio.
+Generalmente esistono due approcci principali per affrontare il problema del rilevamento di più persone in un'immagine, la stima della loro posa e la loro \emph{segmentazione} (ovvero l'identificazione dei pixel che rappresentano ogni persona):
+\begin{itemize}
+\item l'approccio \emph{top-down} inizia identificando e localizzando approssimativamente le singole istanze di persona delimitando il riquadro dell'immagine dentro il quale sono contenute, seguito da una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. 
+\item Al contrario, l'approccio \emph{bottom-up} inizia localizzando \emph{entità semantiche individuali}, come ad esempio gambe, braccia, mani, etc, seguito dal loro raggruppamento in istanze di persone complete. PoseNet adotta questo secondo approccio.
+\end{itemize}
+Inoltre PoseNet utilizza una rete neurale convoluzionale per la quale il costo computazionale del riconoscimento delle pose è essenzialmente indipendente dal numero di persone raffigurate nella scena ma dipende esclusivamente dalla scelta delle features della rete.
 
-In particolare PoseNet utilizza una rete neurale convoluzionale nella quale il costo computazionale del riconoscimento delle pose è essenzialmente indipendente dal numero di persone raffigurate nella scena ma dipende esclusivamente dalla scelta delle features della rete.
+L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave e successivamente raggrupparli in istanze di persona utilizzando un processo ``greedy", ovvero partendo dal rilevamento ``più sicuro" (e non come spesso accade, da un punto fisso di riferimento, ad esempio il naso). Anche se potrebbe sembrare una tecnica più "disordinata" i risultati empirici hanno dimostrato funzionare estremamente bene.
 
-L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave di ogni persona nell'immagine e successivamente raggrupparli in istanze utilizzando un processo ``greedy", ovvero partendo dal rilevamento ``più sicuro", e non come spesso accade da un punto fisso di riferimento (ad esempio il naso), avendo come vantaggio quello di funzionare bene anche se in disordine.
+Oltre a stimare punti chiave sparsi, PoseNet stima anche delle maschere di segmentazione per ogni persona. Per fare ciò, viene allenata una seconda rete neurale con la quale viene associato ad ogni pixel $x_i$ la probabilità di appartenenza di quel pixel ad ogni candidato $j$ identificato. Se la probabilità è sufficientemente alta allora viene associato il pixel $x_i$ al candidato $j$.
 
-Oltre a stimare punti chiave sparsi, PoseNet stima anche maschere di segmentazione per ogni persona. Per fare ciò, viene allenata una seconda rete neurale con la quale viene associato ad ogni pixel $x_i$ dell'immagine la probabilità di appartenenza di quel pixel ad ogni candidato $j$ identificato. Se la probabilità è sufficientemente alta allora viene associato il pixel $x_i$ al candidato $j$.
+Questo algoritmo è stato allenato utilizzando il famoso dataset COCO \cite{COCO-2016} (versione 2016) che, fra molte altre cose, contiene anche l'annotazione dei 17 punti chiave (12 del corpo e 5 del volto) di migliaia di persone ed è riuscito a migliorarne l'\emph{AP} (average-precision) da 0,655 a 0,687 diventandone il miglior risultato. 
 
-Questo algoritmo è stato allenato utilizzando il dataset COCO \cite{COCO} che annota molte persone con 17 punti chiave (12 del corpo e 5 del volto), migliorando l'\emph{AP} (average-precision) dal precedente miglior risultato da 0,655 a 0,687. 
+Essendo molto semplice questo metodo è anche quindi molto rapido, poiché non richiede alcuna fase supplementare di raffinamento dei risultati con tecniche di tipo \emph{box-based} o \emph{clustering}, rendendo di fatto PoseNet uno degli algoritmi più facilmente installabili su piccoli dispositivi, come ad esempio i cellulari.
 
-Questo metodo essendo molto semplice è anche quindi molto rapido, poiché non richiede alcuna fase supplementare di raffinamento dei risultati con tecniche di tipo \emph{box-based} o \emph{clustering}, facendo di PoseNet uno degli algoritmi più facilmente installabili su rete mobile.
+Ma vediamo adesso più nel dettaglio come PoseNet stima e raggruppa i punti chiavi di una o più persone raffigurate in un'immagine.
 
 \section{Stima dei key-points}
 L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i key-points visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo vengono prodotte delle \emph{heat-maps}, ovvero dei canali della rete neurale dediti al riconoscimento di particolari caratteristiche dell'immagine (una canale per ogni key-point) e degli \emph{offset} (due canali per ogni key-point per gli spostamenti in orizzontale e verticale). Sia $x_i$ la posizione 2-D nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero di pixels; $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato in $y$ e $y_{j,k}$ la posizione 2-D del $k$-esimo key-point della j-esima istanza di persona, con $j = 1, ..., M$, dove $M$ è il numero di istanze nell'immagine. 
@@ -161,15 +168,23 @@ L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istan
 \caption{Generazione con PoseNet delle heat-maps per ogni tipologia di key-point}
 \end{figure}
 
-Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue. Viene generata una heat-map $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. Abbiamo quindi $K$ tasks di classificazione binaria indipendenti, una per ogni tipo di key-point. Ciascuno equivale a prevedere un disco di raggio $R$ attorno a un tipo di key-point specifico di qualsiasi persona nell'immagine.
+Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue. Viene generata una heat-map $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. Abbiamo quindi $K$ tasks di classificazione binaria indipendenti (uno per ogni tipo di key-point) e ciascuno equivale a prevedere un disco di raggio $R$ attorno a un tipo di key-point specifico appartenente a qualsiasi persona nell'immagine.
 
-Oltre alle heat-maps, vengono anche usati vettori di offset a \emph{corto raggio} $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei key-points. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2-D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo key-point della $j$-esima persona. Vengono cosi generati $K$ vettori per ogni punto $x$ all'interno del disco definito che, combinati insieme in una \emph{trasformata di Hough} $h_k(x)$, miglioreranno l'accuratezza della posizione predetta per ogni key-point. 
-Solo i punti che superano una certa soglia di Hough (0.01, come indicato nel lavoro del team di PoseNet\cite{PosenetArticle}) vengono considerati dei key-point, gli altri invece vengono scartati.
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{imgs/short-range-Posenet}
 \caption{Esempio di stima degli offset a corto raggio con PoseNet}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{imgs/mid-range-Posenet}
+\caption{Esempio di stima degli offset a medio raggio con PoseNet. L'intento è quello di raggruppare i keypoints appartenenti alla stessa persona.}
+\label{fig:midRangeOffset}
+\end{figure}
+
+Oltre alle heat-maps, vengono anche usati vettori di \emph{offset a corto raggio} $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei key-points. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2-D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo key-point della $j$-esima persona. Vengono cosi generati $K$ vettori per ogni punto $x$ all'interno del disco definito che, combinati insieme in una \emph{trasformata di Hough} $h_k(x)$, miglioreranno l'accuratezza della posizione predetta di ogni key-point. 
+Solo i punti che superano una certa soglia di Hough (0.01, come indicato da \cite{PosenetArticle}) vengono considerati dei key-point, gli altri invece vengono scartati.
 
 \section{Raggruppamento dei key-points in istanze di persona}
 \begin{figure}
@@ -179,14 +194,11 @@ Solo i punti che superano una certa soglia di Hough (0.01, come indicato nel lav
 \label{fig:strutturakeypoints}
 \end{figure}
 A questo punto è però necessario capire come associare ogni key-point alle persone raffigurate nell'immagine (nel caso ce ne sia più di una). 
-Seguendo lo schema delle connessioni fra tipi di key-points (rappresentati in figura \ref{fig:strutturakeypoints}) la rete viene allenata per restituire in output anche i cosiddetti \emph{offset a medio raggio}, ovvero probabilità di connessioni fra key-points, col lo scopo di raggruppare quelli appartenenti alla stessa persona. Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset}.
-\begin{figure}
-\centering
-\includegraphics[width=1\textwidth]{imgs/mid-range-Posenet}
-\caption{Esempio di stima degli offset a medio raggio con PoseNet. L'intento è quello di raggruppare i keypoints appartenenti alla stessa persona.}
-\label{fig:midRangeOffset}
-\end{figure}
-Una raffigurazione completa del sistema adottato da PoseNet per il riconoscimento delle pose di persone raffigurate in un'immagine è rappresentato in figura \ref{fig:overview-posenet}.
+Seguendo lo schema delle connessioni fra tipi di key-points (rappresentati in figura \ref{fig:strutturakeypoints}) la rete viene allenata per restituire in output anche i cosiddetti \emph{offset a medio raggio}, ovvero probabilità di connessioni fra key-points, col lo scopo di raggruppare quelli appartenenti alla stessa persona. 
+
+Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset} mentre una raffigurazione completa del sistema adottato da PoseNet per il riconoscimento delle pose di persone raffigurate in un'immagine è rappresentato in figura \ref{fig:overview-posenet}.
+
+
 \begin{figure}
 \centering
 \includegraphics[width=1.1\textwidth]{imgs/overview-posenet}
@@ -195,15 +207,22 @@ Una raffigurazione completa del sistema adottato da PoseNet per il riconosciment
 \end{figure}
 
 
-
-
 %% Detecron 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Detectron2}
-Detectron2 è un progetto open-source lanciato dalla \emph{Facebook AI Research (FAIR)} ampiamente usato dalla comunità di ricerca in ambito \emph{computer vision} che rappresenta, ad oggi, una piattaforma per il riconoscimento di oggetti allo stato dell'arte.\\
+Detectron2 è un progetto open-source lanciato dalla \emph{Facebook AI Research (FAIR)} ampiamente usato dalla comunità di ricerca in ambito \emph{computer vision} e rappresenta, ad oggi, una piattaforma per il riconoscimento di oggetti allo stato dell'arte.\\
 
-Il suo predecessore \emph{Detectron} \cite{DetectronLink} fu un progetto cominciato nel 2016 con l'obiettivo di creare un sistema rapido e flessibile per il riconoscimento di oggetti in immagini originariamente basato su \emph{Caffe2} \cite{caffe2} (un framework ideato per facilitare la sperimentazione e la divulgazione di nuovi modelli e algoritmi in ambito \emph{deep learning}) e scritto in \emph{Python}. Negli ultimi anni è stato perfezionato e supportato da una grande quantità di progetti, compreso ``\emph{Mask-R-CNN}" \cite{maskRCNN} e ``\emph{Focal Loss for Dense Object Detection}" \cite{focalLossDetection}, vincitori rispettivamente del \emph{Premio Marr} e di \emph{Miglior articolo scientifico studentesco} all'\emph{Internation Conference on Compuer Vision} (ICCV) del 2017. L'intuitività e l'efficacia di questi algoritmi hanno permesso un notevole sviluppo nella risoluzione di problemi complessi nell'ambito della computer vision, come ad esempio l'\emph{instance segmentation}, e hanno sicuramente giocato un ruolo rilevante nell'avanzamento tecnologico dei sistemi di riconoscimento visivo.\\
+Il suo predecessore \emph{Detectron} \cite{DetectronLink} fu un progetto iniziato nel 2016 con l'obiettivo di creare un sistema rapido e flessibile per il riconoscimento di oggetti in immagini ed originariamente basato su \emph{Caffe2} \cite{caffe2} (un framework ideato per facilitare la sperimentazione e la divulgazione di nuovi modelli e algoritmi in ambito \emph{deep learning}) e scritto in \emph{Python}. 
 
-Detectron2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al machine learning ed ampiamente usata nel campo della computer-vision che ha inglobato in se anche il precedente framework Caffe2.  Più nello specifico Detectron2 include le implementazioni dei seguenti algoritmi di object-detection:
+Negli anni Detectron è stato perfezionato e supportato da una grande quantità di progetti, compreso ``\emph{Mask-R-CNN}" \cite{maskRCNN} e ``\emph{Focal Loss for Dense Object Detection}" \cite{focalLossDetection}, vincitori rispettivamente del \emph{Premio Marr} e di \emph{Miglior articolo scientifico studentesco} all'\emph{Internation Conference on Compuer Vision} (ICCV) del 2017. L'intuitività e l'efficacia di questi algoritmi hanno permesso un notevole sviluppo nella risoluzione di problemi complessi nell'ambito della computer vision, come ad esempio l'\emph{instance segmentation}, e hanno sicuramente giocato un ruolo rilevante nell'avanzamento tecnologico dei sistemi di riconoscimento visivo.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/typesOfDetection}
+\caption{Tipologie di analisi visive.}
+\label{fig:typeOfDetection}
+\end{figure}
+
+Detectron2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al machine learning ed ampiamente usata nel campo della computer-vision che ha inglobato in se anche il precedente framework Caffe2.  Più nello specifico Detectron2 include ad oggi le implementazioni dei seguenti algoritmi di object-detection:
 \begin{itemize}
 \item Cascade R-CNN \cite{cascadeRCNN}
 \item Panoptic FPN \cite{panopticFeatures}
@@ -224,26 +243,136 @@ utilizzando le seguenti reti \emph{backbone} (ovvero reti precedentemente allena
 \item VGG16 \cite{vgg16}
 \end{itemize}
 
-e nel caso fosse necessario implementare nuove reti backbone, con Detectron2 è possibile farlo facilmente grazie alla struttura modulare di Pytorch, che permette di separare il nuovo modello dagli algoritmi di Detectron2.\\
-
-Essendo stato interamente riscritto in Pytorch, Detectron2 è più rapido del suo predecessore nei compiti di \emph{object-detection}, \emph{instance segmentation} e \emph{human-pose prediction}, ed in più è in grado di fornire supporto per i nuovi task di \emph{semantic segmentation} e \emph{panoptic segmentation}, ovvero la combinazione fra instance-segmentation e semantic-segmentation.
-
-Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team di Facebook (e non solo) per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity} (ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni).
-
-\begin{figure}
-\centering
-\includegraphics[width=1.1\textwidth]{imgs/typesOfDetection}
-\caption{Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}
-\label{xxx}
-\end{figure}
-
+Inoltre, nel caso fosse necessario implementare nuove reti backbone, è possibile farlo facilmente grazie alla struttura modulare di Pytorch, che permette di separare il nuovo modello dai precedenti algoritmi di Detectron2.\\
 \begin{figure}
 \centering
 \includegraphics[width=1.1\textwidth]{imgs/instanceSeg}
-\caption{Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}
-\label{xxx}
+\caption{Instance segmentation con Detectron2}
+\end{figure}
+Essendo stato interamente riscritto in Pytorch, Detectron2 è più rapido del suo predecessore nei compiti di \emph{object-detection}, \emph{instance segmentation} e \emph{human-pose prediction}, ed in più è in grado di fornire supporto per i nuovi task di \emph{semantic segmentation} e \emph{panoptic segmentation}, ovvero la combinazione fra instance-segmentation e semantic-segmentation (figura \ref{fig:typeOfDetection}).
+
+Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team di Facebook (e non solo) per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity}, ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni.
+
+Per quanto riguarda la stima della posa umana in un'immagine, Detectron2 utilizza una Mask R-CNN \cite{maskRCNN} riadattata all'estrazione dei keypoints.
+
+\section{Mask R-CNN}
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/instanceSegmenttionMaskRCNN2}
+\caption{Alcuni esempi di instance segmentation con Mask R-CNN}
+\end{figure}
+Mask R-CNN nasce con l'intento di creare un framework semplice e flessibile per affrontare il problema dell'\emph{instance segmentation}. Questo metodo è in grado di identificare gli oggetti in un'immagine e simultaneamente generare una maschera di segmentazione ben definita per ogni istanza. Mask R-CNN è sostanzialmente un'estensione di \emph{Faster R-CNN} \cite{fasterRCNN} in quanto aggiunge parallelamente ai due output già presenti per il \emph{bounding box} e la classificazione anche quello per la predizione della maschera d'istanza. Nonostante sia un metodo nato per l'instance segmentation è però facilmente adattabile ad altri tipi di predizioni, come ad esempio quella della posa umana.
+
+Mask R-CNN è suddiviso in due fasi di procedura. La prima, identica a quella adottata per Faster R-CNN, chiamata ``\emph{Region Proposal Network}" (RPN) ha il compito di proporre porzioni di immagine nelle quali potrebbero essere raffigurate delle istanze. Nella seconda, viene predetto \emph{in parallelo} alla classe e al delineamento preciso dell'istanza (\emph{bounding box}) anche una maschera binaria per ogni \emph{regione d'interesse} (RoI) dell'immagine. 
+
+Più precisamente, durante l'allenamento della rete, la \emph{loss} definita per ogni RoI è la seguente: $L= L_{cls} + L_{box} + L_{mask}$. La loss di classificazione e quella del boundig box sono identiche a quelle definite per Fast R-CNN \cite{fastRCNN}. 
+
+Per quanto riguarda invece $L_{mask}$, dato che decodifica $K$ maschere binarie di dimensione $m \times m$ (dove $K$ è il numero di classi), la sua dimensione è $Km^2$ per ogni RoI.
+
+Questa definizione di $L_{mask}$ permette alla rete, non solo di generare maschere completamente indipendenti l'una dall'altra, ma anche di disaccoppiare la predizione delle maschere dalla classificazione delle istanze. Questa caratteristica, innovativa rispetto alle pratiche comuni in materia di semantic segmentation, si è rivelata essere basilare per il raggiungimento di una buona segmentazione.
+
+\subsection{Predizione della posa con Mask R-CNN}
+Grazie alla sua grande flessibilità, questo framework può essere facilmente esteso alla stima della posa umana in un'immagine. 
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/posePredictionMaskRCNN}
+\caption{Alcuni esempi di pose prediction con Mask R-CNN}
 \end{figure}
 
+Le coordinate dei keypoints vengono trasformate in maschere di tipo \emph{one-hot} e Mask R-CNN viene utilizzato per predire $K$ maschere, una per ogni tipo di keypoint (gomito sinistro, spalla destra, etc..).
+
+Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training target è una maschera binaria $m \times m$ di tipo \emph{one-hot} dove cioè solo un pixel viene etichettato come positivo. Durante l'allenamento della rete, per ogni keypoint visibile nell'immagine, viene minimizzata una \emph{cross-entropy} loss con regolarizzatore L2 (per incoraggiare l'identificazione di un singolo punto). Anche per questa procedura, le $K$ maschere dei $K$ tipi di keypoint sono completamente indipendenti l'una dall'altra. 
+
+
+%%%%%%  NTU RGB+D %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Il dataset NTU RGB+D}
+Il recente sviluppo dei sensori di profondità ha permesso un notevole miglioramento degli studi in ambito 3D, come ad esempio il riconoscimento di oggetti o azioni in scenari tridimensionali. 
+
+Essendo però un campo scientifico piuttosto ``giovane'', la ricerca di un adeguato dataset per il \emph{riconoscimento di azioni umane} che sia solido, voluminoso e vario può non essere un compito facile. 
+
+Spesso i dataset pubblicamente disponibili sono composti da uno stretto gruppo di soggetti, il che riduce notevolmente la variabilità intra-classi e un'\emph{attività umana} dipende fortemente dall'età, il sesso, la cultura e le condizioni fisiche di chi la svolge quindi avere una sufficiente variabilità di soggetti nel dataset che stiamo analizzando è di vitale importanza.
+
+Un'altra cosa estremamente importante è il numero di azioni che stiamo analizzando. Se il nostro dataset contiene poche tipologie di attività umane, sarà facile distinguerle e classificarle fra loro, magari identificando un semplice pattern di movimento o addirittura la struttura di un oggetto coinvolto nell'azione da classificare. Se invece il numero di azioni trattate è sufficientemente alto, allora i pattern di movimento e gli oggetti con i quali si interagisce vengono condivisi fra più classi di azioni, rendendo la classificazione estremamente più difficile.
+
+Il terzo punto da considerare nella scelta di un buon dataset è il punto di vista dal quale vengono riprese le azioni. La maggior parte dei dataset contengono video che riprendono l'azione da un unico punto di vista (spesso frontale), in altri casi invece i punti di vista sono strettamente due (magari frontale e di lato), ottenuti solo perchè sono state utlizzate più telecamere contemporaneamente.
+
+Come ultima cosa e forse la più importante, l'insufficienza di video nei dataset ci impedisce spesso di applicare tecniche di machine-learning al nostro problema, portandoci inevitabilmente ad una situazione di overfitting.
+
+Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang Wang hanno creato nel 2016 \emph{NTU RGB+D} \cite{NTURGB}, un vasto e variegato dataset dedito all'analisi di attività umane in ambito 3D.
+\begin{figure}
+\centering
+\includegraphics[width=0.93\textwidth]{imgs/varietaNTURGB}
+\caption{Alcuni esempi di frames del dataset NTU RGB+D. Nelle prime 4 righe è possibile notare la varietà degli attori partecipanti al progetto e dei diversi punti di ripresa utilizzati. La quinta riga mostra la varietà intra-classe per una stessa azione. L'ultima riga mostra per uno stesso frame i valori RGB, i valori RGB + giunti, mappa di profondità,  mappa di profondità + giunti e i valori a infrarossi. }
+\label{fig:varietaNTURGB}
+\end{figure}
+NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti attori ed utilizzando Microsoft Kinect v2. Il dataset contiene i video RGB, le sequenze di profondità, lo skeleton dei soggetti (ovvero le posizioni 3D dei principali giunti corporei) e i frames a infrarossi. I soggetti sono stati ripresi da 80 punti di vista differenti e la loro età varia dai 10 ai 35 anni, il che rende più realistica la variazione di qualità delle azioni svolte. Anche se tutte le riprese sono di tipo \emph{indoor}, gli scenari ricreati intorno agli attori sono estremamente variabili.
+
+\section{NTU RGB+D in dettaglio}
+\textbf{Tipologie di dati} - I dati raccolti sono stati ottenuti con sensori Microsoft Kinect v2 che consentono di estrapolare dalle riprese 4 tipologie di dato: mappe di profondità, informazioni 3D dei giunti corporei, frame RGB e sequenze a infrarossi.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{imgs/giuntiNTURGB}
+\caption{La configurazione dei 25 giunti utilizzati in NTU RGB+D. Le etichette utilizzate per i giunti sono: 1 - base della colonna vetrebrale, 2 - punto medio della colonna vertebrale, 3 - collo, 4 - testa, 5 - spalla sinistra, 6 - gomito sinistro, 7 - polso sinistro, 8 - mano sinistra, 9 - spalla destra, 10 - gomito destro, 11 - polso destro, 12 - mano destra, 13 - anca sinistra, 14 - ginocchio sinistro, 15 - caviglia sinistra, 16 - piede sinistro, 17 - anca destra, 18 - ginocchio destro, 19 - caviglia destra, 20 - piede destro, 21 - colonna vertebrale, 22 - punta della mano sinistra, 23 - pollice sinistro, 24 - punta della mano destra, 25 - pollice destro.}
+\label{fig:giuntiNTURGB}
+\end{figure}
+
+Le \emph{mappe di profondità} sono sequenze di valori in millimetri che rappresentano la distanza di ogni punto dalla telecamera. Ogni mappa di profondità è stata  poi ridotta ad una risoluzione di $512 \times 424$ senza perdita di informazione.
+
+Le \emph{informazioni 3D dei giunti corporei} sono coordinate 3D dei 25 giunti corporei più importanti. Per ogni giunto e per ogni frame viene inoltre saltavo il corrispondente pixel nel video RGB e la realtiva mappa di profondità. I 25 giunti corporei utilizzati sono raffigurati in figura \ref{fig:giuntiNTURGB}.
+
+I \emph{video RGB} sono normali video registrati con una risoluzione $1920 \times 1080$.
+
+Le \emph{sequenze a infrarossi} sono, come per le mappe di profondità, salvate frame per frame con una dimensione di $512 \times 424$.
+
+\textbf{Le classi delle azioni} - Il dataset contiene 60 tipi di azioni differenti divise in 3 gruppi principali: 40 azioni \emph{quotidiane} (bere, mangiare, leggere, etc.), 9 azioni \emph{legale alla salute} (starnutire, barcollare, svenire, etc...) e 11 azioni \emph{di coppia} (dare un cazzotto a qualcuno, abbracciarsi, etc...)
+
+\textbf{I soggetti} - Per la realizzazione di questo dataset sono stati utilizzati 40 attori di età compresa dai 10 ai 35 anni. In figura \ref{fig:varietaNTURGB} è possibile vedere come l'insieme delle persone scelte sia estremamente variegato in età, altezza e sesso. Ogni attore è rappresentato con un ID unico in tutto il dataset.
+
+\textbf{I punti di ripresa} - Ogni azione è stata registrata da 3 telecamere contemporaneamente di modo da generare 3 prospettive diverse della stessa azione. Le 3 telecamere sono state posizionate tutte alla stessa altezza e sempre con la stessa angolazione di ripresa, ovvero $\ang{-45}, \ang{0}$ e $\ang{45}$. Ad ogni attore è stato inoltre richiesto di ripetere l'azione due volte: una rivolto verso la telecamere di sinistra ed una verso quella di destra. 
+
+Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa azione, ovvero  quella frontale (ripresa 2 volte), quella dal profilo sinistro, quella dal profilo destro, quella ad una angolazione di $\ang{45}$ da sinistra e quella ad una angolazione di $\ang{45}$ da destra. Come per gli attori, l'ID assegnato ad ogni telecamera è fisso per tutto il dataset: la telecamera 1 è sempre quella che riprende da $\ang{0}$, la telecamera 2 da $\ang{45}$ e la 3 da $\ang{-45}$. Uno schema della disposizione delle telecamere e della procedura di ripresa è raffigurato in figura \ref{fig:schemaTelecamere}
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=1\textwidth]{imgs/disposizioneCamereNTURGB-3}
+\caption{Disposizione delle telecamere per ogni setup. La telecamera 1 ha ripreso ogni azione da una posizione centrale mentre le telecamere 2 e 3 hanno ripreso le azioni con un'angolazione di $\ang{45}$. Ogni attore ha ripetuto l'azione 2 volte: una rivolto verso la telecamere di destra e una verso quella di sinistra. }
+\label{fig:schemaTelecamere}
+\end{figure}
+
+Per aumentare ulteriormente la variabilità delle riprese, ad ogni \emph{setup} (ovvero ad ogni set di ripresa) le 3 telecamere sono state posizionate ad un'altezza e ad una distanza diversa dall'attore inquadrato, ovviamente mantenendo sempre la stessa altezza fra le 3 telecamere. In tabella \ref{tab:puntiDivista} sono elencate le posizioni delle 3 telecamere per ogni setup.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Setup & \thead{Altezza  \\ (m)} &  \thead{Distanza  \\ (m)} & Setup &\thead{Altezza  \\ (m)}   &   \thead{Distanza  \\ (m)} \\
+\hline
+1   &    1.7     &   3.5  &   2   &    1.7    &   2.5          \\ \hline
+3   &    1.4     &   2.5  &   4  &    1.2    &   3.0          \\ \hline
+5   &    1.2     &   3.0  &   6  &    0.8    &   3.5          \\ \hline
+7   &    0.5     &   4.5  &   8  &    1.4    &   3.5          \\ \hline
+9   &    0.8     &   2.0  &   10  &    1.8    &   3.0          \\ \hline
+11   &    1.9     &   3.0  &   12  &    2.0    &   3.0          \\ \hline
+13   &    2.1     &   3.0  &   14  &    2.2    &   3.0          \\ \hline
+15   &    2.3     &   3.5  &   16  &    2.7    &   3.5          \\ \hline
+17   &    2.5     &   3.0  &    &      &            \\
+\hline
+\end{tabular}
+\label{tab:puntiDivista}
+\caption{Altezza e distanza delle 3 telecamere per ogni setup di ripresa. Le altezze e le distanze sono espresse in metri. }
+\end{table}
+
+\section{Criteri di valutazione}
+Per avere una valutazione standard dei risultati ottenuti su questo dataset, gli autori definiscono nel loro lavoro \cite{NTURGB} due particolari criteri di valutazione, di modo da poter allineare anche i risultati futuri e poterli comparare fra loro.
+
+\subsection{Valutazione Cross-subject}
+Per questa valutazione, i 40 attori sono stati divisi in due gruppi: \emph{training} e \emph{test} ed ogni gruppo è costituito da 20 attori. Così facendo è stato ottenuto un insieme di training di 40320 video e un insieme di test di 16560 video. 
+
+Gli ID degli attori dell'insieme di training sono: 1, 2, 4, 5, 8, 9, 13, 14, 15, 16, 17, 18, 19, 25, 27, 28, 31, 34, 35, 38. I rimanenti  fanno parte dell'insieme di test.
+\subsection{Valutazione Cross-view}
+Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripresi dalle telecamere 2 e 3 costituiscono l'insieme di training, mentre quelli ripresi dalla telecamera 1 l'insieme di test. In altre parole l'insieme di training include tutte le prospettive frontali del soggetto inquadrato e tutte quelle di profilo mentre l'insieme di test include tutte le prospettive a $\ang{45}$. Dividendo il dataset con questo criterio si ottiene un insieme di training composto da 37920 video e quello di test da 18960.
 \chapter{Classificazione}
 \section{Struttura della rete}
 \section{Tecniche}
@@ -263,7 +392,7 @@ Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team d
 \begin{thebibliography}{100}  % 100 is a random guess of the total number of references
 
 \bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - 2018
-\bibitem{COCO} Coco 2016 keypoint challenge - Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P. - 2016
+\bibitem{COCO-2016} Coco 2016 keypoint challenge - Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P. - 2016
 \bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5}
 
 \bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2}, 2019
@@ -296,8 +425,7 @@ Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team d
 
 \bibitem{tensorMask} TensorMask: A Foundation for Dense Object Segmentation - \emph{Xinlei Chen, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
 
-
-
+\bibitem{NTURGB} NTU RGB+D: A Large Scale Dataset for 3D Human Activity Analysis - \emph{Amir Shahroudy, Jun Liu, Tian-Tsong Ng, Gang Wang} - 2016
 
 
 

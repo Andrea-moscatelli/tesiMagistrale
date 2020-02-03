@@ -7,8 +7,8 @@
 \@writefile{toc}{\select@language{italian}}
 \@writefile{lof}{\select@language{italian}}
 \@writefile{lot}{\select@language{italian}}
-\@writefile{toc}{\contentsline {chapter}{Prefazione}{ii}}
-\@writefile{toc}{\contentsline {chapter}{Introduzione}{iii}}
+\@writefile{toc}{\contentsline {chapter}{Prefazione}{iii}}
+\@writefile{toc}{\contentsline {chapter}{Introduzione}{iv}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Stima della posa}{1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -19,16 +19,16 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}PoseNet}{4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\citation{COCO}
+\citation{COCO-2016}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Stima dei key-points}{5}}
 \citation{PosenetArticle}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Generazione con PoseNet delle heat-maps per ogni tipologia di key-point}}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Esempio di stima degli offset a corto raggio con PoseNet}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Esempio di stima degli offset a medio raggio con PoseNet. L'intento \`e quello di raggruppare i keypoints appartenenti alla stessa persona.}}{7}}
+\newlabel{fig:midRangeOffset}{{2.3}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Struttura ad albero utilizzata da PoseNet per raggruppare i key-points appartenenti alla stessa persona}}{7}}
-\newlabel{fig:strutturakeypoints}{{2.3}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Esempio di stima degli offset a medio raggio con PoseNet. L'intento \`e quello di raggruppare i keypoints appartenenti alla stessa persona.}}{8}}
-\newlabel{fig:midRangeOffset}{{2.4}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Struttura ad albero utilizzata da PoseNet per raggruppare i key-points appartenenti alla stessa persona}}{7}}
+\newlabel{fig:strutturakeypoints}{{2.4}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}}{8}}
 \newlabel{fig:overview-posenet}{{2.5}{8}}
 \citation{DetectronLink}
@@ -49,31 +49,54 @@
 \citation{RFCN}
 \citation{resNetXt}
 \citation{resNet}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Tipologie di analisi visive.}}{10}}
+\newlabel{fig:typeOfDetection}{{3.1}{10}}
 \citation{featurePyramid}
 \citation{vgg16}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}}{11}}
-\newlabel{xxx}{{3.1}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Combinazione delle fasi adottate da PoseNet per il riconoscimento della posa in un'immagine.}}{12}}
-\newlabel{xxx}{{3.2}{12}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Classificazione}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Instance segmentation con Detectron2}}{11}}
+\citation{maskRCNN}
+\citation{fasterRCNN}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Mask R-CNN}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Alcuni esempi di instance segmentation con Mask R-CNN}}{12}}
+\citation{fastRCNN}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Predizione della posa con Mask R-CNN}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Alcuni esempi di pose prediction con Mask R-CNN}}{13}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Il dataset NTU RGB+D}{15}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Struttura della rete}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Tecniche}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Semplice}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{13}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Risultati ottenuti}{14}}
+\citation{NTURGB}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Alcuni esempi di frames del dataset NTU RGB+D. Nelle prime 4 righe \`e possibile notare la variet\`a degli attori partecipanti al progetto e dei diversi punti di ripresa utilizzati. La quinta riga mostra la variet\`a intra-classe per una stessa azione. L'ultima riga mostra per uno stesso frame i valori RGB, i valori RGB + giunti, mappa di profondit\`a, mappa di profondit\`a + giunti e i valori a infrarossi. }}{16}}
+\newlabel{fig:varietaNTURGB}{{4.1}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}NTU RGB+D in dettaglio}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces La configurazione dei 25 giunti utilizzati in NTU RGB+D. Le etichette utilizzate per i giunti sono: 1 - base della colonna vetrebrale, 2 - punto medio della colonna vertebrale, 3 - collo, 4 - testa, 5 - spalla sinistra, 6 - gomito sinistro, 7 - polso sinistro, 8 - mano sinistra, 9 - spalla destra, 10 - gomito destro, 11 - polso destro, 12 - mano destra, 13 - anca sinistra, 14 - ginocchio sinistro, 15 - caviglia sinistra, 16 - piede sinistro, 17 - anca destra, 18 - ginocchio destro, 19 - caviglia destra, 20 - piede destro, 21 - colonna vertebrale, 22 - punta della mano sinistra, 23 - pollice sinistro, 24 - punta della mano destra, 25 - pollice destro.}}{17}}
+\newlabel{fig:giuntiNTURGB}{{4.2}{17}}
+\citation{NTURGB}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Disposizione delle telecamere per ogni setup. La telecamera 1 ha ripreso ogni azione da una posizione centrale mentre le telecamere 2 e 3 hanno ripreso le azioni con un'angolazione di $\ang {45}$. Ogni attore ha ripetuto l'azione 2 volte: una rivolto verso la telecamere di destra e una verso quella di sinistra. }}{19}}
+\newlabel{fig:schemaTelecamere}{{4.3}{19}}
+\newlabel{tab:puntiDivista}{{4.1}{19}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Altezza e distanza delle 3 telecamere per ogni setup di ripresa. Le altezze e le distanze sono espresse in metri. }}{19}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Criteri di valutazione}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Valutazione Cross-subject}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Valutazione Cross-view}{20}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Classificazione}{21}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusioni}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Struttura della rete}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Tecniche}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Semplice}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Tecnica dei centri}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Tecnica delle differenze}{21}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Risultati ottenuti}{22}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Sviluppi futuri}{16}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusioni}{23}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Sviluppi futuri}{24}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{PosenetArticle}{1}
-\bibcite{COCO}{2}
+\bibcite{COCO-2016}{2}
 \bibcite{PosenetLink}{3}
 \bibcite{Detectron2Link}{4}
 \bibcite{DetectronLink}{5}
@@ -83,7 +106,7 @@
 \bibcite{fasterRCNN}{9}
 \bibcite{fastRCNN}{10}
 \bibcite{RFCN}{11}
-\@writefile{toc}{\contentsline {chapter}{Bibliografia}{17}}
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{25}}
 \bibcite{resNetXt}{12}
 \bibcite{resNet}{13}
 \bibcite{featurePyramid}{14}
@@ -91,3 +114,4 @@
 \bibcite{cascadeRCNN}{16}
 \bibcite{panopticFeatures}{17}
 \bibcite{tensorMask}{18}
+\bibcite{NTURGB}{19}

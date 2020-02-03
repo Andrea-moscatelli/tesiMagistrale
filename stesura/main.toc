@@ -1,19 +1,26 @@
 \select@language {italian}
 \select@language {italian}
-\contentsline {chapter}{Prefazione}{ii}
-\contentsline {chapter}{Introduzione}{iii}
+\contentsline {chapter}{Prefazione}{iii}
+\contentsline {chapter}{Introduzione}{iv}
 \contentsline {chapter}{\numberline {1}Stima della posa}{1}
 \contentsline {chapter}{\numberline {2}PoseNet}{4}
 \contentsline {section}{\numberline {2.1}Stima dei key-points}{5}
 \contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{7}
 \contentsline {chapter}{\numberline {3}Detectron2}{9}
-\contentsline {chapter}{\numberline {4}Classificazione}{13}
-\contentsline {section}{\numberline {4.1}Struttura della rete}{13}
-\contentsline {section}{\numberline {4.2}Tecniche}{13}
-\contentsline {subsection}{\numberline {4.2.1}Semplice}{13}
-\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{13}
-\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{13}
-\contentsline {chapter}{\numberline {5}Risultati ottenuti}{14}
-\contentsline {chapter}{\numberline {6}Conclusioni}{15}
-\contentsline {chapter}{\numberline {7}Sviluppi futuri}{16}
-\contentsline {chapter}{Bibliografia}{17}
+\contentsline {section}{\numberline {3.1}Mask R-CNN}{12}
+\contentsline {subsection}{\numberline {3.1.1}Predizione della posa con Mask R-CNN}{13}
+\contentsline {chapter}{\numberline {4}Il dataset NTU RGB+D}{15}
+\contentsline {section}{\numberline {4.1}NTU RGB+D in dettaglio}{17}
+\contentsline {section}{\numberline {4.2}Criteri di valutazione}{20}
+\contentsline {subsection}{\numberline {4.2.1}Valutazione Cross-subject}{20}
+\contentsline {subsection}{\numberline {4.2.2}Valutazione Cross-view}{20}
+\contentsline {chapter}{\numberline {5}Classificazione}{21}
+\contentsline {section}{\numberline {5.1}Struttura della rete}{21}
+\contentsline {section}{\numberline {5.2}Tecniche}{21}
+\contentsline {subsection}{\numberline {5.2.1}Semplice}{21}
+\contentsline {subsection}{\numberline {5.2.2}Tecnica dei centri}{21}
+\contentsline {subsection}{\numberline {5.2.3}Tecnica delle differenze}{21}
+\contentsline {chapter}{\numberline {6}Risultati ottenuti}{22}
+\contentsline {chapter}{\numberline {7}Conclusioni}{23}
+\contentsline {chapter}{\numberline {8}Sviluppi futuri}{24}
+\contentsline {chapter}{Bibliografia}{25}
