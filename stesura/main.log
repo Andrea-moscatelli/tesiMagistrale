@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  3 FEB 2020 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  4 FEB 2020 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -595,211 +595,220 @@ stemma.pdf>] (./main.toc [1
 
 ]
 Capitolo 1.
-<imgs/stimaPosaEsempi.jpeg, id=40, 513.92pt x 392.46625pt>
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 115.
+
+
+[1
+
+] [2]
+Overfull \hbox (5.2899pt too wide) in paragraph at lines 144--145
+[]\OT1/cmss/bx/n/12 Apprendimento par-zial-men-te su-per-vi-sio-na-to (Semi-Sup
+ervised Lear-
+ []
+
+[3]
+Capitolo 2.
+<imgs/stimaPosaEsempi.jpeg, id=55, 513.92pt x 392.46625pt>
 File: imgs/stimaPosaEsempi.jpeg Graphic file (type jpg)
 
 <use imgs/stimaPosaEsempi.jpeg>
-Package pdftex.def Info: imgs/stimaPosaEsempi.jpeg used on input line 119.
+Package pdftex.def Info: imgs/stimaPosaEsempi.jpeg used on input line 166.
 (pdftex.def)             Requested size: 390.0pt x 297.83427pt.
- [1
+ [4
 
  <./imgs/stimaPosaEsempi.jpeg>]
-
-LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 124.
-
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 123--126
+Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
-<imgs/stimaPosaEsempioFisio.jpeg, id=45, 1493.58pt x 849.1725pt>
+<imgs/stimaPosaEsempioFisio.jpeg, id=60, 1493.58pt x 849.1725pt>
 File: imgs/stimaPosaEsempioFisio.jpeg Graphic file (type jpg)
 
 <use imgs/stimaPosaEsempioFisio.jpeg>
-Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 132
+Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 179
 .
 (pdftex.def)             Requested size: 272.99881pt x 155.20268pt.
- [2 <./imgs/stimaPosaEsempioFisio.jpeg>]
-[3]
-Capitolo 2.
-[4
+ [5 <./imgs/stimaPosaEsempioFisio.jpeg>]
+[6]
+Capitolo 3.
+[7
 
-] <imgs/heatmaps-posenet.jpg, id=59, 965.10562pt x 255.95625pt>
+] <imgs/heatmaps-posenet.jpg, id=70, 965.10562pt x 255.95625pt>
 File: imgs/heatmaps-posenet.jpg Graphic file (type jpg)
 
 <use imgs/heatmaps-posenet.jpg>
-Package pdftex.def Info: imgs/heatmaps-posenet.jpg used on input line 167.
+Package pdftex.def Info: imgs/heatmaps-posenet.jpg used on input line 214.
 (pdftex.def)             Requested size: 390.0pt x 103.43127pt.
- [5]
-<imgs/short-range-Posenet.jpg, id=65, 965.10562pt x 255.95625pt>
+ [8]
+<imgs/short-range-Posenet.jpg, id=75, 965.10562pt x 255.95625pt>
 File: imgs/short-range-Posenet.jpg Graphic file (type jpg)
 
 <use imgs/short-range-Posenet.jpg>
-Package pdftex.def Info: imgs/short-range-Posenet.jpg used on input line 175.
+Package pdftex.def Info: imgs/short-range-Posenet.jpg used on input line 222.
 (pdftex.def)             Requested size: 390.0pt x 103.43127pt.
 
-<imgs/mid-range-Posenet.jpg, id=66, 900.86563pt x 255.95625pt>
+<imgs/mid-range-Posenet.jpg, id=76, 900.86563pt x 255.95625pt>
 File: imgs/mid-range-Posenet.jpg Graphic file (type jpg)
 
 <use imgs/mid-range-Posenet.jpg>
-Package pdftex.def Info: imgs/mid-range-Posenet.jpg used on input line 181.
+Package pdftex.def Info: imgs/mid-range-Posenet.jpg used on input line 228.
 (pdftex.def)             Requested size: 390.0pt x 110.8089pt.
- [6 <./imgs/heatmaps-posenet.jpg> <./imgs/short-range-Posenet.jpg>]
-<imgs/legamiKeypointsPoseNet.jpeg, id=70, 732.7375pt x 937.5025pt>
+ [9 <./imgs/heatmaps-posenet.jpg> <./imgs/short-range-Posenet.jpg>]
+<imgs/legamiKeypointsPoseNet.jpeg, id=80, 732.7375pt x 937.5025pt>
 File: imgs/legamiKeypointsPoseNet.jpeg Graphic file (type jpg)
 
 <use imgs/legamiKeypointsPoseNet.jpeg>
-Package pdftex.def Info: imgs/legamiKeypointsPoseNet.jpeg used on input line 19
-2.
+Package pdftex.def Info: imgs/legamiKeypointsPoseNet.jpeg used on input line 23
+9.
 (pdftex.def)             Requested size: 155.99762pt x 199.58499pt.
- [7 <./imgs/mid-range-Posenet.jpg> <./imgs/legamiKeypointsPoseNet.jpeg>]
-<imgs/overview-posenet.jpg, id=74, 955.57pt x 573.14125pt>
+ [10 <./imgs/mid-range-Posenet.jpg> <./imgs/legamiKeypointsPoseNet.jpeg>]
+<imgs/overview-posenet.jpg, id=84, 955.57pt x 573.14125pt>
 File: imgs/overview-posenet.jpg Graphic file (type jpg)
 
 <use imgs/overview-posenet.jpg>
-Package pdftex.def Info: imgs/overview-posenet.jpg used on input line 204.
+Package pdftex.def Info: imgs/overview-posenet.jpg used on input line 251.
 (pdftex.def)             Requested size: 429.00238pt x 257.30774pt.
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 204--205
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 251--252
  [][] 
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 205--205
- []\OT1/cmr/m/n/10.95 Figura 2.5. Com-bi-na-zio-ne del-le fa-si adot-ta-te da P
+Underfull \hbox (badness 2253) in paragraph at lines 252--252
+ []\OT1/cmr/m/n/10.95 Figura 3.5. Com-bi-na-zio-ne del-le fa-si adot-ta-te da P
 o-se-Net per il 
  []
 
-[8 <./imgs/overview-posenet.jpg>]
-Capitolo 3.
+[11 <./imgs/overview-posenet.jpg>]
+Capitolo 4.
 
-Overfull \hbox (1.8913pt too wide) in paragraph at lines 212--213
+Overfull \hbox (1.8913pt too wide) in paragraph at lines 259--260
 \OT1/cmss/m/n/12 Detectron2 ^^Re un pro-get-to open-source lan-cia-to dal-la \O
 T1/cmss/m/sl/12 Fa-ce-book AI Re-search (FAIR)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
-<imgs/typesOfDetection.png, id=79, 2806.485pt x 1199.48125pt>
+<imgs/typesOfDetection.png, id=88, 2806.485pt x 1199.48125pt>
 File: imgs/typesOfDetection.png Graphic file (type png)
 
 <use imgs/typesOfDetection.png>
-Package pdftex.def Info: imgs/typesOfDetection.png used on input line 220.
+Package pdftex.def Info: imgs/typesOfDetection.png used on input line 267.
 (pdftex.def)             Requested size: 429.00238pt x 183.337pt.
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 220--221
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 267--268
  [][] 
  []
 
-[9
+[12
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 240
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 287
 .
-LaTeX Font Info:    No file OMScmss.fd. on input line 240.
+LaTeX Font Info:    No file OMScmss.fd. on input line 287.
 
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 240.
+(Font)              for symbol `textbraceleft' on input line 287.
 
-[10 <./imgs/typesOfDetection.png>]
-<imgs/instanceSeg.jpeg, id=88, 1858.945pt x 1397.22pt>
+[13 <./imgs/typesOfDetection.png>]
+<imgs/instanceSeg.jpeg, id=97, 1858.945pt x 1397.22pt>
 File: imgs/instanceSeg.jpeg Graphic file (type jpg)
 
 <use imgs/instanceSeg.jpeg>
-Package pdftex.def Info: imgs/instanceSeg.jpeg used on input line 249.
+Package pdftex.def Info: imgs/instanceSeg.jpeg used on input line 296.
 (pdftex.def)             Requested size: 429.00238pt x 322.44116pt.
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 249--250
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 296--297
  [][] 
  []
 
-[11 <./imgs/instanceSeg.jpeg>]
-<imgs/instanceSegmenttionMaskRCNN2.jpeg, id=92, 1812.7725pt x 955.57pt>
+[14 <./imgs/instanceSeg.jpeg>]
+<imgs/instanceSegmenttionMaskRCNN2.jpeg, id=102, 1812.7725pt x 955.57pt>
 File: imgs/instanceSegmenttionMaskRCNN2.jpeg Graphic file (type jpg)
 
 <use imgs/instanceSegmenttionMaskRCNN2.jpeg>
 Package pdftex.def Info: imgs/instanceSegmenttionMaskRCNN2.jpeg used on input l
-ine 261.
+ine 308.
 (pdftex.def)             Requested size: 429.00238pt x 226.13371pt.
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 261--262
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 308--309
  [][] 
  []
 
-[12 <./imgs/instanceSegmenttionMaskRCNN2.jpeg>]
-<imgs/posePredictionMaskRCNN.jpeg, id=96, 1816.7875pt x 523.9575pt>
+[15 <./imgs/instanceSegmenttionMaskRCNN2.jpeg>]
+<imgs/posePredictionMaskRCNN.jpeg, id=106, 1816.7875pt x 523.9575pt>
 File: imgs/posePredictionMaskRCNN.jpeg Graphic file (type jpg)
 
 <use imgs/posePredictionMaskRCNN.jpeg>
-Package pdftex.def Info: imgs/posePredictionMaskRCNN.jpeg used on input line 27
-9.
+Package pdftex.def Info: imgs/posePredictionMaskRCNN.jpeg used on input line 32
+6.
 (pdftex.def)             Requested size: 429.00238pt x 123.72165pt.
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 279--280
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 326--327
  [][] 
  []
 
-[13 <./imgs/posePredictionMaskRCNN.jpeg>] [14]
-Capitolo 4.
-[15
+[16 <./imgs/posePredictionMaskRCNN.jpeg>] [17]
+Capitolo 5.
+[18
 
-] <imgs/varietaNTURGB.jpeg, id=108, 1636.1125pt x 1515.6625pt>
+] <imgs/varietaNTURGB.jpeg, id=117, 1636.1125pt x 1515.6625pt>
 File: imgs/varietaNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/varietaNTURGB.jpeg>
-Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 305.
+Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 352.
 (pdftex.def)             Requested size: 362.69714pt x 335.99077pt.
- [16 <./imgs/varietaNTURGB.jpeg>]
-<imgs/giuntiNTURGB.jpeg, id=112, 1092.08pt x 1102.1175pt>
+ [19 <./imgs/varietaNTURGB.jpeg>]
+<imgs/giuntiNTURGB.jpeg, id=121, 1092.08pt x 1102.1175pt>
 File: imgs/giuntiNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/giuntiNTURGB.jpeg>
-Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 316.
+Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 363.
 (pdftex.def)             Requested size: 195.0pt x 196.7918pt.
- [17 <./imgs/giuntiNTURGB.jpeg>]
-<imgs/disposizioneCamereNTURGB-3.jpg, id=116, 1924.18875pt x 529.98pt>
+ [20 <./imgs/giuntiNTURGB.jpeg>]
+<imgs/disposizioneCamereNTURGB-3.jpg, id=126, 1924.18875pt x 529.98pt>
 File: imgs/disposizioneCamereNTURGB-3.jpg Graphic file (type jpg)
 
 <use imgs/disposizioneCamereNTURGB-3.jpg>
 Package pdftex.def Info: imgs/disposizioneCamereNTURGB-3.jpg used on input line
- 339.
+ 384.
 (pdftex.def)             Requested size: 390.0pt x 107.41739pt.
- [18] [19 <./imgs/disposizioneCamereNTURGB-3.jpg>] [20]
-Capitolo 5.
-[21
-
-]
+ [21 <./imgs/disposizioneCamereNTURGB-3.jpg>] [22] [23]
 Capitolo 6.
-[22
+[24
 
 ]
 Capitolo 7.
-[23
+[25
 
 ]
 Capitolo 8.
-[24
+[26
 
-] [25
+]
+Capitolo 9.
+[27
 
-] [26] (./main.aux)
+] [28
+
+] [29] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -807,7 +816,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  13333 strings out of 492995
  264824 string characters out of 6132704
- 292686 words of memory out of 5000000
+ 292689 words of memory out of 5000000
  16739 multiletter control sequences out of 15000+600000
  20854 words of font info for 84 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -826,10 +835,10 @@ l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
 /texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (31 pages, 11565099 bytes).
+Output written on main.pdf (34 pages, 11574328 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
+ 202 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

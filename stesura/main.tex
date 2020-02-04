@@ -109,7 +109,54 @@ prefazione
 Introduzione
 }
 
-%% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Deep learning %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Come imparano le macchine?}
+Quando parliamo di \emph{machine learning}, ovvero \emph{l'apprendimento delle macchine}, viene spontaneo domandarsi ``Come impara una macchina?".
+
+L'apprendimento è di per se un processo iterativo che permette di mutare le conoscenze a seconda delle informazioni che vengono raccolte. Nel machine learning un computer impara, ad esempio, un task di classificazione direttamente da immagini, testi e suoni grazie ad un \emph{modello} e può raggiungere prestazioni allo stato dell'arte superando talvolta persino l'accuratezza umana. Il modello rappresenta cioè lo scopo dell'analisi, ossia \emph{come} si vuole che il nostro computer impari l'algoritmo.
+
+I modelli possono essere allenati seguendo 4 tipologie diverse di apprendimento:
+\begin{itemize}
+\item \textbf{Apprendimento supervisionato (Supervised Learning)} - In questo primo caso, il processo di apprendimento può essere pensato come un'insegnante che supervisiona il nostro algoritmo e che interromperà l'apprendimento solo quando l'algoritmo raggiungerà un livello accettabile del compito da imparare.
+
+L'apprendimento supervisionato lo si ha quando nel nostro \emph{dataset} di allenamento sono a disposizione  sia i dati di input $X$ che quelli di output $Y$ e vogliamo insegnare al nostro algoritmo quella funzione $f$ tale che 
+$$
+Y= f(x).
+$$
+
+L'obbiettivo è quello di approssimare sufficientemente bene la funzione $f$ di modo da poter prevedere correttamente il valore $Y_i$ per un futuro $X_i$ non compreso nel nostro dataset di allenamento.
+
+I problemi di apprendimento supervisionato si possono dividere in problemi di:
+\begin{enumerate}
+\item \emph{Classificazione}, ovvero insegnare ad una macchina a categorizzare i dati in input. In questo scenario, nel nostro dataset di allenamento ad ogni dato di input sarà associata un'etichetta che ne indica la categoria appartenente. Più grande sarà il dataset e maggiore sarà l'informazione a disposizione dell'algoritmo per imparare.
+\item \emph{Regressione} - ovvero insegnare ad una macchina a predire il valore di ciò che sta analizzando partendo dai dati in input. A differenza della classificazione, in questo caso il risultato in output sarà un valore continuo e non un valore categorico. Ad esempio, dati in input le ore di studio di uno studente per la preparazione di un esame e le rispettive ore di sonno, prevedere la probabilità di superamento dell'esame in questione, oppure date in input la superficie e la posizione di un appartamento, prevederne il valore di mercato.
+\end{enumerate}
+\item \textbf{Apprendimento non supervisionato (Unsupervised Learning)} - in questo tipo di apprendimento, al contrario di quello supervisionato, non viene fornita nessuna etichetta di output $Y$ per i nostri dati $X$ e quello che ci si pone quindi come obbiettivo è trovare delle relazioni tra i dati analizzati. In questo caso non c'è nessun ``insegnante" a guidare l'apprendimento e non ci sono risposte corrette o sbagliate, l'algoritmo deve cercare di scoprire ``da solo" se ci sono delle strutture decifrabili nei dati. 
+
+I problemi di apprendimento non supervisionato si possono dividere in:
+\begin{enumerate}
+\item \emph{Raggruppamento} - detto anche \emph{clustering}, si utilizzano quando è necessario raggruppare i dati che presentano caratteristiche simili. In questo caso l'algoritmo non fa uso di dati categorizzati, come visto in precedenza, ma estrae una regola di raggruppamento secondo caratteristiche che ricava dai dati stessi.
+\item \emph{Associazione} - strettamente legata al \emph{Data mining}, questa classe di problemi è utile in tutti i casi per i quali siamo interessati a scoprire regole induttive nei dati analizzati, ad esempio la tendenza nei consumatori di un certo supermercato ad acquistare il prodotto $A$ dopo aver acquistato il prodotto $B$. Ci si pone quindi l'obbiettivo di scovare schemi frequenti, associazioni, correlazioni o strutture casuali fra gli \emph{item} di un database relazionale e si cerca quindi si scoprire le regole che predicono l'evento di un certo item in base agli eventi degli item ad esso legati.
+\end{enumerate}
+
+
+\item \textbf{Apprendimento parzialmente supervisionato (Semi-Supervised Learning)} - https://lorenzogovoni.com/machine-learning-e-funzionamento/ 
+\item \textbf{Apprendimento con rinforzo (Reinforcement Learning)} -
+\end{itemize}
+
+\section{Deep learning}
+Il \emph{deep learning} (o \emph{apprendimento profondo} in italiano) è una tecnica di machine learning ed ``insegna" ai computer una cosa che risulta estremamente naturale al cervello umano, ovvero \emph{imparare per esempi}. Il deep learning è la tecnologia chiave grazie alla quale abbiamo automobili che si guidano da sole, riconoscimento e controllo vocale dei device, traduzioni automatiche, colorazione automatica di vecchi filmati in bianco e nero e molte altre cose ritenute impossibili solo fino a pochi anni fa.
+
+https://www.mathworks.com/discovery/deep-learning.html
+
+\section{Le reti neurali}
+\section{Le reti neurali ricorrenti}
+\section{Le LSTM}
+
+
+
+%% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -330,9 +377,7 @@ Le \emph{sequenze a infrarossi} sono, come per le mappe di profondità, salvate f
 
 \textbf{I soggetti} - Per la realizzazione di questo dataset sono stati utilizzati 40 attori di età compresa dai 10 ai 35 anni. In figura \ref{fig:varietaNTURGB} è possibile vedere come l'insieme delle persone scelte sia estremamente variegato in età, altezza e sesso. Ogni attore è rappresentato con un ID unico in tutto il dataset.
 
-\textbf{I punti di ripresa} - Ogni azione è stata registrata da 3 telecamere contemporaneamente di modo da generare 3 prospettive diverse della stessa azione. Le 3 telecamere sono state posizionate tutte alla stessa altezza e sempre con la stessa angolazione di ripresa, ovvero $\ang{-45}, \ang{0}$ e $\ang{45}$. Ad ogni attore è stato inoltre richiesto di ripetere l'azione due volte: una rivolto verso la telecamere di sinistra ed una verso quella di destra. 
-
-Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa azione, ovvero  quella frontale (ripresa 2 volte), quella dal profilo sinistro, quella dal profilo destro, quella ad una angolazione di $\ang{45}$ da sinistra e quella ad una angolazione di $\ang{45}$ da destra. Come per gli attori, l'ID assegnato ad ogni telecamera è fisso per tutto il dataset: la telecamera 1 è sempre quella che riprende da $\ang{0}$, la telecamera 2 da $\ang{45}$ e la 3 da $\ang{-45}$. Uno schema della disposizione delle telecamere e della procedura di ripresa è raffigurato in figura \ref{fig:schemaTelecamere}
+\textbf{I punti di ripresa} - Ogni azione è stata registrata da 3 telecamere contemporaneamente di modo da generare 3 prospettive diverse della stessa azione. Le 3 telecamere sono state posizionate tutte alla stessa altezza e sempre con la stessa angolazione di ripresa, ovvero $\ang{-45}, \ang{0}$ e $\ang{45}$. 
 
 \begin{figure}[htb!]
 \centering
@@ -340,6 +385,8 @@ Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa
 \caption{Disposizione delle telecamere per ogni setup. La telecamera 1 ha ripreso ogni azione da una posizione centrale mentre le telecamere 2 e 3 hanno ripreso le azioni con un'angolazione di $\ang{45}$. Ogni attore ha ripetuto l'azione 2 volte: una rivolto verso la telecamere di destra e una verso quella di sinistra. }
 \label{fig:schemaTelecamere}
 \end{figure}
+
+Ad ogni attore è stato inoltre richiesto di ripetere l'azione due volte: una rivolto verso la telecamere di sinistra ed una verso quella di destra. Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa azione, ovvero  quella frontale (ripresa 2 volte), quella dal profilo sinistro, quella dal profilo destro, quella ad una angolazione di $\ang{45}$ da sinistra e quella ad una angolazione di $\ang{45}$ da destra. Come per gli attori, l'ID assegnato ad ogni telecamera è fisso per tutto il dataset: la telecamera 1 è sempre quella che riprende da $\ang{0}$, la telecamera 2 da $\ang{45}$ e la 3 da $\ang{-45}$. Uno schema della disposizione delle telecamere e della procedura di ripresa è raffigurato in figura \ref{fig:schemaTelecamere}
 
 Per aumentare ulteriormente la variabilità delle riprese, ad ogni \emph{setup} (ovvero ad ogni set di ripresa) le 3 telecamere sono state posizionate ad un'altezza e ad una distanza diversa dall'attore inquadrato, ovviamente mantenendo sempre la stessa altezza fra le 3 telecamere. In tabella \ref{tab:puntiDivista} sono elencate le posizioni delle 3 telecamere per ogni setup.
 

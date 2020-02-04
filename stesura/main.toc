@@ -2,25 +2,30 @@
 \select@language {italian}
 \contentsline {chapter}{Prefazione}{iii}
 \contentsline {chapter}{Introduzione}{iv}
-\contentsline {chapter}{\numberline {1}Stima della posa}{1}
-\contentsline {chapter}{\numberline {2}PoseNet}{4}
-\contentsline {section}{\numberline {2.1}Stima dei key-points}{5}
-\contentsline {section}{\numberline {2.2}Raggruppamento dei key-points in istanze di persona}{7}
-\contentsline {chapter}{\numberline {3}Detectron2}{9}
-\contentsline {section}{\numberline {3.1}Mask R-CNN}{12}
-\contentsline {subsection}{\numberline {3.1.1}Predizione della posa con Mask R-CNN}{13}
-\contentsline {chapter}{\numberline {4}Il dataset NTU RGB+D}{15}
-\contentsline {section}{\numberline {4.1}NTU RGB+D in dettaglio}{17}
-\contentsline {section}{\numberline {4.2}Criteri di valutazione}{20}
-\contentsline {subsection}{\numberline {4.2.1}Valutazione Cross-subject}{20}
-\contentsline {subsection}{\numberline {4.2.2}Valutazione Cross-view}{20}
-\contentsline {chapter}{\numberline {5}Classificazione}{21}
-\contentsline {section}{\numberline {5.1}Struttura della rete}{21}
-\contentsline {section}{\numberline {5.2}Tecniche}{21}
-\contentsline {subsection}{\numberline {5.2.1}Semplice}{21}
-\contentsline {subsection}{\numberline {5.2.2}Tecnica dei centri}{21}
-\contentsline {subsection}{\numberline {5.2.3}Tecnica delle differenze}{21}
-\contentsline {chapter}{\numberline {6}Risultati ottenuti}{22}
-\contentsline {chapter}{\numberline {7}Conclusioni}{23}
-\contentsline {chapter}{\numberline {8}Sviluppi futuri}{24}
-\contentsline {chapter}{Bibliografia}{25}
+\contentsline {chapter}{\numberline {1}Come imparano le macchine?}{1}
+\contentsline {section}{\numberline {1.1}Deep learning}{3}
+\contentsline {section}{\numberline {1.2}Le reti neurali}{3}
+\contentsline {section}{\numberline {1.3}Le reti neurali ricorrenti}{3}
+\contentsline {section}{\numberline {1.4}Le LSTM}{3}
+\contentsline {chapter}{\numberline {2}Stima della posa}{4}
+\contentsline {chapter}{\numberline {3}PoseNet}{7}
+\contentsline {section}{\numberline {3.1}Stima dei key-points}{8}
+\contentsline {section}{\numberline {3.2}Raggruppamento dei key-points in istanze di persona}{10}
+\contentsline {chapter}{\numberline {4}Detectron2}{12}
+\contentsline {section}{\numberline {4.1}Mask R-CNN}{15}
+\contentsline {subsection}{\numberline {4.1.1}Predizione della posa con Mask R-CNN}{16}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{18}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{20}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{23}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{23}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{23}
+\contentsline {chapter}{\numberline {6}Classificazione}{24}
+\contentsline {section}{\numberline {6.1}Struttura della rete}{24}
+\contentsline {section}{\numberline {6.2}Tecniche}{24}
+\contentsline {subsection}{\numberline {6.2.1}Semplice}{24}
+\contentsline {subsection}{\numberline {6.2.2}Tecnica dei centri}{24}
+\contentsline {subsection}{\numberline {6.2.3}Tecnica delle differenze}{24}
+\contentsline {chapter}{\numberline {7}Risultati ottenuti}{25}
+\contentsline {chapter}{\numberline {8}Conclusioni}{26}
+\contentsline {chapter}{\numberline {9}Sviluppi futuri}{27}
+\contentsline {chapter}{Bibliografia}{28}
