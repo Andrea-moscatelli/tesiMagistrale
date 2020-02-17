@@ -352,11 +352,66 @@ Il valore $h_t$ così calcolato sarà l'output al passo $t$ della rete LSTM e l'in
 Quella appena descritta è una classica LSTM ma in alcuni articoli scientifici è possibile trovare delle leggere varianti, come le \emph{``peephole" LSTM} \cite{peepholeLSTM} o le \emph{Gated Recurrent Unit (GRU)} \cite{GRU}. Ad ogni modo il concetto alla base di queste varianti resta lo stesso.
 
  
-%% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
+ 
+ %% Lavori precedenti %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Lavori precedenti}
+Il riconoscimento di azioni corporee tramite l'analisi della \emph{posa} umana o \emph{skeleton} (vedremo nel prossimo capitolo più in dettagli di cosa si tratta) sta attraendo recentemente una notevole attenzione nel mondo della visione computerizzata. Il suo successo è senz'altro dovuto non solo agli ottimi risultati ottenuti, ma anche alla sua efficiente semplificazione della struttura umana riducendo di fatto i costi computazionali e le risorse necessarie allo stoccaggio dati. Normalmente la posa viene calcolata utilizzando  sensori 2D o 3D posizionati in prossimità dei giunti corporei (gomiti, ginocchi, spalle,...), oppure con algoritmi appositi in grado di estrarla da normali video RGB.
+
+Normalmente ci sono due approcci per il riconoscimento di azioni umane facendo uso dalla posa: gli approcci ``\emph{a mano}" e quelli \emph{deep learning}.
+
+Negli approcci \emph{a mano} si cerca di categorizzare le azioni umane seguendo pattern fisici intuitivi, come le posizioni degli arti o le correlazioni temporali fra essi, come ad esempio il movimento ondulatorio delle gambe durante una camminata o una corsa. 
+
+Per quanto riguarda invece gli approcci \emph{deep learning} le tipologie di azioni corporee vengono categorizzate in maniera automatica direttamente dai dati stessi. Reti neurali ricorrenti, come le LSTM, o quelle di tipo \emph{convoluzionali-temporali}, come quella in \cite{TempConv}, si sono rivelate essere estremamente efficaci per il riconoscimento di pattern temporali in un video, ottenendo ottimi risultati nella categorizzazione delle azioni.
+
+Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto interesse, ovvero quello basato su \emph{grafi}, che punta ad esprimere contemporaneamente sia le relazioni temporali che quello nello spazio dei giunti corporei. Questa architettura rappresenta la sequenza di pose in un video come un grafo composto da archi temporali e spaziali, considerando cioè rispettivamente le relazioni inter ed intra-frame.
+
+Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
+\begin{itemize}
+\item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018 \cite{PREV1}
+\item \textbf{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition} - \emph{Maosen Li, Siheng Chen, Xu Chen, Ya Zhang, Yanfeng Wang, and Qi Tian} - 2019  \cite{PREV2}
+\item \textbf{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019  \cite{PREV3}
+\end{itemize}
+Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
+
+\section{Recognizing Human Actions as the Evolution of Pose Estimation Maps (2018)}
+L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmaps} globali e delle \emph{predizioni di pose}. Una volta ottenute queste due componenti sarà necessario combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
+
+Più nel dettaglio, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\mathcal{Y} = \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
+
+Un classificatore multiclasse $g_t^k$ viene quindi addestrato per predire la posizione del $k$-esimo giunto corporeo al passo $t$ e per ogni punto \textbf{z} dell'immagine la sua mappa di stima relativa al giunto $k$ sarà:
+$$
+\boldsymbol{B}^k_t(\mathcal{Y}_k = \boldsymbol{z}) = g_t^k \left(\boldsymbol{f_z}; \bigcup_{i=1, ..., K}\psi(\boldsymbol{z}, \boldsymbol{B}_{t-1}^i)\right)
+$$
+dove $\boldsymbol{f_z}$ è la \emph{color feature} per il punto \textbf{z}, $\boldsymbol{B}_{t-1}^i$ è la mappa stimata da $g^i_{t-1}$ al passo precedente, $\bigcup$ è l'operatore di concatenazione vettoriale e $\psi$ è la funzione di estrazione della \emph{feature} interessata partendo dalla mappa ottenuta al passo precedente. Dopo $T$ passi, le mappe ottenute vengono utilizzate per stimare la posizione dei giunti.
+
+Partendo dalle $K$ mappe così ottenute, per ogni frame $n$ del video, ovvero $\{\boldsymbol{B}_{T}^{1,n}, ..., \boldsymbol{B}_{T}^{K,n}\}$, vengono calcolate una heatmap $\boldsymbol{G}_{n}$ ed una posa $\mathcal{L}_n$ che rappresentano globalmente la figura umana nell'immagine (figura \ref{fig:heatmapAndPose}). La heatmap $\boldsymbol{G}_{n}$ sarà
+$$
+\boldsymbol{G}_{n} = \frac{1}{K}\sum_{k=1}^K \boldsymbol{B}_{T}^{k,n},
+$$
+mentre la posa $\mathcal{L}_n$ sarà quell'insieme di punti dell'immagine $\{\boldsymbol{z}^{k,n}\}^K_{k=1}$ per i quali
+$$
+\boldsymbol{z}^{k,n} = \underset{\boldsymbol{z} \in \mathcal{Z}}{arg max} \{\boldsymbol{B}_T^{k,n} (\mathcal{Y}_k = \boldsymbol{z})\},
+$$
+dove $ \mathcal{Z} \in \mathbb{R}^2$ è l'insieme di tutti i punti dell'immagine.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/heatmapPoseCobination}
+\caption{Processo di creazione della heatmap e della posa a partire da un singolo frame del video. Ogni giunto corporeo viene stimato singolarmente per poi essere successivamente combinato agli altri.}
+\label{fig:heatmapAndPose}
+\end{figure}
+
+Quello che abbiamo fatto è stato cioè trasformare un video in un sequenza di heatmaps e pose. 
 
 
+\section{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}
+Seconda spiegazione.
+\section{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition (2019)}
+Terza spiegazione.
+
+
+%% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Stima della posa}
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{imgs/stimaPosaEsempi}
@@ -552,18 +607,20 @@ Il terzo punto da considerare nella scelta di un buon dataset è il punto di vist
 Come ultima cosa e forse la più importante, l'insufficienza di video nei dataset ci impedisce spesso di applicare tecniche di machine-learning al nostro problema, portandoci inevitabilmente ad una situazione di overfitting.
 
 Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang Wang hanno creato nel 2016 \emph{NTU RGB+D} \cite{NTURGB}, un vasto e variegato dataset dedito all'analisi di attività umane in ambito 3D.
-\begin{figure}
+
+\begin{figure} [htb!]
 \centering
-\includegraphics[width=0.93\textwidth]{imgs/varietaNTURGB}
+\includegraphics[width=0.9\textwidth]{imgs/varietaNTURGB}
 \caption{Alcuni esempi di frames del dataset NTU RGB+D. Nelle prime 4 righe è possibile notare la varietà degli attori partecipanti al progetto e dei diversi punti di ripresa utilizzati. La quinta riga mostra la varietà intra-classe per una stessa azione. L'ultima riga mostra per uno stesso frame i valori RGB, i valori RGB + giunti, mappa di profondità,  mappa di profondità + giunti e i valori a infrarossi. }
 \label{fig:varietaNTURGB}
 \end{figure}
+
 NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti attori ed utilizzando Microsoft Kinect v2. Il dataset contiene i video RGB, le sequenze di profondità, lo skeleton dei soggetti (ovvero le posizioni 3D dei principali giunti corporei) e i frames a infrarossi. I soggetti sono stati ripresi da 80 punti di vista differenti e la loro età varia dai 10 ai 35 anni, il che rende più realistica la variazione di qualità delle azioni svolte. Anche se tutte le riprese sono di tipo \emph{indoor}, gli scenari ricreati intorno agli attori sono estremamente variabili.
 
 \section{NTU RGB+D in dettaglio}
 \textbf{Tipologie di dati} - I dati raccolti sono stati ottenuti con sensori Microsoft Kinect v2 che consentono di estrapolare dalle riprese 4 tipologie di dato: mappe di profondità, informazioni 3D dei giunti corporei, frame RGB e sequenze a infrarossi.
 
-\begin{figure}
+\begin{figure} [htb]
 \centering
 \includegraphics[width=0.5\textwidth]{imgs/giuntiNTURGB}
 \caption{La configurazione dei 25 giunti utilizzati in NTU RGB+D. Le etichette utilizzate per i giunti sono: 1 - base della colonna vetrebrale, 2 - punto medio della colonna vertebrale, 3 - collo, 4 - testa, 5 - spalla sinistra, 6 - gomito sinistro, 7 - polso sinistro, 8 - mano sinistra, 9 - spalla destra, 10 - gomito destro, 11 - polso destro, 12 - mano destra, 13 - anca sinistra, 14 - ginocchio sinistro, 15 - caviglia sinistra, 16 - piede sinistro, 17 - anca destra, 18 - ginocchio destro, 19 - caviglia destra, 20 - piede destro, 21 - colonna vertebrale, 22 - punta della mano sinistra, 23 - pollice sinistro, 24 - punta della mano destra, 25 - pollice destro.}
@@ -680,8 +737,15 @@ Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripre
 
 \bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merriënboer; Caglar Gulcehre; Dzmitry Bahdanau; Fethi Bougares; Holger Schwenk; Yoshua Bengio } - 2014
 
+\bibitem{PREV1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps} -
+\emph{Mengyuan Liu, Junsong Yuan} - 2018
 
+\bibitem{PREV2}{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition} - \emph{Maosen Li, Siheng Chen, Xu Chen, Ya Zhang, Yanfeng Wang, and Qi Tian} - 2019
+
+\bibitem{PREV3}{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bj?orn Ottersten} - 2019
  
+\bibitem{TempConv}{Interpretable 3D human action analysis with temporal convolutional networks} - \emph{T. S. Kim, A. Reiter} - 2017
+
 
 \end{thebibliography}
 
