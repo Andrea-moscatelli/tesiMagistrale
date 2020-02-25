@@ -375,11 +375,11 @@ Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei posso
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
 
 \section{Recognizing Human Actions as the Evolution of Pose Estimation Maps (2018)}
-L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmaps} globali e delle \emph{predizioni di pose}. Una volta ottenute queste due componenti sarà necessario combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
+L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmaps} globali e delle \emph{predizioni di pose} e una volta ottenute queste due componenti, combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
 
-Più nel dettaglio, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\mathcal{Y} = \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
+Più precisamente, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\mathcal{Y} = \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
 
-Un classificatore multiclasse $g_t^k$ viene quindi addestrato per predire la posizione del $k$-esimo giunto corporeo al passo $t$ e per ogni punto \textbf{z} dell'immagine la sua mappa di stima relativa al giunto $k$ sarà:
+Addestrando un classificatore multiclasse $g_t^k$ per predire la posizione del $k$-esimo giunto corporeo al passo $t$, otteniamo per ogni punto \textbf{z} dell'immagine una mappa di stima relativa al giunto $k$,
 $$
 \boldsymbol{B}^k_t(\mathcal{Y}_k = \boldsymbol{z}) = g_t^k \left(\boldsymbol{f_z}; \bigcup_{i=1, ..., K}\psi(\boldsymbol{z}, \boldsymbol{B}_{t-1}^i)\right)
 $$
@@ -402,12 +402,54 @@ dove $ \mathcal{Z} \in \mathbb{R}^2$ è l'insieme di tutti i punti dell'immagine.
 \label{fig:heatmapAndPose}
 \end{figure}
 
-Quello che abbiamo fatto è stato cioè trasformare un video in un sequenza di heatmaps e pose. 
+Quello che abbiamo fatto è stato cioè trasformare un video in un sequenza di heatmaps e pose, a questo punto dobbiamo però sintetizzarle in un unico elemento rappresentativo di più facile manipolazione.
+
+Gli autori del lavoro mettono a confronto 3 diversi tipi di sintetizzazione:
+\begin{itemize}
+\item \textbf{sintetizzazione temporale delle heatmaps} - Data una sequenza di $N$ heatmaps $\boldsymbol{\mathcal{V}}_G = \{ \boldsymbol{G}_1, ... \boldsymbol{G} _n, ..., \boldsymbol{G}_N\}$ dove $\boldsymbol{G}_n \in \mathbb{R}^{P\times Q}$ è quella relativa all'$n$-esimo frame con $P$ righe e $Q$ colonne, allora la sequenza $\boldsymbol{G}_{1:n}$ può essere mappata in un vettore
+$$
+\boldsymbol{v}_n = V(\frac{1}{n}\sum^n_{i=1}\boldsymbol{G}_i),
+$$
+dove la funzione $V$ trasforma una matrice in un vettore $\boldsymbol{v}_n \in \mathbb{R}^{(P\cdot Q)\times 1}$ (figura \ref{fig:sintTempHeatmap}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{imgs/combinazioneHeatmaps}
+\caption{Sintetizzazione temporale delle heatmaps.}
+\label{fig:sintTempHeatmap}
+\end{figure}
+
+\item \textbf{sintetizzazione spazio-temporale delle heatmaps} - Partizionando ogni heatmap $\boldsymbol{G}_n$ in in $P$ righe, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{p}_1^T, ..., \boldsymbol{p}_s^T, ..., \boldsymbol{p}_P^T]^T$ o in $Q$ colonne, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{q}_1, ..., \boldsymbol{q}_s, ..., \boldsymbol{q}_Q]$ ed usando la precedente funzione $V$ per mappare $(\boldsymbol{p}_{1:s})^T$ e $\boldsymbol{q}_{1:s}$ in $\boldsymbol{v}_{s}^P$ e $\boldsymbol{v}_{s}^Q$ rispetivamente, si può ottenere due vetori $\boldsymbol{u^p},\boldsymbol{u^q}$ rappresentativi del frame attraverso la seguente funzione obbiettivo:
+\begin{align*}
+\underset{\boldsymbol{u}^\eta}{arg\ min}\ & \frac{1}{2}||\boldsymbol{u}^\eta||^2 + W \sum_{\forall_{i,j}\ v^\eta_{s_i} \succ v^\eta_{s_j}}\epsilon_{ij}, \\
+s.t. \  & (\boldsymbol{u}^\eta)^T \cdot (\boldsymbol{v}^\eta_{s_i} - \boldsymbol{v}^\eta_{s_j}) \geq 1 - \epsilon_{ij} \\
+& \epsilon_{ij} \geq 0 
+\end{align*}
+dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica la successione temporale fra $v^\eta_{s_i}$ e $v^\eta_{s_j}$, $\boldsymbol{u^p}\in \mathbb{R}^{Q}$ e $\boldsymbol{u^q}\in \mathbb{R}^{P}$. Per gli $N$ frame vengono concatenati in ordine temporale i vettori cosi calcolati, ottenendo $\boldsymbol{U^p} \in \mathbb{R}^{Q\times N}$ e $\boldsymbol{U^q} \in \mathbb{R}^{P\times N}$. La matrice finale $\boldsymbol{U}$ sarà l'unione di queste concatenazioni, ovvero $[(\boldsymbol{U^p})^T,\boldsymbol{U^q})^T]^T$ ovvero una matrice che manterrà sia le caratteristiche temporali che spaziali del movimento ripreso nel video. L'intero processo è schematizzato in figura \ref{fig:spatialTemporalRank}.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/sintetizzazioneSpazioTemporaleHeatmpas}
+\caption{Sintetizzazione spazio-temporale delle heatmaps.}
+\label{fig:spatialTemporalRank}
+\end{figure}
+
+\item \textbf{sintetizzazione spazio-temporale delle pose} - Per comprendere come viene creata questa sintetizzazione, supponiamo di avere una sequenza di pose $\mathcal{V}_ \mathcal{L}= \{ \mathcal{L}_1, ..., \mathcal{L}_n, ..., \mathcal{L}_N \}$ dove $\mathcal{L}_n = \{ \boldsymbol{z}^{k,n} \}^K_{k=1}$ e $\boldsymbol{z}^{k,n} = (x^{k,n},y^{k,n})$, ovvero le coordinate orizzontali e verticali del $k$-esimo giunto corporeo. Per codificare le caratteristiche di tale sequenza, ogni posa viene trasformata in una successione di distanze fra giunti consecutivi, seguendo l'ordine rappresentato in figura \ref{fig:ordineGiunti}. Ripetendo questo processo per ogni frame e concatenando i risultati ottenuti, si ottiene un'immagine rappresentativa delle caratteristiche spazio-temporali dell'evoluzione della posa nel video. L'intero processo è rappresentato in figura \ref{fig:ordineGiunti}.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=1\textwidth]{imgs/sintetizzazioneDellePose}
+\caption{Sintetizzazione spazio-temporale delle heatmaps.}
+\label{fig:ordineGiunti}
+\end{figure}
+
+\end{itemize}
+
 
 
 \section{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}
 Seconda spiegazione.
-\section{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition (2019)}
+\section{Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition (2019)}
 Terza spiegazione.
 
 
