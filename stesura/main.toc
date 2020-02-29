@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {1.4}Le reti LSTM}{10}
 \contentsline {chapter}{\numberline {2}Lavori precedenti}{14}
 \contentsline {section}{\numberline {2.1}Recognizing Human Actions as the Evolution of Pose Estimation Maps (2018)}{15}
-\contentsline {section}{\numberline {2.2}Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}{19}
+\contentsline {section}{\numberline {2.2}Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}{20}
 \contentsline {section}{\numberline {2.3}Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition (2019)}{20}
 \contentsline {chapter}{\numberline {3}Stima della posa}{21}
 \contentsline {section}{\numberline {3.1}PoseNet}{23}
@@ -19,16 +19,14 @@
 \contentsline {subsection}{\numberline {3.2.1}Mask R-CNN}{30}
 \contentsline {subsection}{\numberline {3.2.2}Predizione della posa con Mask R-CNN}{32}
 \contentsline {chapter}{\numberline {4}Metodo proposto}{33}
-\contentsline {section}{\numberline {4.1}Struttura della rete}{33}
-\contentsline {section}{\numberline {4.2}Tecniche}{33}
-\contentsline {subsection}{\numberline {4.2.1}Semplice}{33}
-\contentsline {subsection}{\numberline {4.2.2}Tecnica dei centri}{33}
-\contentsline {subsection}{\numberline {4.2.3}Tecnica delle differenze}{33}
-\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{34}
-\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{35}
-\contentsline {section}{\numberline {5.2}Criteri di valutazione}{38}
-\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{38}
-\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{39}
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{40}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{41}
-\contentsline {chapter}{Bibliografia}{42}
+\contentsline {section}{\numberline {4.1}Estrazione delle pose}{33}
+\contentsline {section}{\numberline {4.2}Assegnazione delle pose}{35}
+\contentsline {section}{\numberline {4.3}Rimozione degli zeri}{37}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{40}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{41}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{44}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{44}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{45}
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{46}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{47}
+\contentsline {chapter}{Bibliografia}{48}

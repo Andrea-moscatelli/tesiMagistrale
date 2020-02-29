@@ -18,6 +18,7 @@
 \usepackage{makecell}
 \usepackage{subcaption}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macro algoritmi in un frame, con caption e label. Si usano cosi':
 
@@ -442,9 +443,24 @@ dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica l
 \caption{Sintetizzazione spazio-temporale delle heatmaps.}
 \label{fig:ordineGiunti}
 \end{figure}
-
 \end{itemize}
 
+Gli esperimenti effettuati dagli autori sono molteplici e una delle caratteristiche principali sulla quale è necessario porre attenzione è la telecamera usata per la creazione delle pose nei video: in alcuni casi hanno utilizzato la telecamera di profondità ed in altri no.
+
+Uno dei dataset utilizzato nel lavoro è NTU-RGB60 \cite{NTURGB}, che verrà trattato in dettaglio nel capitolo 5 e che come vedremo propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti in questo lavoro sono riassunti in tabella \ref{tab:risultati4}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Telecamera & \thead{Accuratezza  \\ cross-view} & \thead{Accuratezza  \\ cross-subject} \\
+\hline
+normale   &    84.21\%     &   78.80           \\ \hline
+di profondità   &    95.26\%    &   91.71\%            \\ \hline
+\end{tabular}
+\caption{Risultati ottenuti da  ``Recognizing Human Actions as the Evolution of Pose Estimation Maps - (2018)"}
+\label{tab:risultati4}
+\end{table}
 
 
 \section{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}
@@ -627,12 +643,116 @@ Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training targ
 %%%%%%  Metodo proposto %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Metodo proposto}
-\section{Struttura della rete}
-\section{Tecniche}
+In questo capitolo oltre ad approfondire le diverse tecniche adottate nel lavoro di tesi, verrà illustrato anche l'iter procedurale che ha portato ai risultati ottenuti. 
+Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB60 \cite{NTURGB} e nonostante fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+Passiamo adesso ad analizzare una ad una le varie fasi affrontate nel lavoro di tesi.
+\section{Estrazione delle pose}
+Per prima cosa è necessario convertire tutti i video del dataset in sequenze di pose, in modo da sintetizzarne efficacemente il movimento umano senza un'eccessiva perdita d'informazione.  Gli algoritmi scelti per questa fase sono stati Detectron2 \cite{Detectron2Link} per la sua rimarcabile accuratezza e PoseNet \cite{PosenetArticle} per la sua velocità d'inferenza e portabilità.
+I modelli proposti da queste due tecniche sono molteplici. Per Detectron2 abbiamo:
+\begin{itemize}
+\item  \emph{R50-FPN-1x}
+\item \emph{R50-FPN-3x}
+\item \emph{R101-FPN-3x} 
+\item  \emph{X101-FPN-3x} 
+\end{itemize}
+mentre per PoseNet abbiamo:
+\begin{itemize}
+\item  \emph{PoseNet-50}
+\item \emph{PoseNet-75}
+\item \emph{PoseNet-100}
+\item \emph{PoseNet-101}
+\end{itemize}
 
-\subsection{Semplice}
-\subsection{Tecnica dei centri}
-\subsection{Tecnica delle differenze}
+Ognuno di questi modelli ha valori diversi in accuratezza e velocità di inferenza. Nel caso di Detectron2 questa comparazione viene fornita dagli autori stessi e schematizzata in tabella \ref{proposteDetectronPosenet}, mentre per quanto riguarda PoseNet non viene purtroppo fornito un confronto simile. 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c |}
+\hline
+Nome & \thead{Tempo di  \\ inferenza \\ (s/imm)} &  \thead{Box  \\ AP} &  \thead{KP  \\ AP}  \\
+\hline
+ R50-FPN-1x	 		& 0.072  	& 53.6 	& 64.0 \\ \hline
+ R50-FPN-3x 			& 0.066  	& 55.4 	& 65.5 \\ \hline
+ R101-FPN-3x 			& 0.076  	& 56.4 	& 66.1 \\ \hline
+ \textbf{X101-FPN-3x} 	& 0.121  	& 57.3 	& 66.0 \\ \hline
+\end{tabular}
+\caption{Diversi modelli in Detectron 2 per l'estrazione della posa da un'immagine. Il tempo di inferenza viene misurato in \emph{secondi/immagine}; Box AP = ``Bounding box average precision" ; KP AP = ``Keypoint average precision"}
+\label{proposteDetectronPosenet}
+\end{table}
+
+È stato quindi scelto il modello \emph{X101-FPN} per Detectron2, in quanto quello con il miglior valore di accuratezza globale e PoseNet-101, per per una più facile comparazione dei risultati.
+
+\section{Assegnazione delle pose}
+Quello che otteniamo dalla fase precedente è, per ogni video, una sequenza di pose umane estrapolate da ogni frame. Sia Detectron2 che PoseNet sono in grado di riconoscere più persone all'interno di un'immagine, producendo una lista di pose $P_1, P_2, ..., P_n$ ordinata secondo le regole dell'algoritmo, ad esempio Detectron2 le ordina per valore di \emph{score} decrescente, ovvero quel valore che indica quanto l'algoritmo sia sicuro di aver correttamente stimato la posa di quella persona.
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/swapPose}
+\caption{Un esempio di assegnazione inconsistente delle pose lungo il video. Nell'esempio, l'ordine delle pose restituite dall'algoritmo è blu, rosso, verde e viola. Quest'ordine è indipendente dai soggetti inquadrati, che possono talvolta essere scambiati fra loro, non essere riconosciuti o addirittura scambiati per dei riflessi.}
+\label{fig:swapPose}
+\end{figure}
+
+Quello che però questi algoritmi non hanno è una conoscenza relativa al concetto di video, ovvero alla successione logica dei frame e trattano ognuno di essi come un'immagine indipendente. Quello che ne segue è una totale indipendenza fra l'ordine delle pose riconosciute e la loro assegnazione consistente ai soggetti rappresentati nel video. Ad esempio, ammettiamo di avere due soggetti $A$ e $B$ rappresentati in un video e che per l'$i$-esimo frame vengano identificate due pose $\mathcal{P}_{1,i}$ e $\mathcal{P}_{2,i}$ appartenenti ad A e B rispettivamente. Quest'ordine non è però garantito nel frame successivo dove $\mathcal{P}_{1,i+1}$ potrebbe essere la posa di B e $\mathcal{P}_{2,i+1}$ quella di A. 
+
+Per ovviare a questo problema la tecnica adottata è stata quella di calcolare iterativamente ad ogni frame la distanza fra l'ultima posa assegnata ad ogni soggetto e tutte quelle riconosciute al frame successivo. La distanza fra due pose non è altro che la somma delle distanze euclidee fra i punti in comune delle due pose, ovvero se $\mathcal{P}_i = \{p_{i,k}\}_{k=1}^K$ è l'insieme dei punti che definiscono la posa $i$, dove ogni $p_{i,k} = (x_{i,k},y_{i,k})$ sono le ascisse e le ordinate del $k$-esimo giunto e $K$ il numero di tipi di giunto, allora la distanza fra $P_i$ e $P_j$ sarà:
+$$
+\mathcal{D}_{ij} = \sum_{k=1}^K I(p_{i,k}) \cdot I(p_{j,k}) \cdot eucl(p_{i,k},p_{j,k})
+$$
+dove $I$ è la funzione identità, ovvero $I(p) = 1$ se $p$ è definito, 0 altrimenti e $eucl(p_1,p_2)$ è  la funzione di distanza euclidea fra i punti $p_1$ e $p_2$. Se le due pose non hanno punti in comune, ovvero  $\sum_{k=1}^K I(p_{i,k}) \cdot I(p_{j,k}) = 0 $ allora $\mathcal{D}_{ij} = \infty$.
+
+Una volta ottenuta ed ordinata in maniera decrescente la lista delle distanze fra pose, si può procede alla loro assegnazione ai soggetti inquadrati e ripetere il procedimento per il frame successivo.
+
+Abbiamo però un ultimo problema da fronteggiare in questa fase, ovvero la variabilità del numero di pose stimate in ogni frame del video. Questo accade ad esempio, quando per uno o più frame uno dei soggetti non viene riconosciuto dall'algoritmo o quando l'improvviso riflesso su una finestra o uno specchio viene interpretato come una nuova persona, come raffigurato in figura \ref{fig:swapPose}. 
+
+Questo problema è stato risolto ordinando le sequenze di pose secondo il loro score medio lungo tutto il video. Si presuppone infatti che un riflesso sia mediamente meno convincente di una persona vera e propria. Una volta ordinate le sequenze, sono state mantenute solo le migliori due e scartate le altre, visto che siamo interessati ad analizzare solo azioni individuali o di coppia.
+
+\section{Rimozione degli zeri}
+Come abbiamo appena visto, PoseNet e Detectron2 talvolta in qualche frame possono non riconoscere un'intera persona o non riuscire a stimare la posizione di qualche giunto, se ad esempio coperti o sfocati. Entrambi gli algoritmi trattano questi 2 casi nella stessa maniera, ovvero assegnano il punto $(0,0)$ ad ogni giunto non riconosciuto. 
+
+\begin{figure}
+\centering
+\includegraphics[width=1.1\textwidth]{imgs/rimozioneZeri.jpg}
+\caption{Esempio di rimozione degli zeri. Nei frame 2-3-4-5 i giunti del braccio sinistro non sono stati riconosciuti. Nei frame 2-3 verranno quindi rimpiazzati con quelli del frame 1, mentre nei frame 4-5 con quelli del frame 6.}
+\label{fig:rimozioneZeri}
+\end{figure}
+
+Questo valore però è fortemente fuorviante considerando che le informazioni a nostra disposizione sono solo pochi punti corporei. Con Detectron2 e PoseNet la posa ottenuta è composta di soli 17 punti, quindi per ogni giunto non riconosciuto non solo perdiamo 1/17 d'informazione ma confondiamo anche il nostro algoritmo facendogli analizzare un movimento inesistente, per quel giunto, verso il punto (0,0).
+
+È necessario quindi adottare una buona tecnica di pulizia degli zeri che limiti la perdita d'informazione mantenendo una consistenza con i risultati ottenuti.
+
+La cosa più semplice da fare è assegnare ad ogni giunto non riconosciuto la sua ultima posizione identificata, ma cosi facendo utilizzeremmo solo il passato del video in questione e per lunghe sequenze di valori mancanti potremmo perdere molta informazione utile. È stato quindi scelto di attribuire ad ogni giunto non identificato il primo punto identificato più vicino nel tempo, passato o futuro, per quel giunto.
+
+L'intento di questa tecnica è quello di ridurre la distanza fra ogni giunto non identificato e la loro effettiva posizione nell'immagine. Un caso esempio è rappresentato in figura \ref{fig:rimozioneZeri}
+
+% PARLA DI RIMOZIONE DEGLI ZERI IN MANIERA INTERPOLANTE SE RIESCI AD INCUDERLO NEL LAVORO
+
+
+\begin{itemize}
+\item tecniche:
+\begin{itemize}
+\item centro video
+\item centro frame
+\item 5 Baricentri video
+\item 3 Baricentri frame
+\item 3 Baricentri video
+\item 3 Baricentri video ABS
+\item 17 baricentri video (uno per ogni keypoint)
+\item 17 baricentri video ABS 
+\item next frame
+\item next frame 5
+\item next frame 11
+\item next frame 17
+\item distanze cumulative
+\item distanze fra punti
+\end{itemize}
+\item tipi di normalizzazione - Classica o Indipendente
+\item dropout e dropout ricorrente
+\item smussamento
+\item layers
+\item LSTM e CudNNLSTM?
+\item regolarizzatori?
+\end{itemize}
+
 
 %%%%%%  NTU RGB+D %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Il dataset NTU RGB+D}
@@ -711,8 +831,8 @@ Setup & \thead{Altezza  \\ (m)} &  \thead{Distanza  \\ (m)} & Setup &\thead{Alte
 17   &    2.5     &   3.0  &    &      &            \\
 \hline
 \end{tabular}
-\label{tab:puntiDivista}
 \caption{Altezza e distanza delle 3 telecamere per ogni setup di ripresa. Le altezze e le distanze sono espresse in metri. }
+\label{tab:puntiDivista}
 \end{table}
 
 \section{Criteri di valutazione}

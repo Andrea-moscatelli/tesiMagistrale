@@ -11,8 +11,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Classification.ipynb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Classification.ipynb">
+      <file leaf-file-name="[REF]Classification.ipynb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/[REF]Classification.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
               <selected id="0" />
@@ -34,6 +34,7 @@
       <list>
         <option value="$PROJECT_DIR$/Classification.ipynb" />
         <option value="$PROJECT_DIR$/_models/tes.py" />
+        <option value="$PROJECT_DIR$/[REF]Classification.ipynb" />
       </list>
     </option>
   </component>
@@ -44,9 +45,11 @@
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -63,7 +66,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -147,6 +149,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Classification.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_models/tes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -155,6 +164,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Classification.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/[REF]Classification.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
           <selected id="0" />
