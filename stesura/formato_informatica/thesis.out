@@ -22,10 +22,11 @@
 \BOOKMARK [2][-]{subsection.4.4.1}{Baricentro del frame}{section.4.4}% 22
 \BOOKMARK [2][-]{subsection.4.4.2}{Baricentro del video}{section.4.4}% 23
 \BOOKMARK [2][-]{subsection.4.4.3}{Baricentri multipli}{section.4.4}% 24
-\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 25
-\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 27
-\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 28
-\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 29
-\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 30
-\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 31
+\BOOKMARK [2][-]{subsection.4.4.4}{Tecnica ``Next frame"}{section.4.4}% 25
+\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 26
+\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 30
+\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 31
+\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 32

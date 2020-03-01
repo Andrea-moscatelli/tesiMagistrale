@@ -511,7 +511,7 @@ dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica l
 
 Gli esperimenti effettuati dagli autori sono molteplici e una delle caratteristiche principali sulla quale è necessario porre attenzione è la telecamera usata per la creazione delle pose nei video: in alcuni casi hanno utilizzato la telecamera di profondità ed in altri no.
 
-Uno dei dataset utilizzato nel lavoro è NTU-RGB60 \cite{NTURGB}, che verrà trattato in dettaglio nel capitolo 5 e che come vedremo propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti in questo lavoro sono riassunti in tabella \ref{tab:risultati4}.
+Uno dei dataset utilizzato nel lavoro è NTU-RGB+D \cite{NTURGB}, che verrà trattato in dettaglio nel capitolo 5 e che come vedremo propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti in questo lavoro sono riassunti in tabella \ref{tab:risultati4}.
 
 \begin{table}[ht]
 \centering
@@ -705,7 +705,7 @@ Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training targ
 
 \chapter{Metodo proposto}
 In questo capitolo oltre ad approfondire le diverse tecniche adottate nel lavoro di tesi, verrà illustrato anche l'iter procedurale che ha portato ai risultati ottenuti. 
-Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB60 \cite{NTURGB} e nonostante fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
 Passiamo adesso ad analizzare una ad una le varie fasi affrontate nel lavoro di tesi.
 \section{Estrazione delle pose}
 Per prima cosa è necessario convertire tutti i video del dataset in sequenze di pose, in modo da sintetizzarne efficacemente il movimento umano senza un'eccessiva perdita d'informazione.  Gli algoritmi scelti per questa fase sono stati Detectron2 \cite{Detectron2Link} per la sua rimarcabile accuratezza e PoseNet \cite{PosenetArticle} per la sua velocità d'inferenza e portabilità.
@@ -825,22 +825,66 @@ Come per la tecnica precedente, anche qui sostituiremo ogni posa con l'insieme d
 Il vantaggio aggiuntivo di questa tecnica rispetto alla precedente è la capacità di saper immagazzinare anche l'informazione sul movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è rappresentato in figura \ref{fig:baricentroVideo}.
 
 \subsection{Baricentri multipli}
-Come vedremo nel capitolo 6 la tecnica del \emph{baricentro del video} aiuterà notevolmente la rete neurale nel compito della classificazione. Quello che è interessante analizzare è 
+Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} aiuterà notevolmente la rete neurale nel compito della classificazione. La domanda che a questo punto sorge spontanea è se aumentando il numero di baricentri si ottenga un miglioramento dei risultati.
 
+Considerando ogni giunto come appartenente ad una (e una sola) parte del corpo specifica, è stato sostituito ogni punto di ogni posa con il vettore distanza da quel giunto al baricentro corrispondente, ovvero considerando l'insieme dei tipi di giunti $\mathcal{K} = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ come una suddivisione in gruppi di giunti tali che 
+\begin{itemize}
+\item $\bigcup_{b=1}^B   \mathcal{K}_b = \mathcal{K}$
+\item $  \mathcal{K}_i \bigcap \mathcal{K}_j= \emptyset, \ \ \ \forall \  \mathcal{K}_i ,\mathcal{K}_j \in \mathcal{K}$ 
+\end{itemize}
+ogni posa $\mathcal{P}_f$ è stata sostituita con la sua trasformazione $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove, come per le tecniche precedenti, ogni $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{B}}$ e 
+$$
+\overline{\mathcal{B}} = \bigcup_{b=1}^B \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^L \overline{\mathcal{P}_{if}}}{L}.
+$$
+
+
+In questo lavoro di tesi è stato fatto variare il valore di $B$ testando 3 varianti con baricentri multipli del video, ovvero:
+\begin{itemize}
+\item \textbf{B=3} - testa, busto e gambe
+\item \textbf{B=5} - tronco, braccio sinistro, braccio destro, gamba sinistra e gamba destra (questa suddivisione viene suggerita dagli autori del dataset NTU-RGB+D nel loro modello chiamato \emph{"Part-Aware LSTM"} \cite{NTURGB} )
+\item \textbf{B=17} - un baricentro per ogni giunto
+\end{itemize}
+
+Queste 3 diverse tecniche hanno il vantaggio di frammentare la posa, attribuendo valori più alti alle componenti più dinamiche del video, ovvero quelle componenti che si presuppone caratterizzino maggiormente l'azione ripresa nel video. Vedremo nel capitolo 6 quali sono i risultati ottenuti da queste diverse tecniche. In figura \ref{fig:multiCentroVideo} è rappresentato un esempio della tecnica dei 3 baricentri.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/multiCentroVideo.jpg}
+\caption{Esempio di applicazione della \emph{tecnica dei 3 baricentri}. In figura sono rappresentati 3 frame del video di una camminata da sinistra a destra. Ogni punto blu (relativo ad un giunto corporeo) viene sostituito col vettore-distanza fra quel punto e il baricentro al quale quel giunto appartiene.}
+\label{fig:multiCentroVideo}
+\end{figure}
+
+Considerando che una stessa azione può essere svolta in maniera speculare, ad esempio una camminata resta una camminata sia che sia fatta da sinistra a destra del video che viceversa, ognuna di queste tecniche è stata testata anche considerando solo i valori assoluti dei vettori ottenuti (che verrà indicata nei risultati con il suffisso \emph{``ABS"}), cosi da astrarre il modello dalla direzione verso la quale viene svolta l'azione.
+
+\subsection{Tecnica ``Next frame"}
+Un altro approccio nella classificazione delle sequenze di pose è quello di concentrarci su ciò che accade fra un frame e l'altro, è infatti proprio in questo lasso di tempo che abbiamo il movimento del soggetto o dei soggetti inquadrati. 
+
+Seguendo questo approccio trasformeremo tutte le nostre pose in un insieme di vettori-distanza fra la posizione dei giunti al frame $f$ e quelli al frame $f+1$. La nostra posa trasformata $\mathcal{T}_f$ sarà quindi, $\mathcal{T}_f = \mathcal{P}_{f+1} - \mathcal{P}_f$, ovvero
+$$
+\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+1} - p_{k,f}
+$$
+
+Un esempio visivo di questa tecnica è rappresentato in figura \ref{fig:nextframe}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{imgs/nextFrame.jpg}
+\caption{Tecnica del \emph{next frame}. Nell'esempio, il soggetto ripreso alzando il braccio sinistro  Ogni posa viene sostituita con l'insieme dei vettori-distanza fra ogni giunto e la posizione dello stesso al frame successivo. }
+\label{fig:nextframe}
+\end{figure}
+
+Questa tecnica analizza le differenze di posizione dei giunti solo fra frame consecutivi, questo però porta spesso a dover memorizzare variazioni minime, specialmente se il nostro video ha un FPS (Frame Per Second) elevato che potrebbero confondersi con l'approssimazione della posizione del giunto rilevata dall'algoritmo di riconoscimento della posa. 
+
+Quello che allora possiamo fare è memorizzare le differenze dei giunti fra frame a distanza $S >1$, ovvero
+$$
+\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+S} - p_{k,f}
+$$
+
+In questo lavoro di tesi sono stati testati i valori di $S = \{1, 5, 11, 17\}$ per capire se e quali miglioramenti porta questa variazione di distanza.
 
 \begin{itemize}
 \item tecniche:
 \begin{itemize}
-\item 5 Baricentri video
-\item 3 Baricentri frame
-\item 3 Baricentri video
-\item 3 Baricentri video ABS
-\item 17 baricentri video (uno per ogni keypoint)
-\item 17 baricentri video ABS 
-\item next frame
-\item next frame 5
-\item next frame 11
-\item next frame 17
 \item distanze cumulative
 \item distanze fra punti
 \end{itemize}

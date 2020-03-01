@@ -25,10 +25,11 @@
 \contentsline {subsection}{\numberline {4.4.1}Baricentro del frame}{44}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{45}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{46}{subsection.4.4.3}
-\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{47}{chapter.5}
-\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Criteri di valutazione}{51}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{51}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{52}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{53}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{55}{chapter.7}
+\contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{47}{subsection.4.4.4}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{51}{chapter.5}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{53}{section.5.1}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{55}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{55}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{56}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{57}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{59}{chapter.7}
