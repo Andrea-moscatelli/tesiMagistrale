@@ -426,7 +426,7 @@ Il riconoscimento di azioni corporee tramite l'analisi della \emph{posa} umana o
 
 Normalmente ci sono due approcci per il riconoscimento di azioni umane facendo uso dalla posa: gli approcci ``\emph{a mano}" e quelli \emph{deep learning}.
 
-Negli approcci \emph{a mano} si cerca di categorizzare le azioni umane seguendo pattern fisici intuitivi, come le posizioni degli arti o le correlazioni temporali fra essi, come ad esempio il movimento ondulatorio delle gambe durante una camminata o una corsa. 
+Negli approcci \emph{a mano} si cerca di categorizzare le azioni umane seguendo pattern fisici intuitivi, come le posizioni degli arti o le correlazioni temporali fra essi, ad esempio il movimento ondulatorio delle gambe durante una camminata o una corsa. 
 
 Per quanto riguarda invece gli approcci \emph{deep learning} le tipologie di azioni corporee vengono categorizzate in maniera automatica direttamente dai dati stessi. Reti neurali ricorrenti, come le LSTM, o quelle di tipo \emph{convoluzionali-temporali}, come quella in \cite{TempConv}, si sono rivelate essere estremamente efficaci per il riconoscimento di pattern temporali in un video, ottenendo ottimi risultati nella categorizzazione delle azioni.
 
@@ -435,7 +435,7 @@ Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto in
 Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
 \begin{itemize}
 \item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018 \cite{PREV1}
-\item \textbf{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition} - \emph{Maosen Li, Siheng Chen, Xu Chen, Ya Zhang, Yanfeng Wang, and Qi Tian} - 2019  \cite{PREV2}
+\item \textbf{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang,Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
 \item \textbf{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019  \cite{PREV3}
 \end{itemize}
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
@@ -704,8 +704,10 @@ Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training targ
 %%%%%%  Metodo proposto %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Metodo proposto}
-In questo capitolo oltre ad approfondire le diverse tecniche adottate nel lavoro di tesi, verrà illustrato anche l'iter procedurale che ha portato ai risultati ottenuti. 
-Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+In questo capitolo vedremo quali sono state le tecniche adottate in questo lavoro di tesi e le decisioni prese durante l'iter operativo.
+
+Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante esso fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+
 Passiamo adesso ad analizzare una ad una le varie fasi affrontate nel lavoro di tesi.
 \section{Estrazione delle pose}
 Per prima cosa è necessario convertire tutti i video del dataset in sequenze di pose, in modo da sintetizzarne efficacemente il movimento umano senza un'eccessiva perdita d'informazione.  Gli algoritmi scelti per questa fase sono stati Detectron2 \cite{Detectron2Link} per la sua rimarcabile accuratezza e PoseNet \cite{PosenetArticle} per la sua velocità d'inferenza e portabilità.
@@ -808,12 +810,10 @@ $$
 \boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{P}_f} \ \ \ \ \text{e} \ \ \ \overline{\mathcal{P}_f} = \frac{\sum_{j=1}^K p_{jf}}{K}.
 $$
 Questa tecnica ha il vantaggio di relativizzare la posa ovunque essa si trovi all'interno del frame e sintetizzarne efficientemente il movimento circoscritto al frame. Allo stesso tempo però, utilizzando un punto di vista sempre e solo focalizzato sul singolo frame, potrebbe non riuscire a mappare correttamente il movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è schematizzato in figura \ref{fig:centroFrame}.
-\subsection{Baricentro del video}
-Questa tecnica, molto simile alla precedente, utilizza però come baricentro quello relativo all'intero video anziché quello di ogni frame ovvero, se indichiamo con $\mathcal{V}=[F_1,..., F_f, ..., F_L]$ la sequenza di frame del video, allora il baricentro del video $\overline{\mathcal{V}} $ sarà
-$$
-\overline{\mathcal{V}} = \frac{\sum_{f=1}^L \overline{\mathcal{P}_f}}{L}.
-$$
 
+È stato poi successivamente testata anche una variante di questa tecnica, ovvero quella del \emph{baricentro del frame per persona}. In questa estensione viene settato un baricentro diverso per ogni persona rappresentata nel frame.
+
+\subsection{Baricentro del video}
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.7\textwidth]{imgs/centroVideo.jpg}
@@ -821,11 +821,25 @@ $$
 \label{fig:baricentroVideo}
 \end{figure}
 
+Questa tecnica, molto simile alla precedente, utilizza però come baricentro quello relativo all'intero video anziché quello di ogni frame ovvero, se indichiamo con $\mathcal{V}=[F_1,..., F_f, ..., F_L]$ la sequenza di frame del video, allora il baricentro del video $\overline{\mathcal{V}} $ sarà
+$$
+\overline{\mathcal{V}} = \frac{\sum_{f=1}^L \overline{\mathcal{P}_f}}{L}.
+$$
+
 Come per la tecnica precedente, anche qui sostituiremo ogni posa con l'insieme dei vettori-distanze dal baricentro del video, ovvero $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{V}} $. 
 Il vantaggio aggiuntivo di questa tecnica rispetto alla precedente è la capacità di saper immagazzinare anche l'informazione sul movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è rappresentato in figura \ref{fig:baricentroVideo}.
 
+Come per la tecnica precedente, anche per questa è stata testata la variante \emph{baricentro del video per persona} dove viene definito un baricentro diverso per ogni persona rappresentata nel video.
+
 \subsection{Baricentri multipli}
 Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} aiuterà notevolmente la rete neurale nel compito della classificazione. La domanda che a questo punto sorge spontanea è se aumentando il numero di baricentri si ottenga un miglioramento dei risultati.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/multiCentroVideo.jpg}
+\caption{Esempio di applicazione della \emph{tecnica dei 3 baricentri}. In figura sono rappresentati 3 frame del video di una camminata da sinistra a destra. Ogni punto blu (relativo ad un giunto corporeo) viene sostituito col vettore-distanza fra quel punto e il baricentro al quale quel giunto appartiene.}
+\label{fig:multiCentroVideo}
+\end{figure}
 
 Considerando ogni giunto come appartenente ad una (e una sola) parte del corpo specifica, è stato sostituito ogni punto di ogni posa con il vettore distanza da quel giunto al baricentro corrispondente, ovvero considerando l'insieme dei tipi di giunti $\mathcal{K} = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ come una suddivisione in gruppi di giunti tali che 
 \begin{itemize}
@@ -847,13 +861,6 @@ In questo lavoro di tesi è stato fatto variare il valore di $B$ testando 3 varia
 
 Queste 3 diverse tecniche hanno il vantaggio di frammentare la posa, attribuendo valori più alti alle componenti più dinamiche del video, ovvero quelle componenti che si presuppone caratterizzino maggiormente l'azione ripresa nel video. Vedremo nel capitolo 6 quali sono i risultati ottenuti da queste diverse tecniche. In figura \ref{fig:multiCentroVideo} è rappresentato un esempio della tecnica dei 3 baricentri.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.7\textwidth]{imgs/multiCentroVideo.jpg}
-\caption{Esempio di applicazione della \emph{tecnica dei 3 baricentri}. In figura sono rappresentati 3 frame del video di una camminata da sinistra a destra. Ogni punto blu (relativo ad un giunto corporeo) viene sostituito col vettore-distanza fra quel punto e il baricentro al quale quel giunto appartiene.}
-\label{fig:multiCentroVideo}
-\end{figure}
-
 Considerando che una stessa azione può essere svolta in maniera speculare, ad esempio una camminata resta una camminata sia che sia fatta da sinistra a destra del video che viceversa, ognuna di queste tecniche è stata testata anche considerando solo i valori assoluti dei vettori ottenuti (che verrà indicata nei risultati con il suffisso \emph{``ABS"}), cosi da astrarre il modello dalla direzione verso la quale viene svolta l'azione.
 
 \subsection{Tecnica ``Next frame"}
@@ -873,29 +880,105 @@ Un esempio visivo di questa tecnica è rappresentato in figura \ref{fig:nextframe
 \label{fig:nextframe}
 \end{figure}
 
-Questa tecnica analizza le differenze di posizione dei giunti solo fra frame consecutivi, questo però porta spesso a dover memorizzare variazioni minime, specialmente se il nostro video ha un FPS (Frame Per Second) elevato che potrebbero confondersi con l'approssimazione della posizione del giunto rilevata dall'algoritmo di riconoscimento della posa. 
+Questa tecnica analizza le differenze di posizione dei giunti solo fra frame consecutivi, questo però porta spesso a dover memorizzare variazioni minime, specialmente se il nostro video ha un FPS (Frame Per Second) elevato, che potrebbero confondersi con l'approssimazione della posizione del giunto rilevata dall'algoritmo di riconoscimento della posa. 
 
 Quello che allora possiamo fare è memorizzare le differenze dei giunti fra frame a distanza $S >1$, ovvero
 $$
 \mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+S} - p_{k,f}
 $$
 
-In questo lavoro di tesi sono stati testati i valori di $S = \{1, 5, 11, 17\}$ per capire se e quali miglioramenti porta questa variazione di distanza.
+In questo lavoro di tesi sono stati testati i valori di $S = \{1, 3, 7, 15\}$ per capire se e quali miglioramenti porta questa variazione di distanza.
 
+\subsection{Tecnica delle distanze cumulate}
+Come abbiamo detto, un problema della tecnica precedente è la memorizzazione di valori spesso troppo piccoli è difficilmente distinguibili dal rumore derivante dall'approssimazione della posizione del giunto. Per ovviare a questo problema, un'altra tecnica testata in questo lavoro di tesi è quella delle \emph{distanze cumulate}, ovvero trasformare ogni posa $\mathcal{P}_f$ nella somma dei vettori distanza, calcolati fino a quel punto, con la tecnica del \emph{next frame}, ovvero
+$$
+\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
+$$
+
+Quello che ci aspettiamo di memorizzare sono valori incrementali per i giunti più dinamici nel video, mentre per quelli statici, che quindi non caratterizzano eccessivamente il movimento, ci aspettiamo valori prossimi allo 0. In figura \ref{fig:distanzeCumulate} abbiamo una schematizzazione di ciò che otterremmo con la tecnica delle distanze cumulate se analizzassimo una porzione di video dove il soggetto inquadrato alza e abbassa il braccio destro.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{imgs/distanzeCumulate.jpg}
+\caption{Tecnica delle \emph{distanze cumulate}. Nell'esempio sono raffigurati i valori che questa tecnica restituirebbe per l'azione ``alzare e abbassare il braccio destro". Ovviamente i valori più alti sono legati al polso e al gomito destro visto che sono le componenti più dinamiche di questo movimento.}
+\label{fig:distanzeCumulate}
+\end{figure}
+
+\subsection{Tecnica delle distanze relative}
+Questa tecnica riprende quella del ``centro del frame" con la differenza che qui ogni posa viene trasformata in una matrice di distanze fra tutte le coppie di giunti all'interno della stessa. Più precisamente, per ogni posa $\mathcal{P}_f \in \mathbb{R}^{K\times 2}$ otterremo la rispettiva trasformazione $\mathcal{T}_f \in \mathbb{R}^{K\times K}$, composta dai valori
+$$
+t_{ij} = eucl(p_{if},p_{jf})
+$$
+
+con $i = 0, ..., K$, $j = 0, ..., K$ ed $eucl(a,b)$ la funzione che restituisce la distanza euclidea fra i punti $a$ e $b$.
+
+Questa tecnica, seppur focalizzata sul singolo frame, ha lo scopo di estrapolare dalla posa anche quei collegamenti che ci sono fra giunti corporei distanti fra loro, come ad esempio la correlazione fra il movimento delle braccia e quello delle gambe durante una camminata. In figura \ref{} vediamo un esempio della tecnica appena descritta.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.7\textwidth]{imgs/distanzeRelative.jpg}
+\caption{Tecnica delle \emph{distanze relative}. In questa figura sono rappresentati solo i vettori-distanza dalla caviglia destra a tutti gli altri giunti.}
+\label{fig:distanzeRelative}
+\end{figure}
+
+\section{Normalizzazione}
+Ognuna delle tecniche appena viste ha risultati estremamente diversi l'uno dall'altro, con intervalli e variabilità dei valori univoci per ognuna di esse, rendendo quindi necessaria una normalizzazione dei dati prima di passarli alla rete neurale.
+
+La normalizzazione dei risultati svolge in ogni algoritmo di machine learning un ruolo estremamente importante ed è per questo che anche in questo lavoro di tesi le è stata data particolare attenzione. 
+
+Nel nostro caso la maggior parte delle tecniche adottate restituiscono in output un dataset di vettori, ad esempio le coordinate di punti sul piano o distanze vettoriali, mentre qualche tecnica, ad esempio quella delle ``distanze relative", restituisce un dataset di valori semplici. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{imgs/normalizzazione.jpg}
+\caption{Differenza fra normalizzazione \emph{globale} e \emph{separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente a sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph{separata} si ottengono due pose identiche.}
+\label{fig:normalizzazione}
+\end{figure}
+
+Per questo motivo occorre fare una distinzione fra due tipi di tecniche di normalizzazione dei dati:
 \begin{itemize}
-\item tecniche:
-\begin{itemize}
-\item distanze cumulative
-\item distanze fra punti
-\end{itemize}
-\item tipi di normalizzazione - Classica o Indipendente
-\item dropout e dropout ricorrente
-\item smussamento
-\item layers
-\item LSTM e CudNNLSTM?
-\item regolarizzatori?
+\item \textbf{Normalizzazione globale} - Questa normalizzazione tratta tutti i valori in input globalmente e nel caso di un insieme di vettori, tratta i componenti di quest'ultimi come fossero tutti appartenenti ad un unico grande vettore.
+\item \textbf{Normalizzazione separata} -  Questa tecnica, se applicata ad un dataset di valori semplici, funziona esattamente come una normalizzazione globale, se invece viene applicata ad un dataset di vettori allora ne normalizza i valori dimensione per dimensione, trattando cioè quest'ultime in maniera indipendente l'una dall'altra. Questa tecnica è concettualmente più corretta nel caso in cui si analizzi un dataset di punti nel piano, dove vogliamo separare la normalizzazione dei valori dell'asse $x$ da quella dell'asse $y$ (figura \ref{fig:normalizzazione}).
 \end{itemize}
 
+Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro.
+
+
+
+\section{Smussamento}
+
+\section{Struttura della rete}
+Per quanto riguarda la rete neurale adottata per la classificazione delle azioni, è stato scelto di usare le LSTM. Queste reti, nel mondo del machine learning, hanno già dimostrato la loro grande capacità espressiva quando si tratta di analizzare sequenze temporali di input. 
+
+La struttura della rete adoperata varia a seconda della fase degli esperimenti svolti. Nella prima fase è stato scelto di testare ogni tecnica utilizzando una rete neurale più piccola e semplice. Successivamente, solo per le tecniche più promettenti, è stato deciso di testare anche strutture di rete più complesse.
+
+Vediamo più nel dettaglio ogni componente scelto per la rete.
+\begin{itemize}
+\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da una sola cella LSTM più un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli progressivamente fino al raggiungimento ottimale dei risultati.
+\item \textbf{Hidden units} - Per quanto riguarda il numero di unità nascoste di ogni cella LSTM della rete, è stata utilizzata la seguente regola generale
+$$
+N_h = \frac{N_{samples}}{\alpha \cdot (N_{in} + N_{out})}
+$$
+dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra 2 e 10, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}.
+\item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria allora la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
+
+$$
+f(s)_i = \frac{e^{s_i}}{\sum_j^C e^{s_j}} \ \ \ \ CCE = -\sum_i^C t_i \cdot log(f(s)_i)
+%L(y,\hat{y}) = - \sum_{j=0}^M \sum_{i=0}^N (y_{ij} * log(\hat{y}_{ij}))
+$$
+dove $C$ è il numero totale di classi, $s_i$ è lo score uscente dalla rete neurale per la classe $i$ e $t_i$ è il valore target per la classe $i$. 
+
+Considerando che il vettore target $\boldsymbol{t}$ è un vettore one-hot, composto cioè da tutti zero eccetto un solo $t_p = 1$, allora solo la classe corretta $C_p$ definirà il valore della loss, che sarà quindi
+$$
+CCE = - log( \frac{e^{s_p}}{\sum_j^C e^{s_j}})
+$$
+dove $s_p$ è lo score che la rete neurale restituisce per la classe $p$.
+
+\item \textbf{Ottimizzatore} - L'ottimizzatore scelto è \emph{RMSProp} \cite{RMSProp} con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$, decrementato fino a $0,001$ per la fase di fine tuning.
+
+\item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati settati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, sono stati impostati a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
+\item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore} ricorrente sono stati settati inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
+\end{itemize}
 
 %%%%%%  NTU RGB+D %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Il dataset NTU RGB+D}
@@ -990,6 +1073,43 @@ Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripre
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Esperimenti e risultati}
+In questo capitolo verranno mostrati non solo i risultati ottenuti per i vari esperimenti effettuati ma anche il procedimento logico adottato al fine di raggiungere la miglior classificazione possibile.
+
+\section{Una porzione rappresentativa del dataset}
+
+Come prima cosa, considerata la dimensione del dataset (56880 video), è stato scelto un sottoinsieme di azioni di modo da poter lavorare su una porzione più piccola, sufficientemente rappresentativa e di difficile categorizzazione. A questo scopo sono state scelte 8 azioni che avessero le seguenti caratteristiche:
+\begin{itemize}
+\item 2 azioni di coppia simili fra loro
+\item 3 coppie di azioni individuali simili fra loro
+\end{itemize}
+Le azioni scelte, fra quelle proposte da NTU-RGB60, sono state:
+\begin{enumerate}
+\item dare uno pacca sulla schiena a qualcuno (azione di coppia)
+\item toccare la tasca di qualcuno (azione di coppia)
+\item leggere
+\item giocare col telefonino/tablet
+\item applaudire
+\item strofinarsi le mani
+\item scrivere
+\item usare una tastiera
+\end{enumerate}
+
+Questa porzione di dataset così creata è probabilmente
+
+
+
+
+\section{FAI}
+\begin{itemize}
+\item scelta azioni iniziali e lancio primo giro di test con tutte le tecniche
+\item risultati
+\item combinazione
+\item incremento livello
+\item testing dropout
+\item test su tutto il dataset
+\item nocciolo duro?
+\item test su tutto il dataset
+\end{itemize}
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusioni e sviluppi futuri}
@@ -1000,8 +1120,8 @@ Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripre
 
 
 \bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - 2018
-\bibitem{COCO-2016} Coco 2016 keypoint challenge - Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P. - 2016
-\bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5}
+\bibitem{COCO-2016} Coco 2016 keypoint challenge - \emph{Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P.} - 2016
+\bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5} 
 
 \bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2}, 2019
 
@@ -1037,19 +1157,20 @@ Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripre
 
 \bibitem{LSTM} Long short-term memory - \emph{Sepp Hochreiter; Jürgen Schmidhuber} - 1997
 
-\bibitem{peepholeLSTM} Recurrent Nets that Time and Count - \emph{Felix A. Gers; Jürgen Schmidhuber} - 2000
+\bibitem{peepholeLSTM} Recurrent Nets that Time and Count - \emph{Felix A. Gers, Jurgen Schmidhuber} - 2000
 
 
-\bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merriënboer; Caglar Gulcehre; Dzmitry Bahdanau; Fethi Bougares; Holger Schwenk; Yoshua Bengio } - 2014
+\bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio } - 2014
 
-\bibitem{PREV1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps} -
-\emph{Mengyuan Liu, Junsong Yuan} - 2018
+\bibitem{PREV1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018
 
-\bibitem{PREV2}{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition} - \emph{Maosen Li, Siheng Chen, Xu Chen, Ya Zhang, Yanfeng Wang, and Qi Tian} - 2019
+\bibitem{PREV2}{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - 2018  
 
-\bibitem{PREV3}{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bj?orn Ottersten} - 2019
+\bibitem{PREV3}{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019
  
-\bibitem{TempConv}{Interpretable 3D human action analysis with temporal convolutional networks} - \emph{T. S. Kim, A. Reiter} - 2017
+\bibitem{TempConv}Interpretable 3D human action analysis with temporal convolutional networks - \emph{T. S. Kim, A. Reiter} - 2017
+
+\bibitem{RMSProp} RMSProp and equilibrated adaptive learning rates for non-convex optimization - \emph{Yann N. Dauphin, Harm de Vries, Junyoung Chung, Yoshua Bengio} - 2015
 
 \end{thebibliography}
 

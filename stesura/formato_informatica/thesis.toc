@@ -26,10 +26,17 @@
 \contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{45}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{46}{subsection.4.4.3}
 \contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{47}{subsection.4.4.4}
-\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{51}{chapter.5}
-\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{53}{section.5.1}
-\contentsline {section}{\numberline {5.2}Criteri di valutazione}{55}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{55}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{56}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{57}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{59}{chapter.7}
+\contentsline {subsection}{\numberline {4.4.5}Tecnica delle distanze cumulate}{49}{subsection.4.4.5}
+\contentsline {subsection}{\numberline {4.4.6}Tecnica delle distanze relative}{50}{subsection.4.4.6}
+\contentsline {section}{\numberline {4.5}Normalizzazione}{50}{section.4.5}
+\contentsline {section}{\numberline {4.6}Smussamento}{52}{section.4.6}
+\contentsline {section}{\numberline {4.7}Struttura della rete}{52}{section.4.7}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{55}{chapter.5}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{57}{section.5.1}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{59}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{59}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{60}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{61}{chapter.6}
+\contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{61}{section.6.1}
+\contentsline {section}{\numberline {6.2}FAI}{62}{section.6.2}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{63}{chapter.7}

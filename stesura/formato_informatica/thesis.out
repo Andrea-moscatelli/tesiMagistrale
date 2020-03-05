@@ -23,10 +23,17 @@
 \BOOKMARK [2][-]{subsection.4.4.2}{Baricentro del video}{section.4.4}% 23
 \BOOKMARK [2][-]{subsection.4.4.3}{Baricentri multipli}{section.4.4}% 24
 \BOOKMARK [2][-]{subsection.4.4.4}{Tecnica ``Next frame"}{section.4.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 26
-\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 27
-\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 28
-\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 29
-\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 30
-\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 31
-\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 32
+\BOOKMARK [2][-]{subsection.4.4.5}{Tecnica delle distanze cumulate}{section.4.4}% 26
+\BOOKMARK [2][-]{subsection.4.4.6}{Tecnica delle distanze relative}{section.4.4}% 27
+\BOOKMARK [1][-]{section.4.5}{Normalizzazione}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.6}{Smussamento}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.7}{Struttura della rete}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 31
+\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 33
+\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 34
+\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 35
+\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 36
+\BOOKMARK [1][-]{section.6.1}{Una porzione rappresentativa del dataset}{chapter.6}% 37
+\BOOKMARK [1][-]{section.6.2}{FAI}{chapter.6}% 38
+\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 39
