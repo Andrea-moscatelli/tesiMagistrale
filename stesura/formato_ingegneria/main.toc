@@ -1,0 +1,36 @@
+\select@language {italian}
+\select@language {italian}
+\contentsline {chapter}{Prefazione}{iii}
+\contentsline {chapter}{Introduzione}{iv}
+\contentsline {chapter}{\numberline {1}L'apprendimento automatico}{1}
+\contentsline {section}{\numberline {1.1}Deep learning}{3}
+\contentsline {section}{\numberline {1.2}Le reti neurali}{4}
+\contentsline {section}{\numberline {1.3}Le reti neurali ricorrenti}{7}
+\contentsline {section}{\numberline {1.4}Le reti LSTM}{10}
+\contentsline {chapter}{\numberline {2}Lavori precedenti}{14}
+\contentsline {section}{\numberline {2.1}Recognizing Human Actions as the Evolution of Pose Estimation Maps (2018)}{15}
+\contentsline {section}{\numberline {2.2}Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}{20}
+\contentsline {section}{\numberline {2.3}Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition (2019)}{20}
+\contentsline {chapter}{\numberline {3}Stima della posa}{21}
+\contentsline {section}{\numberline {3.1}PoseNet}{23}
+\contentsline {subsection}{\numberline {3.1.1}Stima dei key-points}{24}
+\contentsline {subsection}{\numberline {3.1.2}Raggruppamento dei key-points in istanze di persona}{26}
+\contentsline {section}{\numberline {3.2}Detectron2}{27}
+\contentsline {subsection}{\numberline {3.2.1}Mask R-CNN}{30}
+\contentsline {subsection}{\numberline {3.2.2}Predizione della posa con Mask R-CNN}{32}
+\contentsline {chapter}{\numberline {4}Metodo proposto}{33}
+\contentsline {section}{\numberline {4.1}Estrazione delle pose}{33}
+\contentsline {section}{\numberline {4.2}Assegnazione coerente delle pose}{35}
+\contentsline {section}{\numberline {4.3}Rimozione degli zeri}{37}
+\contentsline {section}{\numberline {4.4}Tecniche di rielaborazione}{38}
+\contentsline {subsection}{\numberline {4.4.1}Baricentro del frame}{39}
+\contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{40}
+\contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{41}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{42}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{43}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{46}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{46}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{47}
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{48}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{49}
+\contentsline {chapter}{Bibliografia}{50}

@@ -1,0 +1,39 @@
+\BOOKMARK [0][-]{chapter.1}{L'apprendimento automatico}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Deep learning}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Le reti neurali}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Le reti neurali ricorrenti}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Le reti LSTM}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Lavori precedenti}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps \(2018\)}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition \(2019\)}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition \(2019\)}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Stima della posa}{}% 10
+\BOOKMARK [1][-]{section.3.1}{PoseNet}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.1.1}{Stima dei key-points}{section.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.1.2}{Raggruppamento dei key-points in istanze di persona}{section.3.1}% 13
+\BOOKMARK [1][-]{section.3.2}{Detectron2}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.2.1}{Mask R-CNN}{section.3.2}% 15
+\BOOKMARK [2][-]{subsection.3.2.2}{Predizione della posa con Mask R-CNN}{section.3.2}% 16
+\BOOKMARK [0][-]{chapter.4}{Metodo proposto}{}% 17
+\BOOKMARK [1][-]{section.4.1}{Estrazione delle pose}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.2}{Assegnazione coerente delle pose}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.3}{Rimozione degli zeri}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.4}{Tecniche di rielaborazione}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.4.1}{Baricentro del frame}{section.4.4}% 22
+\BOOKMARK [2][-]{subsection.4.4.2}{Baricentro del video}{section.4.4}% 23
+\BOOKMARK [2][-]{subsection.4.4.3}{Baricentri multipli}{section.4.4}% 24
+\BOOKMARK [2][-]{subsection.4.4.4}{Tecnica ``Next frame"}{section.4.4}% 25
+\BOOKMARK [2][-]{subsection.4.4.5}{Tecnica delle distanze cumulate}{section.4.4}% 26
+\BOOKMARK [2][-]{subsection.4.4.6}{Tecnica delle distanze relative}{section.4.4}% 27
+\BOOKMARK [1][-]{section.4.5}{Normalizzazione}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.6}{Smussamento}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.7}{Struttura della rete}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 31
+\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 33
+\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 34
+\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 35
+\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 36
+\BOOKMARK [1][-]{section.6.1}{Una porzione rappresentativa del dataset}{chapter.6}% 37
+\BOOKMARK [1][-]{section.6.2}{FAI}{chapter.6}% 38
+\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 39
