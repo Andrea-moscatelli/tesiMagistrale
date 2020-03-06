@@ -440,7 +440,7 @@ Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei posso
 \end{itemize}
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
 
-\section{Recognizing Human Actions as the Evolution of Pose Estimation Maps (2018)}
+\section{Recognizing Human Actions as Evolution of Pose Estimation Maps (2018)}
 L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmaps} globali e delle \emph{predizioni di pose} e una volta ottenute queste due componenti, combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
 
 Più precisamente, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\mathcal{Y} = \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
@@ -526,9 +526,68 @@ di profondità   &    95.26\%    &   91.71\%            \\ \hline
 \label{tab:risultati4}
 \end{table}
 
+\section{Action Machine: Rethinking Action Recognition in Trimmed Videos (2018)}
+In questo lavoro, gli autori categorizzano le azioni riprese nei video combinando un'analisi sul video e sulla posa estratta da quest'ultimo.
 
-\section{Actional-Structural Graph Convolutional Networks for Skeleton-based Action Recognition (2019)}
-Seconda spiegazione.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{imgs/actionMachineStructure}
+\caption{Schematizzazione di \emph{Action Machine} }
+\label{fig:actionMachineStructure}
+\end{figure}
+
+Come mostrato in figura \ref{fig:actionMachineStructure}, \emph{Action machine} (questo è il nome che gli autori hanno dato a questo algoritmo)si suddivide in fasi:
+\begin{enumerate}
+\item \textbf{Input} - Tutti i video del dataset vengono analizzati con \emph{Deformable CNN} \cite{Deformable}, un algoritmo per il riconoscimento di persone in immagini e delineazione della relativa \emph{bounding box}. La threshold in questa fase è stata settata a $0.99$ per scartare immediatamente la maggior parte dei falsi positivi riconosciuti. Successivamente viene selezionata la più piccola bounding box che contiene tutte le bounding box identificate nel video ed utilizzata come maschera di ritaglio per ogni frame da passare alla fase successiva. Utilizzare questa tecnica ha un doppio vantaggio: riesce a risolvere molti dei falsi negativi lungo il video e allinea le features sulla dimensione temporale.
+\item \textbf{Backbone} - I ritagli dei frame vengono passati all'\emph{Inflated 3D ConvNet} (I3D, proposto nel lavoro di J. Carreira e A. Zisserman nel 2017 \cite{QuoVadis}) implementato con la rete backbone ResNet-50 \cite{resNet} per l'estrazione delle features. Per aiutare la stima della posa in ogni frame viene rimosso il \emph{temporal max pooling} dopo la prima fase di I3D. La mappa delle features ottenute ha dimensione $2048\times 8 \times 7 \times 7$ è verra utilizzata sia per la categorizzazione dell'azione basata solo sui valori RGB, sia per la stima della posa.
+\item \textbf{Categorizzazione con valori RGB} - Dopo l'ultimo layer convoluzionale di I3D viene effettuato un \emph{global average pooling} per ottenere il vettore delle features composto da 2048 valori, che indicheremo con $P_{rgb}$. Se definiamo un dataset di $N$ video con $n$ categorie $\{(X_i,y_i)\}_{i=1}^N$, dove $y_i \in \{1, ..., n\}$ è l'etichetta corrispondente alle features $X_i$, allora la predizione dell'azione può essere ottenuta direttamente come segue:
+$$
+Y_{rgb} = \varphi(W_cP{rgb}+b_c),
+$$
+dove $\varphi$ è l'operazione \emph{softmax}, $Y_{rgb} \in \mathbb{R}^n$ e $W_c$ e $b_c$ sono i parametri del livello completamente connesso. In fase di training la loss finale viene combinata alla \emph{cross-entropy loss} ottenendo
+$$
+L_r = -\sum_{i=1}^N log(Y_{rgb}(y_i)),
+$$
+dove $Y_{rgb}(y_i)$ è il valore dell'$y_i$-esima posizione di $Y_{rgb}$.
+\item \textbf{Stima della posa} - Una volta ottenuto l'output dalla I3D, la stima della posa viene effettuata sulla dimensione temporale. Ispirandosi a Mask R-CNN \cite{maskRCNN}, viene aggiunta all'ultimo livello della I3D una \emph{head} di deconvoluzione 2D, ovvero 2 livelli di deconvoluzione con la normalizzazione dei batch e un'attivazione di tipo RELU. Ogni layer a $256$ filtri con un kernel $4\times4$ ed uno stride di $2$. Viene infine aggiunto un livello convoluzionale $1\times1$ per generare la heatmap corrispondente ai $K$ keypoint (un canale per ogni keypoint) e gli offsets (2 canali per ogni keypoint, per le direzioni sull'asse \emph{x} e \emph{y}) per un totale di $3K$ canali in output, dove $K=17$.
+
+Data l'immagine ritagliata, definiamo $f_k(x_i) = 1$ se il $k$-esimo keypoint è situato in posizione $x_i$, altrimenti $f_k(x_i) = 0$, dove $i \in 1, ..., Q$ è l'indice dei pixel nell'immagine. Per ogni punto $x_i$ e per ogni keypoint $k$ viene calcolata la probabilità $h_k(x_i) = 1$ per $||x_i-l_k|| \leq M$ ovvero la probabilità che il punto $x_i$ si trovi entro un raggio $M$ dall'effettivo punto $l_k$ del keypoint $k$. Queste heatmap vengono allenate risolvendo un problema di classificazione binaria per ogni posizione e per ogni keypoint in maniera indipendente. Per ogni posizione $x_i$ e per ogni keypoint $k$ viene inoltre stimato il vettore-distanza $F_k(x_i) = l_k - x_i$ fra $x_i$ ed il keypoint corrispondente. 
+
+Questa parte dell'algoritmo fornisce quindi l'heatmap delle probabilità $h_k(x_i)$ per ogni keypoint $k$ e per ogni punto $x_i$. Il \emph{training target} per ogni heatmap è $\overline{h}_k(x_i)$ ovvero una mappa di zeri e uno tale che $\overline{h}_k(x_i) = 1$ se $||x_i-l_k|| \leq M$, $0$ altrimenti. La corrispondente loss function $L_h(\theta)$ è la somma delle loss $L1$ per ogni punto e per ogni keypoint in maniera indipendente, ovvero
+$$
+L_h(\theta) = \frac{1}{K}\sum_{k=1}^K\sum_{i=1}R(h_k(x_i),\overline{h}_k(x_i)),
+$$
+dove $R$ è la loss $L1$.
+
+Per quanto riguarda invece la stima degli offset, quest'ultimi vengono calcolati solo per tutti quei punti $x_i$ entro un raggio $M$ da ogni keypoint e le differenze fra i valori stimati e quelli reali vengono penalizzati con una loss $L1$, ovvero
+$$
+L_o(\theta) = \frac{1}{K}\sum_{k=1}^K\sum_{i: ||l_k - x_i||\leq M}R(F_k(x_i), (l_k - X_i)).
+$$
+La loss finale per la stima della posa sarà quindi
+$$
+L_p = \lambda_h L_h(\theta) + \lambda_oL_o(\theta),
+$$
+dove $\lambda_h = 0.5$ e  $\lambda_o = 0.5$.
+
+In fase di test, viene effettuata un'operazione \emph{argmax} su ognuna della $k$ heatmap per ottenere la stima del punto corrispondente, ovvero
+$$
+x_k =  \underset{x_i}{arg\  max \ } (h_k(x_i), i \in 1, ..., Q).
+$$ 
+La posizione accurata del $k$-esimo keypoint viene infine ottenuta aggiungendo l'offset $F_k(x_k)$ a $x_k$.
+\item \textbf{Stima dell'azione utilizzando la posa} - Le coordinate 2D delle pose vengono dapprima trasformate in un tensore di dimensione $2\times T\times K$, dove $T$ è il numero di frame in input, e successivamente passate come input a ResNet-18 \cite{resNet} per la stima dell'azione. A causa dell'insufficiente dimensione spaziale di questo input, tutti le operazioni di pooling in ResNet-18 sono state rimosse e tutti gli stride di 2 nei livelli convoluzionali sono stati rimpiazzati con stride di 1. Infine un \emph{global average pooling} al termine di ResNet-18 restituisce in output un vettore di features lungo 512. Per ogni sequenza di pose viene quindi stimata l'azione $Y{paction}$ attraverso una cross-enttopy loss
+$$
+L_{paction} = -\sum_{i=1}^N log(Y_{paction}(y_i)).
+$$
+\item \textbf{Allenamento multi-task} - Action machine ha 3 obbiettivi: classificazione dell'azione utilizzando i valori RGB, stima della posa e classificazione dell'azione utilizzando le sequenze di pose. Questi 3 task sono ottimizzati parallelamente utilizzando la seguente funzione loss 
+$$
+L = \lambda_1L_r + \lambda_2L_p + \lambda_3L_{paction},
+$$
+dove $\lambda_1, \lambda_2$ e $\lambda_3$ sono dei bilanciatori del peso che vogliamo dare ad ogni task. Gli autori di action machine settano questi bilanciatori tutti a $1$.
+\item \textbf{Fusione dei risultati RGB con quelli della posa} - Nella fase di test, le probabilità provenienti dalla stima con i valori RGB vengono sommate a quelle provenienti dalla stima con le pose, di modo da combinare i punti di forza di entrambe le tecniche.
+\end{enumerate}
+
+
+
 \section{Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition (2019)}
 Terza spiegazione.
 
@@ -1165,6 +1224,10 @@ Questa porzione di dataset così creata è probabilmente
 \bibitem{PREV1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018
 
 \bibitem{PREV2}{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - 2018  
+
+\bibitem{QuoVadis}  Quo vadis, action recognition? A new model and the kinetics dataset. \emph{J. Carreira, A. Zisserman} - 2017
+
+\bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} 2017
 
 \bibitem{PREV3}{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019
  
