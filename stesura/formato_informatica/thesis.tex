@@ -117,6 +117,58 @@ parts]{classicthesis}
 \thispagestyle{empty}
 \begin{flushright}
 \null\vspace{\stretch {1}}
+
+%Ricerca scientifica: l?unica forma di poesia che sia retribuita dallo Stato.
+%(Jean Rostand)
+
+%Il mondo non ha bisogno di dogmi, ma di libera ricerca.
+%(Bertrand Russell)
+
+%Se cerchi la luna nel pozzo, se non altro vi troverai l?acqua.
+%(Confucio)
+
+%Non v?è causa d?errore più frequente che la ricerca della verità assoluta.
+%(Samuel Butler)
+
+%Nessuno si impegna in una ricerca in fisica con l?intenzione di vincere un premio. È la gioia di scoprire qualcosa che nessuno conosceva prima.
+%(Stephen Hawking)
+
+%La ricerca è l?atto di percorrere i vicoli per vedere se sono ciechi.
+%(Marston Bates)
+
+%Se sapessimo quello che stiamo facendo non si chiamerebbe ricerca, no?
+%(Albert Einstein)
+
+%I veri viaggiatori, non sono persone ricche ma curiose. Non sono alla ricerca di comodità, ma di novità, sorprese.
+%(Paolo Crepet)
+
+%     ?I computer sono incredibilmente veloci, accurati e stupidi. Gli uomini sono incredibilmente lenti, inaccurati e intelligenti. L'insieme dei due costituisce una forza incalcolabile.?
+%    Albert Einstein
+
+%     ?Continua a piantare i tuoi semi, perché non saprai mai quali cresceranno - forse lo faranno tutti.?
+%    Albert Einstein
+
+%     ?L'insegnamento deve essere tale da far percepire ciò che viene offerto come un dono prezioso, e non come un dovere imposto.?
+%    Albert Einstein
+
+
+%Tutti sanno che una cosa è impossibile da realizzare, finché arriva uno sprovveduto che non lo sa e la inventa.
+%    Albert Einstein
+
+
+%La crisi è la più grande benedizione per le persone e le nazioni, perché la crisi porta progressi. La creatività nasce dall'angoscia come il giorno nasce dalla notte oscura. E' nella crisi che sorge l'inventiva, le scoperte e le grandi strategie. Chi supera la crisi supera sé stesso senza essere superato.
+%
+%Chi attribuisce alla crisi i suoi fallimenti e difficoltà, violenta il suo stesso talento e dà più valore ai problemi che alle soluzioni. La vera crisi, è la crisi dell'incompetenza. L'inconveniente delle persone e delle nazioni è la pigrizia nel cercare soluzioni e vie di uscita. Senza crisi non ci sono sfide, senza sfide la vita è una routine, una lenta agonia. Senza crisi non c'è merito. E' nella crisi che emerge il meglio di ognuno, perché senza crisi tutti i venti sono solo lievi brezze. Parlare di crisi significa incrementarla, e tacere nella crisi è esaltare il conformismo. Invece, lavoriamo duro. Finiamola una volta per tutte con l'unica crisi pericolosa, che è la tragedia di non voler lottare per superarla.
+%    Albert Einstein
+
+%La follia sta nel fare sempre la stessa cosa aspettandosi risultati diversi.
+%    Albert Einstein
+
+%Imparare è un'esperienza, tutto il resto è solo informazione.
+%    Albert Einstein
+
+ %    Albert Einstein
+
 \emph{"Inserire citazione" \break --- Inserire autore citazione} \vspace{\stretch{2}}\null
 \end{flushright}
 \cleardoublepage
@@ -435,8 +487,9 @@ Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto in
 Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
 \begin{itemize}
 \item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018 \cite{PREV1}
-\item \textbf{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang,Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
-\item \textbf{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019  \cite{PREV3}
+\item \textbf{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang,
+Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
+\item \textbf{Infrared and 3D skeleton feature fusion for RGB-D action recognition} - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020  \cite{PREV3}
 \end{itemize}
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
 
@@ -586,9 +639,16 @@ dove $\lambda_1, \lambda_2$ e $\lambda_3$ sono dei bilanciatori del peso che vog
 \item \textbf{Fusione dei risultati RGB con quelli della posa} - Nella fase di test, le probabilità provenienti dalla stima con i valori RGB vengono sommate a quelle provenienti dalla stima con le pose, di modo da combinare i punti di forza di entrambe le tecniche.
 \end{enumerate}
 
+I risultati ottenuti con questo lavoro sono, ad oggi, i migliori per diversi dataset, tra i quali NTU-RGB dove Action machine è attualmente il miglior algoritmo con la seguente accuratezza:
+\begin{itemize}
+\item \textbf{97.2}\% per lo splitting \emph{Cross-view}
+\item \textbf{94.3}\% per lo splitting \emph{Cross-subject}.
+\end{itemize}
 
 
-\section{Vertex feature encoding and hierarchical temporal modelling in a spatial-temporal graph convolutional network for action recognition (2019)}
+
+
+\section{Infrared and 3D skeleton feature fusion for RGB-D action recognition (2020)}
 Terza spiegazione.
 
 
@@ -1176,35 +1236,33 @@ Questa porzione di dataset così creata è probabilmente
 %--------------------------------------------------------------
 
 \begin{thebibliography}{99}
-
-
 \bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - 2018
 \bibitem{COCO-2016} Coco 2016 keypoint challenge - \emph{Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P.} - 2016
 \bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5} 
 
-\bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2}, 2019
+\bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2} - 2019
 
-\bibitem{DetectronLink} Detectron - \emph{Ross Girshick, Ilija Radosavovic, Georgia Gkioxari, Piotr Dollàr, Kaiming He - https://github.com/facebookresearch/detectron}, 2018
+\bibitem{DetectronLink} Detectron - \emph{Ross Girshick, Ilija Radosavovic, Georgia Gkioxari, Piotr Dollàr, Kaiming He - https://github.com/facebookresearch/detectron} - 2018
 
 \bibitem{caffe2} Caffe2 - \emph{https://caffe2.ai/docs}
 
-\bibitem{maskRCNN} Mask R-CNN - \emph{Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick}, 2017
+\bibitem{maskRCNN} Mask R-CNN - \emph{Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick} - 2017
 
-\bibitem{focalLossDetection} Focal Loss for Dense Object Detection - \emph{Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár}, 2017
+\bibitem{focalLossDetection} Focal Loss for Dense Object Detection - \emph{Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár} - 2017
 
-\bibitem{fasterRCNN} Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks - \emph{Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun}, 2015
+\bibitem{fasterRCNN} Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks - \emph{Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun} - 2015
 
-\bibitem{fastRCNN} Fast R-CNN - \emph{Ross Girshick}, 2015
+\bibitem{fastRCNN} Fast R-CNN - \emph{Ross Girshick} - 2015
 
-\bibitem{RFCN} R-FCN: Object Detection via Region-based Fully Convolutional Networks - \emph{Jifeng Dai, Yi Li, Kaiming He, Jian Sun}, 2016
+\bibitem{RFCN} R-FCN: Object Detection via Region-based Fully Convolutional Networks - \emph{Jifeng Dai, Yi Li, Kaiming He, Jian Sun} - 2016
 
-\bibitem{resNetXt} Aggregated Residual Transformations for Deep Neural Networks - \emph{Saining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He}, 2016
+\bibitem{resNetXt} Aggregated Residual Transformations for Deep Neural Networks - \emph{Saining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He} - 2016
 
-\bibitem{resNet} Deep Residual Learning for Image Recognition - \emph{Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun}, 2015
+\bibitem{resNet} Deep Residual Learning for Image Recognition - \emph{Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun} - 2015
 
-\bibitem{featurePyramid} Feature Pyramid Networks for Object Detection - \emph{Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, Serge Belongie}, 2016
+\bibitem{featurePyramid} Feature Pyramid Networks for Object Detection - \emph{Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, Serge Belongie} - 2016
 
-\bibitem{vgg16} Very Deep Convolutional Networks for Large-Scale Image Recognition - \emph{Karen Simonyan, Andrew Zisserman}, 2014
+\bibitem{vgg16} Very Deep Convolutional Networks for Large-Scale Image Recognition - \emph{Karen Simonyan, Andrew Zisserman} - 2014
 
 \bibitem{cascadeRCNN} Cascade R-CNN: High Quality Object Detection and Instance Segmentation - \emph{Zhaowei Cai, Nuno Vasconcelos} - 2019
 
@@ -1221,15 +1279,15 @@ Questa porzione di dataset così creata è probabilmente
 
 \bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio } - 2014
 
-\bibitem{PREV1}{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018
+\bibitem{PREV1} Recognizing Human Actions as the Evolution of Pose Estimation Maps  - \emph{Mengyuan Liu, Junsong Yuan} - 2018
 
-\bibitem{PREV2}{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - 2018  
+\bibitem{PREV2} Action Machine: Rethinking Action Recognition in Trimmed Videos - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - 2018  
 
 \bibitem{QuoVadis}  Quo vadis, action recognition? A new model and the kinetics dataset. \emph{J. Carreira, A. Zisserman} - 2017
 
-\bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} 2017
+\bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} - 2017
 
-\bibitem{PREV3}{Vertex feature encoding and hierarchical temporal modeling in a spatial-temporal graph convolutional network for action recognition} - \emph{Konstantinos Papadopoulos, Enjie Ghorbel, Djamila Aouada, Bjorn Ottersten} - 2019
+\bibitem{PREV3} Infrared and 3D skeleton feature fusion for RGB-D action recognition - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020
  
 \bibitem{TempConv}Interpretable 3D human action analysis with temporal convolutional networks - \emph{T. S. Kim, A. Reiter} - 2017
 
