@@ -31,12 +31,15 @@
 \contentsline {section}{\numberline {4.5}Normalizzazione}{54}{section.4.5}
 \contentsline {section}{\numberline {4.6}Smussamento}{56}{section.4.6}
 \contentsline {section}{\numberline {4.7}Struttura della rete}{56}{section.4.7}
+\contentsline {section}{\numberline {4.8}Criterio di arresto dell'allenamento}{58}{section.4.8}
 \contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{59}{chapter.5}
 \contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{61}{section.5.1}
 \contentsline {section}{\numberline {5.2}Criteri di valutazione}{63}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{63}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{64}{subsection.5.2.2}
 \contentsline {chapter}{\numberline {6}Esperimenti e risultati}{65}{chapter.6}
-\contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{65}{section.6.1}
-\contentsline {section}{\numberline {6.2}FAI}{66}{section.6.2}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{67}{chapter.7}
+\contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{66}{section.6.1}
+\contentsline {section}{\numberline {6.2}Fase 1: Test di tutte le tecniche}{66}{section.6.2}
+\contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{69}{section.6.3}
+\contentsline {section}{\numberline {6.4}FAI}{69}{section.6.4}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{71}{chapter.7}

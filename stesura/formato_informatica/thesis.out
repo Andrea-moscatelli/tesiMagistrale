@@ -28,12 +28,15 @@
 \BOOKMARK [1][-]{section.4.5}{Normalizzazione}{chapter.4}% 28
 \BOOKMARK [1][-]{section.4.6}{Smussamento}{chapter.4}% 29
 \BOOKMARK [1][-]{section.4.7}{Struttura della rete}{chapter.4}% 30
-\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 31
-\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 33
-\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 34
-\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 35
-\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 36
-\BOOKMARK [1][-]{section.6.1}{Una porzione rappresentativa del dataset}{chapter.6}% 37
-\BOOKMARK [1][-]{section.6.2}{FAI}{chapter.6}% 38
-\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 39
+\BOOKMARK [1][-]{section.4.8}{Criterio di arresto dell'allenamento}{chapter.4}% 31
+\BOOKMARK [0][-]{chapter.5}{Il dataset NTU RGB+D}{}% 32
+\BOOKMARK [1][-]{section.5.1}{NTU RGB+D in dettaglio}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.2}{Criteri di valutazione}{chapter.5}% 34
+\BOOKMARK [2][-]{subsection.5.2.1}{Valutazione Cross-subject}{section.5.2}% 35
+\BOOKMARK [2][-]{subsection.5.2.2}{Valutazione Cross-view}{section.5.2}% 36
+\BOOKMARK [0][-]{chapter.6}{Esperimenti e risultati}{}% 37
+\BOOKMARK [1][-]{section.6.1}{Una porzione rappresentativa del dataset}{chapter.6}% 38
+\BOOKMARK [1][-]{section.6.2}{Fase 1: Test di tutte le tecniche}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.3}{Fase 2: Numero di livelli}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.4}{FAI}{chapter.6}% 41
+\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 42

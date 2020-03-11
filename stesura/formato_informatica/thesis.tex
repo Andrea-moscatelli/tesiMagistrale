@@ -60,6 +60,8 @@ parts]{classicthesis}
 \usepackage{makecell}
 \usepackage{caption}
 %\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{multicol}
 %--------------------------------------------------------------
 
 \newlength{\abcd} % for ab..z string length calculation
@@ -1073,12 +1075,14 @@ La struttura della rete adoperata varia a seconda della fase degli esperimenti s
 
 Vediamo più nel dettaglio ogni componente scelto per la rete.
 \begin{itemize}
-\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da una sola cella LSTM più un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli progressivamente fino al raggiungimento ottimale dei risultati.
-\item \textbf{Hidden units} - Per quanto riguarda il numero di unità nascoste di ogni cella LSTM della rete, è stata utilizzata la seguente regola generale
+\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da un livello LSTM ed un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli progressivamente fino al raggiungimento ottimale dei risultati. 
+
+È importante però sottolineare che aumentando il numero di livelli della rete non deve variare il numero di parametri totali di quest'ultima altrimenti un'eventuale variazione dei risultati non potrebbe essere attribuita alla sola mutazione di profondità della rete, quindi ad ogni incremento di livello sarà anche necessario regolare di conseguenza il numero di hidden units per ognuno di essi.
+\item \textbf{Hidden units} - Per quanto riguarda il numero di unità nascoste di ogni livello LSTM della rete, è stata utilizzata la seguente regola generale
 $$
 N_h = \frac{N_{samples}}{\alpha \cdot (N_{in} + N_{out})}
 $$
-dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra 2 e 10, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}.
+dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra $0$ e $10$, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}.
 \item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria allora la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
 
 $$
@@ -1089,15 +1093,31 @@ dove $C$ è il numero totale di classi, $s_i$ è lo score uscente dalla rete neura
 
 Considerando che il vettore target $\boldsymbol{t}$ è un vettore one-hot, composto cioè da tutti zero eccetto un solo $t_p = 1$, allora solo la classe corretta $C_p$ definirà il valore della loss, che sarà quindi
 $$
-CCE = - log( \frac{e^{s_p}}{\sum_j^C e^{s_j}})
+CCE = - log\left( \frac{e^{s_p}}{\sum_j^C e^{s_j}}\right)
 $$
 dove $s_p$ è lo score che la rete neurale restituisce per la classe $p$.
 
-\item \textbf{Ottimizzatore} - L'ottimizzatore scelto è \emph{RMSProp} \cite{RMSProp} con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$, decrementato fino a $0,001$ per la fase di fine tuning.
+\item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stata arbitrariamente fissata a $64$.
+\item \textbf{Ottimizzatore} - L'ottimizzatore scelto è \emph{RMSProp} \cite{RMSProp} con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.001$. Per alcuni dei test successivi è stato scelto di settare il valore iniziale del learning rate a $0.01$ e di decrementarlo del 20\% ogni 15 epoche.
 
 \item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati settati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, sono stati impostati a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
 \item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore} ricorrente sono stati settati inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
 \end{itemize}
+
+\section{Criterio di arresto dell'allenamento}
+Sapere quando interrompere l'allenamento della rete e testarla sull'insieme di \emph{test} non è un compito facile. 
+
+Le scuole di pensiero più diffuse sono sostanzialmente due e hanno come idea quella di arrestare l'addestramento:
+\begin{enumerate}
+\item al valor minimo della \textbf{loss di validazione}
+\item al valore massimo dell'\textbf{accuratezza di validazione}
+\end{enumerate} 
+In questo lavoro di testi sono state testate, per ogni tecnica, entrambe le ipotesi di modo da capire quale delle due è la più adatta al nostro caso di studio. Per fare ciò il dataset di allenamento è stato suddiviso in due parti:
+\begin{itemize}
+\item l'$\boldsymbol{80\%}$ per l'effettivo dataset di allenamento
+\item il $\boldsymbol{20\%}$ per il dataset di validazione.
+\end{itemize}
+
 
 %%%%%%  NTU RGB+D %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Il dataset NTU RGB+D}
@@ -1194,9 +1214,29 @@ Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripre
 \chapter{Esperimenti e risultati}
 In questo capitolo verranno mostrati non solo i risultati ottenuti per i vari esperimenti effettuati ma anche il procedimento logico adottato al fine di raggiungere la miglior classificazione possibile.
 
+La legenda di ogni tabella in questo capito sarà la seguente
+\begin{itemize}
+\item \textbf{rimoz $\boldsymbol{0}$} - rimozione degli zeri
+\item \textbf{VIDEO/FRAME} - tecnica del centro del video/frame
+\item \textbf{VIDEO/FRAME PERS}  - tecnica del centro del video/frame per ogni posa
+\item \textbf{3-5-17 BAR} - tecnica dei 3-5-17 baricentri
+\item \textbf{3-5-17 BAR ASS} - tecnica dei 3-5-17 baricentri in valore assoluto
+\item \textbf{DIST REL} - tecnica delle distanze relative
+\item \textbf{DIST CUM} - tecnica delle distanze cumulate
+\item \textbf{NEXT} - tecnica delle next frame con S=1
+\item \textbf{NEXT 3-5-15} - tecnica delle next frame con S=3-5-15
+\item \textbf{norm} - normalizzazione globale
+\item \textbf{normXY} - normalizzazione separata
+\item \textbf{MIN LOSS} - i risultati sono stati ottenuti interropendo l'allenamento secondo il criterio del minor valore della loss di validazione, se non specificato allora viene sottinteso del maggior valore dell'accuratezza di validazione
+\item \textbf{semplice} - non è stata utilizzata alcuna tecnica aggiuntiva dopo l'estrazione della posa.
+
+\end{itemize}
+
 \section{Una porzione rappresentativa del dataset}
 
-Come prima cosa, considerata la dimensione del dataset (56880 video), è stato scelto un sottoinsieme di azioni di modo da poter lavorare su una porzione più piccola, sufficientemente rappresentativa e di difficile categorizzazione. A questo scopo sono state scelte 8 azioni che avessero le seguenti caratteristiche:
+Come prima cosa, considerata la dimensione del dataset (56880 video), è stato scelto un sottoinsieme di azioni di modo da poter lavorare inizialmente su una porzione più piccola, sufficientemente rappresentativa e di difficile categorizzazione, che permettesse una più rapida esplorazione delle tecniche.
+
+A questo scopo sono state scelte 8 azioni con le seguenti caratteristiche:
 \begin{itemize}
 \item 2 azioni di coppia simili fra loro
 \item 3 coppie di azioni individuali simili fra loro
@@ -1213,20 +1253,112 @@ Le azioni scelte, fra quelle proposte da NTU-RGB60, sono state:
 \item usare una tastiera
 \end{enumerate}
 
-Questa porzione di dataset così creata è probabilmente
+Questa porzione di dataset così creata è sicuramente di difficile categorizzazione attraverso il solo uso della posa dato che, molte delle azioni scelte, si differenziano solo per piccoli movimenti delle dita che la posa non è in grado di distinguere.
+
+\section{Fase 1: Test di tutte le tecniche}
+Per questa prima fase è stato scelto di testare ogni tecnica del capitolo 4 allenando una semplice rete neurale composta da un livello LSTM ed un livello completamente connesso per l'inferenza finale, ignorando per il momento dropout e regolarizzazione.
+
+I risultati ottenuti sono illustrati in tabella \ref{tab:primaIterazione}.  
+
+\begin{center}
+\begin{longtable}{| l | c | c | c |}
+\hline
+Tecnica & \thead{Accuratezza \\ Cross  \\ Subject (\%)} &  \thead{Accuratezza \\ Cross  \\ View (\%)} & \thead{Media  \\ (\%) }\\
+\hline\hline
+rimoz  $0$ + 3BAR + norm & 74.92 & 68.48 & 71.70 \\ \hline
+rimoz  $0$ + VIDEO + norm & 76.50 & 66.39 & 71.45 \\ \hline
+rimoz  $0$ + DIST REL + norm & 76.42 & 64.36 & 70.39 \\ \hline
+rimoz  $0$ + FRAME + norm & 74.56 & 65.26 & 69.91 \\ \hline
+rimoz  $0$ + FRAME PERS + norm & 73.14 & 66.21 & 69.68 \\ \hline
+rimoz  $0$ + VIDEO + norm  (MIN LOSS) & 73.26 & 65.94 & 69.60 \\ \hline
+normXY & 71.60 & 66.89 & 69.25 \\ \hline
+rimoz  $0$ + 3BAR + norm  (MIN LOSS) & 72.98 & 65.40 & 69.19 \\ \hline
+rimoz  $0$ + VIDEO PERS + norm & 73.50 & 64.67 & 69.09 \\ \hline
+rimoz  $0$ + 5BAR + norm & 73.54 & 63.32 & 68.43 \\ \hline
+rimoz  $0$ + DIST REL + norm  (MIN LOSS) & 69.62 & 66.17 & 67.89 \\ \hline
+rimoz  $0$ + normXY & 69.66 & 65.94 & 67.80 \\ \hline
+rimoz  $0$ + FRAME + norm  (MIN LOSS) & 68.04 & 65.85 & 66.94 \\ \hline
+rimoz  $0$ + 3BAR ASS + norm & 64.79 & 69.02 & 66.91 \\ \hline
+normXY  (MIN LOSS) & 69.11 & 64.18 & 66.64 \\ \hline
+rimoz  $0$ + VIDEO PERS + norm  (MIN LOSS) & 69.15 & 63.68 & 66.41 \\ \hline
+rimoz  $0$ + FRAME PERS + norm  (MIN LOSS) & 68.28 & 63.68 & 65.98 \\ \hline
+rimoz  $0$ + 17BAR + norm & 69.98 & 61.91 & 65.94 \\ \hline
+rimoz  $0$ + NEXT 3 + norm & 67.37 & 63.68 & 65.52 \\ \hline
+rimoz  $0$ + NEXT 7 + norm & 67.72 & 61.82 & 64.77 \\ \hline
+rimoz  $0$ + NEXT 15 + norm & 69.34 & 59.96 & 64.65 \\ \hline
+rimoz  $0$ + 5BAR + norm  (MIN LOSS) & 69.50 & 58.79 & 64.14 \\ \hline
+rimoz  $0$ + norm & 71.40 & 53.85 & 62.62 \\ \hline
+rimoz  $0$ + 17BAR ASS + norm & 65.90 & 59.15 & 62.53 \\ \hline
+rimoz  $0$ + 3BAR ASS + norm  (MIN LOSS) & 61.04 & 63.09 & 62.06 \\ \hline
+rimoz  $0$ + NEXT 3 + norm  (MIN LOSS) & 63.17 & 59.56 & 61.36 \\ \hline
+rimoz  $0$ + DIST CUM + norm & 65.62 & 56.79 & 61.21 \\ \hline
+rimoz  $0$ + normXY  (MIN LOSS) & 65.82 & 55.93 & 60.88 \\ \hline
+rimoz  $0$ + NEXT + norm & 61.55 & 59.60 & 60.58 \\ \hline
+norm & 65.07 & 54.98 & 60.03 \\ \hline
+rimoz  $0$ + 5BAR ASS + norm & 59.45 & 59.28 & 59.37 \\ \hline
+rimoz  $0$ + DIST CUM + norm  (MIN LOSS) & 62.22 & 54.53 & 58.38 \\ \hline
+norm  (MIN LOSS) & 62.22 & 53.08 & 57.65 \\ \hline
+rimoz  $0$ + 17BAR + norm  (MIN LOSS) & 58.86 & 55.89 & 57.37 \\ \hline
+rimoz  $0$ + NEXT 7 + norm  (MIN LOSS) & 57.12 & 57.43 & 57.27 \\ \hline
+rimoz  $0$ + NEXT 15 + norm  (MIN LOSS) & 56.80 & 57.47 & 57.14 \\ \hline
+rimoz  $0$ + 17BAR ASS + norm  (MIN LOSS) & 60.09 & 53.35 & 56.72 \\ \hline
+rimoz  $0$ + 5BAR ASS + norm  (MIN LOSS) & 58.07 & 52.04 & 55.05 \\ \hline
+rimoz  $0$ + norm  (MIN LOSS) & 56.76 & 53.31 & 55.04 \\ \hline
+rimoz  $0$ + NEXT + norm  (MIN LOSS) & 47.67 & 52.31 & 49.99 \\ \hline
+semplice (MIN LOSS) & 43.63 & 41.49 & 42.56 \\ \hline
+semplice & 43.83 & 41.26 & 42.54 \\ \hline
+\caption{Risultati ottenuti applicando ogni tecnica in maniera ``\emph{naive}" (senza cioè dropout e regolarizzazioni) con una rete neurale composta da un solo livello LSTM e 256 hidden units.}
+\label{tab:primaIterazione}
+\end{longtable}
+\end{center}
+
+Da questa prima classifica dei risultati, apparte avere un'idea su quali sono le tecniche più efficienti, si evince anche qualche altro aspetto importante:
+\begin{itemize}
+\item Categorizzare le azioni utilizzando semplicemente i valori della stima della posa ottenuti da Detectron2 e Posenet è decisamente non sufficiente, ottenendo un'accuratezza massima del $42,54\%$ (in media)
+\item Quanto trattiamo punti sul piano la \emph{normalizzazione separata} ha risultati notevolmente migliori rispetto a quella \emph{globale} ($+9.22\%$ in media).
+\item In quasi tutti i casi è preferibile interrompere l'allenamento della rete al \emph{massimo valore di accuratezza di validazione} invece che al \emph{minor valore della loss di validazione}.
+\item ?La rimozione degli zeri aiuta?
+\end{itemize} 
 
 
+\section{Fase 2: Numero di livelli}
+A questo punto è interessante capire se aumentare il numero la profondità della rete (senza variarne il numero totale dei parametri) porta o meno dei benefici. 
+
+Sono state quindi usate le migliori tecniche della fase precedente per allenare 3 diverse reti neurali, così strutturate:
+\begin{itemize}
+\item \textbf{1 livello} LSTM da 256 hidden units ed un livello completamente connesso ($\approx 336k$ parametri)
+\item \textbf{2 livelli} LSTM da 155 hidden units ciascuno ed un livello completamente connesso ($\approx 334k$ parametri)
+\item \textbf{3 livelli} LSTM da 122 hidden units ciascuno ed un livello completamente connesso ($\approx 335k$ parametri).
+\end{itemize}
+
+I risultati ottenuti sono rappresentati in tabella \ref{tab:incrementoLivelli}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c | c | c |}
+\hline
+  \multicolumn{1}{|c|}{Tecnica}  & \multicolumn{3}{c|}{1 livello} & \multicolumn{3}{c|}{ 2 livelli} & \multicolumn{3}{c|}{ 3 livelli} \\
+ & \thead{CS  \\ (\%) } & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }  & \thead{CS  \\ (\%) }  & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) } & \thead{CS  \\ (\%) }  &\thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }\\
+\hline\hline
+3BAR & 68,48 & 74,92 & 71,70 & 66,76 & 77,73 & \textbf{72,24} & 66,30 & 73,26 & 69,78 \\ \hline
+VIDEO & 66,40 & 76,50 & \textbf{71,45} & 67,48 & 75,12 & 71,30 & 66,21 & 73,85 & 70,03 \\ \hline
+DIST REL & 64,36 & 76,42 & 70,39 & 64,58 & 79,83 & \textbf{72,21} & 65,49 & 74,92 & 70,21 \\ \hline
+FRAME & 65,26 & 74,57 & 69,91 & 67,75 & 74,76 & \textbf{71,26} & 67,39 & 71,92 & 69,65 \\ \hline
+FRAME PERS & 66,21 & 73,14 & 69,68 & 65,72 & 76,03 & \textbf{70,87} & 66,80 & 74,45 & 70,62 \\ \hline
+\end{tabular}
+\caption{Risultati ottenuti facendo variare la profondità della rete. CS = accuratezza per cross subject, CV = accuratezza per cross view. I valori in grassetto sono i migliori per la tecnica corrispondente.}
+\label{tab:incrementoLivelli}
+\end{table}
+
+Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incrementare la profondità della rete a due livelli aiuta il processo di classificazione delle azioni, mentre aggiungerne un terzo sembrerebbe peggiorare i risultati, probabilmente a causa di un maggiore overfitting sui dati di allenamento.
 
 
 \section{FAI}
 \begin{itemize}
-\item scelta azioni iniziali e lancio primo giro di test con tutte le tecniche
-\item risultati
-\item combinazione
-\item incremento livello
-\item testing dropout
-\item test su tutto il dataset
+\item testing dropout e regolarizzatore
 \item nocciolo duro?
+\item combinazione tecniche diverse?
 \item test su tutto il dataset
 \end{itemize}
 
