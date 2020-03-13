@@ -56,6 +56,7 @@ parts]{classicthesis}
 
 %------------------------- MY PACKAGES -------------------------------------
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{siunitx}
 \usepackage{makecell}
 \usepackage{caption}
@@ -486,13 +487,16 @@ Per quanto riguarda invece gli approcci \emph{deep learning} le tipologie di azi
 
 Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto interesse, ovvero quello basato su \emph{grafi}, che punta ad esprimere contemporaneamente sia le relazioni temporali che quello nello spazio dei giunti corporei. Questa architettura rappresenta la sequenza di pose in un video come un grafo composto da archi temporali e spaziali, considerando cioè rispettivamente le relazioni inter ed intra-frame.
 
+Molti dei lavori effettuati fino ad oggi utilizzano il dataset NTU-RGB60 \cite{NTURGB} ma fra di loro è necessario fare una distinzione fra i chi utilizza l'informazione delle pose messa a disposizione da questo dataset (estratta con sensori 2D o 3D), chi solo i semplici video RGB e chi entrambi.
+
 Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
 \begin{itemize}
 \item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018 \cite{PREV1}
 \item \textbf{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang,
 Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
-\item \textbf{Infrared and 3D skeleton feature fusion for RGB-D action recognition} - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020  \cite{PREV3}
+%\item \textbf{Infrared and 3D skeleton feature fusion for RGB-D action recognition} - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020  \cite{PREV3}
 \end{itemize}
+
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
 
 \section{Recognizing Human Actions as Evolution of Pose Estimation Maps (2018)}
@@ -650,9 +654,40 @@ I risultati ottenuti con questo lavoro sono, ad oggi, i migliori per diversi dat
 
 
 
-\section{Infrared and 3D skeleton feature fusion for RGB-D action recognition (2020)}
-Terza spiegazione.
+\section{Overview}
+I migliori risultati fino ad oggi ottenuti utilizzando il dataset NTU-RGB sono schematizzati in tabella \ref{tab:risultatiPrecedenti} ordinati per risultato e suddivisi a seconda delle informazioni del dataset utilizzate dato che, come vedremo nel capitolo 5, il dataset NTU-RGB mette a disposizione diverse tipologie di dati, tra i quali i video RGB delle azioni svolte e le pose dei soggetti inquadrati.
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Articolo & Posa& RGB & \thead{Accuratezza  \\ cross-view \\ (\%)} & \thead{Accuratezza  \\ cross-subject \\ (\%)} \\
+\hline
+Lie Group \cite{LieGroup}   				& \checkmark  &  & 52.8     &   50.1 \\ \hline
+H-RNN \cite{HRNN} 						& \checkmark  &  & 64.0     &   59.1 \\ \hline
+Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & 67.3     &   60.7 \\ \hline
+PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & 70.3     &   62.9 \\ \hline
+ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & 77.7     &   69.2 \\ \hline
+Temporal Conv \cite{TemporalConv}   		& \checkmark  &  & 83.1     &   74.3 \\ \hline
+DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark & -     	&  74.9 \\ \hline 
+Skelemotion \cite{Skelemotion} 			&  \checkmark &  & 84.7 	&  76.5 \\ \hline 
+C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &  & 84.8     &   79.6 \\ \hline
+VA-LSTM \cite{VA-LSTM}					& \checkmark  &  & 87.6     &   79.4 \\ \hline
+Chained  \cite{Chained} 					&   & \checkmark & -     	&   80.8 \\ \hline
+ST-GCN \cite{ST-GCN}   					& \checkmark  &  & 88.3     &   81.5 \\ \hline
+SR-TSL \cite{SR-TSL} 					& \checkmark  &  & 92.4     &   84.8 \\ \hline
+2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark & -     	&   85.5 \\ \hline
+Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & 93.2     &   86.6 \\ \hline 
+PB-GCN  \cite{PB-GCN}					& \checkmark  &  & 93.2     &   87.5 \\ \hline 
+MFAS \cite{MFAS}						&  \checkmark & \checkmark & - &   90.04 \\ \hline
+FUSION \cite{FUSION}					&  \checkmark & \checkmark & 94.5 &   91.6 \\ \hline
+PoseMap \cite{PREV1}					& \checkmark & \checkmark & 95.2     &   91.7 \\ \hline
+MMTM \cite{MMTM}						&  \checkmark & \checkmark & -  &   91.99 \\ \hline
+Action Machine \cite{PREV2}				&   & \checkmark & 97.2     &   94.3 \\ \hline
+\end{tabular}
+\caption{Risultati dei lavori precendenti sul dataset NTU-RGB.}
+\label{tab:risultatiPrecedenti}
+\end{table}
 
 %% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Stima della posa}
@@ -1419,11 +1454,52 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 
 \bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} - 2017
 
-\bibitem{PREV3} Infrared and 3D skeleton feature fusion for RGB-D action recognition - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020
+\bibitem{FUSION} Infrared and 3D skeleton feature fusion for RGB-D action recognition - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020
  
 \bibitem{TempConv}Interpretable 3D human action analysis with temporal convolutional networks - \emph{T. S. Kim, A. Reiter} - 2017
 
 \bibitem{RMSProp} RMSProp and equilibrated adaptive learning rates for non-convex optimization - \emph{Yann N. Dauphin, Harm de Vries, Junyoung Chung, Yoshua Bengio} - 2015
+
+\bibitem{LieGroup} Human action recognition by representing 3d skeletons as points in a lie group - \emph{R. Vemulapalli, F. Arrate e R. Chellappa} - 2014
+
+\bibitem{HRNN} Hierarchical recurrent neural network for skeleton based action recognition - \emph{Y. Du, W. Wang e L. Wang.} - 2015
+
+\bibitem{DeppLSTM} Ntu rgb+d: A large scale dataset for 3d human activity analysis- \emph{A. Shahroudy, J. Liu, T.-T. Ng e G. Wang} - 2016
+
+\bibitem{ST-LSTM+TS} Spatio-temporal lstm with trust gates for 3d human action recognition - \emph{J. Liu, A. Shahroudy, D. Xu e G. Wang} - 2016 
+
+\bibitem{TemporalConv} Interpretable 3d human action analysis with temporal convolutional networks - \emph{T. S. Kim e A. Reiter} - 2017
+
+\bibitem{C-CNN+MTLN} A new representation of skeleton sequences for 3d action recognition - \emph{Q. Ke, M. Bennamoun, S. An, F. Sohel e F. Boussaid} - 2017
+
+\bibitem{VA-LSTM} View adaptive recurrent neural networks for high performance human action recognition from skeleton data - \emph{P. Zhang, C. Lan, J. Xing, W. Zeng, J. Xue e N. Zheng} - 2017
+
+\bibitem{ST-GCN} Spatial temporal graph convolutional networks for skeleton-based action recognition - \emph{S. Yan, Y. Xiong e D. Lin} - 2018
+
+\bibitem{SR-TSL} Skeletonbased action recognition with spatial reasoning and temporal stack learning - \emph{C. Si, Y. Jing, W. Wang, L. Wang e T. Tan} - 2018
+
+\bibitem{Chained} Chained multi-stream networks exploiting pose, motion, and appearance for action classification and detection - \emph{M. Zolfaghari, G. L. Oliveira, N. Sedaghat e T. Brox} - 2017
+
+\bibitem{DSSCA-SSLM} Deep multimodal feature analysis for action recognition in rgb+d videos - \emph{A. Shahroudy, T. Ng, Y. Gong e G. Wang} - 2018
+
+\bibitem{2D-3D-Softargmax} 2d/3d pose estimation and action recognition using multitask deep learning - \emph{D. C. Luvizon, D. Picard e H. Tabia.} - 2018
+
+\bibitem{GlimpseClouds} Glimpse clouds: Human activity recognition from unstructured feature points - \emph{F. Baradel, C. Wolf, J. Mille e G. W. Taylor} - 2018
+
+\bibitem{MMTM} MMTM: Multimodal Transfer Module for CNN Fusion - \emph{H. R. V. Joze, A. Shaban, M. L. Iuzzolino, K. Koishida} - 2019
+
+
+\bibitem{Skelemotion} SkeleMotion: A New Representation of Skeleton Joint Sequences Based on Motion Information for 3D Action Recognition - \emph{C Caetano, J Sena, F Brémond, J. A. dos Santos, W. R. Schwartz} - 2019
+
+
+\bibitem{PB-GCN} Part-based Graph Convolutional Network for Action Recognition - \emph{K Thakkar, P. J. Narayanan} - 2018
+
+
+\bibitem{MFAS} MFAS: Multimodal Fusion Architecture Search - \emph{J. Perez-Rua, V. Vielzeuf, S. Pateux, M. Baccouche, F. Jurie} - 2019
+
+
+
+
 
 \end{thebibliography}
 
