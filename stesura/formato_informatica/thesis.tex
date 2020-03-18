@@ -63,6 +63,9 @@ parts]{classicthesis}
 %\usepackage{subcaption}
 \usepackage{longtable}
 \usepackage{multicol}
+\usepackage{color, colortbl}
+\definecolor{highlightColor}{rgb}{0.88,1,1}
+\usepackage{adjustbox}
 %--------------------------------------------------------------
 
 \newlength{\abcd} % for ab..z string length calculation
@@ -97,6 +100,7 @@ parts]{classicthesis}
   	breakatwhitespace=true,
   	tabsize=3
 }
+
 %--------------------------------------------------------------
 \begin{document}
 \frenchspacing
@@ -172,7 +176,11 @@ parts]{classicthesis}
 
  %    Albert Einstein
 
-\emph{"Inserire citazione" \break --- Inserire autore citazione} \vspace{\stretch{2}}\null
+
+%     ?I computer sono incredibilmente veloci, accurati e stupidi. Gli uomini sono incredibilmente lenti, inaccurati e intelligenti. L'insieme dei due costituisce una forza incalcolabile.?
+%    Albert Einstein
+
+\emph{"I computer sono incredibilmente veloci, accurati e stupidi. \\Gli uomini sono incredibilmente lenti, inaccurati e intelligenti. \\L'insieme dei due costituisce una forza incalcolabile." \break --- Albert Einstein} \vspace{\stretch{2}}\null
 \end{flushright}
 \cleardoublepage
 
@@ -207,7 +215,7 @@ I problemi di apprendimento supervisionato si possono dividere in problemi di:
 I problemi di apprendimento non supervisionato si possono dividere in:
 \begin{enumerate}
 \item \emph{Raggruppamento} - detto anche \emph{clustering}, si utilizzano quando è necessario raggruppare i dati che presentano caratteristiche simili. In questo caso l'algoritmo non fa uso di dati categorizzati, come visto in precedenza, ma estrae una regola di raggruppamento secondo caratteristiche che ricava dai dati stessi.
-\item \emph{Associazione} - strettamente legata al \emph{Data Mining}, questa classe di problemi è utile in tutti i casi per i quali siamo interessati a scoprire regole induttive nei dati analizzati, ad esempio la tendenza nei consumatori di un certo supermercato ad acquistare il prodotto $A$ dopo aver acquistato il prodotto $B$. Ci si pone quindi l'obbiettivo di identificare schemi frequenti, associazioni, correlazioni o strutture casuali fra gli \emph{item} di un database relazionale cercando si scoprire le regole che predicono l'evento di un certo item in base agli eventi degli item ad esso legati.
+\item \emph{Associazione} - strettamente legata al \emph{Data Mining}, questa classe di problemi è utile in tutti i casi per i quali siamo interessati a scoprire regole induttive nei dati analizzati, ad esempio la tendenza nei consumatori di un certo supermercato ad acquistare il prodotto $A$ dopo aver acquistato il prodotto $B$. Ci si pone quindi l'obbiettivo di identificare schemi frequenti, associazioni, correlazioni o strutture casuali fra gli \emph{item} di un database relazionale, cercando si scoprire le regole che predicono l'evento di un certo item in base agli eventi degli item ad esso legati.
 \end{enumerate}
 
 
@@ -225,7 +233,7 @@ Nel deep learning un computer impara, ad esempio, un task di classificazione dir
 \section{Le reti neurali}
 Nel campo dell'apprendimento automatico, una rete neurale (\emph{neural network}
 o \emph{NN}) è un modello di calcolo ispirato al sistema di elaborazione delle informazioni
-tipico del cervello degli esseri viventi nel quale tanti piccoli elementi base,
+tipico del cervello degli esseri viventi, nel quale tanti piccoli elementi base,
 denominati \emph{neuroni} (figura \ref{fig:neurone}), sono interconnessi e collaborano tra loro per poter eseguire un determinato compito. 
 
 \begin{figure}[htbp]
@@ -235,25 +243,25 @@ denominati \emph{neuroni} (figura \ref{fig:neurone}), sono interconnessi e colla
 \label{fig:neurone}
 \end{figure}
 
-Queste reti costituiscono ad oggi la miglior soluzione per una vasta gamma di problemi grazie alla loro capacità di approssimazioni di pressoché qualsiasi funzione $f : \mathbb{R}^n \rightarrow  \mathbb{R}$, a patto di scegliere la giusta quantità di neuroni in fase di progettazione.
+Queste reti costituiscono ad oggi la miglior soluzione per una vasta gamma di problemi grazie alla loro capacità di saper aprossimare pressoché qualsiasi funzione $f : \mathbb{R}^n \rightarrow  \mathbb{R}$, a patto di scegliere la giusta quantità di neuroni in fase di progettazione.
 
 La struttura di una rete neurale si sviluppa per livelli ed ogni livello, eccetto quello di \emph{input} e quello di \emph{output}, viene chiamato \emph{hidden layer}. Ogni hidden layer può essere composto da un qualsiasi numero di neuroni, che prendono il nome di \emph{hidden units} e maggiore sarà il numero di hidden units, maggiore sarà la \emph{capacità espressiva} della rete, ovvero la capacità di approssimare correttamente una qualsiasi funzione. 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{imgs/hiddenLayers}
-\caption{Struttura di una rete neurale. Ogni livello della rete, eccetto il primo e l'ultimo, viene chiamato \emph{hidden layer} ed i neuroni che lo compongono prendono il nome di \emph{hidden units}. Magiore sarà il numero di hidden units e maggiore sarà la capacità espressiva della rete. }
+\caption{Esempio di una \emph{fully connected network}. In questo esempio di rete abbiamo 2 \emph{hidden layer} (in viola chiaro) composti da 5 \emph{hidden units} ciascuno (in viola scuro). Maggiore è il numero di hidden units e maggiore è la capacità espressiva della rete. }
 \label{fig:hiddenLayer}
 \end{figure}
 
 Sono proprio gli hidden layer a dare \emph{profondità} alla rete ed è per questo che si parla sia di \emph{apprendimento profondo} che di \emph{reti neurali profonde} (o \emph{deep neural network} in inglese). 
 
-Negli ultimi anni le deep neural network hanno avuto una diffusione sorprendente non solo grazie alla loro adattabilità ad una vasta gamma di problemi, ma anche alla rapida evoluzione che hanno avuto le GPU, che hanno reso parallelizzabile l'addestramento di queste reti.
+Negli ultimi anni le deep neural network hanno avuto una diffusione sorprendente grazie non solo alla loro adattabilità ad una vasta gamma di problemi, ma anche alla rapida evoluzione vista nel mondo delle GPU, che ha reso parallelizzabile e velocizzato notevolmente l'addestramento di queste reti.
 
-I livelli che possiamo trovare all'interno di una rete neurale possono essere di diverso tipo, come diverse possono essere le connessioni dei neuroni fra un livello e l'altro. Sono proprio queste diversità a determinare il tipo di rete neurale e le più famose tipologie sono $w$:
+I livelli che possiamo trovare all'interno di una rete neurale sono di diverso tipo, come diverse possono essere le connessioni dei neuroni fra un livello e l'altro. Sono proprio queste diversità a determinare il tipo di rete neurale e le più famose tipologie sono:
 \begin{itemize}
-\item \textbf{fully connected network} - in questo tipo di reti ogni neurone è connesso con tutti quelli del livello precedente (come in figura \ref{fig:hiddenLayer}). Come si può facilmente intuire, il numero dei parametri (ovvero la capacità espressiva) della rete cresce esponenzialmente al crescere della sua struttura ed il rischio che si corre è quello di creare una rete talmente efficiente nell'ottimizzare la funzione generatrice dei dati di allenamento da essere troppo specifica per essa, non riuscendo a predire correttamente valori al di fuori di quel dataset. Questa problematica, ben nota nel mondo del deep learning, prende il nome di \emph{overfitting}.
-\item \textbf{convolutional neural network (CNN)} - queste reti sono composte principalmente da \emph{layer convoluzionali}, ovvero layer nei quali ogni neurone è connesso solo ad una piccola regione localizzata del livello precedente (figura \ref{fig:convNetwork}). Questa particolare tipologia di connessione è estremamente efficiente nell'ambito della visione computazionale ed è in grado di \emph{sintetizzare} correttamente un'immagine senza perdita d'informazione. Questa sintetizzazione viene indicata in gergo col termine di \emph{features extraction}, ovvero l'estrazione delle caratteristiche principali.
+\item \textbf{Fully connected network} - in questo tipo di reti ogni neurone è connesso con tutti quelli del livello precedente (come in figura \ref{fig:hiddenLayer}). Come si può facilmente intuire, il numero dei parametri (ovvero la capacità espressiva) della rete cresce esponenzialmente al crescere della sua struttura ed il rischio che si corre è quello di creare una rete talmente efficiente nell'ottimizzare la funzione generatrice dei dati di allenamento da essere troppo specifica per essa, non riuscendo a predire correttamente i valori al di fuori di quel dataset. Questa problematica, ben nota nel mondo del machine learning, prende il nome di \emph{overfitting}.
+\item \textbf{Convolutional neural network (CNN)} - queste reti sono composte principalmente da \emph{layer convoluzionali}, ovvero layer nei quali ogni neurone è connesso solo ad una piccola regione localizzata del livello precedente (figura \ref{fig:convNetwork}). Questa particolare tipologia di connessione è estremamente efficiente nell'ambito della visione computerizzata ed è in grado di \emph{sintetizzare} correttamente un'immagine senza perdita d'informazione. Questa sintetizzazione viene indicata in gergo col termine di \emph{features extraction}, ovvero l'estrazione delle caratteristiche principali di un certo dato in input.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -265,7 +273,7 @@ I livelli che possiamo trovare all'interno di una rete neurale possono essere di
 
 Le reti neurali sopra citate, seppur molto efficienti nei loro ambiti, presentano però un problema di \emph{memoria} ovvero, non sono state ideate per processare una serie temporale di dati. L'unica soluzione che hanno è quella di trattare tutta la serie temporale come un unico input e processarlo interamente in un unico ciclo. Questa primordiale soluzione non ha ovviamente preso campo vista la mancanza di generalità.
 
-Esistono però delle reti neurali che, a differenza dalle precedenti, riescono ad analizzare una sequenza temporale in maniera più simile al ragionamento umano, ovvero mantenendo una memoria del ``passato" ed in base a questa adattare la valutazione dello stato corrente. Queste particolari reti vengono chiamate \emph{reti neurali ricorrenti} (o \emph{recurrent neural networks}).
+Esistono però delle reti neurali che, a differenza dalle precedenti, riescono ad analizzare una sequenza temporale in maniera simile al ragionamento umano, ovvero mantenendo una memoria del ``passato" ed in base a quest'ultima adattare le scelte e la valutazione dello stato corrente. Queste particolari reti vengono chiamate \emph{reti neurali ricorrenti} (o \emph{recurrent neural networks}).
 
 \section{Le reti neurali ricorrenti}
 Le reti neurali ricorrenti (\emph{recurrent neural network} o \emph{RNN}) sono una classe
@@ -277,10 +285,10 @@ di rete neurali artificiali caratterizzate da una struttura ciclica, ovvero una 
 \label{fig:reteRicorrente}
 \end{figure}
 
-Questa struttura ciclica permette di mantenere una sorta di \emph{stato di memoria} della rete utilizzato per processare ogni elemento della sequenza in input che si è rivelato ideale per compiti di analisi predittiva su sequenze temporali, quali possono essere ad esempio il riconoscimento della grafia, l'analisi di video, il riconoscimento vocale o l'analisi di testi. 
+Questa struttura ciclica permette di mantenere una sorta di \emph{stato di memoria} della rete, utilizzato per processare ogni elemento della sequenza in input. Questa struttura si è rivelata ideale per compiti di analisi predittiva su sequenze temporali, quali possono essere ad esempio il riconoscimento della grafia, l'analisi di video, il riconoscimento vocale o l'analisi di testi. 
 
 Per quanto riguarda l'addestramento di queste reti, esso
-avviene con la stessa modalità delle reti neurali standard ovvero, i pesi dei neuroni che compongono la rete vengono regolati tramite un processo iterativo con lo scopo di minimizzare l'errore di classificazione prodotto sul dataset di allenamento. 
+avviene con la stessa modalità delle reti neurali standard, ovvero i pesi dei neuroni che compongono la rete vengono regolati tramite un processo iterativo con lo scopo di minimizzare l'errore di classificazione prodotto sul dataset di allenamento. 
 
 Tipicamente, l'algoritmo che regola l'apprendimento delle RNN viene chiamato \emph{Backpropagation Throw Time (BPTT)} e non è altro che la versione ``ricorrente" del classico \emph{backpropagation algorithm} usato per le reti naurali standard.
 
@@ -293,7 +301,7 @@ L'applicazione del BPTT può essere vista come l'applicazione del backpropagation
 \label{fig:srotolamentoRNN}
 \end{figure}
 
-La lunghezza delle sequenze che queste reti sono in grado di analizzare è teoricamente infinita, ma di fatto per sequenze troppo lunghe si presenta un problema legato alla precisione finita dei calcolatori, ovvero la \emph{scomparsa del gradiente} (o in inglese \emph{vanishing gradient problem}).
+La lunghezza delle sequenze che queste reti sono in grado di analizzare è teoricamente infinita ma di fatto, per sequenze troppo lunghe, si presenta un problema legato alla precisione finita dei calcolatori, ovvero la \emph{scomparsa del gradiente} (in inglese \emph{vanishing gradient problem}).
 
 Il concetto alla base del backpropagation algorithm e infatti quello di aggiornare iterativamente ogni parametro del modello in maniera proporzionale alla derivata parziale della \emph{loss function} (ovvero la funzione d'errore di classificazione) rispetto al parametro stesso. 
 
@@ -313,7 +321,7 @@ Per ovviare a questo problema, nel 1997 Sepp Hochreiter e Jürgen Schmidhuber pro
 \caption{Esempio di ``srotolamento" di una rete LSTM. In questa figura ogni unità di rete ``A'' prende in input al tempo $t$ un elemento $X_t$ della sequenza temporale $X$ e restituisce uno stato in output $h_t$. \emph{tanh} e $\sigma$ sono le funzioni di tangente iperbolica e sigmoidale rispettivamente, mentre ``$+$" e ``$\times$" sono rispettivamente le operazioni vettoriali di somma e moltiplicazione.}
 \label{fig:srotolamentoLSTM}
 \end{figure}
-Le reti Long Short-Term Memory, normalmente chiamate LSTM, sono delle particolari reti ricorrenti in grado, non solo di imparare le dipendenze \emph{a lunga distanza} presenti in una sequenza in input, ma anche di risolvere il problema della scomparsa del gradiente. 
+Le reti Long Short-Term Memory, normalmente chiamate LSTM, sono delle particolari reti ricorrenti in grado di imparare non solo le dipendenze \emph{a lunga distanza} presenti in una sequenza in input ma anche di risolvere il problema della scomparsa del gradiente. 
 
 Come ogni altra rete ricorrente anche per le LSTM è possibile srotolarne la struttura ed ottenere una catena di ``pezzi di rete" chiamati anche \emph{unità} (figura \ref{fig:srotolamentoLSTM}). 
 
@@ -375,7 +383,7 @@ $$
 
 dove:
 \begin{itemize}
-\item $h_{t-1}$ è lo stato della LSTM al passo precedente
+\item $h_{t-1}$ è lo stato, nonché l'output, della LSTM al passo precedente
 \item $x_t$ è il $t$-esimo elemento della sequenza in input
 \item $W_f$ e $b_f$ sono rispettivamente la matrice dei pesi e il bias del forget gate
 \item $\sigma$ è la funzione sigmoidale.
@@ -449,7 +457,7 @@ $$
 C_t = f_t * C_{t-1} + i_t * \widetilde{C}_t.
 $$
 
-\textbf{Output gate} - Questo ultimo gate si occupa infine di decidere cosa vogliamo restituire in output ad ogni passo $t$ (figura \ref{fig:outputGate}). Il suo compito è quello di combinare una versione filtrata dello stato precedente della LSTM con una trasformazione del cell state. 
+\textbf{Output gate} - Questo ultimo gate si occupa infine di decidere cosa vogliamo restituire in output ad ogni passo $t$ (figura \ref{fig:outputGate}). Il suo compito è quello di combinare una versione filtrata dello stato precedente con una trasformazione del cell state. 
 
 \begin{figure}[htbp]
 \centering
@@ -479,15 +487,15 @@ Quella appena descritta è una classica LSTM ma in alcuni articoli scientifici è 
 \chapter{Lavori precedenti}
 Il riconoscimento di azioni corporee tramite l'analisi della \emph{posa} umana o \emph{skeleton} (vedremo nel prossimo capitolo più in dettagli di cosa si tratta) sta attraendo recentemente una notevole attenzione nel mondo della visione computerizzata. Il suo successo è senz'altro dovuto non solo agli ottimi risultati ottenuti, ma anche alla sua efficiente semplificazione della struttura umana riducendo di fatto i costi computazionali e le risorse necessarie allo stoccaggio dati. Normalmente la posa viene calcolata utilizzando  sensori 2D o 3D posizionati in prossimità dei giunti corporei (gomiti, ginocchi, spalle,...), oppure con algoritmi appositi in grado di estrarla da normali video RGB.
 
-Normalmente ci sono due approcci per il riconoscimento di azioni umane facendo uso dalla posa: gli approcci ``\emph{a mano}" e quelli \emph{deep learning}.
+Normalmente ci sono due approcci per il riconoscimento di azioni umane facendo uso dalla posa: gli approcci ``\emph{manuali}" e quelli \emph{deep learning}.
 
-Negli approcci \emph{a mano} si cerca di categorizzare le azioni umane seguendo pattern fisici intuitivi, come le posizioni degli arti o le correlazioni temporali fra essi, ad esempio il movimento ondulatorio delle gambe durante una camminata o una corsa. 
+Negli approcci \emph{manuali} si cerca di categorizzare le azioni umane seguendo pattern fisici intuitivi, come le posizioni degli arti o le correlazioni temporali fra essi, ad esempio il movimento ondulatorio delle gambe durante una camminata o una corsa. 
 
-Per quanto riguarda invece gli approcci \emph{deep learning} le tipologie di azioni corporee vengono categorizzate in maniera automatica direttamente dai dati stessi. Reti neurali ricorrenti, come le LSTM, o quelle di tipo \emph{convoluzionali-temporali}, come quella in \cite{TempConv}, si sono rivelate essere estremamente efficaci per il riconoscimento di pattern temporali in un video, ottenendo ottimi risultati nella categorizzazione delle azioni.
+Per quanto riguarda invece gli approcci \emph{deep learning} le tipologie di azioni corporee vengono categorizzate in maniera automatica direttamente dai dati stessi. Le reti neurali ricorrenti, come le LSTM, o quelle di tipo \emph{convoluzionali-temporali}, come quella in \cite{TempConv}, si sono rivelate estremamente efficaci per il riconoscimento di pattern temporali in un video, ottenendo ottimi risultati nella categorizzazione delle azioni.
 
-Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto interesse, ovvero quello basato su \emph{grafi}, che punta ad esprimere contemporaneamente sia le relazioni temporali che quello nello spazio dei giunti corporei. Questa architettura rappresenta la sequenza di pose in un video come un grafo composto da archi temporali e spaziali, considerando cioè rispettivamente le relazioni inter ed intra-frame.
+Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto interesse, ovvero quello basato su \emph{grafi} che punta ad esprimere contemporaneamente sia le relazioni temporali che quelle spaziali dei giunti corporei. Questa tecnica punta a rappresentare la sequenza di pose in un video come un grafo composto da archi temporali e spaziali, considerando cioè rispettivamente le relazioni inter ed intra-frame.
 
-Molti dei lavori effettuati fino ad oggi utilizzano il dataset NTU-RGB60 \cite{NTURGB} ma fra di loro è necessario fare una distinzione fra i chi utilizza l'informazione delle pose messa a disposizione da questo dataset (estratta con sensori 2D o 3D), chi solo i semplici video RGB e chi entrambi.
+%Molti dei lavori scientifici effettuati fino ad oggi allenano le proprie reti col dataset NTU-RGB+D \cite{NTURGB} ma fra di loro è necessario fare una distinzione a seconda delle informazioni utilizzate. fra chi utilizza l'informazione delle pose messa a disposizione da questo dataset (estratta con sensori 2D o 3D), chi solo i semplici video RGB e chi entrambi.
 
 Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
 \begin{itemize}
@@ -500,9 +508,9 @@ Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
 
 \section{Recognizing Human Actions as Evolution of Pose Estimation Maps (2018)}
-L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmaps} globali e delle \emph{predizioni di pose} e una volta ottenute queste due componenti, combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
+L'idea alla base di questo lavoro è quella di creare delle \emph{mappe di stima della posa} umana dalle quali estrarre delle \emph{heatmap} globali e delle \emph{predizioni di pose} e una volta ottenute queste due componenti, combinare le loro caratteristiche temporali e spaziali di modo da identificare l'azione svolta.
 
-Più precisamente, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\mathcal{Y} = \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
+Più precisamente, indicando con $\mathcal{Y}_k \in \{x,y\}$ le cordinate del $k$-esimo giunto corporeo, possiamo definire un'intera struttura corporea come $\boldsymbol{\mathcal{Y}}= \{\mathcal{Y}_1, ... , \mathcal{Y}_k, ..., \mathcal{Y}_K\}$, dove $K$ è il numero totale dei tipi di giunti corporei considerati.
 
 Addestrando un classificatore multiclasse $g_t^k$ per predire la posizione del $k$-esimo giunto corporeo al passo $t$, otteniamo per ogni punto \textbf{z} dell'immagine una mappa di stima relativa al giunto $k$,
 $$
@@ -510,7 +518,7 @@ $$
 $$
 dove $\boldsymbol{f_z}$ è la \emph{color feature} per il punto \textbf{z}, $\boldsymbol{B}_{t-1}^i$ è la mappa stimata da $g^i_{t-1}$ al passo precedente, $\bigcup$ è l'operatore di concatenazione vettoriale e $\psi$ è la funzione di estrazione della \emph{feature} interessata partendo dalla mappa ottenuta al passo precedente. Dopo $T$ passi, le mappe ottenute vengono utilizzate per stimare la posizione dei giunti.
 
-Partendo dalle $K$ mappe così ottenute, per ogni frame $n$ del video, ovvero $\{\boldsymbol{B}_{T}^{1,n}, ..., \boldsymbol{B}_{T}^{K,n}\}$, vengono calcolate una heatmap $\boldsymbol{G}_{n}$ ed una posa $\mathcal{L}_n$ che rappresentano globalmente la figura umana nell'immagine (figura \ref{fig:heatmapAndPose}). La heatmap $\boldsymbol{G}_{n}$ sarà
+Partendo dalle $K$ mappe così ottenute per ogni frame $n$ del video, ovvero $\{\boldsymbol{B}_{T}^{1,n}, ..., \boldsymbol{B}_{T}^{K,n}\}$, vengono calcolate una heatmap $\boldsymbol{G}_{n}$ ed una posa $\mathcal{L}_n$ che rappresentano globalmente la figura umana nell'immagine (figura \ref{fig:heatmapAndPose}). La heatmap $\boldsymbol{G}_{n}$ sarà
 $$
 \boldsymbol{G}_{n} = \frac{1}{K}\sum_{k=1}^K \boldsymbol{B}_{T}^{k,n},
 $$
@@ -527,28 +535,28 @@ dove $ \mathcal{Z} \in \mathbb{R}^2$ è l'insieme di tutti i punti dell'immagine.
 \label{fig:heatmapAndPose}
 \end{figure}
 
-Quello che abbiamo fatto è stato cioè trasformare un video in un sequenza di heatmaps e pose, a questo punto dobbiamo però sintetizzarle in un unico elemento rappresentativo di più facile manipolazione.
+Quello che abbiamo fatto è stato cioè trasformare un video in un sequenza di heatmap e pose, a questo punto dobbiamo però sintetizzarle in un unico elemento rappresentativo di più facile manipolazione.
 
 \begin{figure}[b]
 \centering
 \includegraphics[width=1\textwidth]{imgs/combinazioneHeatmaps}
-\caption{Sintetizzazione temporale delle heatmaps.}
+\caption{Sintetizzazione temporale delle heatmap.}
 \label{fig:sintTempHeatmap}
 \end{figure}
 
 Gli autori del lavoro mettono a confronto 3 diversi tipi di sintetizzazione:
 \begin{itemize}
-\item \textbf{sintetizzazione temporale delle heatmaps} - Data una sequenza di $N$ heatmaps $\boldsymbol{\mathcal{V}}_G = \{ \boldsymbol{G}_1, ... \boldsymbol{G} _n, ..., \boldsymbol{G}_N\}$ dove $\boldsymbol{G}_n \in \mathbb{R}^{P\times Q}$ è quella relativa all'$n$-esimo frame con $P$ righe e $Q$ colonne, allora la sequenza $\boldsymbol{G}_{1:n}$ può essere mappata in un vettore
+\item \textbf{sintetizzazione temporale delle heatmap} - Data una sequenza di $N$ heatmap $\boldsymbol{\mathcal{V}}_G = \{ \boldsymbol{G}_1, ... \boldsymbol{G} _n, ..., \boldsymbol{G}_N\}$ dove $\boldsymbol{G}_n \in \mathbb{R}^{P\times Q}$ è quella relativa all'$n$-esimo frame con $P$ righe e $Q$ colonne, allora la sequenza $\boldsymbol{G}_{1:n}$ può essere mappata in un vettore
 $$
 \boldsymbol{v}_n = V(\frac{1}{n}\sum^n_{i=1}\boldsymbol{G}_i),
 $$
 dove la funzione $V$ trasforma una matrice in un vettore $\boldsymbol{v}_n \in \mathbb{R}^{(P\cdot Q)\times 1}$ (figura \ref{fig:sintTempHeatmap}).
 
-\item \textbf{sintetizzazione spazio-temporale delle heatmaps} - Partizionando ogni heatmap $\boldsymbol{G}_n$ in in $P$ righe, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{p}_1^T, ..., \boldsymbol{p}_s^T, ..., \boldsymbol{p}_P^T]^T$ o in $Q$ colonne, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{q}_1, ..., \boldsymbol{q}_s, ..., \boldsymbol{q}_Q]$ ed usando la precedente funzione $V$ per mappare $(\boldsymbol{p}_{1:s})^T$ e $\boldsymbol{q}_{1:s}$ in $\boldsymbol{v}_{s}^P$ e $\boldsymbol{v}_{s}^Q$ rispetivamente, si può ottenere due vetori $\boldsymbol{u^p},\boldsymbol{u^q}$ rappresentativi del frame attraverso la seguente funzione obbiettivo:
+\item \textbf{sintetizzazione spazio-temporale delle heatmap} - Partizionando ogni heatmap $\boldsymbol{G}_n$ in in $P$ righe, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{p}_1^T, ..., \boldsymbol{p}_s^T, ..., \boldsymbol{p}_P^T]^T$ o in $Q$ colonne, ovvero $ \boldsymbol{G}_n= [(\boldsymbol{q}_1, ..., \boldsymbol{q}_s, ..., \boldsymbol{q}_Q]$ ed usando la precedente funzione $V$ per mappare $(\boldsymbol{p}_{1:s})^T$ e $\boldsymbol{q}_{1:s}$ in $\boldsymbol{v}_{s}^P$ e $\boldsymbol{v}_{s}^Q$ rispetivamente, si può ottenere due vetori $\boldsymbol{u^p},\boldsymbol{u^q}$ rappresentativi del frame attraverso la seguente funzione obbiettivo:
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.7\textwidth]{imgs/sintetizzazioneSpazioTemporaleHeatmpas}
-\caption{Sintetizzazione spazio-temporale delle heatmaps.}
+\caption{Sintetizzazione spazio-temporale delle heatmap.}
 \label{fig:spatialTemporalRank}
 \end{figure}
 \begin{align*}
@@ -556,49 +564,49 @@ dove la funzione $V$ trasforma una matrice in un vettore $\boldsymbol{v}_n \in \
 s.t. \  & (\boldsymbol{u}^\eta)^T \cdot (\boldsymbol{v}^\eta_{s_i} - \boldsymbol{v}^\eta_{s_j}) \geq 1 - \epsilon_{ij} \\
 & \epsilon_{ij} \geq 0 
 \end{align*}
-dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica la successione temporale fra $v^\eta_{s_i}$ e $v^\eta_{s_j}$, $\boldsymbol{u^p}\in \mathbb{R}^{Q}$ e $\boldsymbol{u^q}\in \mathbb{R}^{P}$. Per gli $N$ frame vengono concatenati in ordine temporale i vettori cosi calcolati, ottenendo $\boldsymbol{U^p} \in \mathbb{R}^{Q\times N}$ e $\boldsymbol{U^q} \in \mathbb{R}^{P\times N}$. La matrice finale $\boldsymbol{U}$ sarà l'unione di queste concatenazioni, ovvero $[(\boldsymbol{U^p})^T,\boldsymbol{U^q})^T]^T$ ovvero una matrice che manterrà sia le caratteristiche temporali che spaziali del movimento ripreso nel video. L'intero processo è schematizzato in figura \ref{fig:spatialTemporalRank}.
+dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica la successione temporale fra $v^\eta_{s_i}$ e $v^\eta_{s_j}$, $\boldsymbol{u^p}\in \mathbb{R}^{Q}$ e $\boldsymbol{u^q}\in \mathbb{R}^{P}$. Per gli $N$ frame vengono concatenati in ordine temporale i vettori così calcolati, ottenendo $\boldsymbol{U^p} \in \mathbb{R}^{Q\times N}$ e $\boldsymbol{U^q} \in \mathbb{R}^{P\times N}$. La matrice finale $\boldsymbol{U}$ sarà l'unione di queste concatenazioni, ovvero $[(\boldsymbol{U^p})^T,\boldsymbol{U^q})^T]^T$, cioè una matrice che manterrà sia le caratteristiche temporali che quelle spaziali del movimento ripreso nel video. L'intero processo è schematizzato in figura \ref{fig:spatialTemporalRank}.
 
-\item \textbf{sintetizzazione spazio-temporale delle pose} - Per comprendere come viene creata questa sintetizzazione, supponiamo di avere una sequenza di pose $\mathcal{V}_ \mathcal{L}= \{ \mathcal{L}_1, ..., \mathcal{L}_n, ..., \mathcal{L}_N \}$ dove $\mathcal{L}_n = \{ \boldsymbol{z}^{k,n} \}^K_{k=1}$ e $\boldsymbol{z}^{k,n} = (x^{k,n},y^{k,n})$, ovvero le coordinate orizzontali e verticali del $k$-esimo giunto corporeo. Per codificare le caratteristiche di tale sequenza, ogni posa viene trasformata in una successione di distanze fra giunti consecutivi, seguendo l'ordine rappresentato in figura \ref{fig:ordineGiunti}. Ripetendo questo processo per ogni frame e concatenando i risultati ottenuti, si ottiene un'immagine rappresentativa delle caratteristiche spazio-temporali dell'evoluzione della posa nel video. L'intero processo è rappresentato in figura \ref{fig:ordineGiunti}.
+\item \textbf{sintetizzazione spazio-temporale delle pose} - Per comprendere come viene creata questa sintetizzazione, supponiamo di avere una sequenza di pose $\boldsymbol{\mathcal{V}}_ \mathcal{L}= \{ \mathcal{L}_1, ..., \mathcal{L}_n, ..., \mathcal{L}_N \}$ dove $\mathcal{L}_n = \{ \boldsymbol{z}^{k,n} \}^K_{k=1}$ e $\boldsymbol{z}^{k,n} = (x^{k,n},y^{k,n})$, ovvero le coordinate orizzontali e verticali del $k$-esimo giunto corporeo. Per codificare le caratteristiche di tale sequenza, ogni posa viene trasformata in una successione di distanze fra giunti consecutivi, seguendo l'ordine rappresentato in figura \ref{fig:ordineGiunti}. Ripetendo questo processo per ogni frame e concatenando i risultati ottenuti, si ottiene un'immagine rappresentativa delle caratteristiche spazio-temporali dell'evoluzione della posa nel video. L'intero processo è rappresentato in figura \ref{fig:ordineGiunti}.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1\textwidth]{imgs/sintetizzazioneDellePose}
-\caption{Sintetizzazione spazio-temporale delle heatmaps.}
+\caption{Sintetizzazione spazio-temporale delle heatmap.}
 \label{fig:ordineGiunti}
 \end{figure}
 \end{itemize}
 
-Gli esperimenti effettuati dagli autori sono molteplici e una delle caratteristiche principali sulla quale è necessario porre attenzione è la telecamera usata per la creazione delle pose nei video: in alcuni casi hanno utilizzato la telecamera di profondità ed in altri no.
+Gli esperimenti effettuati dagli autori sono molteplici e una delle caratteristiche principali sulla quale è necessario porre attenzione è la tipologie delle pose utilizzate: in alcuni casi hanno utilizzato delle pose 3D ottenute con delle telecamere di profondità, in altri casi hanno utilizzato pose 2D.
 
-Uno dei dataset utilizzato nel lavoro è NTU-RGB+D \cite{NTURGB}, che verrà trattato in dettaglio nel capitolo 5 e che come vedremo propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti in questo lavoro sono riassunti in tabella \ref{tab:risultati4}.
+Uno dei dataset utilizzati in questo lavoro è NTU-RGB+D \cite{NTURGB} che, come vedremo più in dettaglio nel capitolo 5, propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti sono riassunti in tabella \ref{tab:risultati4}.
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{| c | c | c | c | c | c |}
 \hline
-Telecamera & \thead{Accuratezza  \\ cross-view} & \thead{Accuratezza  \\ cross-subject} \\
+Pose & \thead{Accuratezza  \\ cross-view} & \thead{Accuratezza  \\ cross-subject} \\
 \hline
-normale   &    84.21\%     &   78.80           \\ \hline
-di profondità   &    95.26\%    &   91.71\%            \\ \hline
+2D   &    84.21\%     &   78.80           \\ \hline
+3D   &    95.26\%    &   91.71\%            \\ \hline
 \end{tabular}
 \caption{Risultati ottenuti da  ``Recognizing Human Actions as the Evolution of Pose Estimation Maps - (2018)"}
 \label{tab:risultati4}
 \end{table}
 
 \section{Action Machine: Rethinking Action Recognition in Trimmed Videos (2018)}
-In questo lavoro, gli autori categorizzano le azioni riprese nei video combinando un'analisi sul video e sulla posa estratta da quest'ultimo.
+In questo lavoro gli autori categorizzano le azioni riprese nei video combinando un'analisi sul video e una sulla posa estratta da quest'ultimo.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=1\textwidth]{imgs/actionMachineStructure}
+\includegraphics[width=1\textwidth]{imgs/actionMachineStructureIta}
 \caption{Schematizzazione di \emph{Action Machine} }
 \label{fig:actionMachineStructure}
 \end{figure}
 
-Come mostrato in figura \ref{fig:actionMachineStructure}, \emph{Action machine} (questo è il nome che gli autori hanno dato a questo algoritmo)si suddivide in fasi:
+Come mostrato in figura \ref{fig:actionMachineStructure}, \emph{Action machine} (questo è il nome che gli autori hanno dato a questo algoritmo) si suddivide in fasi:
 \begin{enumerate}
-\item \textbf{Input} - Tutti i video del dataset vengono analizzati con \emph{Deformable CNN} \cite{Deformable}, un algoritmo per il riconoscimento di persone in immagini e delineazione della relativa \emph{bounding box}. La threshold in questa fase è stata settata a $0.99$ per scartare immediatamente la maggior parte dei falsi positivi riconosciuti. Successivamente viene selezionata la più piccola bounding box che contiene tutte le bounding box identificate nel video ed utilizzata come maschera di ritaglio per ogni frame da passare alla fase successiva. Utilizzare questa tecnica ha un doppio vantaggio: riesce a risolvere molti dei falsi negativi lungo il video e allinea le features sulla dimensione temporale.
-\item \textbf{Backbone} - I ritagli dei frame vengono passati all'\emph{Inflated 3D ConvNet} (I3D, proposto nel lavoro di J. Carreira e A. Zisserman nel 2017 \cite{QuoVadis}) implementato con la rete backbone ResNet-50 \cite{resNet} per l'estrazione delle features. Per aiutare la stima della posa in ogni frame viene rimosso il \emph{temporal max pooling} dopo la prima fase di I3D. La mappa delle features ottenute ha dimensione $2048\times 8 \times 7 \times 7$ è verra utilizzata sia per la categorizzazione dell'azione basata solo sui valori RGB, sia per la stima della posa.
+\item \textbf{Input} - Tutti i video del dataset vengono analizzati con \emph{Deformable CNN} \cite{Deformable}, un algoritmo per il riconoscimento di persone in immagini in grado di delinearne la relativa \emph{bounding box}. La threshold in questa fase è stata settata a $0.99$ per scartare immediatamente la maggior parte dei falsi positivi riconosciuti. Successivamente viene selezionata la più piccola bounding box che contiene tutte le bounding box identificate nel video ed utilizzata come maschera di ritaglio per ogni frame. Utilizzare questa tecnica ha un doppio vantaggio: riesce a risolvere molti dei falsi negativi lungo il video e allinea le features sulla dimensione temporale.
+\item \textbf{Backbone} - I ritagli dei frame vengono passati all'\emph{Inflated 3D ConvNet} (I3D, proposto nel lavoro di J. Carreira e A. Zisserman nel 2017 \cite{QuoVadis}) implementato con ResNet-50 \cite{resNet} per l'estrazione delle features. Per aiutare la stima della posa in ogni frame viene rimosso il \emph{temporal max pooling} dopo la prima fase di I3D. La mappa delle features ottenute ha dimensione $2048\times 8 \times 7 \times 7$ è verra utilizzata sia per la categorizzazione dell'azione basata solo sui valori RGB che per la stima della posa.
 \item \textbf{Categorizzazione con valori RGB} - Dopo l'ultimo layer convoluzionale di I3D viene effettuato un \emph{global average pooling} per ottenere il vettore delle features composto da 2048 valori, che indicheremo con $P_{rgb}$. Se definiamo un dataset di $N$ video con $n$ categorie $\{(X_i,y_i)\}_{i=1}^N$, dove $y_i \in \{1, ..., n\}$ è l'etichetta corrispondente alle features $X_i$, allora la predizione dell'azione può essere ottenuta direttamente come segue:
 $$
 Y_{rgb} = \varphi(W_cP{rgb}+b_c),
@@ -608,11 +616,11 @@ $$
 L_r = -\sum_{i=1}^N log(Y_{rgb}(y_i)),
 $$
 dove $Y_{rgb}(y_i)$ è il valore dell'$y_i$-esima posizione di $Y_{rgb}$.
-\item \textbf{Stima della posa} - Una volta ottenuto l'output dalla I3D, la stima della posa viene effettuata sulla dimensione temporale. Ispirandosi a Mask R-CNN \cite{maskRCNN}, viene aggiunta all'ultimo livello della I3D una \emph{head} di deconvoluzione 2D, ovvero 2 livelli di deconvoluzione con la normalizzazione dei batch e un'attivazione di tipo RELU. Ogni layer a $256$ filtri con un kernel $4\times4$ ed uno stride di $2$. Viene infine aggiunto un livello convoluzionale $1\times1$ per generare la heatmap corrispondente ai $K$ keypoint (un canale per ogni keypoint) e gli offsets (2 canali per ogni keypoint, per le direzioni sull'asse \emph{x} e \emph{y}) per un totale di $3K$ canali in output, dove $K=17$.
+\item \textbf{Stima della posa} - Una volta ottenuto l'output dalla I3D, la stima della posa viene effettuata sulla dimensione temporale. Ispirandosi a Mask R-CNN \cite{maskRCNN}, viene aggiunta all'ultimo livello della I3D una \emph{head} di deconvoluzione 2D, ovvero 2 livelli di deconvoluzione con la normalizzazione dei batch e un'attivazione di tipo RELU. Ogni layer ha $256$ filtri con un kernel $4\times4$ ed uno stride di $2$. Viene infine aggiunto un livello convoluzionale $1\times1$ per generare la heatmap corrispondente ai $K$ keypoint (un canale per ogni keypoint) e gli offsets (2 canali per ogni keypoint, per le direzioni sull'asse \emph{x} e \emph{y}) per un totale di $3K$ canali in output, dove $K=17$.
 
-Data l'immagine ritagliata, definiamo $f_k(x_i) = 1$ se il $k$-esimo keypoint è situato in posizione $x_i$, altrimenti $f_k(x_i) = 0$, dove $i \in 1, ..., Q$ è l'indice dei pixel nell'immagine. Per ogni punto $x_i$ e per ogni keypoint $k$ viene calcolata la probabilità $h_k(x_i) = 1$ per $||x_i-l_k|| \leq M$ ovvero la probabilità che il punto $x_i$ si trovi entro un raggio $M$ dall'effettivo punto $l_k$ del keypoint $k$. Queste heatmap vengono allenate risolvendo un problema di classificazione binaria per ogni posizione e per ogni keypoint in maniera indipendente. Per ogni posizione $x_i$ e per ogni keypoint $k$ viene inoltre stimato il vettore-distanza $F_k(x_i) = l_k - x_i$ fra $x_i$ ed il keypoint corrispondente. 
+Data un'immagine, definiamo $f_k(x_i) = 1$ se il $k$-esimo keypoint è situato in posizione $x_i$, altrimenti $f_k(x_i) = 0$, dove $i \in 1, ..., Q$ è l'indice dei pixel nell'immagine. Per ogni punto $x_i$ e per ogni keypoint $k$ viene calcolata la probabilità $h_k(x_i) = 1$ per $||x_i-l_k|| \leq M$ ovvero la probabilità che il punto $x_i$ si trovi entro un raggio $M$ dall'effettivo punto $l_k$ del keypoint $k$. Queste heatmap vengono allenate risolvendo un problema di classificazione binaria per ogni posizione e per ogni keypoint in maniera indipendente. Per ogni posizione $x_i$ e per ogni keypoint $k$ viene inoltre stimato il vettore-distanza $F_k(x_i) = l_k - x_i$ fra $x_i$ e l'effettivo punto del keypoint corrispondente. 
 
-Questa parte dell'algoritmo fornisce quindi l'heatmap delle probabilità $h_k(x_i)$ per ogni keypoint $k$ e per ogni punto $x_i$. Il \emph{training target} per ogni heatmap è $\overline{h}_k(x_i)$ ovvero una mappa di zeri e uno tale che $\overline{h}_k(x_i) = 1$ se $||x_i-l_k|| \leq M$, $0$ altrimenti. La corrispondente loss function $L_h(\theta)$ è la somma delle loss $L1$ per ogni punto e per ogni keypoint in maniera indipendente, ovvero
+Questa parte dell'algoritmo fornisce quindi le heatmap delle probabilità $h_k(x_i)$ per ogni keypoint $k$ e per ogni punto $x_i$. Il \emph{training target} per ogni heatmap è $\overline{h}_k(x_i)$ ovvero una mappa di zeri e uno tale che $\overline{h}_k(x_i) = 1$ se $||x_i-l_k|| \leq M$, $0$ altrimenti. La corrispondente loss function $L_h(\theta)$ è la somma delle loss $L1$ per ogni punto e per ogni keypoint in maniera indipendente, ovvero
 $$
 L_h(\theta) = \frac{1}{K}\sum_{k=1}^K\sum_{i=1}R(h_k(x_i),\overline{h}_k(x_i)),
 $$
@@ -632,8 +640,8 @@ In fase di test, viene effettuata un'operazione \emph{argmax} su ognuna della $k
 $$
 x_k =  \underset{x_i}{arg\  max \ } (h_k(x_i), i \in 1, ..., Q).
 $$ 
-La posizione accurata del $k$-esimo keypoint viene infine ottenuta aggiungendo l'offset $F_k(x_k)$ a $x_k$.
-\item \textbf{Stima dell'azione utilizzando la posa} - Le coordinate 2D delle pose vengono dapprima trasformate in un tensore di dimensione $2\times T\times K$, dove $T$ è il numero di frame in input, e successivamente passate come input a ResNet-18 \cite{resNet} per la stima dell'azione. A causa dell'insufficiente dimensione spaziale di questo input, tutti le operazioni di pooling in ResNet-18 sono state rimosse e tutti gli stride di 2 nei livelli convoluzionali sono stati rimpiazzati con stride di 1. Infine un \emph{global average pooling} al termine di ResNet-18 restituisce in output un vettore di features lungo 512. Per ogni sequenza di pose viene quindi stimata l'azione $Y{paction}$ attraverso una cross-enttopy loss
+La posizione accurata del $k$-esimo keypoint viene infine ottenuta sommando il relativo offset $F_k(x_k)$ a $x_k$.
+\item \textbf{Stima dell'azione utilizzando la posa} - Le coordinate 2D delle pose vengono dapprima trasformate in un tensore di dimensione $2\times T\times K$, dove $T$ è il numero di frame in input e successivamente passate come input a ResNet-18 \cite{resNet} per la classificazione dell'azione. A causa dell'insufficiente dimensione spaziale di questo input, tutte le operazioni di pooling in ResNet-18 sono state rimosse e tutti gli stride di $2$ nei livelli convoluzionali sono stati rimpiazzati con stride di $1$. Infine un \emph{global average pooling} al termine di ResNet-18 restituisce in output un vettore di features lungo 512. Per ogni sequenza di pose viene quindi stimata l'azione $Y{paction}$ attraverso una cross-enttopy loss
 $$
 L_{paction} = -\sum_{i=1}^N log(Y_{paction}(y_i)).
 $$
@@ -645,64 +653,107 @@ dove $\lambda_1, \lambda_2$ e $\lambda_3$ sono dei bilanciatori del peso che vog
 \item \textbf{Fusione dei risultati RGB con quelli della posa} - Nella fase di test, le probabilità provenienti dalla stima con i valori RGB vengono sommate a quelle provenienti dalla stima con le pose, di modo da combinare i punti di forza di entrambe le tecniche.
 \end{enumerate}
 
-I risultati ottenuti con questo lavoro sono, ad oggi, i migliori per diversi dataset, tra i quali NTU-RGB dove Action machine è attualmente il miglior algoritmo con la seguente accuratezza:
+I risultati ottenuti con questo lavoro sono, ad oggi, i migliori su diversi dataset, tra i quali NTU-RGB+D dove Action machine è attualmente il miglior algoritmo con la seguente accuratezza:
 \begin{itemize}
-\item \textbf{97.2}\% per lo splitting \emph{Cross-view}
-\item \textbf{94.3}\% per lo splitting \emph{Cross-subject}.
+\item \textbf{97.2}\% per il criterio \emph{Cross-view}
+\item \textbf{94.3}\% per il criterio \emph{Cross-subject}.
 \end{itemize}
 
 
-
-
+%\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm, top=1.5cm}
 \section{Overview}
-I migliori risultati fino ad oggi ottenuti utilizzando il dataset NTU-RGB sono schematizzati in tabella \ref{tab:risultatiPrecedenti} ordinati per risultato e suddivisi a seconda delle informazioni del dataset utilizzate dato che, come vedremo nel capitolo 5, il dataset NTU-RGB mette a disposizione diverse tipologie di dati, tra i quali i video RGB delle azioni svolte e le pose dei soggetti inquadrati.
+I migliori risultati fino ad oggi ottenuti utilizzando il dataset NTU-RGB sono schematizzati in tabella \ref{tab:risultatiPrecedenti} ordinati per risultato e suddivisi a seconda delle informazioni utilizzate dato che, come vedremo nel capitolo 5, il dataset NTU-RGB mette a disposizione diverse tipologie di dati, tra i quali i video RGB delle azioni svolte, le pose dei soggetti inquadrati e le riprese ad infrarossi. 
 
-\begin{table}[ht]
+\begin{table}[h]
 \centering
-\begin{tabular}{| c | c | c | c | c | c |}
+\begin{adjustbox}{max width=0.9\textwidth}
+\begin{tabular} {| c | c | c | c | c | c |}
 \hline
-Articolo & Posa& RGB & \thead{Accuratezza  \\ cross-view \\ (\%)} & \thead{Accuratezza  \\ cross-subject \\ (\%)} \\
+Articolo & Posa & RGB & IR & \thead{Accuratezza  \\ cross-view \\ (\%)} & \thead{Accuratezza  \\ cross-subject \\ (\%)} \\
 \hline
-Lie Group \cite{LieGroup}   				& \checkmark  &  & 52.8     &   50.1 \\ \hline
-H-RNN \cite{HRNN} 						& \checkmark  &  & 64.0     &   59.1 \\ \hline
-Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & 67.3     &   60.7 \\ \hline
-PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & 70.3     &   62.9 \\ \hline
-ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & 77.7     &   69.2 \\ \hline
-Temporal Conv \cite{TemporalConv}   		& \checkmark  &  & 83.1     &   74.3 \\ \hline
-DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark & -     	&  74.9 \\ \hline 
-Skelemotion \cite{Skelemotion} 			&  \checkmark &  & 84.7 	&  76.5 \\ \hline 
-C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &  & 84.8     &   79.6 \\ \hline
-VA-LSTM \cite{VA-LSTM}					& \checkmark  &  & 87.6     &   79.4 \\ \hline
-Chained  \cite{Chained} 					&   & \checkmark & -     	&   80.8 \\ \hline
-ST-GCN \cite{ST-GCN}   					& \checkmark  &  & 88.3     &   81.5 \\ \hline
-SR-TSL \cite{SR-TSL} 					& \checkmark  &  & 92.4     &   84.8 \\ \hline
-2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark & -     	&   85.5 \\ \hline
-Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & 93.2     &   86.6 \\ \hline 
-PB-GCN  \cite{PB-GCN}					& \checkmark  &  & 93.2     &   87.5 \\ \hline 
-MFAS \cite{MFAS}						&  \checkmark & \checkmark & - &   90.04 \\ \hline
-FUSION \cite{FUSION}					&  \checkmark & \checkmark & 94.5 &   91.6 \\ \hline
-PoseMap \cite{PREV1}					& \checkmark & \checkmark & 95.2     &   91.7 \\ \hline
-MMTM \cite{MMTM}						&  \checkmark & \checkmark & -  &   91.99 \\ \hline
-Action Machine \cite{PREV2}				&   & \checkmark & 97.2     &   94.3 \\ \hline
+Lie Group \cite{LieGroup}   				& \checkmark  &  & & 52.8     &   50.1 \\ \hline
+H-RNN \cite{HRNN} 						& \checkmark  &  & & 64.0     &   59.1 \\ \hline
+Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 \\ \hline
+PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 \\ \hline
+ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 \\ \hline
+Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 \\ \hline
+DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 \\ \hline 
+Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 \\ \hline 
+C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 \\ \hline
+VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 \\ \hline
+Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 \\ \hline
+ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 \\ \hline
+SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 \\ \hline
+2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 \\ \hline
+Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 \\ \hline 
+PB-GCN  \cite{PB-GCN}					& \checkmark  &  & & 93.2     &   87.5 \\ \hline 
+MFAS \cite{MFAS}						&  \checkmark & \checkmark & & - &   90.04 \\ \hline
+FUSION \cite{FUSION}					&  \checkmark &  & \checkmark& 94.5 &   91.6 \\ \hline
+PoseMap \cite{PREV1}					& \checkmark & \checkmark & & 95.2     &   91.7 \\ \hline
+MMTM \cite{MMTM}						&  \checkmark & \checkmark & & -  &   91.99 \\ \hline
+Action Machine \cite{PREV2}				&   & \checkmark & & 97.2     &   94.3 \\ \hline
 \end{tabular}
-\caption{Risultati dei lavori precendenti sul dataset NTU-RGB.}
+\end{adjustbox}
+\caption{Risultati dei lavori precedenti sul dataset NTU-RGB. Le risorse utilizzate sono: \emph{Posa} = skeleton dei soggetti fornita da NTU-RGB; \emph{RGB} = video RGB; \emph{IR} = video ad infrarossi.}
 \label{tab:risultatiPrecedenti}
 \end{table}
+%\restoregeometry
+
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{| c | c | c | c | c | c |}
+%\hline
+%Articolo & Posa & RGB & IR & \thead{Accuratezza  \\ cross-view \\ (\%)} & \thead{Accuratezza  \\ cross-subject \\ (\%)} \\
+%\hline
+%Lie Group \cite{LieGroup}   				& \checkmark  &  & & 52.8     &   50.1 \\ \hline
+%H-RNN \cite{HRNN} 						& \checkmark  &  & & 64.0     &   59.1 \\ \hline
+%Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 \\ \hline
+%PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 \\ \hline
+%ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 \\ \hline
+%Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 \\ \hline
+%DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 \\ \hline 
+%Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 \\ \hline 
+%C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 \\ \hline
+%VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 \\ \hline
+%Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 \\ \hline
+%ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 \\ \hline
+%SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 \\ \hline
+%2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 \\ \hline
+%Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 \\ \hline 
+%PB-GCN  \cite{PB-GCN}					& \checkmark  &  & & 93.2     &   87.5 \\ \hline 
+%MFAS \cite{MFAS}						&  \checkmark & \checkmark & & - &   90.04 \\ \hline
+%FUSION \cite{FUSION}					&  \checkmark &  & \checkmark& 94.5 &   91.6 \\ \hline
+%PoseMap \cite{PREV1}					& \checkmark & \checkmark & & 95.2     &   91.7 \\ \hline
+%MMTM \cite{MMTM}						&  \checkmark & \checkmark & & -  &   91.99 \\ \hline
+%Action Machine \cite{PREV2}				&   & \checkmark & & 97.2     &   94.3 \\ \hline
+%\end{tabular}
+%\caption{Risultati dei lavori precedenti sul dataset NTU-RGB. Le risorse utilizzate sono: \emph{Posa} = skeleton dei soggetti fornita da NTU-RGB; \emph{RGB} = video RGB; \emph{IR} = video ad infrarossi.}
+%\label{tab:risultatiPrecedenti}
+%\end{table}
+
+
 
 %% Stima della Posa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Stima della posa}
+
+Cos è la stima della posa? \\ 
+
+Quando parliamo di \textit{stima della posa} ci riferiamo ad una tecnica di \textit{computer vision} dedita al riconoscimento di figure umane all'interno di video ed immagini, così da poter localizzare ad esempio dove si trova la testa, il braccio, la gamba destra, etc.. della persona inquadrata. 
+
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{imgs/stimaPosaEsempi}
 \caption{Esempi di stima della posa. In alto tre esempi di stima della posa utilizzando modelli di tipo volumetrico. In basso due esempi di stima della posa ottenuti utilizando modelli di tipo scheletrici. }
 \end{figure}
-Cos è la stima della posa?\\
-Quando parliamo di \textit{stima della posa} ci riferiamo ad una tecnica di \textit{computer vision} dedita al riconoscimento di figure umane all'interno di video ed immagini, così da poter localizzare ad esempio dove, all'interno dell'immagine, si trova la testa, il braccio, la gamba destra, etc.. della persona inquadrata. \\
-Questa tecnica non va assolutamente confusa con tecniche di riconoscimento di persone, infatti la stima della posa è in grado solo di riconoscere dove le parti del corpo di un individuo sono situate all'interno dell'immagine, non \textit{chi} è inquadrato. \\
 
-I campi di applicazione della stima della posa sono i più svariati: software interattivi che reagiscono al movimento della persona, robotica, realtà aumentata, animazione, fotoritocco intelligente, fitness, riabilitazione, etc. Stiamo parlando di un problema tutt'altro che semplice, infatti la condizione di luce dell'immagine, la variabilità dell'ambiente circostante, l'inclinazione del soggetto inquadrato, rendono il riconoscimento della posa un problema non affatto banale. \\
+Questa tecnica non va assolutamente confusa con tecniche di riconoscimento di persone, infatti la stima della posa è in grado solo di riconoscere dove sono situate le parti del corpo di un individuo all'interno dell'immagine, non \textit{chi} è inquadrato. 
 
-Spinti dal crescente interesse, negli ultimi anni sono stati sviluppati diversi algoritmi per la stima della posa, raggiungendo in molti casi risultati davvero sorprendenti con un'accuratezza prossima alla perfezione. \\ 
-\begin{figure}
+I campi di applicazione della stima della posa sono i più svariati: software interattivi che reagiscono al movimento della persona, robotica, realtà aumentata, animazione, fotoritocco intelligente, fitness, riabilitazione, etc. 
+
+Stiamo parlando di un problema tutt'altro che semplice, infatti la condizione di luce dell'immagine, la variabilità dell'ambiente circostante, l'inclinazione del soggetto inquadrato, rendono il riconoscimento della posa un problema estremamente difficile. 
+
+Spinti dal crescente interesse degli ultimi anni, sono stati sviluppati diversi algoritmi per la stima della posa, raggiungendo in molti casi risultati davvero sorprendenti con un'accuratezza prossima alla perfezione. 
+
+\begin{figure} [h]
 \centering
 \includegraphics[width=0.7\textwidth]{imgs/stimaPosaEsempioFisio}
 \caption{Un esempio di utilizzo in campo medico della stima della posa}
@@ -716,34 +767,40 @@ La maggior parte dei software in circolazione in grado di stimare in maniera suf
 \section{PoseNet}
 I recenti progressi nel campo della visione artificiale hanno permesso alla comunità scientifica di spostarsi verso problemi ancora più articolati rispetto a quelli classici, con l'obiettivo di riconoscere figure umane in contesti non vincolati e molto variabili. 
 
-L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, anche in quelli ``affollati", ed essere in grado di identificare ogni persona stimandone i suoi \emph{punti chiave} (o \emph{key-points}).
+L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, compreso quelli ``affollati", ed essere in grado di identificare ogni persona stimandone i suoi \emph{punti chiave} (o \emph{keypoint}).
 
-Generalmente esistono due approcci principali per affrontare il problema del rilevamento di più persone in un'immagine, la stima della loro posa e la loro \emph{segmentazione} (ovvero l'identificazione dei pixel che rappresentano ogni persona):
+Generalmente esistono due approcci principali per affrontare i problemi di rilevamento di più persone in un'immagine, stima della loro posa e \emph{segmentazione} (ovvero l'identificazione dei pixel che rappresentano ogni persona):
 \begin{itemize}
-\item l'approccio \emph{top-down} inizia identificando e localizzando approssimativamente le singole istanze di persona delimitando il riquadro dell'immagine dentro il quale sono contenute, seguito da una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. 
-\item Al contrario, l'approccio \emph{bottom-up} inizia localizzando \emph{entità semantiche individuali}, come ad esempio gambe, braccia, mani, etc, seguito dal loro raggruppamento in istanze di persone complete. PoseNet adotta questo secondo approccio.
+\item \textbf{Approccio top-down} - l'approccio \emph{top-down} inizia con una fase di identificazione e localizzazione approssimativamente della posizione delle persone, delimitando il riquadro dell'immagine entro il quale sono contenute e continua con una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. 
+\item \textbf{Approccio bottom-up} -  l'approccio \emph{bottom-up} inizia localizzando \emph{entità semantiche individuali}, come ad esempio gambe, braccia, mani, etc, e procede raggruppandole logicamente in istanze di persone complete. PoseNet adotta questo secondo approccio.
 \end{itemize}
-Inoltre PoseNet utilizza una rete neurale convoluzionale per la quale il costo computazionale del riconoscimento delle pose è essenzialmente indipendente dal numero di persone raffigurate nella scena ma dipende esclusivamente dalla scelta delle features della rete.
 
-L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave e successivamente raggrupparli in istanze di persona utilizzando un processo ``greedy", ovvero partendo dal rilevamento ``più sicuro" e non come spesso accade, da un punto fisso di riferimento, ad esempio il naso. Anche se potrebbe sembrare una tecnica più "disordinata" i risultati empirici hanno dimostrato funzionare estremamente bene.
+La rete neurale utilizzata in PoseNet è di tipo convoluzionale ed il costo computazionale per il riconoscimento delle pose è essenzialmente indipendente dal numero di persone raffigurate nella scena ma dipende esclusivamente dalla scelta dei filtri della rete.
+
+L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti chiave e successivamente raggrupparli in istanze di persona utilizzando un processo ``greedy", ovvero partendo dal rilevamento ``più sicuro" e non come spesso accade da un punto fisso di riferimento, ad esempio il naso. Anche se questo approccio potrebbe sembrare più "disordinato", i risultati empirici ne hanno dimostrato l'efficacia.
 
 Oltre a stimare punti chiave sparsi, PoseNet stima anche delle maschere di segmentazione per ogni persona. Per fare ciò, viene allenata una seconda rete neurale con la quale viene associato ad ogni pixel $x_i$ la probabilità di appartenenza di quel pixel ad ogni candidato $j$ identificato. Se la probabilità è sufficientemente alta allora viene associato il pixel $x_i$ al candidato $j$.
 
-Questo algoritmo dopo essere stato allenato col famoso dataset COCO \cite{COCO-2016} (versione 2016), che fra molte altre cose contiene anche l'annotazione dei 17 punti chiave (12 del corpo e 5 del volto) di migliaia di persone, è riuscito a migliorarne l'\emph{AP} (average-precision) da 0,655 a 0,687, diventando il miglior risultato. 
+Questo algoritmo dopo essere stato allenato col famoso dataset COCO-2016 \cite{COCO-2016} (che fra molte altre cose contiene anche l'annotazione dei 17 keypoint di migliaia di persone), è riuscito a migliorarne l'\emph{AP} (average-precision) da 0,655 a 0,687, diventando il miglior risultato. 
 
 Questo metodo essendo molto semplice è anche quindi molto rapido, poiché non richiede alcuna fase supplementare di raffinamento dei risultati con tecniche di tipo \emph{box-based} o \emph{clustering}, rendendo di fatto PoseNet uno degli algoritmi più facilmente installabili su piccoli dispositivi, come ad esempio i cellulari.
 
 Ma vediamo adesso più nel dettaglio come PoseNet stima e raggruppa i punti chiavi di una o più persone raffigurate in un'immagine.
 
-\subsection{Stima dei key-points}
-L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i key-points visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo vengono prodotte delle \emph{heat-maps}, ovvero dei canali della rete neurale dediti al riconoscimento di particolari caratteristiche dell'immagine (una canale per ogni key-point) e degli \emph{offset} (due canali per ogni key-point per gli spostamenti in orizzontale e verticale). Sia $x_i$ la posizione 2-D nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero di pixels; $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato in $y$ e $y_{j,k}$ la posizione 2-D del $k$-esimo key-point della j-esima istanza di persona, con $j = 1, ..., M$, dove $M$ è il numero di istanze nell'immagine. 
-\begin{figure}
+\subsection{Stima dei keypoint}
+L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i keypoint visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo, per ogni tipologia di keypoint, viene prodotta una \emph{heatmap} e un \emph{offset}. 
+
+Sia $x_i$ la coordinata 2D del pixel $i$ nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero totale di pixel, allora definiamo con $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato nel punto $y$ e $y_{j,k}$ la coordinata 2D del $k$-esimo keypoint della j-esima persona, con $j = 1, ..., M$, dove $M$ è il numero di persone nell'immagine. 
+
+\begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{imgs/heatmaps-posenet}
-\caption{Generazione con PoseNet delle heat-maps per ogni tipologia di key-point}
+\caption{Generazione con PoseNet delle heatmap per ogni tipologia di keypoint}
 \end{figure}
 
-Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue. Viene generata una heat-map $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. Abbiamo quindi $K$ tasks di classificazione binaria indipendenti (uno per ogni tipo di key-point) e ciascuno equivale a prevedere un disco di raggio $R$ attorno a un tipo di key-point specifico appartenente a qualsiasi persona nell'immagine.
+Come abbiamo visto nel capitolo precedente, per ogni tipo di keypoint $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue: generiamo una heatmap $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. 
+
+Abbiamo quindi $K$ tasks di classificazione binaria indipendenti (uno per ogni tipo di keypoint) e ciascuno di loro equivale a stimare un disco di raggio $R$ attorno a un tipo di keypoint specifico appartenente a qualsiasi persona nell'immagine.
 
 \begin{figure}
 \centering
@@ -751,25 +808,30 @@ Per ogni tipo di key-point $k = 1, ..., K$, viene impostato un task di classific
 \caption{Esempio di stima degli offset a corto raggio con PoseNet}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=1\textwidth]{imgs/mid-range-Posenet}
-\caption{Esempio di stima degli offset a medio raggio con PoseNet. L'intento è quello di raggruppare i keypoints appartenenti alla stessa persona.}
-\label{fig:midRangeOffset}
-\end{figure}
 
-Oltre alle heat-maps, vengono anche usati vettori di \emph{offset a corto raggio} $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei key-points. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2-D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo key-point della $j$-esima persona. Vengono cosi generati $K$ vettori per ogni punto $x$ all'interno del disco definito che, combinati insieme in una \emph{trasformata di Hough} $h_k(x)$, miglioreranno l'accuratezza della posizione predetta di ogni key-point. 
-Solo i punti che superano una certa soglia di Hough (0.01, come indicato da \cite{PosenetArticle}) vengono considerati dei key-point, gli altri invece vengono scartati.
 
-\subsection{Raggruppamento dei key-points in istanze di persona}
+Oltre alle heatmap, vengono anche stimati vettori di \emph{offset a corto raggio} (\emph{short-range offset}) $S_k(x)$ il cui scopo è quello di migliorare l'accuratezza della localizzazione dei keypoint. Per ogni punto $x$ all'interno dei dischi ricavati al passo precedente, il vettore di offset 2D a corto raggio $S_k(x) = y_{j,k} - x$ rappresenta la distanza fra il punto $x$ e il $k$-esimo keypoint della $j$-esima persona più vicina. Vengono quindi generati $K$ vettori per ogni punto $x$ che verranno successivamente combinati fra loro in una \emph{trasformata di Hough} per migliorare l'accuratezza della posizione stimata di ogni keypoint. Rimandiamo all'articolo \cite{PosenetArticle} per i dettagli d'implementazione.
+%$h_k(x)$, per migliorare l'accuratezza della posizione predetta di ogni keypoint. 
+
+%Solo i punti che superano una certa soglia di Hough (0.01, come indicato da \cite{PosenetArticle}) vengono considerati dei keypoint, gli altri invece vengono scartati.
+
+\subsection{Raggruppamento dei keypoint in istanze di persona}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.3\textwidth]{imgs/legamiKeypointsPoseNet}
-\caption{Struttura ad albero utilizzata da PoseNet per raggruppare i key-points appartenenti alla stessa persona}
+\caption{Struttura ad albero utilizzata da PoseNet per raggruppare i keypoint appartenenti alla stessa persona}
 \label{fig:strutturakeypoints}
 \end{figure}
-A questo punto è però necessario capire come associare ogni key-point alle persone raffigurate nell'immagine (nel caso ce ne sia più di una). 
-Seguendo lo schema delle connessioni fra tipi di key-points (rappresentati in figura \ref{fig:strutturakeypoints}) la rete viene allenata per restituire in output anche i cosiddetti \emph{offset a medio raggio}, ovvero probabilità di connessioni fra key-points, col lo scopo di raggruppare quelli appartenenti alla stessa persona. 
+A questo punto è però necessario capire come associare ogni keypoint alle persone raffigurate nell'immagine (nel caso ce ne sia più di una). 
+
+Seguendo lo schema delle connessioni fra tipi di keypoint rappresentati in figura \ref{fig:strutturakeypoints} la rete viene allenata per restituire in output anche i cosiddetti \emph{offset a medio raggio} (\emph{mid-range offsets}), ovvero le probabilità di connessioni fra keypoint, col lo scopo di raggruppare quelli appartenenti alla stessa persona. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\textwidth]{imgs/mid-range-Posenet}
+\caption{Esempio di stima degli offset a medio raggio con PoseNet. L'intento è quello di raggruppare i keypoint appartenenti alla stessa persona.}
+\label{fig:midRangeOffset}
+\end{figure}
 
 Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset} mentre una raffigurazione completa del sistema adottato da PoseNet per il riconoscimento delle pose di persone raffigurate in un'immagine è rappresentato in figura \ref{fig:overview-posenet}.
 
@@ -826,7 +888,7 @@ Essendo stato interamente riscritto in Pytorch, Detectron2 è più rapido del suo 
 
 Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team di Facebook (e non solo) per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity}, ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni.
 
-Per quanto riguarda la stima della posa umana in un'immagine, Detectron2 utilizza una Mask R-CNN \cite{maskRCNN} riadattata all'estrazione dei keypoints.
+Per quanto riguarda la stima della posa umana in un'immagine, Detectron2 utilizza una Mask R-CNN \cite{maskRCNN} riadattata all'estrazione dei keypoint.
 
 \subsection{Mask R-CNN}
 \begin{figure}[h]
@@ -853,7 +915,7 @@ Grazie alla sua grande flessibilità, questo framework può essere facilmente este
 \caption{Alcuni esempi di pose prediction con Mask R-CNN}
 \end{figure}
 
-Le coordinate dei keypoints vengono trasformate in maschere di tipo \emph{one-hot} e Mask R-CNN viene utilizzato per predire $K$ maschere, una per ogni tipo di keypoint (gomito sinistro, spalla destra, etc..).
+Le coordinate dei keypoint vengono trasformate in maschere di tipo \emph{one-hot} e Mask R-CNN viene utilizzato per predire $K$ maschere, una per ogni tipo di keypoint (gomito sinistro, spalla destra, etc..).
 
 Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training target è una maschera binaria $m \times m$ di tipo \emph{one-hot} dove cioè solo un pixel viene etichettato come positivo. Durante l'allenamento della rete, per ogni keypoint visibile nell'immagine, viene minimizzata una \emph{cross-entropy} loss con regolarizzatore L2 (per incoraggiare l'identificazione di un singolo punto). Anche per questa procedura, le $K$ maschere dei $K$ tipi di keypoint sono completamente indipendenti l'una dall'altra. 
 
@@ -1106,18 +1168,18 @@ Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video p
 \section{Struttura della rete}
 Per quanto riguarda la rete neurale adottata per la classificazione delle azioni, è stato scelto di usare le LSTM. Queste reti, nel mondo del machine learning, hanno già dimostrato la loro grande capacità espressiva quando si tratta di analizzare sequenze temporali di input. 
 
-La struttura della rete adoperata varia a seconda della fase degli esperimenti svolti. Nella prima fase è stato scelto di testare ogni tecnica utilizzando una rete neurale più piccola e semplice. Successivamente, solo per le tecniche più promettenti, è stato deciso di testare anche strutture di rete più complesse.
+La struttura della rete è stata fatta variare a seconda della fase degli esperimenti svolti. Nella prima fase è stato scelto di testare ogni tecnica utilizzando una rete neurale più piccola e semplice. Successivamente, solo per le tecniche più promettenti, è stato deciso di testare anche strutture di rete più complesse.
 
 Vediamo più nel dettaglio ogni componente scelto per la rete.
 \begin{itemize}
-\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da un livello LSTM ed un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli progressivamente fino al raggiungimento ottimale dei risultati. 
+\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da un solo livello LSTM ed un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli LSTM progressivamente fino al raggiungimento ottimale dei risultati. 
 
-È importante però sottolineare che aumentando il numero di livelli della rete non deve variare il numero di parametri totali di quest'ultima altrimenti un'eventuale variazione dei risultati non potrebbe essere attribuita alla sola mutazione di profondità della rete, quindi ad ogni incremento di livello sarà anche necessario regolare di conseguenza il numero di hidden units per ognuno di essi.
+%È importante però sottolineare che aumentando il numero di livelli della rete non deve variare il numero di parametri totali di quest'ultima altrimenti un'eventuale variazione dei risultati non potrebbe essere attribuita alla sola mutazione di profondità della rete, quindi ad ogni incremento di livello sarà anche necessario regolare di conseguenza il numero di hidden units per ognuno di essi.
 \item \textbf{Hidden units} - Per quanto riguarda il numero di unità nascoste di ogni livello LSTM della rete, è stata utilizzata la seguente regola generale
 $$
 N_h = \frac{N_{samples}}{\alpha \cdot (N_{in} + N_{out})}
 $$
-dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra $0$ e $10$, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}.
+dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra $2$ e $10$, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}. In questo lavoro di tesi è stato scelto $\alpha \approx 5$ e di conseguenza ogni livello LSTM è stato strutturato con 64 hidden units.
 \item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria allora la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
 
 $$
@@ -1132,9 +1194,8 @@ CCE = - log\left( \frac{e^{s_p}}{\sum_j^C e^{s_j}}\right)
 $$
 dove $s_p$ è lo score che la rete neurale restituisce per la classe $p$.
 
-\item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stata arbitrariamente fissata a $64$.
-\item \textbf{Ottimizzatore} - L'ottimizzatore scelto è \emph{RMSProp} \cite{RMSProp} con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.001$. Per alcuni dei test successivi è stato scelto di settare il valore iniziale del learning rate a $0.01$ e di decrementarlo del 20\% ogni 15 epoche.
-
+\item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stato scelto di fissarla pari a $10\times N$,  dove $N$ è il numero di categorie del dataset, di modo da consentire ad ogni iterazione una sufficiente variabilità del batch ed una corretta generalizzazione nell'aggiornamento dei pesi. Per l'allenamento della rete sul dataset completo, la batch size è stata quindi fissata a $600$.
+\item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche. Per le tecniche più promettenti e dopo aver stabilito la struttura della rete, è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$.
 \item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati settati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, sono stati impostati a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
 \item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore} ricorrente sono stati settati inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
 \end{itemize}
@@ -1295,103 +1356,132 @@ Per questa prima fase è stato scelto di testare ogni tecnica del capitolo 4 alle
 
 I risultati ottenuti sono illustrati in tabella \ref{tab:primaIterazione}.  
 
-\begin{center}
-\begin{longtable}{| l | c | c | c |}
-\hline
-Tecnica & \thead{Accuratezza \\ Cross  \\ Subject (\%)} &  \thead{Accuratezza \\ Cross  \\ View (\%)} & \thead{Media  \\ (\%) }\\
-\hline\hline
-rimoz  $0$ + 3BAR + norm & 74.92 & 68.48 & 71.70 \\ \hline
-rimoz  $0$ + VIDEO + norm & 76.50 & 66.39 & 71.45 \\ \hline
-rimoz  $0$ + DIST REL + norm & 76.42 & 64.36 & 70.39 \\ \hline
-rimoz  $0$ + FRAME + norm & 74.56 & 65.26 & 69.91 \\ \hline
-rimoz  $0$ + FRAME PERS + norm & 73.14 & 66.21 & 69.68 \\ \hline
-rimoz  $0$ + VIDEO + norm  (MIN LOSS) & 73.26 & 65.94 & 69.60 \\ \hline
-normXY & 71.60 & 66.89 & 69.25 \\ \hline
-rimoz  $0$ + 3BAR + norm  (MIN LOSS) & 72.98 & 65.40 & 69.19 \\ \hline
-rimoz  $0$ + VIDEO PERS + norm & 73.50 & 64.67 & 69.09 \\ \hline
-rimoz  $0$ + 5BAR + norm & 73.54 & 63.32 & 68.43 \\ \hline
-rimoz  $0$ + DIST REL + norm  (MIN LOSS) & 69.62 & 66.17 & 67.89 \\ \hline
-rimoz  $0$ + normXY & 69.66 & 65.94 & 67.80 \\ \hline
-rimoz  $0$ + FRAME + norm  (MIN LOSS) & 68.04 & 65.85 & 66.94 \\ \hline
-rimoz  $0$ + 3BAR ASS + norm & 64.79 & 69.02 & 66.91 \\ \hline
-normXY  (MIN LOSS) & 69.11 & 64.18 & 66.64 \\ \hline
-rimoz  $0$ + VIDEO PERS + norm  (MIN LOSS) & 69.15 & 63.68 & 66.41 \\ \hline
-rimoz  $0$ + FRAME PERS + norm  (MIN LOSS) & 68.28 & 63.68 & 65.98 \\ \hline
-rimoz  $0$ + 17BAR + norm & 69.98 & 61.91 & 65.94 \\ \hline
-rimoz  $0$ + NEXT 3 + norm & 67.37 & 63.68 & 65.52 \\ \hline
-rimoz  $0$ + NEXT 7 + norm & 67.72 & 61.82 & 64.77 \\ \hline
-rimoz  $0$ + NEXT 15 + norm & 69.34 & 59.96 & 64.65 \\ \hline
-rimoz  $0$ + 5BAR + norm  (MIN LOSS) & 69.50 & 58.79 & 64.14 \\ \hline
-rimoz  $0$ + norm & 71.40 & 53.85 & 62.62 \\ \hline
-rimoz  $0$ + 17BAR ASS + norm & 65.90 & 59.15 & 62.53 \\ \hline
-rimoz  $0$ + 3BAR ASS + norm  (MIN LOSS) & 61.04 & 63.09 & 62.06 \\ \hline
-rimoz  $0$ + NEXT 3 + norm  (MIN LOSS) & 63.17 & 59.56 & 61.36 \\ \hline
-rimoz  $0$ + DIST CUM + norm & 65.62 & 56.79 & 61.21 \\ \hline
-rimoz  $0$ + normXY  (MIN LOSS) & 65.82 & 55.93 & 60.88 \\ \hline
-rimoz  $0$ + NEXT + norm & 61.55 & 59.60 & 60.58 \\ \hline
-norm & 65.07 & 54.98 & 60.03 \\ \hline
-rimoz  $0$ + 5BAR ASS + norm & 59.45 & 59.28 & 59.37 \\ \hline
-rimoz  $0$ + DIST CUM + norm  (MIN LOSS) & 62.22 & 54.53 & 58.38 \\ \hline
-norm  (MIN LOSS) & 62.22 & 53.08 & 57.65 \\ \hline
-rimoz  $0$ + 17BAR + norm  (MIN LOSS) & 58.86 & 55.89 & 57.37 \\ \hline
-rimoz  $0$ + NEXT 7 + norm  (MIN LOSS) & 57.12 & 57.43 & 57.27 \\ \hline
-rimoz  $0$ + NEXT 15 + norm  (MIN LOSS) & 56.80 & 57.47 & 57.14 \\ \hline
-rimoz  $0$ + 17BAR ASS + norm  (MIN LOSS) & 60.09 & 53.35 & 56.72 \\ \hline
-rimoz  $0$ + 5BAR ASS + norm  (MIN LOSS) & 58.07 & 52.04 & 55.05 \\ \hline
-rimoz  $0$ + norm  (MIN LOSS) & 56.76 & 53.31 & 55.04 \\ \hline
-rimoz  $0$ + NEXT + norm  (MIN LOSS) & 47.67 & 52.31 & 49.99 \\ \hline
-semplice (MIN LOSS) & 43.63 & 41.49 & 42.56 \\ \hline
-semplice & 43.83 & 41.26 & 42.54 \\ \hline
-\caption{Risultati ottenuti applicando ogni tecnica in maniera ``\emph{naive}" (senza cioè dropout e regolarizzazioni) con una rete neurale composta da un solo livello LSTM e 256 hidden units.}
-\label{tab:primaIterazione}
-\end{longtable}
-\end{center}
 
-Da questa prima classifica dei risultati, apparte avere un'idea su quali sono le tecniche più efficienti, si evince anche qualche altro aspetto importante:
-\begin{itemize}
-\item Categorizzare le azioni utilizzando semplicemente i valori della stima della posa ottenuti da Detectron2 e Posenet è decisamente non sufficiente, ottenendo un'accuratezza massima del $42,54\%$ (in media)
-\item Quanto trattiamo punti sul piano la \emph{normalizzazione separata} ha risultati notevolmente migliori rispetto a quella \emph{globale} ($+9.22\%$ in media).
+\newpage
+\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm, top=1.5cm}
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.9\textwidth]{imgs/esplorazione1L.jpg}
+\caption{Risultati ottenuti per ogni tecnica allenando una rete con un solo livello LSTM. \emph{CV}= Cross View; \emph{CS}= Cross Subject.} 
+\label{tab:primaIterazione}
+\end{figure}
+\restoregeometry
+\newpage
+
+%\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm}
+%\begin{center}
+%\begin{longtable}{| l | c | c | c |}
+%\hline
+%Tecnica & \thead{Accuratezza \\ Cross  \\ Subject (\%)} &  \thead{Accuratezza \\ Cross  \\ View (\%)} & \thead{Media  \\ (\%) }\\
+%\hline\hline
+%rimoz  $0$ + 3BAR + norm & 74.92 & 68.48 & 71.70 \\ \hline
+%rimoz  $0$ + VIDEO + norm & 76.50 & 66.39 & 71.45 \\ \hline
+%rimoz  $0$ + DIST REL + norm & 76.42 & 64.36 & 70.39 \\ \hline
+%rimoz  $0$ + FRAME + norm & 74.56 & 65.26 & 69.91 \\ \hline
+%rimoz  $0$ + FRAME PERS + norm & 73.14 & 66.21 & 69.68 \\ \hline
+%rimoz  $0$ + VIDEO + norm  (MIN LOSS) & 73.26 & 65.94 & 69.60 \\ \hline
+%normXY & 71.60 & 66.89 & 69.25 \\ \hline
+%rimoz  $0$ + 3BAR + norm  (MIN LOSS) & 72.98 & 65.40 & 69.19 \\ \hline
+%rimoz  $0$ + VIDEO PERS + norm & 73.50 & 64.67 & 69.09 \\ \hline
+%rimoz  $0$ + 5BAR + norm & 73.54 & 63.32 & 68.43 \\ \hline
+%rimoz  $0$ + DIST REL + norm  (MIN LOSS) & 69.62 & 66.17 & 67.89 \\ \hline
+%rimoz  $0$ + normXY & 69.66 & 65.94 & 67.80 \\ \hline
+%rimoz  $0$ + FRAME + norm  (MIN LOSS) & 68.04 & 65.85 & 66.94 \\ \hline
+%rimoz  $0$ + 3BAR ASS + norm & 64.79 & 69.02 & 66.91 \\ \hline
+%normXY  (MIN LOSS) & 69.11 & 64.18 & 66.64 \\ \hline
+%rimoz  $0$ + VIDEO PERS + norm  (MIN LOSS) & 69.15 & 63.68 & 66.41 \\ \hline
+%rimoz  $0$ + FRAME PERS + norm  (MIN LOSS) & 68.28 & 63.68 & 65.98 \\ \hline
+%rimoz  $0$ + 17BAR + norm & 69.98 & 61.91 & 65.94 \\ \hline
+%rimoz  $0$ + NEXT 3 + norm & 67.37 & 63.68 & 65.52 \\ \hline
+%rimoz  $0$ + NEXT 7 + norm & 67.72 & 61.82 & 64.77 \\ \hline
+%rimoz  $0$ + NEXT 15 + norm & 69.34 & 59.96 & 64.65 \\ \hline
+%rimoz  $0$ + 5BAR + norm  (MIN LOSS) & 69.50 & 58.79 & 64.14 \\ \hline
+%rimoz  $0$ + norm & 71.40 & 53.85 & 62.62 \\ \hline
+%rimoz  $0$ + 17BAR ASS + norm & 65.90 & 59.15 & 62.53 \\ \hline
+%rimoz  $0$ + 3BAR ASS + norm  (MIN LOSS) & 61.04 & 63.09 & 62.06 \\ \hline
+%rimoz  $0$ + NEXT 3 + norm  (MIN LOSS) & 63.17 & 59.56 & 61.36 \\ \hline
+%rimoz  $0$ + DIST CUM + norm & 65.62 & 56.79 & 61.21 \\ \hline
+%rimoz  $0$ + normXY  (MIN LOSS) & 65.82 & 55.93 & 60.88 \\ \hline
+%rimoz  $0$ + NEXT + norm & 61.55 & 59.60 & 60.58 \\ \hline
+%norm & 65.07 & 54.98 & 60.03 \\ \hline
+%rimoz  $0$ + 5BAR ASS + norm & 59.45 & 59.28 & 59.37 \\ \hline
+%rimoz  $0$ + DIST CUM + norm  (MIN LOSS) & 62.22 & 54.53 & 58.38 \\ \hline
+%norm  (MIN LOSS) & 62.22 & 53.08 & 57.65 \\ \hline
+%rimoz  $0$ + 17BAR + norm  (MIN LOSS) & 58.86 & 55.89 & 57.37 \\ \hline
+%rimoz  $0$ + NEXT 7 + norm  (MIN LOSS) & 57.12 & 57.43 & 57.27 \\ \hline
+%rimoz  $0$ + NEXT 15 + norm  (MIN LOSS) & 56.80 & 57.47 & 57.14 \\ \hline
+%rimoz  $0$ + 17BAR ASS + norm  (MIN LOSS) & 60.09 & 53.35 & 56.72 \\ \hline
+%rimoz  $0$ + 5BAR ASS + norm  (MIN LOSS) & 58.07 & 52.04 & 55.05 \\ \hline
+%rimoz  $0$ + norm  (MIN LOSS) & 56.76 & 53.31 & 55.04 \\ \hline
+%rimoz  $0$ + NEXT + norm  (MIN LOSS) & 47.67 & 52.31 & 49.99 \\ \hline
+%semplice (MIN LOSS) & 43.63 & 41.49 & 42.56 \\ \hline
+%semplice & 43.83 & 41.26 & 42.54 \\ \hline
+%\caption{Risultati ottenuti applicando ogni tecnica in maniera ``\emph{naive}" (senza cioè dropout e regolarizzazioni) con una rete neurale composta da un solo livello LSTM e 64 hidden units.}
+%\label{tab:primaIterazione}
+%\end{longtable}
+%\end{center}
+%\restoregeometry
+
+Da questa prima classifica dei risultati, apparte avere un'idea su quali sono le tecniche più efficienti, si evince anche qualche altro aspetto importante:\begin{itemize}
+\item Categorizzare le azioni utilizzando semplicemente i valori della stima della posa ottenuti da Detectron2 e Posenet è decisamente non sufficiente, ottenendo un'accuratezza massima del $42,21\%$ (in media)
+\item Quanto trattiamo punti sul piano la \emph{normalizzazione separata} ha risultati nettamente migliori rispetto a quella \emph{globale} ($\approx+2\%$ in media).
 \item In quasi tutti i casi è preferibile interrompere l'allenamento della rete al \emph{massimo valore di accuratezza di validazione} invece che al \emph{minor valore della loss di validazione}.
-\item ?La rimozione degli zeri aiuta?
 \end{itemize} 
 
 
 \section{Fase 2: Numero di livelli}
-A questo punto è interessante capire se aumentare il numero la profondità della rete (senza variarne il numero totale dei parametri) porta o meno dei benefici. 
+A questo punto è interessante capire se aumentare il numero la profondità della rete porta o meno dei benefici. 
 
 Sono state quindi usate le migliori tecniche della fase precedente per allenare 3 diverse reti neurali, così strutturate:
 \begin{itemize}
-\item \textbf{1 livello} LSTM da 256 hidden units ed un livello completamente connesso ($\approx 336k$ parametri)
-\item \textbf{2 livelli} LSTM da 155 hidden units ciascuno ed un livello completamente connesso ($\approx 334k$ parametri)
-\item \textbf{3 livelli} LSTM da 122 hidden units ciascuno ed un livello completamente connesso ($\approx 335k$ parametri).
+\item \textbf{1 livello} LSTM da 64 hidden units ed un livello completamente connesso ($\approx 35k$ parametri)
+\item \textbf{2 livelli} LSTM da 64 hidden units ciascuno ed un livello completamente connesso ($\approx 68k$ parametri)
+\item \textbf{3 livelli} LSTM da 64 hidden units ciascuno ed un livello completamente connesso ($\approx 101k$ parametri).
 \end{itemize}
 
-I risultati ottenuti sono rappresentati in tabella \ref{tab:incrementoLivelli}
 
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{| l | c | c | c | c | c | c | c | c | c |}
+%\hline
+%  \multicolumn{1}{|c|}{Tecnica}  & \multicolumn{3}{c|}{1 livello} & \multicolumn{3}{c|}{ 2 livelli} & \multicolumn{3}{c|}{ 3 livelli} \\
+% & \thead{CS  \\ (\%) } & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }  & \thead{CS  \\ (\%) }  & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) } & \thead{CS  \\ (\%) }  &\thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }\\
+%\hline\hline
+%3BAR & 68,48 & 74,92 & 71,70 & 66,76 & 77,73 & \textbf{72,24} & 66,30 & 73,26 & 69,78 \\ \hline
+%VIDEO & 66,40 & 76,50 & \textbf{71,45} & 67,48 & 75,12 & 71,30 & 66,21 & 73,85 & 70,03 \\ \hline
+%DIST REL & 64,36 & 76,42 & 70,39 & 64,58 & 79,83 & \textbf{72,21} & 65,49 & 74,92 & 70,21 \\ \hline
+%FRAME & 65,26 & 74,57 & 69,91 & 67,75 & 74,76 & \textbf{71,26} & 67,39 & 71,92 & 69,65 \\ \hline
+%FRAME PERS & 66,21 & 73,14 & 69,68 & 65,72 & 76,03 & \textbf{70,87} & 66,80 & 74,45 & 70,62 \\ \hline
+%\end{tabular}
+%\caption{Risultati ottenuti facendo variare la profondità della rete. CS = accuratezza per cross subject, CV = accuratezza per cross view. I valori in grassetto sono i migliori per la tecnica corrispondente.}
+%\label{tab:incrementoLivelli}
+%\end{table}
 
-\begin{table}[ht]
+Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incrementare la profondità della rete a due livelli spesso aiuta il processo di classificazione delle azioni, mentre aggiungerne un terzo sembrerebbe peggiorare i risultati, probabilmente a causa di un maggiore overfitting sui dati di allenamento.
+
+\newpage
+\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm, top=1.5cm}
+\begin{figure}[htb!]
 \centering
-\begin{tabular}{| l | c | c | c | c | c | c | c | c | c |}
-\hline
-  \multicolumn{1}{|c|}{Tecnica}  & \multicolumn{3}{c|}{1 livello} & \multicolumn{3}{c|}{ 2 livelli} & \multicolumn{3}{c|}{ 3 livelli} \\
- & \thead{CS  \\ (\%) } & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }  & \thead{CS  \\ (\%) }  & \thead{CV  \\ (\%) } & \thead{Media  \\ (\%) } & \thead{CS  \\ (\%) }  &\thead{CV  \\ (\%) } & \thead{Media  \\ (\%) }\\
-\hline\hline
-3BAR & 68,48 & 74,92 & 71,70 & 66,76 & 77,73 & \textbf{72,24} & 66,30 & 73,26 & 69,78 \\ \hline
-VIDEO & 66,40 & 76,50 & \textbf{71,45} & 67,48 & 75,12 & 71,30 & 66,21 & 73,85 & 70,03 \\ \hline
-DIST REL & 64,36 & 76,42 & 70,39 & 64,58 & 79,83 & \textbf{72,21} & 65,49 & 74,92 & 70,21 \\ \hline
-FRAME & 65,26 & 74,57 & 69,91 & 67,75 & 74,76 & \textbf{71,26} & 67,39 & 71,92 & 69,65 \\ \hline
-FRAME PERS & 66,21 & 73,14 & 69,68 & 65,72 & 76,03 & \textbf{70,87} & 66,80 & 74,45 & 70,62 \\ \hline
-\end{tabular}
-\caption{Risultati ottenuti facendo variare la profondità della rete. CS = accuratezza per cross subject, CV = accuratezza per cross view. I valori in grassetto sono i migliori per la tecnica corrispondente.}
+\includegraphics[width=0.45\textwidth]{imgs/esplorazione3Livelli.jpg}
+\caption{Risultati ottenuti facendo variare la profondità della rete. I valori in grassetto sono i migliori per la tecnica corrispondente.}
 \label{tab:incrementoLivelli}
-\end{table}
+\end{figure}
+\restoregeometry
+\newpage
 
-Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incrementare la profondità della rete a due livelli aiuta il processo di classificazione delle azioni, mentre aggiungerne un terzo sembrerebbe peggiorare i risultati, probabilmente a causa di un maggiore overfitting sui dati di allenamento.
+\section{Fase 3: Dropout e regolarizzatori}
+Adesso che abbiamo un'idea di quali sono le tecniche più efficienti possiamo ridurre il raggio d'azione e testare solo quest'ultime sul tutto il dataset facendo variare per ognuna di esse il valore del regolarizzatore e del dropout (ricordiamo che per semplicità di strutturazione degli esperimenti il \emph{regolarizzatore ricorrente} ed il \emph{dropout ricorrente} sono stati sempre impostati allo stesso valore del \emph{regolarizzatore} e del \emph{dropout del kernel} rispettivamente).
+I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERegolarizzatore}
+
+
+\section{Fase 4: Allenamento completo tecnica migliore}
+Quest'ultima fase è dedicata a finalizzare la miglior tecnica trovata, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset.
+Ci sono volute circa [...] epoche per raggiungere il miglior valore e i risultati ottenuti al termine di questo lungo procedimento sono i seguenti:
 
 
 \section{FAI}
 \begin{itemize}
-\item testing dropout e regolarizzatore
 \item nocciolo duro?
 \item combinazione tecniche diverse?
 \item test su tutto il dataset
@@ -1399,6 +1489,64 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusioni e sviluppi futuri}
+In questo lavoro di tesi ci siamo dedicati al riconoscimento e alla classificazione di azioni umane tramite tecniche di apprendimento profondo per la stima della posa. 
+
+Per tale scopo abbiamo deciso di ideare un algoritmo che non avesse bisogno di informazioni iniziali complesse, come ad esempio la posizione dei giunti dei soggetti inquadrati, ma che attraverso l'uso dei soli video RGB fosse in grado di estrapolare tutte le informazioni necessarie.
+
+Al fine di ottenere il miglior algoritmo abbiamo eseguito un serie di esperimenti strutturati secondo un procedimento ben preciso, che permettesse l'esplorazione rapida di ogni tecnica ideata affinando progressivamente i risultati per quelle più promettenti.
+
+Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una discreta capacità di classificazione della azioni umane e, per la loro semplicità, anche un'elevata portabilità.
+
+Nello specifico, gli algoritmi che proponiamo sono:
+\begin{itemize}
+\item il classificatore ``\emph{3BAR-Detectron}" con un accuratezza CS: 90\% e CV 80\%
+\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza CS: -\% e CV -\%
+\end{itemize}
+
+Questi due algoritmi, pur facendo uso dei soli video RGB, superano le performance di diversi lavori nel mondo scientifico dedicati al medesimo scopo, inoltre essendo non complessi sono facilmente migliorabili. 
+
+Una visione globale dei risultati ottenuti con i due algoritmi comparati a quelli dello stato dell'arte è sintetizzata in tabella \ref{tab:nostriAlgoritmiNelMondo}.
+\begin{table}
+\centering
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Articolo & Posa & RGB & IR & \thead{Accuratezza  \\ cross-view \\ (\%)} & \thead{Accuratezza  \\ cross-subject \\ (\%)} \\
+\hline
+Lie Group \cite{LieGroup}   				& \checkmark  &  & & 52.8     &   50.1 \\ \hline
+H-RNN \cite{HRNN} 						& \checkmark  &  & & 64.0     &   59.1 \\ \hline
+Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 \\ \hline
+PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 \\ \hline
+ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 \\ \hline
+Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 \\ \hline
+DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 \\ \hline 
+Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 \\ \hline 
+C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 \\ \hline
+VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 \\ \hline
+Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 \\ \hline
+ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 \\ \hline
+\rowcolor{highlightColor} \textbf{3-BAR-PoseNet} 	& &  \checkmark  & & \textbf{-}     &   \textbf{-} \\ \hline
+\rowcolor{highlightColor} \textbf{3-BAR-Detectron} 	& &  \checkmark  & & \textbf{89.39}     &   \textbf{80.88} \\ \hline
+SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 \\ \hline
+2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 \\ \hline
+Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 \\ \hline 
+PB-GCN  \cite{PB-GCN}					& \checkmark  &  & & 93.2     &   87.5 \\ \hline 
+MFAS \cite{MFAS}						&  \checkmark & \checkmark & & - &   90.04 \\ \hline
+FUSION \cite{FUSION}					&  \checkmark &  & \checkmark& 94.5 &   91.6 \\ \hline
+PoseMap \cite{PREV1}					& \checkmark & \checkmark & & 95.2     &   91.7 \\ \hline
+MMTM \cite{MMTM}						&  \checkmark & \checkmark & & -  &   91.99 \\ \hline
+Action Machine \cite{PREV2}				&   & \checkmark & & 97.2     &   94.3 \\ \hline
+\end{tabular}
+\caption{Risultati di \emph{3-BAR-Detectron} e \emph{3-BAR-Posenet} comparati allo stato dell'arte.}
+\label{tab:nostriAlgoritmiNelMondo}
+\end{table}
+
+\section{Sviluppi futuri}
+Gli sviluppi futuri per gli algoritmi proposti sono molteplici. In questo lavoro di tesi ci siamo concentrati principalmente sulla trasformazione dei video RGB in una sequenza di pose successivamente rielaborate ed abbiamo ignorato completamente l'informazione utilizzabile dalla classificazione delle azioni utilizzando direttamente i valori RGB dei video. Potrebbe essere interessante combinare l'informazione proveniente dalle due tipologie di classificazione.
+
+Un altro possibile sviluppo di questo lavoro è testare gli algoritmi proposti anche sui dataset \emph{NTU-RGB+D120} \cite{NTURGB120}, \emph{MSR Daily Activity3D} \cite{MSR} e \emph{Northwestern-UCLA Multiview Action 3D (NUCLA)} \cite{NUCLA} per validare le prestazioni ottenute su NTU-RGB+D oppure analizzare le eventuali differenze.
+
+
+
 
 %--------------------------------------------------------------
 
@@ -1438,6 +1586,8 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 \bibitem{tensorMask} TensorMask: A Foundation for Dense Object Segmentation - \emph{Xinlei Chen, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
 
 \bibitem{NTURGB} NTU RGB+D: A Large Scale Dataset for 3D Human Activity Analysis - \emph{Amir Shahroudy, Jun Liu, Tian-Tsong Ng, Gang Wang} - 2016
+
+\bibitem{NTURGB120} NTU RGB+D 120: A Large-Scale Benchmark for 3D Human Activity Understanding - \emph{Jun Liu, Amir Shahroudy, Mauricio Perez, Gang Wang, Ling-Yu Duan and Alex C. Kot} - 2019
 
 \bibitem{LSTM} Long short-term memory - \emph{Sepp Hochreiter; Jürgen Schmidhuber} - 1997
 
@@ -1497,7 +1647,9 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 
 \bibitem{MFAS} MFAS: Multimodal Fusion Architecture Search - \emph{J. Perez-Rua, V. Vielzeuf, S. Pateux, M. Baccouche, F. Jurie} - 2019
 
+\bibitem{MSR} Mining actionlet ensemble for action recognition with depth cameras - \emph{J. Wang, Z. Liu, Y. Wu, and J. Yuan.} - 2012
 
+\bibitem{NUCLA} Cross-view action modeling, learning and recognition - \emph{J. Wang, X. Nie, Y. Xia, Y. Wu, and S. Zhu.} - 2014
 
 
 

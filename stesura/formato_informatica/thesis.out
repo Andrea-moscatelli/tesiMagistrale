@@ -9,8 +9,8 @@
 \BOOKMARK [1][-]{section.2.3}{Overview}{chapter.2}% 9
 \BOOKMARK [0][-]{chapter.3}{Stima della posa}{}% 10
 \BOOKMARK [1][-]{section.3.1}{PoseNet}{chapter.3}% 11
-\BOOKMARK [2][-]{subsection.3.1.1}{Stima dei key-points}{section.3.1}% 12
-\BOOKMARK [2][-]{subsection.3.1.2}{Raggruppamento dei key-points in istanze di persona}{section.3.1}% 13
+\BOOKMARK [2][-]{subsection.3.1.1}{Stima dei keypoint}{section.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.1.2}{Raggruppamento dei keypoint in istanze di persona}{section.3.1}% 13
 \BOOKMARK [1][-]{section.3.2}{Detectron2}{chapter.3}% 14
 \BOOKMARK [2][-]{subsection.3.2.1}{Mask R-CNN}{section.3.2}% 15
 \BOOKMARK [2][-]{subsection.3.2.2}{Predizione della posa con Mask R-CNN}{section.3.2}% 16
@@ -38,5 +38,8 @@
 \BOOKMARK [1][-]{section.6.1}{Una porzione rappresentativa del dataset}{chapter.6}% 38
 \BOOKMARK [1][-]{section.6.2}{Fase 1: Test di tutte le tecniche}{chapter.6}% 39
 \BOOKMARK [1][-]{section.6.3}{Fase 2: Numero di livelli}{chapter.6}% 40
-\BOOKMARK [1][-]{section.6.4}{FAI}{chapter.6}% 41
-\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 42
+\BOOKMARK [1][-]{section.6.4}{Fase 3: Dropout e regolarizzatori}{chapter.6}% 41
+\BOOKMARK [1][-]{section.6.5}{Fase 4: Allenamento completo tecnica migliore}{chapter.6}% 42
+\BOOKMARK [1][-]{section.6.6}{FAI}{chapter.6}% 43
+\BOOKMARK [0][-]{chapter.7}{Conclusioni e sviluppi futuri}{}% 44
+\BOOKMARK [1][-]{section.7.1}{Sviluppi futuri}{chapter.7}% 45

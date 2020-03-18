@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  12 MAR 2020 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  16 MAR 2020 11:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1206,22 +1206,77 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \colbreak@box=\box85
 \mc@col@check@num=\count284
 )
-\abcd=\skip133
+(/usr/local/texlive/2017/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+\everycr=\toks35
+\minrowclearance=\skip133
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2017/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks36
+\XKV@tempa@toks=\toks37
+)
+\XKV@depth=\count285
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box86
+)
+\tc@llx=\dimen271
+\tc@lly=\dimen272
+\tc@urx=\dimen273
+\tc@ury=\dimen274
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen275
+\adjbox@Height=\dimen276
+\adjbox@Depth=\dimen277
+\adjbox@Totalheight=\dimen278
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count286
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box87
+\sift@deathcycles=\count287
+\@vwid@loff=\dimen279
+\@vwid@roff=\dimen280
+))
+\abcd=\skip134
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count285
-\Gm@cntv=\count286
-\c@Gm@tempcnt=\count287
-\Gm@bindingoffset=\dimen271
-\Gm@wd@mp=\dimen272
-\Gm@odd@mp=\dimen273
-\Gm@even@mp=\dimen274
-\Gm@layoutwidth=\dimen275
-\Gm@layoutheight=\dimen276
-\Gm@layouthoffset=\dimen277
-\Gm@layoutvoffset=\dimen278
-\Gm@dimlist=\toks35
+\Gm@cnth=\count288
+\Gm@cntv=\count289
+\c@Gm@tempcnt=\count290
+\Gm@bindingoffset=\dimen281
+\Gm@wd@mp=\dimen282
+\Gm@odd@mp=\dimen283
+\Gm@even@mp=\dimen284
+\Gm@layoutwidth=\dimen285
+\Gm@layoutheight=\dimen286
+\Gm@layouthoffset=\dimen287
+\Gm@layoutvoffset=\dimen288
+\Gm@dimlist=\toks38
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -1229,38 +1284,38 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (./thesis.aux (./titlePage.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 101.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 101.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 105.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 105.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Try loading font information for T1+pplj on input line 101.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 105.
+LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    Try loading font information for T1+pplj on input line 105.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/t1pplj.fd
 File: t1pplj.fd 2004/09/06 font definitions for T1/pplj.
 )
-LaTeX Info: Redefining \it@ocap on input line 101.
-LaTeX Info: Redefining \it@ccap on input line 101.
-LaTeX Info: Redefining \dots on input line 101.
-\c@lstlisting=\count288
+LaTeX Info: Redefining \it@ocap on input line 105.
+LaTeX Info: Redefining \it@ccap on input line 105.
+LaTeX Info: Redefining \dots on input line 105.
+\c@lstlisting=\count291
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1278,20 +1333,20 @@ Dictionary: translator-basic-dictionary, Language: English
 (/usr/local/texlive/2017/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2017/05/19 v2.7g siunitx: Abbreviated units
 )
-\AtBeginShipoutBox=\box86
-Package backref Info: ** backref set up for natbib ** on input line 101.
-Package hyperref Info: Link coloring OFF on input line 101.
+\AtBeginShipoutBox=\box88
+Package backref Info: ** backref set up for natbib ** on input line 105.
+Package hyperref Info: Link coloring OFF on input line 105.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count289
+\c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 101.
-LaTeX Info: Redefining \pageref on input line 101.
-LaTeX Info: Redefining \nameref on input line 101.
+LaTeX Info: Redefining \ref on input line 105.
+LaTeX Info: Redefining \pageref on input line 105.
+LaTeX Info: Redefining \nameref on input line 105.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write4
@@ -1300,17 +1355,17 @@ LaTeX Info: Redefining \nameref on input line 101.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count290
-\scratchdimen=\dimen279
-\scratchbox=\box87
-\nofMPsegments=\count291
-\nofMParguments=\count292
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count293
-\MPscratchDim=\dimen280
-\MPnumerator=\count294
-\makeMPintoPDFobject=\count295
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count293
+\scratchdimen=\dimen289
+\scratchbox=\box89
+\nofMPsegments=\count294
+\nofMParguments=\count295
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count296
+\MPscratchDim=\dimen290
+\MPnumerator=\count297
+\makeMPintoPDFobject=\count298
+\everyMPtoPDFconversion=\toks40
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1328,7 +1383,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 101.
+LaTeX Info: Redefining \microtypecontext on input line 105.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1377,15 +1432,15 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c__siunitx_mathsf_int=\count296
-LaTeX Font Info:    Try loading font information for U+zeur on input line 101.
+\c__siunitx_mathsf_int=\count299
+LaTeX Font Info:    Try loading font information for U+zeur on input line 105.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/eulervm/uzeur.fd
 File: uzeur.fd 2005/01/11 v4.0 (WaS)
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeus on input line 101.
+LaTeX Font Info:    Try loading font information for U+zeus on input line 105.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/eulervm/uzeus.fd
 File: uzeus.fd 2005/01/11 v4.0 (WaS)
@@ -1393,13 +1448,13 @@ File: uzeus.fd 2005/01/11 v4.0 (WaS)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-eus.cfg
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 )
-LaTeX Font Info:    Try loading font information for U+zeuex on input line 101.
+LaTeX Font Info:    Try loading font information for U+zeuex on input line 105.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/eulervm/uzeuex.fd
 File: uzeuex.fd 2005/01/11 v4.0 (WaS)
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 101
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 105
 .
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -1416,7 +1471,7 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 101.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 105.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmss.fd
@@ -1426,26 +1481,26 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c__siunitx_mathtt_int=\count297
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 101.
+\c__siunitx_mathtt_int=\count300
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 105.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 101.
+(Font)              scaled to size 10.20007pt on input line 105.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `fvm' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 7.65005pt on input line 101.
+(Font)              scaled to size 7.65005pt on input line 105.
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 5.95004pt on input line 101.
+(Font)              scaled to size 5.95004pt on input line 105.
 \openout2 = `titlePage.aux'.
 
  (./titlePage.tex
-<logo/LOGO.pdf, id=172, 996.72375pt x 483.8075pt>
+<logo/LOGO.pdf, id=184, 996.72375pt x 483.8075pt>
 File: logo/LOGO.pdf Graphic file (type pdf)
  <use logo/LOGO.pdf>
 Package pdftex.def Info: logo/LOGO.pdf used on input line 10.
@@ -1471,8 +1526,8 @@ LaTeX Font Info:    Try loading font information for TS1+pplj on input line 45.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ts1pplj.fd
 File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
 )) [2]
-Package tocbasic Info: character protrusion at toc deactivated on input line 11
-7.
+Package tocbasic Info: character protrusion at toc deactivated on input line 12
+1.
 
 (./thesis.toc
 Package microtype Info: Character `029' is missing
@@ -1491,8 +1546,8 @@ LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 \openout5 = `thesis.toc'.
 
  [2]
-Package tocbasic Info: character protrusion at lof deactivated on input line 11
-8.
+Package tocbasic Info: character protrusion at lof deactivated on input line 12
+2.
  (./thesis.lof
 Overfull \hbox (28.90155pt too wide) in paragraph at lines 8--8
  [][] [][]\T1/pplj/m/n/12 (-20) Un esem-pio di re-te ri-cor-ren-te con due hid-
@@ -1503,15 +1558,15 @@ den layers.[] []
 
 
 ]
-Overfull \hbox (14.49745pt too wide) in paragraph at lines 22--22
+Overfull \hbox (9.51122pt too wide) in paragraph at lines 22--22
  [][] [][]\T1/pplj/m/n/12 (-20) Sintetizzazione spazio-temporale del-le heat-ma
-ps.[] []  
+p.[] []  
  []
 
 
-Overfull \hbox (14.49745pt too wide) in paragraph at lines 23--23
+Overfull \hbox (9.51122pt too wide) in paragraph at lines 23--23
  [][] [][]\T1/pplj/m/n/12 (-20) Sintetizzazione spazio-temporale del-le heat-ma
-ps.[] []  
+p.[] []  
  []
 
 
@@ -1524,10 +1579,10 @@ R-CNN[] []
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [6] [7
+ [6] [7] [8
 
 
-] [8
+] [9] [10
 
 
 ]
@@ -1548,474 +1603,542 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              deprecated \float@addtolist interface .
 
 LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <12> not available
-(Font)              Font shape `T1/pplj/b/n' tried instead on input line 191.
-[9
+(Font)              Font shape `T1/pplj/b/n' tried instead on input line 199.
+[11
 
 
 ]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [10] <imgs/comparazioneNeurone.jpg, id=484, 1512.65125pt x 1021.8175pt>
+ [12] <imgs/comparazioneNeurone.jpg, id=515, 1512.65125pt x 1021.8175pt>
 File: imgs/comparazioneNeurone.jpg Graphic file (type jpg)
 
 <use imgs/comparazioneNeurone.jpg>
-Package pdftex.def Info: imgs/comparazioneNeurone.jpg used on input line 233.
+Package pdftex.def Info: imgs/comparazioneNeurone.jpg used on input line 241.
 (pdftex.def)             Requested size: 384.1122pt x 259.4764pt.
- [11]
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 238
+ [13]
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 246
 .
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
-<imgs/hiddenLayers.jpg, id=490, 758.835pt x 559.08875pt>
+<imgs/hiddenLayers.jpg, id=520, 758.835pt x 559.08875pt>
 File: imgs/hiddenLayers.jpg Graphic file (type jpg)
 
 <use imgs/hiddenLayers.jpg>
-Package pdftex.def Info: imgs/hiddenLayers.jpg used on input line 244.
+Package pdftex.def Info: imgs/hiddenLayers.jpg used on input line 252.
 (pdftex.def)             Requested size: 307.29092pt x 226.4041pt.
- [12 <./imgs/comparazioneNeurone.jpg>] [13 <./imgs/hiddenLayers.jpg>]
-<imgs/convolutionalNetwork.jpg, id=502, 1606.0pt x 539.01375pt>
+ [14 <./imgs/comparazioneNeurone.jpg>] [15 <./imgs/hiddenLayers.jpg>]
+<imgs/convolutionalNetwork.jpg, id=532, 1606.0pt x 539.01375pt>
 File: imgs/convolutionalNetwork.jpg Graphic file (type jpg)
 
 <use imgs/convolutionalNetwork.jpg>
-Package pdftex.def Info: imgs/convolutionalNetwork.jpg used on input line 261.
+Package pdftex.def Info: imgs/convolutionalNetwork.jpg used on input line 269.
 (pdftex.def)             Requested size: 384.1122pt x 128.91357pt.
 
-<imgs/esempioRNN.jpg, id=504, 1356.06625pt x 654.445pt>
+<imgs/esempioRNN.jpg, id=534, 1356.06625pt x 654.445pt>
 File: imgs/esempioRNN.jpg Graphic file (type jpg)
 
 <use imgs/esempioRNN.jpg>
-Package pdftex.def Info: imgs/esempioRNN.jpg used on input line 275.
+Package pdftex.def Info: imgs/esempioRNN.jpg used on input line 283.
 (pdftex.def)             Requested size: 307.29092pt x 148.2923pt.
- [14 <./imgs/convolutionalNetwork.jpg>]
-<imgs/srotolamentoRNN.jpg, id=510, 2622.79875pt x 856.19875pt>
+ [16 <./imgs/convolutionalNetwork.jpg>]
+<imgs/srotolamentoRNN.jpg, id=540, 2622.79875pt x 856.19875pt>
 File: imgs/srotolamentoRNN.jpg Graphic file (type jpg)
 
 <use imgs/srotolamentoRNN.jpg>
-Package pdftex.def Info: imgs/srotolamentoRNN.jpg used on input line 291.
+Package pdftex.def Info: imgs/srotolamentoRNN.jpg used on input line 299.
 (pdftex.def)             Requested size: 384.1122pt x 125.38023pt.
- [15 <./imgs/esempioRNN.jpg>]
-<imgs/lstmFull.jpeg, id=516, 1367.1075pt x 533.995pt>
+ [17 <./imgs/esempioRNN.jpg>]
+<imgs/lstmFull.jpeg, id=547, 1367.1075pt x 533.995pt>
 File: imgs/lstmFull.jpeg Graphic file (type jpg)
  <use imgs/lstmFull.jpeg>
-Package pdftex.def Info: imgs/lstmFull.jpeg used on input line 312.
+Package pdftex.def Info: imgs/lstmFull.jpeg used on input line 320.
 (pdftex.def)             Requested size: 384.1122pt x 150.0309pt.
 
-[16 <./imgs/srotolamentoRNN.jpg>]
-<imgs/LSTMcellState.jpeg, id=527, 628.3475pt x 411.5375pt>
+[18 <./imgs/srotolamentoRNN.jpg>]
+<imgs/LSTMcellState.jpeg, id=558, 628.3475pt x 411.5375pt>
 File: imgs/LSTMcellState.jpeg Graphic file (type jpg)
 
 <use imgs/LSTMcellState.jpeg>
-Package pdftex.def Info: imgs/LSTMcellState.jpeg used on input line 349.
+Package pdftex.def Info: imgs/LSTMcellState.jpeg used on input line 357.
 (pdftex.def)             Requested size: 230.46965pt x 150.9415pt.
 
-<imgs/LSTMgate.jpeg, id=528, 192.72pt x 232.87pt>
+<imgs/LSTMgate.jpeg, id=559, 192.72pt x 232.87pt>
 File: imgs/LSTMgate.jpeg Graphic file (type jpg)
  <use imgs/LSTMgate.jpeg>
-Package pdftex.def Info: imgs/LSTMgate.jpeg used on input line 353.
+Package pdftex.def Info: imgs/LSTMgate.jpeg used on input line 361.
 (pdftex.def)             Requested size: 76.82126pt x 92.82298pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 368--369
 
  []
 
-[17 <./imgs/lstmFull.jpeg> <./imgs/LSTMcellState.jpeg> <./imgs/LSTMgate.jpeg>]
-<imgs/LSTMforgetGate.jpeg, id=536, 302.63063pt x 201.75375pt>
+[19 <./imgs/lstmFull.jpeg> <./imgs/LSTMcellState.jpeg> <./imgs/LSTMgate.jpeg>]
+<imgs/LSTMforgetGate.jpeg, id=566, 302.63063pt x 201.75375pt>
 File: imgs/LSTMforgetGate.jpeg Graphic file (type jpg)
 
 <use imgs/LSTMforgetGate.jpeg>
-Package pdftex.def Info: imgs/LSTMforgetGate.jpeg used on input line 366.
+Package pdftex.def Info: imgs/LSTMforgetGate.jpeg used on input line 374.
 (pdftex.def)             Requested size: 192.05609pt x 128.03831pt.
 
-<imgs/LSTMinputGate1.jpeg, id=538, 624.3325pt x 405.515pt>
+<imgs/LSTMinputGate1.jpeg, id=568, 624.3325pt x 405.515pt>
 File: imgs/LSTMinputGate1.jpeg Graphic file (type jpg)
 
 <use imgs/LSTMinputGate1.jpeg>
-Package pdftex.def Info: imgs/LSTMinputGate1.jpeg used on input line 418.
+Package pdftex.def Info: imgs/LSTMinputGate1.jpeg used on input line 426.
 (pdftex.def)             Requested size: 172.8493pt x 112.26875pt.
 
-<imgs/LSTMinputGate2.jpeg, id=539, 614.295pt x 401.5pt>
+<imgs/LSTMinputGate2.jpeg, id=569, 614.295pt x 401.5pt>
 File: imgs/LSTMinputGate2.jpeg Graphic file (type jpg)
 
 <use imgs/LSTMinputGate2.jpeg>
-Package pdftex.def Info: imgs/LSTMinputGate2.jpeg used on input line 422.
+Package pdftex.def Info: imgs/LSTMinputGate2.jpeg used on input line 430.
 (pdftex.def)             Requested size: 172.8493pt x 112.9706pt.
- [18 <./imgs/LSTMforgetGate.jpeg>]
-<imgs/LSTMoutputGate.jpeg, id=548, 620.3175pt x 395.4775pt>
+ [20 <./imgs/LSTMforgetGate.jpeg>]
+<imgs/LSTMoutputGate.jpeg, id=579, 620.3175pt x 395.4775pt>
 File: imgs/LSTMoutputGate.jpeg Graphic file (type jpg)
 
 <use imgs/LSTMoutputGate.jpeg>
-Package pdftex.def Info: imgs/LSTMoutputGate.jpeg used on input line 456.
+Package pdftex.def Info: imgs/LSTMoutputGate.jpeg used on input line 464.
 (pdftex.def)             Requested size: 192.05609pt x 122.43985pt.
- [19 <./imgs/LSTMinputGate1.jpeg> <./imgs/LSTMinputGate2.jpeg> <./imgs/LSTMoutp
-utGate.jpeg>] [20]
+ [21 <./imgs/LSTMinputGate1.jpeg> <./imgs/LSTMinputGate2.jpeg> <./imgs/LSTMoutp
+utGate.jpeg>] [22]
 chapter 2.
-[21
+[23
 
 
-] [22] <imgs/heatmapPoseCobination.jpg, id=583, 1794.20313pt x 508.90125pt>
+] [24] <imgs/heatmapPoseCobination.jpg, id=614, 1794.20313pt x 508.90125pt>
 File: imgs/heatmapPoseCobination.jpg Graphic file (type jpg)
 
 <use imgs/heatmapPoseCobination.jpg>
-Package pdftex.def Info: imgs/heatmapPoseCobination.jpg used on input line 525.
+Package pdftex.def Info: imgs/heatmapPoseCobination.jpg used on input line 533.
 
 (pdftex.def)             Requested size: 422.52576pt x 119.84029pt.
 
-Overfull \hbox (38.41356pt too wide) in paragraph at lines 525--526
+Overfull \hbox (38.41356pt too wide) in paragraph at lines 533--534
  [][] 
  []
 
-<imgs/combinazioneHeatmaps.jpg, id=584, 834.11626pt x 327.72438pt>
+<imgs/combinazioneHeatmaps.jpg, id=615, 834.11626pt x 327.72438pt>
 File: imgs/combinazioneHeatmaps.jpg Graphic file (type jpg)
 
 <use imgs/combinazioneHeatmaps.jpg>
-Package pdftex.def Info: imgs/combinazioneHeatmaps.jpg used on input line 534.
+Package pdftex.def Info: imgs/combinazioneHeatmaps.jpg used on input line 542.
 (pdftex.def)             Requested size: 384.1122pt x 150.92006pt.
 
 Overfull \hbox (77.60303pt too wide) has occurred while \output is active
  []|[]|
  []
 
-[23 <./imgs/heatmapPoseCobination.jpg> <./imgs/combinazioneHeatmaps.jpg>]
-<imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg, id=592, 739.76375pt x 726.715
+[25 <./imgs/heatmapPoseCobination.jpg> <./imgs/combinazioneHeatmaps.jpg>]
+<imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg, id=621, 739.76375pt x 726.715
 pt>
 File: imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg Graphic file (type jpg)
  <use imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg>
 Package pdftex.def Info: imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg used o
-n input line 550.
+n input line 558.
 (pdftex.def)             Requested size: 268.87737pt x 264.13434pt.
- [24 <./imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg>]
-<imgs/sintetizzazioneDellePose.jpg, id=601, 1107.13625pt x 416.55624pt>
+ [26 <./imgs/sintetizzazioneSpazioTemporaleHeatmpas.jpg>]
+<imgs/sintetizzazioneDellePose.jpg, id=630, 1107.13625pt x 416.55624pt>
 File: imgs/sintetizzazioneDellePose.jpg Graphic file (type jpg)
 
 <use imgs/sintetizzazioneDellePose.jpg>
 Package pdftex.def Info: imgs/sintetizzazioneDellePose.jpg used on input line 5
-65.
+73.
 (pdftex.def)             Requested size: 384.1122pt x 144.51929pt.
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 6.46004pt on input line 587.
+
+Overfull \hbox (14.69597pt too wide) in paragraph at lines 596--596
+|[]\T1/pplj/m/sc/12 (-20) a c -t i o n m a -c h i -n e : r e -t h i n -k i n g 
+a c -t i o n r e -c o -g n i -t i o n i n t r i m -
+ []
+
+<imgs/actionMachineStructureIta.jpg, id=633, 1208.515pt x 441.65pt>
+File: imgs/actionMachineStructureIta.jpg Graphic file (type jpg)
+
+<use imgs/actionMachineStructureIta.jpg>
+Package pdftex.def Info: imgs/actionMachineStructureIta.jpg used on input line 
+601.
+(pdftex.def)             Requested size: 384.1122pt x 140.37393pt.
 
 Overfull \hbox (77.60303pt too wide) has occurred while \output is active
  []|[]|
  []
 
-[25 <./imgs/sintetizzazioneDellePose.jpg>]
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 6.46004pt on input line 579.
-
-Overfull \hbox (14.69597pt too wide) in paragraph at lines 588--588
-|[]\T1/pplj/m/sc/12 (-20) a c -t i o n m a -c h i -n e : r e -t h i n -k i n g 
-a c -t i o n r e -c o -g n i -t i o n i n t r i m -
- []
-
-<imgs/actionMachineStructure.jpeg, id=609, 2417.03pt x 883.3pt>
-File: imgs/actionMachineStructure.jpeg Graphic file (type jpg)
-
-<use imgs/actionMachineStructure.jpeg>
-Package pdftex.def Info: imgs/actionMachineStructure.jpeg used on input line 59
-3.
-(pdftex.def)             Requested size: 384.1122pt x 140.37395pt.
- [26 <./imgs/actionMachineStructure.jpeg>]
+[27 <./imgs/sintetizzazioneDellePose.jpg>] [28 <./imgs/actionMachineStructureIt
+a.jpg>]
 Overfull \hbox (83.02304pt too wide) has occurred while \output is active
  []|[]|
  []
 
-[27] [28]
-Overfull \hbox (83.02304pt too wide) has occurred while \output is active
- []|[]|
- []
-
-[29] [30]
+[29] [30] [31] [32]
 chapter 3.
-<imgs/stimaPosaEsempi.jpeg, id=691, 513.92pt x 392.46625pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 739--740
+
+ []
+
+<imgs/stimaPosaEsempi.jpeg, id=721, 513.92pt x 392.46625pt>
 File: imgs/stimaPosaEsempi.jpeg Graphic file (type jpg)
 
 <use imgs/stimaPosaEsempi.jpeg>
-Package pdftex.def Info: imgs/stimaPosaEsempi.jpeg used on input line 695.
+Package pdftex.def Info: imgs/stimaPosaEsempi.jpeg used on input line 744.
 (pdftex.def)             Requested size: 384.1122pt x 293.33688pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 698--701
-
- []
-
-[31
+ [33
 
 
  <./imgs/stimaPosaEsempi.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 702--703
-
- []
-
-<imgs/stimaPosaEsempioFisio.jpeg, id=696, 1493.58pt x 849.1725pt>
+<imgs/stimaPosaEsempioFisio.jpeg, id=726, 1493.58pt x 849.1725pt>
 File: imgs/stimaPosaEsempioFisio.jpeg Graphic file (type jpg)
 
 <use imgs/stimaPosaEsempioFisio.jpeg>
-Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 707
+Package pdftex.def Info: imgs/stimaPosaEsempioFisio.jpeg used on input line 758
 .
 (pdftex.def)             Requested size: 268.87737pt x 152.87036pt.
- [32 <./imgs/stimaPosaEsempioFisio.jpeg>]
-[33] <imgs/heatmaps-posenet.jpg, id=711, 965.10562pt x 255.95625pt>
+ [34 <./imgs/stimaPosaEsempioFisio.jpeg>]
+[35] <imgs/heatmaps-posenet.jpg, id=742, 965.10562pt x 255.95625pt>
 File: imgs/heatmaps-posenet.jpg Graphic file (type jpg)
 
 <use imgs/heatmaps-posenet.jpg>
-Package pdftex.def Info: imgs/heatmaps-posenet.jpg used on input line 742.
+Package pdftex.def Info: imgs/heatmaps-posenet.jpg used on input line 797.
 (pdftex.def)             Requested size: 384.1122pt x 101.86905pt.
 
-<imgs/short-range-Posenet.jpg, id=712, 965.10562pt x 255.95625pt>
+<imgs/short-range-Posenet.jpg, id=743, 965.10562pt x 255.95625pt>
 File: imgs/short-range-Posenet.jpg Graphic file (type jpg)
 
 <use imgs/short-range-Posenet.jpg>
-Package pdftex.def Info: imgs/short-range-Posenet.jpg used on input line 750.
+Package pdftex.def Info: imgs/short-range-Posenet.jpg used on input line 807.
 (pdftex.def)             Requested size: 384.1122pt x 101.86905pt.
- [34 <./imgs/heatmaps-posenet.jpg>]
-<imgs/mid-range-Posenet.jpg, id=718, 900.86563pt x 255.95625pt>
-File: imgs/mid-range-Posenet.jpg Graphic file (type jpg)
-
-<use imgs/mid-range-Posenet.jpg>
-Package pdftex.def Info: imgs/mid-range-Posenet.jpg used on input line 756.
-(pdftex.def)             Requested size: 384.1122pt x 109.1334pt.
-
-<imgs/legamiKeypointsPoseNet.jpeg, id=720, 732.7375pt x 937.5025pt>
+ [36 <./imgs/heatmaps-posenet.jpg>]
+<imgs/legamiKeypointsPoseNet.jpeg, id=749, 732.7375pt x 937.5025pt>
 File: imgs/legamiKeypointsPoseNet.jpeg Graphic file (type jpg)
 
 <use imgs/legamiKeypointsPoseNet.jpeg>
-Package pdftex.def Info: imgs/legamiKeypointsPoseNet.jpeg used on input line 76
-7.
+Package pdftex.def Info: imgs/legamiKeypointsPoseNet.jpeg used on input line 82
+1.
 (pdftex.def)             Requested size: 115.23482pt x 147.42854pt.
+
+<imgs/mid-range-Posenet.jpg, id=751, 900.86563pt x 255.95625pt>
+File: imgs/mid-range-Posenet.jpg Graphic file (type jpg)
+
+<use imgs/mid-range-Posenet.jpg>
+Package pdftex.def Info: imgs/mid-range-Posenet.jpg used on input line 831.
+(pdftex.def)             Requested size: 384.1122pt x 109.1334pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[35 <./imgs/short-range-Posenet.jpg> <./imgs/mid-range-Posenet.jpg>]
-<imgs/overview-posenet.jpg, id=729, 955.57pt x 573.14125pt>
+[37 <./imgs/short-range-Posenet.jpg> <./imgs/legamiKeypointsPoseNet.jpeg>]
+<imgs/overview-posenet.jpg, id=758, 955.57pt x 573.14125pt>
 File: imgs/overview-posenet.jpg Graphic file (type jpg)
 
 <use imgs/overview-posenet.jpg>
-Package pdftex.def Info: imgs/overview-posenet.jpg used on input line 778.
+Package pdftex.def Info: imgs/overview-posenet.jpg used on input line 840.
 (pdftex.def)             Requested size: 384.1122pt x 230.38058pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 785--786
+Underfull \hbox (badness 10000) in paragraph at lines 847--848
 
  []
 
-[36 <./imgs/legamiKeypointsPoseNet.jpeg> <./imgs/overview-posenet.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 789--790
+[38 <./imgs/mid-range-Posenet.jpg> <./imgs/overview-posenet.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 851--852
 
  []
 
-<imgs/typesOfDetection.png, id=738, 2806.485pt x 1199.48125pt>
+<imgs/typesOfDetection.png, id=767, 2806.485pt x 1199.48125pt>
 File: imgs/typesOfDetection.png Graphic file (type png)
 
 <use imgs/typesOfDetection.png>
-Package pdftex.def Info: imgs/typesOfDetection.png used on input line 793.
+Package pdftex.def Info: imgs/typesOfDetection.png used on input line 855.
 (pdftex.def)             Requested size: 384.1122pt x 164.1559pt.
- [37 <./imgs/typesOfDetection.png>]
-<imgs/instanceSeg.jpeg, id=761, 1858.945pt x 1397.22pt>
+ [39 <./imgs/typesOfDetection.png>]
+<imgs/instanceSeg.jpeg, id=792, 1858.945pt x 1397.22pt>
 File: imgs/instanceSeg.jpeg Graphic file (type jpg)
 
 <use imgs/instanceSeg.jpeg>
-Package pdftex.def Info: imgs/instanceSeg.jpeg used on input line 822.
+Package pdftex.def Info: imgs/instanceSeg.jpeg used on input line 884.
 (pdftex.def)             Requested size: 384.1122pt x 288.69186pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[38] <imgs/instanceSegmenttionMaskRCNN2.jpeg, id=777, 1812.7725pt x 955.57pt>
+<imgs/instanceSegmenttionMaskRCNN2.jpeg, id=795, 1812.7725pt x 955.57pt>
 File: imgs/instanceSegmenttionMaskRCNN2.jpeg Graphic file (type jpg)
 
 <use imgs/instanceSegmenttionMaskRCNN2.jpeg>
 Package pdftex.def Info: imgs/instanceSegmenttionMaskRCNN2.jpeg used on input l
-ine 834.
+ine 896.
 (pdftex.def)             Requested size: 384.1122pt x 202.46906pt.
+ [40]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[41 <./imgs/instanceSeg.jpeg>]
+<imgs/posePredictionMaskRCNN.jpeg, id=814, 1816.7875pt x 523.9575pt>
+File: imgs/posePredictionMaskRCNN.jpeg Graphic file (type jpg)
+
+<use imgs/posePredictionMaskRCNN.jpeg>
+Package pdftex.def Info: imgs/posePredictionMaskRCNN.jpeg used on input line 91
+4.
+(pdftex.def)             Requested size: 422.52576pt x 121.85083pt.
+
+Overfull \hbox (38.41356pt too wide) in paragraph at lines 914--915
+ [][] 
+ []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[39 <./imgs/instanceSeg.jpeg>]
-<imgs/posePredictionMaskRCNN.jpeg, id=784, 1816.7875pt x 523.9575pt>
-File: imgs/posePredictionMaskRCNN.jpeg Graphic file (type jpg)
-
-<use imgs/posePredictionMaskRCNN.jpeg>
-Package pdftex.def Info: imgs/posePredictionMaskRCNN.jpeg used on input line 85
-2.
-(pdftex.def)             Requested size: 422.52576pt x 121.85083pt.
-
-Overfull \hbox (38.41356pt too wide) in paragraph at lines 852--853
- [][] 
- []
-
-[40 <./imgs/instanceSegmenttionMaskRCNN2.jpeg>] [41 <./imgs/posePredictionMaskR
-CNN.jpeg>] [42
+[42 <./imgs/instanceSegmenttionMaskRCNN2.jpeg>] [43 <./imgs/posePredictionMaskR
+CNN.jpeg>] [44
 
 
 ]
 chapter 4.
-[43] <imgs/swapPose.jpg, id=806, 4173.5925pt x 2684.0275pt>
+[45] <imgs/swapPose.jpg, id=835, 4173.5925pt x 2684.0275pt>
 File: imgs/swapPose.jpg Graphic file (type jpg)
 
 <use imgs/swapPose.jpg>
-Package pdftex.def Info: imgs/swapPose.jpg used on input line 909.
+Package pdftex.def Info: imgs/swapPose.jpg used on input line 971.
 (pdftex.def)             Requested size: 384.1122pt x 246.99905pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[44] [45 <./imgs/swapPose.jpg>]
-<imgs/rimozioneZeri.jpg, id=817, 2177.13374pt x 1402.23875pt>
+[46] [47 <./imgs/swapPose.jpg>]
+<imgs/rimozioneZeri.jpg, id=848, 2177.13374pt x 1402.23875pt>
 File: imgs/rimozioneZeri.jpg Graphic file (type jpg)
 
 <use imgs/rimozioneZeri.jpg>
-Package pdftex.def Info: imgs/rimozioneZeri.jpg used on input line 933.
+Package pdftex.def Info: imgs/rimozioneZeri.jpg used on input line 995.
 (pdftex.def)             Requested size: 345.69862pt x 222.65106pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[46] [47 <./imgs/rimozioneZeri.jpg>]
-<imgs/centroFrame.jpg, id=828, 765.86125pt x 633.36626pt>
+[48] [49 <./imgs/rimozioneZeri.jpg>]
+<imgs/centroFrame.jpg, id=858, 765.86125pt x 633.36626pt>
 File: imgs/centroFrame.jpg Graphic file (type jpg)
 
 <use imgs/centroFrame.jpg>
-Package pdftex.def Info: imgs/centroFrame.jpg used on input line 960.
+Package pdftex.def Info: imgs/centroFrame.jpg used on input line 1022.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
- [48 <./imgs/centroFrame.jpg>]
-<imgs/centroVideo.jpg, id=835, 765.86125pt x 633.36626pt>
+ [50 <./imgs/centroFrame.jpg>]
+<imgs/centroVideo.jpg, id=864, 765.86125pt x 633.36626pt>
 File: imgs/centroVideo.jpg Graphic file (type jpg)
 
 <use imgs/centroVideo.jpg>
-Package pdftex.def Info: imgs/centroVideo.jpg used on input line 975.
+Package pdftex.def Info: imgs/centroVideo.jpg used on input line 1037.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
- [49 <./imgs/centroVideo.jpg>]
-<imgs/multiCentroVideo.jpg, id=841, 765.86125pt x 633.36626pt>
+ [51 <./imgs/centroVideo.jpg>]
+<imgs/multiCentroVideo.jpg, id=870, 765.86125pt x 633.36626pt>
 File: imgs/multiCentroVideo.jpg Graphic file (type jpg)
 
 <use imgs/multiCentroVideo.jpg>
-Package pdftex.def Info: imgs/multiCentroVideo.jpg used on input line 995.
+Package pdftex.def Info: imgs/multiCentroVideo.jpg used on input line 1057.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
- [50 <./imgs/multiCentroVideo.jpg>] [51]
-<imgs/nextFrame.jpg, id=853, 346.12254pt x 172.57787pt>
+ [52 <./imgs/multiCentroVideo.jpg>] [53]
+<imgs/nextFrame.jpg, id=883, 346.12254pt x 172.57787pt>
 File: imgs/nextFrame.jpg Graphic file (type jpg)
 
 <use imgs/nextFrame.jpg>
-Package pdftex.def Info: imgs/nextFrame.jpg used on input line 1034.
+Package pdftex.def Info: imgs/nextFrame.jpg used on input line 1096.
 (pdftex.def)             Requested size: 384.1122pt x 191.53471pt.
- [52 <./imgs/nextFrame.jpg>]
-<imgs/distanzeCumulate.jpg, id=859, 936.8579pt x 443.475pt>
+ [54 <./imgs/nextFrame.jpg>]
+<imgs/distanzeCumulate.jpg, id=889, 936.8579pt x 443.475pt>
 File: imgs/distanzeCumulate.jpg Graphic file (type jpg)
 
 <use imgs/distanzeCumulate.jpg>
-Package pdftex.def Info: imgs/distanzeCumulate.jpg used on input line 1058.
+Package pdftex.def Info: imgs/distanzeCumulate.jpg used on input line 1120.
 (pdftex.def)             Requested size: 384.1122pt x 181.82591pt.
- [53 <./imgs/distanzeCumulate.jpg>]
+ [55 <./imgs/distanzeCumulate.jpg>]
 
-LaTeX Warning: Reference `' on page 54 undefined on input line 1071.
+LaTeX Warning: Reference `' on page 56 undefined on input line 1133.
 
-<imgs/distanzeRelative.jpg, id=865, 765.86125pt x 633.36626pt>
+<imgs/distanzeRelative.jpg, id=894, 765.86125pt x 633.36626pt>
 File: imgs/distanzeRelative.jpg Graphic file (type jpg)
 
 <use imgs/distanzeRelative.jpg>
-Package pdftex.def Info: imgs/distanzeRelative.jpg used on input line 1075.
+Package pdftex.def Info: imgs/distanzeRelative.jpg used on input line 1137.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
- [54 <./imgs/distanzeRelative.jpg>]
-<imgs/normalizzazione.jpg, id=870, 3528.18124pt x 1856.9375pt>
+ [56 <./imgs/distanzeRelative.jpg>]
+<imgs/normalizzazione.jpg, id=899, 3528.18124pt x 1856.9375pt>
 File: imgs/normalizzazione.jpg Graphic file (type jpg)
 
 <use imgs/normalizzazione.jpg>
-Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1089.
+Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1151.
 (pdftex.def)             Requested size: 384.1122pt x 202.13866pt.
- [55 <./imgs/normalizzazione.jpg>] [56] [57]
-[58]
+ [57 <./imgs/normalizzazione.jpg>] [58] [59]
+[60]
 chapter 5.
-[59
+[61
 
 
-] <imgs/varietaNTURGB.jpeg, id=898, 1636.1125pt x 1515.6625pt>
+] <imgs/varietaNTURGB.jpeg, id=927, 1636.1125pt x 1515.6625pt>
 File: imgs/varietaNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/varietaNTURGB.jpeg>
-Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1175.
+Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1236.
 (pdftex.def)             Requested size: 345.69862pt x 320.2412pt.
- [60 <./imgs/varietaNTURGB.jpeg>]
-<imgs/giuntiNTURGB.jpeg, id=903, 1092.08pt x 1102.1175pt>
+ [62 <./imgs/varietaNTURGB.jpeg>]
+<imgs/giuntiNTURGB.jpeg, id=932, 1092.08pt x 1102.1175pt>
 File: imgs/giuntiNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/giuntiNTURGB.jpeg>
-Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1187.
+Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1248.
 (pdftex.def)             Requested size: 192.05609pt x 193.8152pt.
- [61 <./imgs/giuntiNTURGB.jpeg>]
-<imgs/disposizioneCamereNTURGB-3.jpg, id=910, 1924.18875pt x 529.98pt>
+ [63 <./imgs/giuntiNTURGB.jpeg>]
+<imgs/disposizioneCamereNTURGB-3.jpg, id=939, 1924.18875pt x 529.98pt>
 File: imgs/disposizioneCamereNTURGB-3.jpg Graphic file (type jpg)
 
 <use imgs/disposizioneCamereNTURGB-3.jpg>
 Package pdftex.def Info: imgs/disposizioneCamereNTURGB-3.jpg used on input line
- 1208.
+ 1269.
 (pdftex.def)             Requested size: 384.1122pt x 105.79195pt.
- [62 <./imgs/disposizioneCamereNTURGB-3.jpg>] [63] [64]
+ [64 <./imgs/disposizioneCamereNTURGB-3.jpg>] [65] [66]
 chapter 6.
-[65
+[67
 
+
+] [68]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(28.45274pt, 526.376pt, 42.67912pt)
+* v-part:(T,H,B)=(42.67912pt, 799.52228pt, 2.84544pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=526.376pt
+* \textheight=799.52228pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-29.59087pt
+* \topmargin=-68.34087pt
+* \headheight=17.0pt
+* \headsep=21.75pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=82.22992pt
+* \marginparsep=23.49426pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+ <imgs/esplorazione1L.jpg, id=975, 1080.53688pt x 1552.80125pt>
+File: imgs/esplorazione1L.jpg Graphic file (type jpg)
+
+<use imgs/esplorazione1L.jpg>
+Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1364.
+(pdftex.def)             Requested size: 473.73518pt x 680.77051pt.
+ [69
+
+ <./imgs/esplorazione1L.jpg>] [70
 
 ]
-Overfull \hbox (46.8016pt too wide) in alignment at lines 1299--1321
- [] [] [] [] 
- []
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(28.45274pt, 526.376pt, 42.67912pt)
+* v-part:(T,H,B)=(42.67912pt, 799.52228pt, 2.84544pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=526.376pt
+* \textheight=799.52228pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-29.59087pt
+* \topmargin=-68.34087pt
+* \headheight=17.0pt
+* \headsep=21.75pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=82.22992pt
+* \marginparsep=23.49426pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \vbox (badness 10000) detected at line 1321
- []
+<imgs/esplorazione3Livelli.jpg, id=985, 1127.21124pt x 3384.645pt>
+File: imgs/esplorazione3Livelli.jpg Graphic file (type jpg)
 
-[66] [67] [68]
-Overfull \hbox (62.19368pt too wide) in paragraph at lines 1374--1385
- [][] 
- []
+<use imgs/esplorazione3Livelli.jpg>
+Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1466.
 
-[69] [70]
+(pdftex.def)             Requested size: 236.86758pt x 711.20961pt.
+ [71
+
+ <./imgs/esplorazione3Livelli.jpg>]
+
+LaTeX Warning: Reference `tab:dropoutERegolarizzatore' on page 72 undefined on 
+input line 1475.
+
+[72
+
+]
 chapter 7.
-(./thesis.brf)
+[73
+
+
+] [74] (./thesis.brf)
 \tf@brf=\write7
 \openout7 = `thesis.brf'.
 
- [71
-
-
-] [72
+ [75] [76
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1413--1413
+Underfull \hbox (badness 10000) in paragraph at lines 1561--1561
 \T1/pplj/m/it/12 (+12) human-pose-estimation-in-the-browser-with-tensorflow-js-
 7dd0bc881cd5
  []
 
-[73] [74] [75] [76]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1507.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1507.
+[77] [78] [79] [80] [81]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1659.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1659.
  (./thesis.aux (./titlePage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1507.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1507.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1659.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1659.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8E835F6411267351409AE3DB485E9A06;2984.
+(rerunfilecheck)             Checksum: 47709498D47041CEACCDC55F91DE2FE5;3214.
+Package rerunfilecheck Info: File `thesis.brf' has not changed.
+(rerunfilecheck)             Checksum: 6BA000DEBB4F1BEC4B42544724C4AC92;5790.
 
-
-Package rerunfilecheck Warning: File `thesis.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `thesis.brf':
-(rerunfilecheck)             Before: D24E97C7FE4A9A48464D18A798E06920;3897
-(rerunfilecheck)             After:  50DB18A464F6C4FC8C58FD136348431B;3897.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 29487 strings out of 492995
- 524049 string characters out of 6132704
- 756400 words of memory out of 5000000
- 31574 multiletter control sequences out of 15000+600000
- 137153 words of font info for 727 fonts, out of 8000000 for 9000
+ 30353 strings out of 492995
+ 538362 string characters out of 6132704
+ 789142 words of memory out of 5000000
+ 32397 multiletter control sequences out of 15000+600000
+ 136586 words of font info for 719 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 50i,16n,73p,10393b,1037s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,18n,87p,10393b,1075s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
@@ -2034,10 +2157,10 @@ f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on thesis.pdf (78 pages, 20085717 bytes).
+Output written on thesis.pdf (83 pages, 27679521 bytes).
 PDF statistics:
- 1170 PDF objects out of 1200 (max. 8388607)
- 1019 compressed objects within 11 object streams
- 241 named destinations out of 1000 (max. 500000)
- 100894 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 1265 PDF objects out of 1440 (max. 8388607)
+ 1106 compressed objects within 12 object streams
+ 253 named destinations out of 1000 (max. 500000)
+ 100928 words of extra memory for PDF output out of 106986 (max. 10000000)
 
