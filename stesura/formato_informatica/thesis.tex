@@ -759,7 +759,7 @@ Spinti dal crescente interesse degli ultimi anni, sono stati sviluppati diversi 
 \caption{Un esempio di utilizzo in campo medico della stima della posa}
 \end{figure}
 
-La maggior parte dei software in circolazione in grado di stimare in maniera sufficientemente corretta la posa di un individuo non sono liberamente accessibili. Due fra i migliori algoritmi (ad oggi) di \emph{pose detection} sono sicuramente \textit{Posenet} \cite{PosenetArticle} e \textit{Detectron 2} \cite{Detectron2Link}, dei quali ci occuperemo in maniera più approfondita nei capitoli seguenti.
+La maggior parte dei software in circolazione in grado di stimare in maniera sufficientemente corretta la posa di un individuo non sono liberamente accessibili. Due fra i migliori algoritmi (ad oggi) di \emph{pose detection} sono sicuramente \textit{Posenet} \cite{PosenetArticle} e \textit{Detectron-2} \cite{Detectron2Link}, dei quali ci occuperemo in maniera più approfondita nei capitoli seguenti.
 
 
 %% PoseNet %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -769,9 +769,9 @@ I recenti progressi nel campo della visione artificiale hanno permesso alla comu
 
 L'algoritmo \emph{PoseNet} è stato ideato proprio con lo scopo di identificare una o più figure umane in qualsiasi contesto, compreso quelli ``affollati", ed essere in grado di identificare ogni persona stimandone i suoi \emph{punti chiave} (o \emph{keypoint}).
 
-Generalmente esistono due approcci principali per affrontare i problemi di rilevamento di più persone in un'immagine, stima della loro posa e \emph{segmentazione} (ovvero l'identificazione dei pixel che rappresentano ogni persona):
+Generalmente esistono due approcci principali per affrontare i problemi di rilevamento di più persone in un'immagine e la relativa stima della loro posa o \emph{segmentazione} (ovvero l'identificazione dei pixel che rappresentano ogni persona):
 \begin{itemize}
-\item \textbf{Approccio top-down} - l'approccio \emph{top-down} inizia con una fase di identificazione e localizzazione approssimativamente della posizione delle persone, delimitando il riquadro dell'immagine entro il quale sono contenute e continua con una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. 
+\item \textbf{Approccio top-down} - l'approccio \emph{top-down} inizia con una fase di identificazione e localizzazione approssimativa della posizione delle persone, delimitando il riquadro dell'immagine entro il quale sono contenute e continua con una fase di stima della posa o di separazione ``primo piano-sfondo" nell'area identificata. 
 \item \textbf{Approccio bottom-up} -  l'approccio \emph{bottom-up} inizia localizzando \emph{entità semantiche individuali}, come ad esempio gambe, braccia, mani, etc, e procede raggruppandole logicamente in istanze di persone complete. PoseNet adotta questo secondo approccio.
 \end{itemize}
 
@@ -781,14 +781,14 @@ L'approccio adottato in PoseNet è quello di identificare dapprima tutti i punti 
 
 Oltre a stimare punti chiave sparsi, PoseNet stima anche delle maschere di segmentazione per ogni persona. Per fare ciò, viene allenata una seconda rete neurale con la quale viene associato ad ogni pixel $x_i$ la probabilità di appartenenza di quel pixel ad ogni candidato $j$ identificato. Se la probabilità è sufficientemente alta allora viene associato il pixel $x_i$ al candidato $j$.
 
-Questo algoritmo dopo essere stato allenato col famoso dataset COCO-2016 \cite{COCO-2016} (che fra molte altre cose contiene anche l'annotazione dei 17 keypoint di migliaia di persone), è riuscito a migliorarne l'\emph{AP} (average-precision) da 0,655 a 0,687, diventando il miglior risultato. 
+Questo algoritmo dopo essere stato allenato col famoso dataset COCO-2016 \cite{COCO-2016} (che contiene anche l'annotazione dei 17 keypoint di migliaia di persone), è riuscito a migliorarne l'\emph{AP} (average-precision) da 0,655 a 0,687, diventando il miglior risultato. 
 
 Questo metodo essendo molto semplice è anche quindi molto rapido, poiché non richiede alcuna fase supplementare di raffinamento dei risultati con tecniche di tipo \emph{box-based} o \emph{clustering}, rendendo di fatto PoseNet uno degli algoritmi più facilmente installabili su piccoli dispositivi, come ad esempio i cellulari.
 
 Ma vediamo adesso più nel dettaglio come PoseNet stima e raggruppa i punti chiavi di una o più persone raffigurate in un'immagine.
 
 \subsection{Stima dei keypoint}
-L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i keypoint visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo, per ogni tipologia di keypoint, viene prodotta una \emph{heatmap} e un \emph{offset}. 
+L'obiettivo di questa fase è quello di rilevare, in modo indipendente dall'istanza, tutti i keypoint visibili appartenenti a qualsiasi persona dell'immagine. A tale scopo, per ogni tipologia di keypoint, viengono prodotte delle \emph{heatmap} e degli \emph{offset}. 
 
 Sia $x_i$ la coordinata 2D del pixel $i$ nell'immagine, dove $i = 1, ... ,N$ e $N$ è il numero totale di pixel, allora definiamo con $D_R (y) = \{ x:  \|x - y \| \leq R\}$ un disco di raggio $R$ centrato nel punto $y$ e $y_{j,k}$ la coordinata 2D del $k$-esimo keypoint della j-esima persona, con $j = 1, ..., M$, dove $M$ è il numero di persone nell'immagine. 
 
@@ -798,7 +798,7 @@ Sia $x_i$ la coordinata 2D del pixel $i$ nell'immagine, dove $i = 1, ... ,N$ e $
 \caption{Generazione con PoseNet delle heatmap per ogni tipologia di keypoint}
 \end{figure}
 
-Come abbiamo visto nel capitolo precedente, per ogni tipo di keypoint $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue: generiamo una heatmap $p_k(x)$ tale che $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. 
+Come abbiamo visto nel capitolo precedente, per ogni tipo di keypoint $k = 1, ..., K$, viene impostato un task di classificazione binaria come segue: la heatmap $p_k(x) = 1$ se $x \in D_R (y_{j,k})$ per qualsiasi istanza $j$, altrimenti $p_k(x) = 0$. 
 
 Abbiamo quindi $K$ tasks di classificazione binaria indipendenti (uno per ogni tipo di keypoint) e ciascuno di loro equivale a stimare un disco di raggio $R$ attorno a un tipo di keypoint specifico appartenente a qualsiasi persona nell'immagine.
 
@@ -833,7 +833,7 @@ Seguendo lo schema delle connessioni fra tipi di keypoint rappresentati in figur
 \label{fig:midRangeOffset}
 \end{figure}
 
-Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset} mentre una raffigurazione completa del sistema adottato da PoseNet per il riconoscimento delle pose di persone raffigurate in un'immagine è rappresentato in figura \ref{fig:overview-posenet}.
+Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset} mentre una raffigurazione completa del sistema adottato da PoseNet è rappresentato in figura \ref{fig:overview-posenet}.
 
 \begin{figure} [h]
 \centering
@@ -843,12 +843,12 @@ Un esempio di questa stima è raffigurato in figura \ref{fig:midRangeOffset} ment
 \end{figure}
 
 %% Detecron 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Detectron2}
-Detectron2 è un progetto open-source lanciato dalla \emph{Facebook AI Research (FAIR)} ampiamente usato dalla comunità di ricerca in ambito \emph{computer vision} e rappresenta, ad oggi, una piattaforma per il riconoscimento di oggetti allo stato dell'arte.\\
+\section{Detectron-2}
+Detectron-2 è un progetto open-source lanciato da \emph{Facebook AI Research (FAIR)} ampiamente usato dalla comunità di ricerca in ambito \emph{computer vision} e rappresenta, ad oggi, una piattaforma per il riconoscimento di oggetti allo stato dell'arte.\\
 
-Il suo predecessore \emph{Detectron} \cite{DetectronLink} fu un progetto iniziato nel 2016 con l'obiettivo di creare un sistema rapido e flessibile per il riconoscimento di oggetti in immagini ed originariamente basato su \emph{Caffe2} \cite{caffe2} (un framework ideato per facilitare la sperimentazione e la divulgazione di nuovi modelli e algoritmi in ambito \emph{deep learning}) e scritto in \emph{Python}. 
+Il suo predecessore \emph{Detectron} \cite{DetectronLink} fu un progetto iniziato nel 2016 con l'obiettivo di creare un sistema rapido e flessibile per il riconoscimento di oggetti in immagini originariamente basato su \emph{Caffe2} \cite{caffe2} (un framework ideato per facilitare la sperimentazione e la divulgazione di nuovi modelli e algoritmi in ambito \emph{deep learning}) e scritto in \emph{Python}. 
 
-Negli anni Detectron è stato perfezionato e supportato da una grande quantità di progetti, compreso ``\emph{Mask-R-CNN}" \cite{maskRCNN} e ``\emph{Focal Loss for Dense Object Detection}" \cite{focalLossDetection}, vincitori rispettivamente del \emph{Premio Marr} e di \emph{Miglior articolo scientifico studentesco} all'\emph{Internation Conference on Compuer Vision} (ICCV) del 2017. L'intuitività e l'efficacia di questi algoritmi hanno permesso un notevole sviluppo nella risoluzione di problemi complessi nell'ambito della computer vision, come ad esempio l'\emph{instance segmentation}, e hanno sicuramente giocato un ruolo rilevante nell'avanzamento tecnologico dei sistemi di riconoscimento visivo.\\
+Negli anni Detectron è stato perfezionato e supportato da una grande quantità di progetti, compreso ``\emph{Mask-R-CNN}" \cite{maskRCNN} e ``\emph{Focal Loss for Dense Object Detection}" \cite{focalLossDetection}, vincitori rispettivamente del \emph{Premio Marr} e di \emph{Miglior articolo scientifico studentesco} all'\emph{Internation Conference on Compuer Vision} (ICCV) del 2017. L'intuitività e l'efficacia di questi algoritmi hanno permesso un notevole sviluppo nella risoluzione di problemi complessi nell'ambito della computer vision, come ad esempio l'\emph{instance segmentation} e hanno sicuramente giocato un ruolo rilevante nell'avanzamento tecnologico dei sistemi di riconoscimento visivo.\\
 
 \begin{figure}[h]
 \centering
@@ -857,7 +857,7 @@ Negli anni Detectron è stato perfezionato e supportato da una grande quantità di
 \label{fig:typeOfDetection}
 \end{figure}
 
-Detectron2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al machine learning ed ampiamente usata nel campo della computer-vision che ha inglobato in se anche il precedente framework Caffe2.  Più nello specifico Detectron2 include ad oggi le implementazioni dei seguenti algoritmi di object-detection:
+Detectron-2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al machine learning ed ampiamente usata nel campo della computer-vision, che ha inglobato in se anche il precedente framework Caffe2.  Più nello specifico Detectron-2 include ad oggi le implementazioni dei seguenti algoritmi di object-detection:
 \begin{itemize}
 \item Cascade R-CNN \cite{cascadeRCNN}
 \item Panoptic FPN \cite{panopticFeatures}
@@ -872,23 +872,23 @@ Detectron2 è adesso basato su \emph{Pytorch}, una libreria open-source dedita al
 
 utilizzando le seguenti reti \emph{backbone} (ovvero reti precedentemente allenate con lo scopo di estrarre in maniera efficiente le \emph{features} di un'immagine):
 \begin{itemize}
-\item ResNeXt\{50,101,152\} \cite{resNetXt}
-\item ResNet\{50,101,152\} \cite{resNet}
+\item ResNeXt-50-101-152 \cite{resNetXt}
+\item ResNet-50-101-152 \cite{resNet}
 \item Feature Pyramid Networks (con ResNet/ResNeXt) \cite{featurePyramid}
 \item VGG16 \cite{vgg16}
 \end{itemize}
 
-Inoltre, nel caso fosse necessario implementare nuove reti backbone, è possibile farlo facilmente grazie alla struttura modulare di Pytorch, che permette di separare il nuovo modello dai precedenti algoritmi di Detectron2.\\
+Inoltre, nel caso fosse necessario implementare nuove reti backbone, è possibile farlo grazie alla struttura modulare di Pytorch, che permette di separare facilmente il nuovo modello dai precedenti algoritmi di Detectron-2.\\
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{imgs/instanceSeg}
-\caption{Instance segmentation con Detectron2}
+\caption{Instance segmentation con Detectron-2}
 \end{figure}
-Essendo stato interamente riscritto in Pytorch, Detectron2 è più rapido del suo predecessore nei compiti di \emph{object-detection}, \emph{instance segmentation} e \emph{human-pose prediction}, ed in più è in grado di fornire supporto per i nuovi task di \emph{semantic segmentation} e \emph{panoptic segmentation}, ovvero la combinazione fra instance-segmentation e semantic-segmentation (figura \ref{fig:typeOfDetection}).
+Essendo stato interamente riscritto in Pytorch, Detectron-2 è più rapido del suo predecessore nei compiti di \emph{object-detection}, \emph{instance segmentation} e \emph{human-pose prediction} ed in più è in grado di gestire i nuovi task di \emph{semantic segmentation} e \emph{panoptic segmentation}, ovvero la combinazione fra instance-segmentation e semantic-segmentation (figura \ref{fig:typeOfDetection}).
 
-Oltre che nella ricerca, questa piattaforma viene usata anche da numerosi team di Facebook (e non solo) per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity}, ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni.
+Oltre che nel mondo della ricerca, questa piattaforma viene usata anche per l'addestramento di nuovi modelli in svariati campi della \emph{computer vision}, come ad esempio la \emph{realtà aumentata}, e in materia di sicurezza informatica, come ad esempio la \emph{community integrity}, ovvero la difesa e la protezione di account su piattaforme social da contenuti maligni.
 
-Per quanto riguarda la stima della posa umana in un'immagine, Detectron2 utilizza una Mask R-CNN \cite{maskRCNN} riadattata all'estrazione dei keypoint.
+Per quanto riguarda invece la stima della posa umana in un'immagine, Detectron-2 utilizza una Mask R-CNN \cite{maskRCNN} riadattata all'estrazione dei keypoint. Vediamo adesso più nel dettaglio come è stato strutturato questo algoritmo.
 
 \subsection{Mask R-CNN}
 \begin{figure}[h]
@@ -896,15 +896,15 @@ Per quanto riguarda la stima della posa umana in un'immagine, Detectron2 utilizz
 \includegraphics[width=1\textwidth]{imgs/instanceSegmenttionMaskRCNN2}
 \caption{Alcuni esempi di instance segmentation con Mask R-CNN}
 \end{figure}
-Mask R-CNN nasce con l'intento di creare un framework semplice e flessibile per affrontare il problema dell'\emph{instance segmentation}. Questo metodo è in grado di identificare gli oggetti in un'immagine e simultaneamente generare una maschera di segmentazione ben definita per ogni istanza. Mask R-CNN è sostanzialmente un'estensione di \emph{Faster R-CNN} \cite{fasterRCNN} in quanto aggiunge parallelamente ai due output già presenti per il \emph{bounding box} e la classificazione anche quello per la predizione della maschera d'istanza. Nonostante sia un metodo nato per l'instance segmentation è però facilmente adattabile ad altri tipi di predizioni, come ad esempio quella della posa umana.
+Mask R-CNN nasce con l'intento di creare un framework semplice e flessibile per affrontare il problema dell'\emph{instance segmentation}. Questo metodo è in grado di identificare gli oggetti in un'immagine e simultaneamente generare una maschera di segmentazione ben definita per ogni istanza. Mask R-CNN è sostanzialmente un'estensione di \emph{Faster R-CNN} \cite{fasterRCNN} in quanto aggiunge parallelamente ai due output già presenti per il \emph{bounding box} e la \emph{classificazione} anche quello per la predizione della \emph{maschera d'istanza}. Nonostante sia un metodo nato per l'instance segmentation è però facilmente adattabile ad altri tipi di predizioni, come ad esempio quella della posa umana.
 
-Mask R-CNN è suddiviso in due fasi di procedura. La prima, identica a quella adottata per Faster R-CNN, chiamata ``\emph{Region Proposal Network}" (RPN) ha il compito di proporre porzioni di immagine nelle quali potrebbero essere raffigurate delle istanze. Nella seconda, viene predetto \emph{in parallelo} alla classe e al delineamento preciso dell'istanza (\emph{bounding box}) anche una maschera binaria per ogni \emph{regione d'interesse} (RoI) dell'immagine. 
+La porcedura adottata da Mask R-CNN è suddivisa in due fasi. La prima, identica a quella adottata per Faster R-CNN, chiamata ``\emph{Region Proposal Network}" (RPN) ha il compito di proporre porzioni di immagine nelle quali potrebbero essere raffigurate delle istanze di persona. Nella seconda fase vengono stimate \emph{in parallelo}: la classe, il delineamento preciso (\emph{bounding box}) e la maschera binaria di ogni \emph{regione d'interesse} (RoI) dell'immagine. 
 
 Più precisamente, durante l'allenamento della rete, la \emph{loss} definita per ogni RoI è la seguente: $L= L_{cls} + L_{box} + L_{mask}$. La loss di classificazione e quella del boundig box sono identiche a quelle definite per Fast R-CNN \cite{fastRCNN}. 
 
-Per quanto riguarda invece $L_{mask}$, dato che decodifica $K$ maschere binarie di dimensione $m \times m$ (dove $K$ è il numero di classi), la sua dimensione è $Km^2$ per ogni RoI.
+Per quanto riguarda invece $L_{mask}$, decodifica $K$ maschere binarie di dimensione $m \times m$, dove $K$ è il numero di classi, quindi la sua dimensione sarà $Km^2$ per ogni RoI.
 
-Questa definizione di $L_{mask}$ permette alla rete, non solo di generare maschere completamente indipendenti l'una dall'altra, ma anche di disaccoppiare la predizione delle maschere dalla classificazione delle istanze. Questa caratteristica, innovativa rispetto alle pratiche comuni in materia di semantic segmentation, si è rivelata essere basilare per il raggiungimento di una buona segmentazione.
+Questa definizione di $L_{mask}$ permette alla rete non solo di generare maschere completamente indipendenti l'una dall'altra, ma anche di disaccoppiare la predizione delle maschere dalla classificazione delle istanze. Questa caratteristica, innovativa rispetto alle pratiche comuni in materia di semantic segmentation, si è rivelata essere basilare per il raggiungimento di una buona segmentazione.
 
 \subsection{Predizione della posa con Mask R-CNN}
 Grazie alla sua grande flessibilità, questo framework può essere facilmente esteso alla stima della posa umana in un'immagine. 
@@ -917,19 +917,19 @@ Grazie alla sua grande flessibilità, questo framework può essere facilmente este
 
 Le coordinate dei keypoint vengono trasformate in maschere di tipo \emph{one-hot} e Mask R-CNN viene utilizzato per predire $K$ maschere, una per ogni tipo di keypoint (gomito sinistro, spalla destra, etc..).
 
-Più nello specifico, per ognuno dei $K$ keypoint di un'istanza, il training target è una maschera binaria $m \times m$ di tipo \emph{one-hot} dove cioè solo un pixel viene etichettato come positivo. Durante l'allenamento della rete, per ogni keypoint visibile nell'immagine, viene minimizzata una \emph{cross-entropy} loss con regolarizzatore L2 (per incoraggiare l'identificazione di un singolo punto). Anche per questa procedura, le $K$ maschere dei $K$ tipi di keypoint sono completamente indipendenti l'una dall'altra. 
+Più nello specifico, per ognuno dei $K$ keypoint di un'istanza il training target è una maschera binaria $m \times m$ di tipo \emph{one-hot} dove cioè solo un pixel viene etichettato come positivo. Durante l'allenamento della rete, per ogni keypoint visibile nell'immagine, viene minimizzata una \emph{cross-entropy} loss con regolarizzatore L2 (per incoraggiare l'identificazione di un singolo punto). Anche per questa procedura le $K$ maschere dei $K$ tipi di keypoint sono completamente indipendenti l'una dall'altra. 
 
 %%%%%%  Metodo proposto %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Metodo proposto}
-In questo capitolo vedremo quali sono state le tecniche adottate in questo lavoro di tesi e le decisioni prese durante l'iter operativo.
+In questo capitolo vedremo sia quali sono state le tecniche adottate in questo lavoro di tesi che le decisioni prese durante l'iter operativo.
 
-Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante esso fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) ho preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirmi di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante esso fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) abbiamo preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirci di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
 
 Passiamo adesso ad analizzare una ad una le varie fasi affrontate nel lavoro di tesi.
 \section{Estrazione delle pose}
-Per prima cosa è necessario convertire tutti i video del dataset in sequenze di pose, in modo da sintetizzarne efficacemente il movimento umano senza un'eccessiva perdita d'informazione.  Gli algoritmi scelti per questa fase sono stati Detectron2 \cite{Detectron2Link} per la sua rimarcabile accuratezza e PoseNet \cite{PosenetArticle} per la sua velocità d'inferenza e portabilità.
-I modelli proposti da queste due tecniche sono molteplici. Per Detectron2 abbiamo:
+Per prima cosa è necessario convertire tutti i video del dataset in sequenze di pose, in modo da sintetizzarne efficacemente il movimento umano senza un'eccessiva perdita d'informazione.  Gli algoritmi scelti per questa fase sono stati Detectron-2 \cite{Detectron2Link} per la sua rimarcabile accuratezza e PoseNet \cite{PosenetArticle} per la sua velocità d'inferenza e portabilità.
+I modelli proposti da queste due tecniche sono molteplici. Per Detectron-2 abbiamo:
 \begin{itemize}
 \item  \emph{R50-FPN-1x}
 \item \emph{R50-FPN-3x}
@@ -944,7 +944,7 @@ mentre per PoseNet abbiamo:
 \item \emph{PoseNet-101}
 \end{itemize}
 
-Ognuno di questi modelli ha valori diversi in accuratezza e velocità di inferenza. Nel caso di Detectron2 questa comparazione viene fornita dagli autori stessi e schematizzata in tabella \ref{proposteDetectronPosenet}, mentre per quanto riguarda PoseNet non viene purtroppo fornito un confronto simile. 
+Ognuno di questi modelli ha valori diversi in accuratezza e velocità di inferenza. Nel caso di Detectron-2 questa comparazione viene fornita dagli autori stessi e schematizzata in tabella \ref{proposteDetectronPosenet}, mentre per quanto riguarda PoseNet non viene purtroppo fornito un simile confronto.
 
 \begin{table}[ht]
 \centering
@@ -957,14 +957,14 @@ Nome & \thead{Tempo di  \\ inferenza \\ (s/imm)} &  \thead{Box  \\ AP} &  \thead
  R101-FPN-3x 			& 0.076  	& 56.4 	& 66.1 \\ \hline
  \textbf{X101-FPN-3x} 	& 0.121  	& 57.3 	& 66.0 \\ \hline
 \end{tabular}
-\caption{Diversi modelli in Detectron 2 per l'estrazione della posa da un'immagine. Il tempo di inferenza viene misurato in \emph{secondi/immagine}; Box AP = ``Bounding box average precision" ; KP AP = ``Keypoint average precision"}
+\caption{Diversi modelli in Detectron-2 per l'estrazione della posa da un'immagine. Il tempo di inferenza viene misurato in \emph{secondi/immagine}; Box AP = ``Bounding box average precision" ; KP AP = ``Keypoint average precision"}
 \label{proposteDetectronPosenet}
 \end{table}
 
-È stato quindi scelto il modello \emph{X101-FPN} per Detectron2, in quanto quello con il miglior valore di accuratezza globale e PoseNet-101, per per una più facile comparazione dei risultati.
+È stato quindi scelto il modello \emph{X101-FPN} per Detectron-2, in quanto quello con il miglior valore di accuratezza globale e PoseNet-101, per per una più facile comparazione dei risultati.
 
 \section{Assegnazione coerente delle pose}
-Quello che otteniamo dalla fase precedente è, per ogni video, una sequenza di pose umane estrapolate da ogni frame. Sia Detectron2 che PoseNet sono in grado di riconoscere più persone all'interno di un'immagine, producendo una lista di pose $P_1, P_2, ..., P_n$ ordinata secondo le regole dell'algoritmo, ad esempio Detectron2 le ordina per valore di \emph{score} decrescente, ovvero quel valore che indica quanto l'algoritmo sia sicuro di aver correttamente stimato la posa di quella persona.
+Quello che otteniamo per ogni video dalla fase precedente è una sequenza di pose umane estratte da ogni frame. Sia Detectron-2 che PoseNet sono in grado di riconoscere più persone all'interno di un'immagine, producendo una lista di pose $P_1, P_2, ..., P_n$ ordinata secondo le regole dell'algoritmo, ad esempio Detectron-2 le ordina per valore di \emph{score} decrescente, ovvero quel valore che indica quanto è sicuro l'algoritmo di aver correttamente stimato la posa di quella persona.
 
 \begin{figure}[h]
 \centering
@@ -973,22 +973,22 @@ Quello che otteniamo dalla fase precedente è, per ogni video, una sequenza di po
 \label{fig:swapPose}
 \end{figure}
 
-Quello che però questi algoritmi non hanno è una conoscenza relativa al concetto di video, ovvero alla successione logica dei frame e trattano ognuno di essi come un'immagine indipendente. Quello che ne segue è una totale indipendenza fra l'ordine delle pose riconosciute e la loro assegnazione coerente coi soggetti del video. Ad esempio, ammettiamo di avere due soggetti $A$ e $B$ rappresentati in un video e che per l'$i$-esimo frame vengano identificate due pose $\mathcal{P}_{1,i}$ e $\mathcal{P}_{2,i}$ appartenenti ad A e B rispettivamente. Quest'ordine non è però garantito nel frame successivo dove $\mathcal{P}_{1,i+1}$ potrebbe essere la posa di B e $\mathcal{P}_{2,i+1}$ quella di A. 
+Quello che però questi algoritmi non hanno è l'informazione relativa al concetto di video, ovvero alla successione logica dei frame e trattano ognuno di essi come un'immagine indipendente. Quello che ne segue è una totale indipendenza fra l'ordine delle pose riconosciute e la loro assegnazione coerente coi soggetti del video. Ad esempio, ammettiamo di avere due soggetti $A$ e $B$ e che per l'$i$-esimo frame vengano identificate due pose $\mathcal{P}_{1,i}$ e $\mathcal{P}_{2,i}$ appartenenti ad A e B rispettivamente. Quest'ordine non è però garantito nel frame successivo dove $\mathcal{P}_{1,i+1}$ potrebbe essere la posa di B e $\mathcal{P}_{2,i+1}$ quella di A. 
 
-Per ovviare a questo problema la tecnica adottata è stata quella di calcolare iterativamente ad ogni frame la distanza fra l'ultima posa assegnata ad ogni soggetto e tutte quelle riconosciute al frame successivo. La distanza fra due pose non è altro che la somma delle distanze euclidee fra i punti in comune delle due pose, ovvero se $\mathcal{P}_i = \{p_{i,k}\}_{k=1}^K$ è l'insieme dei punti che definiscono la posa $i$, dove ogni $p_{i,k} = (x_{i,k},y_{i,k})$ sono le ascisse e le ordinate del $k$-esimo giunto e $K$ il numero di tipi di giunto, allora la distanza fra $P_i$ e $P_j$ sarà:
+Per ovviare a questo tipo di problema, la tecnica adottata è stata quella di calcolare iterativamente ad ogni frame la distanza fra l'ultima posa assegnata ad ogni soggetto e tutte quelle riconosciute al frame successivo per assegnare poi la posa più corretta. Nel dettaglio, definiamo la distanza fra due pose come la somma delle distanze euclidee fra i loro punti in comune, ovvero se $\mathcal{P}_i = \{p_{i,k}\}_{k=1}^K$ è l'insieme dei punti che definiscono la posa $i$, dove ogni $p_{i,k} = (x_{i,k},y_{i,k})$ è la coordinata del $k$-esimo giunto e $K$ il numero di tipi di giunto, allora la distanza fra $P_i$ e $P_j$ sarà:
 $$
 \mathcal{D}_{ij} = \sum_{k=1}^K I(p_{i,k}) \cdot I(p_{j,k}) \cdot eucl(p_{i,k},p_{j,k})
 $$
-dove $I$ è la funzione identità, ovvero $I(p) = 1$ se $p$ è definito, 0 altrimenti e $eucl(p_1,p_2)$ è  la funzione di distanza euclidea fra i punti $p_1$ e $p_2$. Se le due pose non hanno punti in comune, ovvero  $\sum_{k=1}^K I(p_{i,k}) \cdot I(p_{j,k}) = 0 $ allora $\mathcal{D}_{ij} = \infty$.
+dove $I$ è la funzione identità, ovvero $I(p) = 1$ se $p$ è definito, $0$ altrimenti. $eucl(p_1,p_2)$ è  la funzione di distanza euclidea fra i punti $p_1$ e $p_2$. Se le due pose non hanno punti in comune, ovvero  $\sum_{k=1}^K I(p_{i,k}) \cdot I(p_{j,k}) = 0 $ allora $\mathcal{D}_{ij} = \infty$.
 
-Una volta ottenuta ed ordinata in maniera decrescente la lista delle distanze fra pose, si può procede alla loro assegnazione ai soggetti inquadrati e ripetere il procedimento per il frame successivo.
+Una volta ottenuta la lista delle distanze fra pose si può procede al loro abbinamento, assegnando ad ogni soggetto la posa più vicina e ripetere così il procedimento per il frame successivo.
 
-Abbiamo però un ultimo problema da fronteggiare in questa fase, ovvero la variabilità del numero di pose stimate in ogni frame del video. Questo accade ad esempio, quando per uno o più frame uno dei soggetti non viene riconosciuto dall'algoritmo o quando l'improvviso riflesso su una finestra o uno specchio viene interpretato come una nuova persona, come raffigurato in figura \ref{fig:swapPose}. 
+Abbiamo però un ultimo problema da fronteggiare in questa fase, ovvero la variabilità del numero di pose stimate in ogni frame del video. Questo accade quando per uno o più frame, uno dei soggetti non viene riconosciuto dall'algoritmo o quando l'improvviso riflesso su una finestra o uno specchio viene interpretato come una nuova persona (figura \ref{fig:swapPose}). 
 
-Questo problema è stato risolto ordinando le sequenze di pose secondo il loro score medio lungo tutto il video. Si presuppone infatti che un riflesso sia mediamente meno convincente di una persona vera e propria. Una volta ordinate le sequenze, sono state mantenute solo le migliori due e scartate le altre, visto che siamo interessati ad analizzare solo azioni individuali o di coppia.
+Questo problema è stato risolto selezionando solo le pose con il miglior \emph{score medio} lungo tutto il video, si presuppone infatti che un riflesso sia mediamente meno convincente di una persona vera e propria. Più precisamente sono state mantenute solo le migliori due pose e scartate le altre, visto che in questo lavoro di tesi siamo interessati ad analizzare solo azioni individuali o di coppia.
 
 \section{Rimozione degli zeri}
-Come abbiamo appena visto, PoseNet e Detectron2 talvolta in qualche frame possono non riconoscere un'intera persona o non riuscire a stimare la posizione di qualche giunto, se ad esempio coperti o sfocati. Entrambi gli algoritmi trattano questi 2 casi nella stessa maniera, ovvero assegnano il punto $(0,0)$ ad ogni giunto non riconosciuto. 
+Come abbiamo appena visto, PoseNet e Detectron-2 talvolta in qualche frame possono non riconoscere un'intera persona o non riuscire a stimare la posizione di qualche giunto, se ad esempio coperti o sfocati. Entrambi gli algoritmi trattano questi due casi nella stessa maniera, ovvero assegnano il punto $(0,0)$ ad ogni giunto non riconosciuto. 
 
 \begin{figure}[h]
 \centering
@@ -997,22 +997,22 @@ Come abbiamo appena visto, PoseNet e Detectron2 talvolta in qualche frame posson
 \label{fig:rimozioneZeri}
 \end{figure}
 
-Questo valore però è fortemente fuorviante considerando che le informazioni a nostra disposizione sono solo pochi punti corporei. Con Detectron2 e PoseNet la posa ottenuta è composta di soli 17 punti, quindi per ogni giunto non riconosciuto non solo perdiamo 1/17 d'informazione ma confondiamo anche il nostro algoritmo facendogli analizzare un movimento inesistente, per quel giunto, verso il punto (0,0).
+Questo valore però è fortemente fuorviante considerando che le informazioni a nostra disposizione sono solo pochi punti corporei. Detectron-2 e PoseNet stimano una posa di soli 17 punti, quindi per ogni giunto non riconosciuto, non solo perdiamo 1/17 dell'informazione ma confonderemo anche il nostro algoritmo in fase di classificazione dell'azione facendogli analizzare per quel giunto un movimento inesistente verso il punto (0,0). È necessario quindi adottare una buona tecnica di rimozione degli zeri, che limiti la perdita d'informazione, mantenendo al contempo coerenza con le pose stimate.
 
-È necessario quindi adottare una buona tecnica di pulizia degli zeri che limiti la perdita d'informazione mantenendo una consistenza con i risultati ottenuti.
+La cosa più semplice da fare sarebbe assegnare ad ogni giunto non riconosciuto la sua ultima posizione identificata, ma cosi facendo utilizzeremmo solo il passato del video in questione e per lunghe sequenze di valori mancanti potremmo perdere molta informazione utile. È stato quindi scelto di attribuire ad ogni giunto non identificato il primo punto riconosciuto più vicino nel tempo, passato o futuro, per quel giunto.
 
-La cosa più semplice da fare è assegnare ad ogni giunto non riconosciuto la sua ultima posizione identificata, ma cosi facendo utilizzeremmo solo il passato del video in questione e per lunghe sequenze di valori mancanti potremmo perdere molta informazione utile. È stato quindi scelto di attribuire ad ogni giunto non identificato il primo punto identificato più vicino nel tempo, passato o futuro, per quel giunto.
-
-L'intento di questa tecnica è quello di ridurre la distanza fra ogni giunto non identificato e la loro effettiva posizione nell'immagine. Un caso esempio è rappresentato in figura \ref{fig:rimozioneZeri}
+L'intento di questa tecnica è quello di ridurre la distanza fra ogni giunto non identificato e la sua effettiva posizione nell'immagine. Un esempio di questa tecnica è rappresentato in figura \ref{fig:rimozioneZeri}
 
 % PARLA DI RIMOZIONE DEGLI ZERI IN MANIERA INTERPOLANTE SE RIESCI AD INCUDERLO NEL LAVORO
 
 \section{Tecniche di rielaborazione}
-Adesso che siamo riusciti ad ottenere delle sequenze di pose coerenti e complete possiamo procedere alla loro classificazione. La prima soluzione è quella di passare semplicemente i valori fin qui ottenuti ad una rete neurale, senza alcuna lavorazione aggiuntiva, ma come è facilmente prevedibile questo porterà a risultati non eccellenti.
+Adesso che siamo riusciti ad ottenere delle sequenze di pose coerenti e complete possiamo procedere alla loro classificazione. 
 
-In questo lavoro di tesi sono state analizzate una serie di tecniche di rielaborazione delle sequenze di pose, al fine di capire quale fra queste aiuta maggiormente la loro classificazione in azioni.
+Potremmo passare i valori fin qui ottenuti ad una rete neurale, senza alcuna lavorazione aggiuntiva, ma come è facilmente prevedibile questo porterà a risultati non eccellenti.
 
-Nelle sezioni seguenti indicheremo con $K$ il numero totale di giunti di ogni posa (come abbiamo visto, sia per PoseNet che per Detectron2, $K=17$), con $\mathcal{P}_f$ la posa originale al frame $f$, dove $\mathcal{P}_f = \{\boldsymbol{p}_{kf}\}_{k=1}^K$ è l'insieme dei punti nell'immagine corrispondenti ai giunti $k$, ovvero $\boldsymbol{p}_{kf}=(x_{kf},y_{kf})$. 
+In questo lavoro di tesi sono state analizzate una serie di tecniche di rielaborazione delle sequenze di pose, al fine di capire quale fra queste aiuta maggiormente la loro classificazione.
+
+Nelle sezioni seguenti indicheremo con $K$ il numero totale di giunti di ogni posa (come abbiamo visto, sia per PoseNet che per Detectron-2, $K=17$), con $\mathcal{P}_f$ la posa estratta dal frame $f$, dove $\mathcal{P}_f = \{\boldsymbol{p}_{kf}\}_{k=1}^K$ è l'insieme dei punti nell'immagine corrispondenti ai giunti $k$, ovvero $\boldsymbol{p}_{kf}=(x_{kf},y_{kf})$. 
 
 Vediamo adesso più nel dettaglio le tecniche testate.
 
@@ -1023,13 +1023,13 @@ Vediamo adesso più nel dettaglio le tecniche testate.
 \caption{Esempio di applicazione della \emph{tecnica del baricentro del frame}. In figura sono rappresentati 3 frame del video di una camminata da sinistra a destra. Ogni punto blu (relativo ad un giunto corporeo) viene sostituito col vettore-distanza (in verde) fra quel punto e il baricentro della posa. }
 \label{fig:centroFrame}
 \end{figure}
-Applicando questa tecnica, ogni posa $\mathcal{P}_f$ è stata sostituita con l'insieme $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove ogni $\boldsymbol{t}_{if}$ è il \emph{vettore-distanza} fra $\boldsymbol{p}_{if}$ e il baricentro di $\mathcal{P}_f$, indicato con $\overline{\mathcal{P}_f} $, ovvero 
+Applicando questa tecnica, ogni posa $\mathcal{P}_f$ è stata sostituita con l'insieme $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$, dove ogni $\boldsymbol{t}_{if}$ è il \emph{vettore-distanza} fra $\boldsymbol{p}_{if}$ e il baricentro di $\mathcal{P}_f$, indicato con $\overline{\mathcal{P}_f} $, ovvero 
 $$
 \boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{P}_f} \ \ \ \ \text{e} \ \ \ \overline{\mathcal{P}_f} = \frac{\sum_{j=1}^K p_{jf}}{K}.
 $$
-Questa tecnica ha il vantaggio di relativizzare la posa ovunque essa si trovi all'interno del frame e sintetizzarne efficientemente il movimento circoscritto al frame. Allo stesso tempo però, utilizzando un punto di vista sempre e solo focalizzato sul singolo frame, potrebbe non riuscire a mappare correttamente il movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è schematizzato in figura \ref{fig:centroFrame}.
+Questa tecnica ha il vantaggio di relativizzare la posa ovunque essa si trovi all'interno del frame e sintetizzarne efficientemente il movimento circoscritto al frame. Allo stesso tempo però, utilizzando un punto di vista sempre e solo focalizzato sul singolo frame, questa tecnica potrebbe non riuscire a mappare correttamente il movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è schematizzato in figura \ref{fig:centroFrame}.
 
-È stato poi successivamente testata anche una variante di questa tecnica, ovvero quella del \emph{baricentro del frame per persona}. In questa estensione viene settato un baricentro diverso per ogni persona rappresentata nel frame.
+Nel caso di più persone nel video, ovvero quando analiziamo azioni di coppia, questa tecnica stima un unico baricentro per ogni frame, adattando le due pose di conseguenza. A tal proposito è stata quindi testata anche una seconda variante, ovvero quella del \emph{baricentro del frame per persona}, dove cioè viene settato un baricentro diverso per ogni persona rappresentata nel frame.
 
 \subsection{Baricentro del video}
 \begin{figure}[htb]
@@ -1044,13 +1044,14 @@ $$
 \overline{\mathcal{V}} = \frac{\sum_{f=1}^L \overline{\mathcal{P}_f}}{L}.
 $$
 
-Come per la tecnica precedente, anche qui sostituiremo ogni posa con l'insieme dei vettori-distanze dal baricentro del video, ovvero $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{V}} $. 
+Come per la tecnica precedente, anche qui sostituiremo ogni posa con l'insieme dei vettori-distanze dal baricentro, ovvero $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{V}} $. 
+
 Il vantaggio aggiuntivo di questa tecnica rispetto alla precedente è la capacità di saper immagazzinare anche l'informazione sul movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è rappresentato in figura \ref{fig:baricentroVideo}.
 
-Come per la tecnica precedente, anche per questa è stata testata la variante \emph{baricentro del video per persona} dove viene definito un baricentro diverso per ogni persona rappresentata nel video.
+Come per la tecnica precedente, anche per questa è stata testata la variante \emph{baricentro del video per persona}, dove viene definito un baricentro diverso per ogni persona rappresentata nel video.
 
 \subsection{Baricentri multipli}
-Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} aiuterà notevolmente la rete neurale nel compito della classificazione. La domanda che a questo punto sorge spontanea è se aumentando il numero di baricentri si ottenga un miglioramento dei risultati.
+Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} avrà risultati leggermente migliori rispetto a quella del \emph{baricentro del frame}. La domanda che a questo punto sorge spontanea è se aumentando il numero dei baricentri si ottenga un miglioramento dei risultati.
 
 \begin{figure}[htb]
 \centering
@@ -1059,32 +1060,35 @@ Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} aiuterà 
 \label{fig:multiCentroVideo}
 \end{figure}
 
-Considerando ogni giunto come appartenente ad una (e una sola) parte del corpo specifica, è stato sostituito ogni punto di ogni posa con il vettore distanza da quel giunto al baricentro corrispondente, ovvero considerando l'insieme dei tipi di giunti $\mathcal{K} = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ come una suddivisione in gruppi di giunti tali che 
+Se suddividiamo il corpo umano in $B$ gruppi e definiamo ogni giunto corporeo come appartenente ad uno (e uno solo) di questi gruppi, allora possiamo trasformare ogni posa in un insieme di vettori-distanza fra ogni giunto ed il baricentro del gruppo corrispondente. 
+
+Più precisamente, se suddividiamo l'insieme $\mathcal{K} = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ tale che: 
 \begin{itemize}
 \item $\bigcup_{b=1}^B   \mathcal{K}_b = \mathcal{K}$
 \item $  \mathcal{K}_i \bigcap \mathcal{K}_j= \emptyset, \ \ \ \forall \  \mathcal{K}_i ,\mathcal{K}_j \in \mathcal{K}$ 
 \end{itemize}
-ogni posa $\mathcal{P}_f$ è stata sostituita con la sua trasformazione $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove, come per le tecniche precedenti, ogni $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{B}}$ e 
+allora ogni posa $\mathcal{P}_f$ può essere sostituita con la sua trasformazione $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove, come per le tecniche precedenti, ogni $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{B}_b}$ e 
+
 $$
-\overline{\mathcal{B}} = \bigcup_{b=1}^B \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^L \overline{\mathcal{P}_{if}}}{L}.
+%\overline{\mathcal{B}} = \bigcup_{b=1}^B 
+ \overline{\mathcal{B}_b} = \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^L\boldsymbol{p}_{if}}{L}.
 $$
 
-
-In questo lavoro di tesi è stato fatto variare il valore di $B$ testando 3 varianti con baricentri multipli del video, ovvero:
+In questo lavoro di tesi sono state testate 3 varianti di questa tecnica, ovvero:
 \begin{itemize}
 \item \textbf{B=3} - testa, busto e gambe
-\item \textbf{B=5} - tronco, braccio sinistro, braccio destro, gamba sinistra e gamba destra (questa suddivisione viene suggerita dagli autori del dataset NTU-RGB+D nel loro modello chiamato \emph{"Part-Aware LSTM"} \cite{NTURGB} )
+\item \textbf{B=5} - tronco, braccio sinistro, braccio destro, gamba sinistra e gamba destra (questa suddivisione viene suggerita dagli autori del dataset NTU-RGB+D col modello \emph{"Part-Aware LSTM"} \cite{NTURGB} )
 \item \textbf{B=17} - un baricentro per ogni giunto
 \end{itemize}
 
-Queste 3 diverse tecniche hanno il vantaggio di frammentare la posa, attribuendo valori più alti alle componenti più dinamiche del video, ovvero quelle componenti che si presuppone caratterizzino maggiormente l'azione ripresa nel video. Vedremo nel capitolo 6 quali sono i risultati ottenuti da queste diverse tecniche. In figura \ref{fig:multiCentroVideo} è rappresentato un esempio della tecnica dei 3 baricentri.
+Queste 3 diverse tecniche hanno il vantaggio di frammentare la posa, attribuendo valori più alti alle componenti più dinamiche del video, ovvero quelle componenti che si presuppone caratterizzino maggiormente l'azione ripresa nel video. In figura \ref{fig:multiCentroVideo} è rappresentato un esempio della tecnica dei 3 baricentri.
 
-Considerando che una stessa azione può essere svolta in maniera speculare, ad esempio una camminata resta una camminata sia che sia fatta da sinistra a destra del video che viceversa, ognuna di queste tecniche è stata testata anche considerando solo i valori assoluti dei vettori ottenuti (che verrà indicata nei risultati con il suffisso \emph{``ABS"}), cosi da astrarre il modello dalla direzione verso la quale viene svolta l'azione.
+Considerando che un'azione può essere svolta in maniera speculare (ad esempio una camminata può essere fatta sia da sinistra a destra che viceversa), ognuna di queste tecniche è stata testata anche considerando solo i valori assoluti dei vettori ottenuti cosi da astrarre il modello dalla direzione verso la quale viene svolta l'azione. Nei risultati esposti nel capitolo 6 questa variante verrà indicata col suffisso \emph{``ASS"}.
 
 \subsection{Tecnica ``Next frame"}
-Un altro approccio nella classificazione delle sequenze di pose è quello di concentrarci su ciò che accade fra un frame e l'altro, è infatti proprio in questo lasso di tempo che abbiamo il movimento del soggetto o dei soggetti inquadrati. 
+Un altro approccio nella classificazione delle sequenze di pose è quello di concentrarci su ciò che accade fra un frame e l'altro, dato che è proprio in questo lasso di tempo che abbiamo il movimento del soggetto o dei soggetti inquadrati. 
 
-Seguendo questo approccio trasformeremo tutte le nostre pose in un insieme di vettori-distanza fra la posizione dei giunti al frame $f$ e quelli al frame $f+1$. La nostra posa trasformata $\mathcal{T}_f$ sarà quindi, $\mathcal{T}_f = \mathcal{P}_{f+1} - \mathcal{P}_f$, ovvero
+Seguendo questa idea trasformeremo tutte le nostre pose in un insieme di vettori-distanza fra la posizione dei giunti al frame $f$ e quelli al frame $f+1$. La nostra posa trasformata $\mathcal{T}_f$ sarà quindi, $\mathcal{T}_f = \mathcal{P}_{f+1} - \mathcal{P}_f$, ovvero
 $$
 \mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+1} - p_{k,f}
 $$
@@ -1094,11 +1098,11 @@ Un esempio visivo di questa tecnica è rappresentato in figura \ref{fig:nextframe
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1\textwidth]{imgs/nextFrame.jpg}
-\caption{Tecnica del \emph{next frame}. Nell'esempio, il soggetto ripreso alzando il braccio sinistro  Ogni posa viene sostituita con l'insieme dei vettori-distanza fra ogni giunto e la posizione dello stesso al frame successivo. }
+\caption{Tecnica del \emph{next frame}. Nell'esempio, il soggetto ripreso alza il braccio sinistro.  Ogni posa viene sostituita con l'insieme dei vettori-distanza (frecce rosa) fra ogni giunto e la posizione dello stesso al frame successivo. }
 \label{fig:nextframe}
 \end{figure}
 
-Questa tecnica analizza le differenze di posizione dei giunti solo fra frame consecutivi, questo però porta spesso a dover memorizzare variazioni minime, specialmente se il nostro video ha un FPS (Frame Per Second) elevato, che potrebbero confondersi con l'approssimazione della posizione del giunto rilevata dall'algoritmo di riconoscimento della posa. 
+Questa tecnica analizza cioè le differenze di posizione dei giunti fra frame consecutivi, questo però porta spesso a dover memorizzare variazioni minime, specialmente se il nostro video ha un FPS (Frame Per Second) elevato. Inoltre potrebbe non essere semplice distinguere le effettive variazioni di movimento dalle approssimazioni derivanti dall'algoritmo di riconoscimento della posa. 
 
 Quello che allora possiamo fare è memorizzare le differenze dei giunti fra frame a distanza $S >1$, ovvero
 $$
@@ -1108,12 +1112,6 @@ $$
 In questo lavoro di tesi sono stati testati i valori di $S = \{1, 3, 7, 15\}$ per capire se e quali miglioramenti porta questa variazione di distanza.
 
 \subsection{Tecnica delle distanze cumulate}
-Come abbiamo detto, un problema della tecnica precedente è la memorizzazione di valori spesso troppo piccoli è difficilmente distinguibili dal rumore derivante dall'approssimazione della posizione del giunto. Per ovviare a questo problema, un'altra tecnica testata in questo lavoro di tesi è quella delle \emph{distanze cumulate}, ovvero trasformare ogni posa $\mathcal{P}_f$ nella somma dei vettori distanza, calcolati fino a quel punto, con la tecnica del \emph{next frame}, ovvero
-$$
-\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
-$$
-
-Quello che ci aspettiamo di memorizzare sono valori incrementali per i giunti più dinamici nel video, mentre per quelli statici, che quindi non caratterizzano eccessivamente il movimento, ci aspettiamo valori prossimi allo 0. In figura \ref{fig:distanzeCumulate} abbiamo una schematizzazione di ciò che otterremmo con la tecnica delle distanze cumulate se analizzassimo una porzione di video dove il soggetto inquadrato alza e abbassa il braccio destro.
 
 \begin{figure}[htb]
 \centering
@@ -1122,15 +1120,23 @@ Quello che ci aspettiamo di memorizzare sono valori incrementali per i giunti pi
 \label{fig:distanzeCumulate}
 \end{figure}
 
+Come abbiamo visto nella tecnica precedente, la distinzione fra valori spesso troppo piccoli e il rumore derivante dall'approssimazione della posizione del giunto non è un compito semplice. Per tentare di ovviare a questo problema, un'altra tecnica testata è quella delle \emph{distanze cumulate}, ovvero trasformare ogni posa $\mathcal{P}_f$ nella somma dei vettori distanza calcolati fino a quel punto con la tecnica del \emph{next frame}, ovvero
+$$
+\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
+$$
+
+Quello che ci aspettiamo di ottenere sono variazioni evidenti per i giunti più dinamici nel video, mentre per quelli statici, che quindi si presuppone non caratterizzino eccessivamente il movimento, ci aspettiamo variazioni minori. In figura \ref{fig:distanzeCumulate} abbiamo una schematizzazione di ciò che otterremmo con la tecnica delle distanze cumulate se analizzassimo una porzione di video dove il soggetto inquadrato alza e abbassa il braccio destro.
+
+
+
 \subsection{Tecnica delle distanze relative}
-Questa tecnica riprende quella del ``centro del frame" con la differenza che qui ogni posa viene trasformata in una matrice di distanze fra tutte le coppie di giunti all'interno della stessa. Più precisamente, per ogni posa $\mathcal{P}_f \in \mathbb{R}^{K\times 2}$ otterremo la rispettiva trasformazione $\mathcal{T}_f \in \mathbb{R}^{K\times K}$, composta dai valori
+Questa tecnica riprende quella del \emph{centro del frame} con la differenza che ogni posa viene trasformata in una matrice di distanze fra ogni coppia di giunti. Più precisamente per ogni posa $\mathcal{P}_f$, che ricordiamo essere appartenente all'insieme $\mathbb{R}^{K\times 2}$, otterremo la rispettiva trasformazione $\mathcal{T}_f \in \mathbb{R}^{K\times K}$, composta dai valori
 $$
 t_{ij} = eucl(p_{if},p_{jf})
 $$
 
-con $i = 0, ..., K$, $j = 0, ..., K$ ed $eucl(a,b)$ la funzione che restituisce la distanza euclidea fra i punti $a$ e $b$.
+con $i = 0, ..., K$, $j = 0, ..., K$ ed $eucl(a,b)$ la funzione della distanza euclidea fra i punti $a$ e $b$.
 
-Questa tecnica, seppur focalizzata sul singolo frame, ha lo scopo di estrapolare dalla posa anche quei collegamenti che ci sono fra giunti corporei distanti fra loro, come ad esempio la correlazione fra il movimento delle braccia e quello delle gambe durante una camminata. In figura \ref{} vediamo un esempio della tecnica appena descritta.
 
 \begin{figure}[htb]
 \centering
@@ -1139,21 +1145,26 @@ Questa tecnica, seppur focalizzata sul singolo frame, ha lo scopo di estrapolare
 \label{fig:distanzeRelative}
 \end{figure}
 
+
+Questa tecnica, seppur focalizzata sul singolo frame, ha lo scopo di estrapolare dalla posa anche quei collegamenti fra giunti corporei distanti fra loro, come ad esempio la correlazione fra il movimento delle braccia e quello delle gambe durante una camminata. In figura \ref{fig:distanzeRelative} vediamo un esempio della tecnica appena descritta.
+
+
+
 \section{Normalizzazione}
-Ognuna delle tecniche appena viste ha risultati estremamente diversi l'uno dall'altro, con intervalli e variabilità dei valori univoci per ognuna di esse, rendendo quindi necessaria una normalizzazione dei dati prima di passarli alla rete neurale.
+Ognuna delle tecniche appena viste ha risultati differenti l'uno dall'altro, con intervalli e variabilità dei valori estremamente diversi per ognuna di esse, rendendo quindi necessaria una normalizzazione dei dati prima di passarli alla rete neurale.
 
 La normalizzazione dei risultati svolge in ogni algoritmo di machine learning un ruolo estremamente importante ed è per questo che anche in questo lavoro di tesi le è stata data particolare attenzione. 
 
-Nel nostro caso la maggior parte delle tecniche adottate restituiscono in output un dataset di vettori, ad esempio le coordinate di punti sul piano o distanze vettoriali, mentre qualche tecnica, ad esempio quella delle ``distanze relative", restituisce un dataset di valori semplici. 
+Nel nostro caso la maggior parte delle tecniche adottate restituiscono in output un dataset di vettori, ad esempio le coordinate di punti sul piano o distanze vettoriali, mentre qualche tecnica, ad esempio quella delle \emph{distanze relative}, restituisce un dataset di valori semplici. 
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1\textwidth]{imgs/normalizzazione.jpg}
-\caption{Differenza fra normalizzazione \emph{globale} e \emph{separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente a sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph{separata} si ottengono due pose identiche.}
+\caption{Differenza fra normalizzazione \emph{globale} e \emph{separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella metà sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph{separata} si ottengono due pose identiche.}
 \label{fig:normalizzazione}
 \end{figure}
 
-Per questo motivo occorre fare una distinzione fra due tipi di tecniche di normalizzazione dei dati:
+Per questo motivo occorre fare una distinzione fra due tipi di normalizzazione dei dati:
 \begin{itemize}
 \item \textbf{Normalizzazione globale} - Questa normalizzazione tratta tutti i valori in input globalmente e nel caso di un insieme di vettori, tratta i componenti di quest'ultimi come fossero tutti appartenenti ad un unico grande vettore.
 \item \textbf{Normalizzazione separata} -  Questa tecnica, se applicata ad un dataset di valori semplici, funziona esattamente come una normalizzazione globale, se invece viene applicata ad un dataset di vettori allora ne normalizza i valori dimensione per dimensione, trattando cioè quest'ultime in maniera indipendente l'una dall'altra. Questa tecnica è concettualmente più corretta nel caso in cui si analizzi un dataset di punti nel piano, dove vogliamo separare la normalizzazione dei valori dell'asse $x$ da quella dell'asse $y$ (figura \ref{fig:normalizzazione}).
@@ -1162,17 +1173,14 @@ Per questo motivo occorre fare una distinzione fra due tipi di tecniche di norma
 Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro.
 
 
-
-\section{Smussamento}
-
 \section{Struttura della rete}
-Per quanto riguarda la rete neurale adottata per la classificazione delle azioni, è stato scelto di usare le LSTM. Queste reti, nel mondo del machine learning, hanno già dimostrato la loro grande capacità espressiva quando si tratta di analizzare sequenze temporali di input. 
+Per quanto riguarda la rete neurale adottata per la classificazione delle azioni è stato scelto di usare le LSTM. Queste reti, nel mondo del machine learning, hanno già dimostrato la loro grande capacità espressiva quando si tratta di analizzare sequenze temporali in input. 
 
 La struttura della rete è stata fatta variare a seconda della fase degli esperimenti svolti. Nella prima fase è stato scelto di testare ogni tecnica utilizzando una rete neurale più piccola e semplice. Successivamente, solo per le tecniche più promettenti, è stato deciso di testare anche strutture di rete più complesse.
 
 Vediamo più nel dettaglio ogni componente scelto per la rete.
 \begin{itemize}
-\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da un solo livello LSTM ed un livello completamente connesso per l'inferenza finale e di incrementare il numero di livelli LSTM progressivamente fino al raggiungimento ottimale dei risultati. 
+\item \textbf{Livelli} - In prima battuta è stato scelto di utilizzare una rete neurale composta da un solo livello LSTM ed un livello completamente connesso per l'inferenza finale. Per le tecniche più promettenti  è stato incrementato progressivamente il numero dei soli livelli LSTM fino al raggiungimento ottimale dei risultati. 
 
 %È importante però sottolineare che aumentando il numero di livelli della rete non deve variare il numero di parametri totali di quest'ultima altrimenti un'eventuale variazione dei risultati non potrebbe essere attribuita alla sola mutazione di profondità della rete, quindi ad ogni incremento di livello sarà anche necessario regolare di conseguenza il numero di hidden units per ognuno di essi.
 \item \textbf{Hidden units} - Per quanto riguarda il numero di unità nascoste di ogni livello LSTM della rete, è stata utilizzata la seguente regola generale
@@ -1180,7 +1188,7 @@ $$
 N_h = \frac{N_{samples}}{\alpha \cdot (N_{in} + N_{out})}
 $$
 dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_{out}$ sono il numero di unità nascoste in entrata e in uscita rispettivamente e $\alpha$ è un moltiplicatore arbitrario, generalmente fra $2$ e $10$, che indica quanto generale vogliamo sia il nostro modello o, in altre parole, quanto vogliamo evitare l'\emph{overfitting}. In questo lavoro di tesi è stato scelto $\alpha \approx 5$ e di conseguenza ogni livello LSTM è stato strutturato con 64 hidden units.
-\item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria allora la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
+\item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria, la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
 
 $$
 f(s)_i = \frac{e^{s_i}}{\sum_j^C e^{s_j}} \ \ \ \ CCE = -\sum_i^C t_i \cdot log(f(s)_i)
@@ -1192,26 +1200,26 @@ Considerando che il vettore target $\boldsymbol{t}$ è un vettore one-hot, compos
 $$
 CCE = - log\left( \frac{e^{s_p}}{\sum_j^C e^{s_j}}\right)
 $$
-dove $s_p$ è lo score che la rete neurale restituisce per la classe $p$.
+dove $s_p$ è il valore che la rete neurale restituisce per la classe $p$.
 
-\item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stato scelto di fissarla pari a $10\times N$,  dove $N$ è il numero di categorie del dataset, di modo da consentire ad ogni iterazione una sufficiente variabilità del batch ed una corretta generalizzazione nell'aggiornamento dei pesi. Per l'allenamento della rete sul dataset completo, la batch size è stata quindi fissata a $600$.
-\item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche. Per le tecniche più promettenti e dopo aver stabilito la struttura della rete, è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$.
-\item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati settati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, sono stati impostati a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
-\item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore} ricorrente sono stati settati inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
+\item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stata scelta pari a $10\times N$,  dove $N$ è il numero di categorie del dataset, di modo da consentire ad ogni iterazione una sufficiente variabilità del batch ed una corretta generalizzazione nell'aggiornamento dei pesi. Per l'allenamento della rete sul dataset completo la batch size è stata quindi fissata a $600$.
+\item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche, di modo da testare velocemente ognuna di esse. Per le tecniche più promettenti è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$ interrompendo l'addestramento secondo il criterio scelto (spiegato nella prossima sezione).
+\item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati impostati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, è stato assegnato a entrambi un valore pari a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
+\item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore ricorrente} sono sempre stati settati entrambi allo stesso valore, inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
 \end{itemize}
 
-\section{Criterio di arresto dell'allenamento}
-Sapere quando interrompere l'allenamento della rete e testarla sull'insieme di \emph{test} non è un compito facile. 
+\section{Criterio di arresto dell'addestramento}
+Sapere quando interrompere l'addestramento della rete per testarla sull'insieme di \emph{test} non è un compito facile. 
 
 Le scuole di pensiero più diffuse sono sostanzialmente due e hanno come idea quella di arrestare l'addestramento:
 \begin{enumerate}
 \item al valor minimo della \textbf{loss di validazione}
 \item al valore massimo dell'\textbf{accuratezza di validazione}
 \end{enumerate} 
-In questo lavoro di testi sono state testate, per ogni tecnica, entrambe le ipotesi di modo da capire quale delle due è la più adatta al nostro caso di studio. Per fare ciò il dataset di allenamento è stato suddiviso in due parti:
+In questo lavoro di tesi sono state testate, per ogni tecnica, entrambe le ipotesi di modo da capire quale delle due è la più adatta al nostro caso di studio. Per fare ciò il dataset di allenamento è stato suddiviso in due parti:
 \begin{itemize}
-\item l'$\boldsymbol{80\%}$ per l'effettivo dataset di allenamento
-\item il $\boldsymbol{20\%}$ per il dataset di validazione.
+\item l'$\boldsymbol{80\%}$ come effettivo dataset di allenamento
+\item il $\boldsymbol{20\%}$ come dataset di validazione.
 \end{itemize}
 
 
@@ -1221,13 +1229,13 @@ Il recente sviluppo dei sensori di profondità ha permesso un notevole migliorame
 
 Essendo però un campo scientifico piuttosto ``giovane'', la ricerca di un adeguato dataset per il \emph{riconoscimento di azioni umane} che sia solido, voluminoso e vario può non essere un compito facile. 
 
-Spesso i dataset pubblicamente disponibili sono composti da uno stretto gruppo di soggetti, il che riduce notevolmente la variabilità intra-classi e un'\emph{attività umana} dipende fortemente dall'età, il sesso, la cultura e le condizioni fisiche di chi la svolge quindi avere una sufficiente variabilità di soggetti nel dataset che stiamo analizzando è di vitale importanza.
+Spesso i dataset pubblicamente disponibili sono composti da uno stretto gruppo di soggetti, il che riduce notevolmente la variabilità intra-classi e considerando che un'\emph{azione} dipende fortemente dall'età, il sesso, la cultura e le condizioni fisiche di chi la svolge, avere una sufficiente variabilità di soggetti nel dataset che stiamo analizzando è di vitale importanza.
 
-Un'altra cosa estremamente importante è il numero di azioni che stiamo analizzando. Se il nostro dataset contiene poche tipologie di attività umane, sarà facile distinguerle e classificarle fra loro, magari identificando un semplice pattern di movimento o addirittura la struttura di un oggetto coinvolto nell'azione da classificare. Se invece il numero di azioni trattate è sufficientemente alto, allora i pattern di movimento e gli oggetti con i quali si interagisce vengono condivisi fra più classi di azioni, rendendo la classificazione estremamente più difficile.
+Un'altra cosa estremamente importante è il numero di azioni che stiamo analizzando. Se il nostro dataset contiene poche tipologie di azioni, sarà facile distinguerle e classificarle fra loro, magari identificando un semplice pattern di movimento o addirittura la struttura di un oggetto coinvolto. Se invece il numero di azioni trattate è sufficientemente alto, allora i pattern di movimento e gli oggetti con i quali si interagisce vengono condivisi fra più classi, rendendo la classificazione estremamente più difficile.
 
-Il terzo punto da considerare nella scelta di un buon dataset è il punto di vista dal quale vengono riprese le azioni. La maggior parte dei dataset contengono video che riprendono l'azione da un unico punto di vista (spesso frontale), in altri casi invece i punti di vista sono strettamente due (magari frontale e di lato), ottenuti solo perchè sono state utlizzate più telecamere contemporaneamente.
+Il terzo punto da considerare per scelta di un buon dataset è il punto di vista dal quale vengono riprese le azioni. La maggior parte dei dataset contengono video che riprendono l'azione da un unico punto di vista (spesso frontale), in altri casi invece i punti di vista sono strettamente due (magari frontale e di lato), ottenuti solo perchè sono state utlizzate più telecamere contemporaneamente.
 
-Come ultima cosa e forse la più importante, l'insufficienza di video nei dataset ci impedisce spesso di applicare tecniche di machine-learning al nostro problema, portandoci inevitabilmente ad una situazione di overfitting.
+Come ultima cosa, probabilmente la più importante, l'insufficienza di video nei dataset ci impedisce spesso di applicare tecniche di machine-learning al nostro problema, portandoci inevitabilmente ad una situazione di overfitting.
 
 Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang Wang hanno creato nel 2016 \emph{NTU RGB+D} \cite{NTURGB}, un vasto e variegato dataset dedito all'analisi di attività umane in ambito 3D.
 
@@ -1238,9 +1246,11 @@ Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang
 \label{fig:varietaNTURGB}
 \end{figure}
 
-NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti attori ed utilizzando Microsoft Kinect v2. Il dataset contiene i video RGB, le sequenze di profondità, lo skeleton dei soggetti (ovvero le posizioni 3D dei principali giunti corporei) e i frames a infrarossi. I soggetti sono stati ripresi da 80 punti di vista differenti e la loro età varia dai 10 ai 35 anni, il che rende più realistica la variazione di qualità delle azioni svolte. Anche se tutte le riprese sono di tipo \emph{indoor}, gli scenari ricreati intorno agli attori sono estremamente variabili.
+NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti attori ed utilizzando Microsoft Kinect v2. Il dataset contiene i video RGB, le sequenze di profondità, lo skeleton dei soggetti (ovvero le posizioni 3D dei principali giunti corporei) ed i frames a infrarossi. I soggetti sono stati ripresi da 80 punti di vista differenti e la loro età varia dai 10 ai 35 anni, il che rende più realistica la variazione di qualità delle azioni svolte. Anche se tutte le riprese sono di tipo \emph{indoor}, gli scenari ricreati intorno agli attori sono estremamente vari.
 
 \section{NTU RGB+D in dettaglio}
+Ma vediamo adesso più nel dettaglio quali sono le informazioni a disposizione in questo dataset.
+
 \textbf{Tipologie di dati} - I dati raccolti sono stati ottenuti con sensori Microsoft Kinect v2 che consentono di estrapolare dalle riprese 4 tipologie di dato: mappe di profondità, informazioni 3D dei giunti corporei, frame RGB e sequenze a infrarossi.
 
 \begin{figure} [htb]
@@ -1252,7 +1262,7 @@ NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti at
 
 Le \emph{mappe di profondità} sono sequenze di valori in millimetri che rappresentano la distanza di ogni punto dalla telecamera. Ogni mappa di profondità è stata  poi ridotta ad una risoluzione di $512 \times 424$ senza perdita di informazione.
 
-Le \emph{informazioni 3D dei giunti corporei} sono coordinate 3D dei 25 giunti corporei più importanti. Per ogni giunto e per ogni frame viene inoltre saltavo il corrispondente pixel nel video RGB e la realtiva mappa di profondità. I 25 giunti corporei utilizzati sono raffigurati in figura \ref{fig:giuntiNTURGB}.
+Le \emph{informazioni 3D dei giunti corporei} sono coordinate 3D dei 25 giunti corporei più importanti. Per ogni giunto e per ogni frame viene saltato il corrispondente pixel nel video RGB e la realtiva mappa di profondità. I 25 giunti corporei utilizzati sono raffigurati in figura \ref{fig:giuntiNTURGB}.
 
 I \emph{video RGB} sono normali video registrati con una risoluzione $1920 \times 1080$.
 
@@ -1262,7 +1272,7 @@ Le \emph{sequenze a infrarossi} sono, come per le mappe di profondità, salvate f
 
 \textbf{I soggetti} - Per la realizzazione di questo dataset sono stati utilizzati 40 attori di età compresa dai 10 ai 35 anni. In figura \ref{fig:varietaNTURGB} è possibile vedere come l'insieme delle persone scelte sia estremamente variegato in età, altezza e sesso. Ogni attore è rappresentato con un ID unico in tutto il dataset.
 
-\textbf{I punti di ripresa} - Ogni azione è stata registrata da 3 telecamere contemporaneamente di modo da generare 3 prospettive diverse della stessa azione. Le 3 telecamere sono state posizionate tutte alla stessa altezza e sempre con la stessa angolazione di ripresa, ovvero $\ang{-45}, \ang{0}$ e $\ang{45}$. 
+\textbf{I punti di ripresa} - Ogni azione è stata ripresa da 3 telecamere di modo da generare 3 prospettive diverse della stessa azione contemporaneamente. Le 3 telecamere sono state posizionate tutte alla stessa altezza e sempre con la stessa angolazione di ripresa, ovvero $\ang{-45}, \ang{0}$ e $\ang{45}$. 
 
 \begin{figure}[htb!]
 \centering
@@ -1271,9 +1281,9 @@ Le \emph{sequenze a infrarossi} sono, come per le mappe di profondità, salvate f
 \label{fig:schemaTelecamere}
 \end{figure}
 
-Ad ogni attore è stato inoltre richiesto di ripetere l'azione due volte: una rivolto verso la telecamere di sinistra ed una verso quella di destra. Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa azione, ovvero  quella frontale (ripresa 2 volte), quella dal profilo sinistro, quella dal profilo destro, quella ad una angolazione di $\ang{45}$ da sinistra e quella ad una angolazione di $\ang{45}$ da destra. Come per gli attori, l'ID assegnato ad ogni telecamera è fisso per tutto il dataset: la telecamera 1 è sempre quella che riprende da $\ang{0}$, la telecamera 2 da $\ang{45}$ e la 3 da $\ang{-45}$. Uno schema della disposizione delle telecamere e della procedura di ripresa è raffigurato in figura \ref{fig:schemaTelecamere}
+Ad ogni attore è stato inoltre richiesto di ripetere l'azione due volte: una volta verso la telecamere di sinistra ed una verso quella di destra. Cosi facendo le 6 riprese ottenute forniscono 5 prospettive diverse della stessa azione, ovvero  quella frontale (ripresa 2 volte), quella dal profilo sinistro, quella dal profilo destro, quella ad una angolazione di $\ang{45}$ da sinistra e quella ad una angolazione di $\ang{45}$ da destra. Come per gli attori, l'ID assegnato ad ogni telecamera è fisso per tutto il dataset: la telecamera 1 è sempre quella che riprende da $\ang{0}$, la telecamera 2 da $\ang{45}$ e la 3 da $\ang{-45}$. Uno schema della disposizione delle telecamere e della procedura di ripresa è raffigurato in figura \ref{fig:schemaTelecamere}
 
-Per aumentare ulteriormente la variabilità delle riprese, ad ogni \emph{setup} (ovvero ad ogni set di ripresa) le 3 telecamere sono state posizionate ad un'altezza e ad una distanza diversa dall'attore inquadrato, ovviamente mantenendo sempre la stessa altezza fra le 3 telecamere. In tabella \ref{tab:puntiDivista} sono elencate le posizioni delle 3 telecamere per ogni setup.
+Per aumentare ulteriormente la variabilità delle riprese, ad ogni \emph{setup} (ovvero ad ogni set di ripresa) le 3 telecamere sono state posizionate ad un'altezza e ad una distanza diversa dall'attore inquadrato. In tabella \ref{tab:puntiDivista} sono elencate le posizioni delle 3 telecamere per ogni setup.
 
 \begin{table}[ht]
 \centering
@@ -1304,7 +1314,7 @@ Per questa valutazione, i 40 attori sono stati divisi in due gruppi: \emph{train
 
 Gli ID degli attori dell'insieme di training sono: 1, 2, 4, 5, 8, 9, 13, 14, 15, 16, 17, 18, 19, 25, 27, 28, 31, 34, 35, 38. I rimanenti  fanno parte dell'insieme di test.
 \subsection{Valutazione Cross-view}
-Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripresi dalle telecamere 2 e 3 costituiscono l'insieme di training, mentre quelli ripresi dalla telecamera 1 l'insieme di test. In altre parole l'insieme di training include tutte le prospettive frontali del soggetto inquadrato e tutte quelle di profilo mentre l'insieme di test include tutte le prospettive a $\ang{45}$. Dividendo il dataset con questo criterio si ottiene un insieme di training composto da 37920 video e quello di test da 18960.
+Per quanto riguarda invece la valutazione \emph{cross-view}, tutti i video ripresi dalle telecamere 2 e 3 costituiscono l'insieme di training, mentre quelli ripresi dalla telecamera 1 l'insieme di test. In altre parole l'insieme di training include tutte le prospettive frontali del soggetto inquadrato e tutte quelle di profilo mentre l'insieme di test include tutte le prospettive a $\ang{45}$ e $-\ang{45}$. Dividendo il dataset con questo criterio si ottiene un insieme di training composto da 37920 video e quello di test da 18960.
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Esperimenti e risultati}
@@ -1319,11 +1329,11 @@ La legenda di ogni tabella in questo capito sarà la seguente
 \item \textbf{3-5-17 BAR ASS} - tecnica dei 3-5-17 baricentri in valore assoluto
 \item \textbf{DIST REL} - tecnica delle distanze relative
 \item \textbf{DIST CUM} - tecnica delle distanze cumulate
-\item \textbf{NEXT} - tecnica delle next frame con S=1
-\item \textbf{NEXT 3-5-15} - tecnica delle next frame con S=3-5-15
+\item \textbf{NEXT} - tecnica del next frame con S=1
+\item \textbf{NEXT 3-5-15} - tecnica del next frame con S=3-5-15
 \item \textbf{norm} - normalizzazione globale
 \item \textbf{normXY} - normalizzazione separata
-\item \textbf{MIN LOSS} - i risultati sono stati ottenuti interropendo l'allenamento secondo il criterio del minor valore della loss di validazione, se non specificato allora viene sottinteso del maggior valore dell'accuratezza di validazione
+\item \textbf{MIN LOSS} - i risultati sono stati ottenuti interropendo l'allenamento secondo il criterio del \emph{minor valore della loss di validazione}, se non specificato allora viene sottinteso del \emph{maggior valore dell'accuratezza di validazione}.
 \item \textbf{semplice} - non è stata utilizzata alcuna tecnica aggiuntiva dopo l'estrazione della posa.
 
 \end{itemize}
@@ -1337,7 +1347,7 @@ A questo scopo sono state scelte 8 azioni con le seguenti caratteristiche:
 \item 2 azioni di coppia simili fra loro
 \item 3 coppie di azioni individuali simili fra loro
 \end{itemize}
-Le azioni scelte, fra quelle proposte da NTU-RGB60, sono state:
+Le azioni scelte, fra quelle proposte da NTU-RGB+D, sono state:
 \begin{enumerate}
 \item dare uno pacca sulla schiena a qualcuno (azione di coppia)
 \item toccare la tasca di qualcuno (azione di coppia)
@@ -1349,7 +1359,7 @@ Le azioni scelte, fra quelle proposte da NTU-RGB60, sono state:
 \item usare una tastiera
 \end{enumerate}
 
-Questa porzione di dataset così creata è sicuramente di difficile categorizzazione attraverso il solo uso della posa dato che, molte delle azioni scelte, si differenziano solo per piccoli movimenti delle dita che la posa non è in grado di distinguere.
+Questa porzione di dataset così creata è sicuramente di difficile categorizzazione, dato che molte delle azioni scelte si differenziano solo per piccoli movimenti delle dita non distinguibili col solo della posa generata da PoseNet e Detectron2.
 
 \section{Fase 1: Test di tutte le tecniche}
 Per questa prima fase è stato scelto di testare ogni tecnica del capitolo 4 allenando una semplice rete neurale composta da un livello LSTM ed un livello completamente connesso per l'inferenza finale, ignorando per il momento dropout e regolarizzazione.
@@ -1423,7 +1433,7 @@ I risultati ottenuti sono illustrati in tabella \ref{tab:primaIterazione}.
 %\restoregeometry
 
 Da questa prima classifica dei risultati, apparte avere un'idea su quali sono le tecniche più efficienti, si evince anche qualche altro aspetto importante:\begin{itemize}
-\item Categorizzare le azioni utilizzando semplicemente i valori della stima della posa ottenuti da Detectron2 e Posenet è decisamente non sufficiente, ottenendo un'accuratezza massima del $42,21\%$ (in media)
+\item Categorizzare le azioni utilizzando semplicemente i valori della stima della posa ottenuti da Detectron-2 e Posenet è decisamente non sufficiente, ottenendo un'accuratezza massima del $42,21\%$ (in media)
 \item Quanto trattiamo punti sul piano la \emph{normalizzazione separata} ha risultati nettamente migliori rispetto a quella \emph{globale} ($\approx+2\%$ in media).
 \item In quasi tutti i casi è preferibile interrompere l'allenamento della rete al \emph{massimo valore di accuratezza di validazione} invece che al \emph{minor valore della loss di validazione}.
 \end{itemize} 
@@ -1479,23 +1489,15 @@ I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERe
 Quest'ultima fase è dedicata a finalizzare la miglior tecnica trovata, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset.
 Ci sono volute circa [...] epoche per raggiungere il miglior valore e i risultati ottenuti al termine di questo lungo procedimento sono i seguenti:
 
-
-\section{FAI}
-\begin{itemize}
-\item nocciolo duro?
-\item combinazione tecniche diverse?
-\item test su tutto il dataset
-\end{itemize}
-
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusioni e sviluppi futuri}
 In questo lavoro di tesi ci siamo dedicati al riconoscimento e alla classificazione di azioni umane tramite tecniche di apprendimento profondo per la stima della posa. 
 
-Per tale scopo abbiamo deciso di ideare un algoritmo che non avesse bisogno di informazioni iniziali complesse, come ad esempio la posizione dei giunti dei soggetti inquadrati, ma che attraverso l'uso dei soli video RGB fosse in grado di estrapolare tutte le informazioni necessarie.
+A tale scopo abbiamo deciso di ideare un algoritmo che non avesse bisogno di informazioni iniziali complesse, come ad esempio la posizione dei giunti dei soggetti inquadrati, ma che attraverso l'uso dei soli video RGB fosse in grado di estrapolare tutte le informazioni necessarie.
 
 Al fine di ottenere il miglior algoritmo abbiamo eseguito un serie di esperimenti strutturati secondo un procedimento ben preciso, che permettesse l'esplorazione rapida di ogni tecnica ideata affinando progressivamente i risultati per quelle più promettenti.
 
-Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una discreta capacità di classificazione della azioni umane e, per la loro semplicità, anche un'elevata portabilità.
+Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una discreta capacità di classificazione della azioni umane e per la loro semplicità anche un'elevata portabilità.
 
 Nello specifico, gli algoritmi che proponiamo sono:
 \begin{itemize}
@@ -1505,7 +1507,7 @@ Nello specifico, gli algoritmi che proponiamo sono:
 
 Questi due algoritmi, pur facendo uso dei soli video RGB, superano le performance di diversi lavori nel mondo scientifico dedicati al medesimo scopo, inoltre essendo non complessi sono facilmente migliorabili. 
 
-Una visione globale dei risultati ottenuti con i due algoritmi comparati a quelli dello stato dell'arte è sintetizzata in tabella \ref{tab:nostriAlgoritmiNelMondo}.
+Una visione globale dei risultati ottenuti con i due algoritmi, comparati a quelli dello stato dell'arte, è sintetizzata in tabella \ref{tab:nostriAlgoritmiNelMondo}.
 \begin{table}
 \centering
 \begin{tabular}{| c | c | c | c | c | c |}
