@@ -1160,7 +1160,7 @@ Nel nostro caso la maggior parte delle tecniche adottate restituiscono in output
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1\textwidth]{imgs/normalizzazione.jpg}
-\caption{Differenza fra normalizzazione \emph{globale} e \emph{separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella metà sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph{separata} si ottengono due pose identiche.}
+\caption{Differenza fra normalizzazione \emph{globale} e \emph{separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella metà sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph{separata} si ottengono due risultati identici.}
 \label{fig:normalizzazione}
 \end{figure}
 
@@ -1205,7 +1205,7 @@ dove $s_p$ è il valore che la rete neurale restituisce per la classe $p$.
 \item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stata scelta pari a $10\times N$,  dove $N$ è il numero di categorie del dataset, di modo da consentire ad ogni iterazione una sufficiente variabilità del batch ed una corretta generalizzazione nell'aggiornamento dei pesi. Per l'allenamento della rete sul dataset completo la batch size è stata quindi fissata a $600$.
 \item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche, di modo da testare velocemente ognuna di esse. Per le tecniche più promettenti è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$ interrompendo l'addestramento secondo il criterio scelto (spiegato nella prossima sezione).
 \item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati impostati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, è stato assegnato a entrambi un valore pari a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
-\item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore ricorrente} sono sempre stati settati entrambi allo stesso valore, inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-4}$,$10^{-5}$ e  $10^{-6}$.
+\item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore ricorrente} sono sempre stati settati entrambi allo stesso valore, inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-1}$, $10^{-2}$, $10^{-3}$, $10^{-4}$, $10^{-5}$, $10^{-6}$, $10^{-7}$ e $10^{-8}$. Ogni regolarizzatore utilizzato in questo lavoro di tesi è di tipo L2.
 \end{itemize}
 
 \section{Criterio di arresto dell'addestramento}
@@ -1480,14 +1480,121 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 \restoregeometry
 \newpage
 
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{| c | c | c | c | c | c | c |}
+
+
+\newgeometry{left=1.5cm, right=1.5cm, bottom=0.1cm}
+\begin{longtable}{| c | c | c | l | c | c | c |}
+\hline
+ \multicolumn{7}{|c|}{Detectron 2} \\
+\hline
+\thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
+\hline
+$84,30$ & $88,89$ & $79,71$ & rimoz $0$ + 3BAR + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+$84,23$ & $88,66$ & $79,81$ &  rimoz $0$ + 3BAR + norm & $5$ &  & $3$ \\ \hline
+$83,86$ & $88,44$ & $79,28$ &  rimoz $0$ + 3BAR + norm & $15$ &  & $2$ \\ \hline
+%$82,03$ & $85,5$ & $78,57$ &  rimoz $0$ + normXY & $5$ &  & $3$ \\ \hline
+%$80,98$ & $83,67$ & $78,3$ &  rimoz $0$ + normXY  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+$80,66$ & $84,69$ & $76,62$ &  rimoz $0$ + 5BAR + norm & $10$ &  & $3$ \\ \hline
+$80,61$ & $84,59$ & $76,62$ &  rimoz $0$ + 5BAR + norm  (MIN LOSS) & $10$ &  & $3$ \\ \hline
+$80,21$ & $84,83$ & $75,58$ &  rimoz $0$ + 5BAR + norm  (MIN LOSS) & $10$ & $10^{-6}$ & $3$ \\ \hline
+$80,04$ & $85,42$ & $74,67$ &  rimoz $0$ + VIDEO + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+%$79,91$ & $84,98$ & $74,84$ &  rimoz $0$ + norm & $$ &  & $3$ \\ \hline
+$79,9$ & $85,22$ & $74,58$ &  rimoz $0$ + VIDEO + norm & $5$ &  & $3$ \\ \hline
+$79,87$ & $84,62$ & $75,12$ &  rimoz $0$ + VIDEO + norm & $5$ & $10^{-6}$ & $3$ \\ \hline
+$79,32$ & $83,6$ & $75,04$ &  rimoz $0$ + VIDEO PERS + norm & $5$ & $10^{-6}$ & $3$ \\ \hline
+$79,13$ & $83,19$ & $75,06$ &  rimoz $0$ + VIDEO PERS + norm  (MIN LOSS) & $5$ & $10^{-6}$ & $3$ \\ \hline
+$78,38$ & $80,79$ & $75,98$ &  rimoz $0$ + FRAME + norm  (MIN LOSS) & $5$ & $10^{-7}$ & $3$ \\ \hline
+$78,29$ & $80,7$ & $75,88$ &  rimoz $0$ + FRAME + norm & $5$ & $10^{-7}$ & $3$ \\ \hline
+%$77,98$ & $83,34$ & $72,63$ &  rimoz $0$ + norm & $5$ &  & $3$ \\ \hline
+$77,88$ & $79,38$ & $76,38$ &  rimoz $0$ + FRAME + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+%$77,24$ & $79,15$ & $75,34$ &  rimoz $0$ + normXY & $$ &  & $3$ \\ \hline
+$76,69$ & $81,05$ & $72,32$ &  rimoz $0$ + VIDEO PERS + norm & $5$ &  & $3$ \\ \hline
+$76,48$ & $80,7$ & $72,27$ &  rimoz $0$ + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+$75,89$ & $77,95$ & $73,82$ &  rimoz $0$ + FRAME PERS + norm  (MIN LOSS) & $5$ & $10^{-7}$ & $3$ \\ \hline
+$75,76$ & $77,79$ & $73,73$ &  rimoz $0$ + FRAME PERS + norm & $5$ & $10^{-7}$ & $3$ \\ \hline
+$71,06$ & $71,98$ & $70,15$ &  rimoz $0$ + 3BAR ASS + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
+$71,02$ & $71,94$ & $70,1$ &  rimoz $0$ + 3BAR ASS + norm & $5$ &  & $3$ \\ \hline
+$70,93$ & $72,34$ & $69,52$ &  rimoz $0$ + 3BAR ASS + norm & $5$ & $10^{-7}$ & $3$ \\ \hline 
+
+\caption{Risultati delle tecniche più promettenti applicate a tutto NTU-RGB+D, utilizzando Detectron 2 per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph{Cross subject} e \emph{Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph{Media} = media delle accuratezze su Cross subject e Cross view; \emph{Cross subject} = accuratezza sullo splitting Cross subject; \emph{Cross view} = accuratezza sullo splitting Cross view; \emph{Drop} = valore percentuale di \emph{dropout} e \emph{dropout ricorrente} durante la fase di allenamento; \emph{Reg} = valore del \emph{regolarizzatore L2} e del \emph{regolarizzatore ricorrente L2}; \emph{Liv} = livelli LSTM della rete.}
+\label{tab:dropoutERegolarizzatoreDetectron}
+\end{longtable}
+
+\newpage
+\begin{longtable}{| c | c | c | l | c | c | c |}
+\hline
+ \multicolumn{7}{|c|}{PoseNet} \\
+\hline
+\thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
+\hline
+ $76,05$  & $80,09$ &    $72,00$ &   rimoz $0$ + 5BAR + norm & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $75,84$  & $78,91$ &    $72,77$ &   rimoz $0$ + 3BAR + norm (MIN LOSS) & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $75,81$  & $79,95$ &    $71,68$ &   rimoz $0$ + 3BAR + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $75,63$  & $78,87$ &    $72,38$ &   rimoz $0$ + 3BAR + norm & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $75,59$  & $79,86$ &    $71,32$ &   rimoz $0$ + 5BAR + norm (MIN LOSS) & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $74,48$  & $76,78$ &    $72,17$ &   rimoz $0$ + 5BAR + norm (MIN LOSS) & 10 &  $10^{-7}$ & $3$ \\ \hline 
+ $74,03$  & $76,31$ &    $71,75$ &   rimoz $0$ + VIDEO + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $73,68$  & $76,53$ &    $70,83$ &   rimoz $0$ + VIDEO PERS + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $73,57$  & $76,53$ &    $70,60$ &   rimoz $0$ + VIDEO PERS + norm (MIN LOSS) & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $73,54$  & $76,28$ &    $70,79$ &   rimoz $0$ + VIDEO + norm (MIN LOSS) & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $73,50$  & $76,28$ &    $70,72$ &   rimoz $0$ + VIDEO + norm & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $73,19$  & $75,16$ &    $71,21$ &   rimoz $0$ + VIDEO PERS + norm & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $72,71$  & $76,45$ &    $68,98$ &   rimoz $0$ + FRAME + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $72,71$  & $76,44$ &    $68,98$ &   rimoz $0$ + FRAME + norm (MIN LOSS) & 5 &  $10^{-6}$ & $3$ \\ \hline 
+ $72,46$  & $75,94$ &    $68,97$ &   rimoz $0$ + FRAME PERS + norm & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $72,40$  & $75,94$ &    $68,85$ &   rimoz $0$ + FRAME PERS + norm (MIN LOSS) & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $72,07$  & $74,25$ &    $69,90$ &   rimoz $0$ + FRAME + norm & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $71,75$  & $73,83$ &    $69,66$ &   rimoz $0$ + FRAME PERS + norm (MIN LOSS) & 10 &  $10^{-7}$ & $3$ \\ \hline 
+ $69,92$  & $71,86$ &    $67,98$ &   rimoz $0$ + 3BAR ASS + norm & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $69,77$  & $71,72$ &    $67,82$ &   rimoz $0$ + 3BAR ASS + norm (MIN LOSS) & 10 &  $10^{-6}$ & $3$ \\ \hline 
+ $68,75$  & $71,30$ &    $66,21$ &   rimoz $0$ + 3BAR ASS + norm (MIN LOSS) & 15 &  $10^{-5}$ & $3$ \\ \hline 
+ \caption{Risultati delle tecniche più promettenti applicate a tutto NTU-RGB+D, utilizzando PoseNet per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph{Cross subject} e \emph{Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph{Media} = media delle accuratezze su Cross subject e Cross view; \emph{Cross subject} = accuratezza sullo splitting Cross subject; \emph{Cross view} = accuratezza sullo splitting Cross view; \emph{Drop} = valore percentuale di \emph{dropout} e \emph{dropout ricorrente} durante la fase di allenamento; \emph{Reg} = valore del \emph{regolarizzatore L2} e del \emph{regolarizzatore ricorrente L2}; \emph{Liv} = livelli LSTM della rete.}
+\label{tab:dropoutERegolarizzatorePosenet}
+\end{longtable}
+
+\restoregeometry
+
+%\end{tabular}
+%\label{tab:dropoutERegolarizzatore}
+%\caption{risultati sul dataset completo stoppando l'allenamento alla 100-esima epoca}
+%\end{table}
+
+
+
 \section{Fase 3: Dropout e regolarizzatori}
 Adesso che abbiamo un'idea di quali sono le tecniche più efficienti possiamo ridurre il raggio d'azione e testare solo quest'ultime sul tutto il dataset facendo variare per ognuna di esse il valore del regolarizzatore e del dropout (ricordiamo che per semplicità di strutturazione degli esperimenti il \emph{regolarizzatore ricorrente} ed il \emph{dropout ricorrente} sono stati sempre impostati allo stesso valore del \emph{regolarizzatore} e del \emph{dropout del kernel} rispettivamente).
-I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERegolarizzatore}
+I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERegolarizzatoreDetectron} e \ref{tab:dropoutERegolarizzatorePosenet}
+
+
 
 
 \section{Fase 4: Allenamento completo tecnica migliore}
-Quest'ultima fase è dedicata a finalizzare la miglior tecnica trovata, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset.
-Ci sono volute circa [...] epoche per raggiungere il miglior valore e i risultati ottenuti al termine di questo lungo procedimento sono i seguenti:
+Quest'ultima fase è dedicata a finalizzare la miglior tecnica trovata, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset di validazione.
+
+Per determinare quale fosse il picco massimo dell'accuratezza e il picco minimo della loss è stata usata la tecnica \emph{dell'asta}, ovvero è stato fissato un valore arbitrario di $150$ epoche di inattività sull'aggiornamento dei rispettivi estremi per decretarne il vincitore.
+
+L'addestramento cosi strutturato ha richiesto [...] epoche ed i risultati ottenuti al termine di questo lungo procedimento sono i seguenti:
+
+%\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm}
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | l | c | c | c |}
+\hline
+ \multicolumn{7}{|c|}{Detectron 2} \\
+\hline
+\thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
+\hline
+$85,14$ & $89,39$ & $80,88$ & rimoz $0$ + 3BAR + norm & $5$ &  & $3$ \\ \hline
+$84,92$ & $90,33$ & $79,51$ &  rimoz $0$ + 3BAR + norm & $10$ &  & $4$ \\ \hline
+$84,72$ & $90,36$ & $79,08$ &  rimoz $0$ + 3BAR + norm & $15$ &  & $4$ \\ \hline
+\end{tabular}
+\caption{Migliori risultati ottenuti rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
+\label{tab:dropoutERegolarizzatore}
+\end{table}
+%\restoregeometry
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusioni e sviluppi futuri}

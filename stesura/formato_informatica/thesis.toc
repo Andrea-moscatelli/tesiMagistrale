@@ -40,7 +40,7 @@
 \contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{68}{section.6.1}
 \contentsline {section}{\numberline {6.2}Fase 1: Test di tutte le tecniche}{68}{section.6.2}
 \contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{70}{section.6.3}
-\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{72}{section.6.4}
-\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{72}{section.6.5}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{73}{chapter.7}
-\contentsline {section}{\numberline {7.1}Sviluppi futuri}{73}{section.7.1}
+\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{74}{section.6.4}
+\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{74}{section.6.5}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{75}{chapter.7}
+\contentsline {section}{\numberline {7.1}Sviluppi futuri}{75}{section.7.1}

@@ -330,8 +330,8 @@
 \newlabel{fig:distanzeRelative}{{34}{56}{Tecnica delle \emph {distanze relative}. In questa figura sono rappresentati solo i vettori-distanza dalla caviglia destra a tutti gli altri giunti.\relax }{figure.caption.39}{}}
 \mph@setcol{ii:56}{\mph@nr}
 \@writefile{toc}{\contentsline {section}{\numberline {4.5}Normalizzazione}{57}{section.4.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Differenza fra normalizzazione \emph  {globale} e \emph  {separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella met\`a sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph  {separata} si ottengono due pose identiche.\relax }}{57}{figure.caption.40}}
-\newlabel{fig:normalizzazione}{{35}{57}{Differenza fra normalizzazione \emph {globale} e \emph {separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella metà sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph {separata} si ottengono due pose identiche.\relax }{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Differenza fra normalizzazione \emph  {globale} e \emph  {separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella met\`a sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph  {separata} si ottengono due risultati identici.\relax }}{57}{figure.caption.40}}
+\newlabel{fig:normalizzazione}{{35}{57}{Differenza fra normalizzazione \emph {globale} e \emph {separata}. La posa blu e la posa rossa sono identiche, con l'unica differenza di essere posizionate rispettivamente nella metà sinistra e destra del frame. In questo caso stiamo trattando punti nel piano e solo normalizzandoli con la tecnica \emph {separata} si ottengono due risultati identici.\relax }{figure.caption.40}{}}
 \mph@setcol{ii:57}{\mph@nr}
 \@writefile{toc}{\contentsline {section}{\numberline {4.6}Struttura della rete}{58}{section.4.6}}
 \mph@setcol{ii:58}{\mph@nr}
@@ -382,9 +382,33 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Risultati ottenuti facendo variare la profondit\`a della rete. I valori in grassetto sono i migliori per la tecnica corrispondente.\relax }}{71}{figure.caption.46}}
 \newlabel{tab:incrementoLivelli}{{40}{71}{Risultati ottenuti facendo variare la profondità della rete. I valori in grassetto sono i migliori per la tecnica corrispondente.\relax }{figure.caption.46}{}}
 \mph@setcol{ii:71}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{72}{section.6.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{72}{section.6.5}}
+\gdef \LT@i {\LT@entry 
+    {1}{42.13596pt}\LT@entry 
+    {1}{41.73596pt}\LT@entry 
+    {1}{44.03995pt}\LT@entry 
+    {1}{255.66388pt}\LT@entry 
+    {1}{35.46996pt}\LT@entry 
+    {1}{36.20398pt}\LT@entry 
+    {1}{30.00398pt}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Risultati delle tecniche pi\`u promettenti applicate a tutto NTU-RGB+D, utilizzando Detectron 2 per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph  {Cross subject} e \emph  {Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph  {Media} = media delle accuratezze su Cross subject e Cross view; \emph  {Cross subject} = accuratezza sullo splitting Cross subject; \emph  {Cross view} = accuratezza sullo splitting Cross view; \emph  {Drop} = valore percentuale di \emph  {dropout} e \emph  {dropout ricorrente} durante la fase di allenamento; \emph  {Reg} = valore del \emph  {regolarizzatore L2} e del \emph  {regolarizzatore ricorrente L2}; \emph  {Liv} = livelli LSTM della rete.\relax }}{72}{table.6.5}}
+\newlabel{tab:dropoutERegolarizzatoreDetectron}{{5}{72}{Risultati delle tecniche più promettenti applicate a tutto NTU-RGB+D, utilizzando Detectron 2 per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph {Cross subject} e \emph {Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph {Media} = media delle accuratezze su Cross subject e Cross view; \emph {Cross subject} = accuratezza sullo splitting Cross subject; \emph {Cross view} = accuratezza sullo splitting Cross view; \emph {Drop} = valore percentuale di \emph {dropout} e \emph {dropout ricorrente} durante la fase di allenamento; \emph {Reg} = valore del \emph {regolarizzatore L2} e del \emph {regolarizzatore ricorrente L2}; \emph {Liv} = livelli LSTM della rete.\relax }{table.6.5}{}}
 \mph@setcol{ii:72}{\mph@nr}
+\gdef \LT@ii {\LT@entry 
+    {1}{42.13596pt}\LT@entry 
+    {1}{41.73596pt}\LT@entry 
+    {1}{44.03995pt}\LT@entry 
+    {1}{255.66388pt}\LT@entry 
+    {1}{35.46996pt}\LT@entry 
+    {1}{36.20398pt}\LT@entry 
+    {1}{30.00398pt}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Risultati delle tecniche pi\`u promettenti applicate a tutto NTU-RGB+D, utilizzando PoseNet per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph  {Cross subject} e \emph  {Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph  {Media} = media delle accuratezze su Cross subject e Cross view; \emph  {Cross subject} = accuratezza sullo splitting Cross subject; \emph  {Cross view} = accuratezza sullo splitting Cross view; \emph  {Drop} = valore percentuale di \emph  {dropout} e \emph  {dropout ricorrente} durante la fase di allenamento; \emph  {Reg} = valore del \emph  {regolarizzatore L2} e del \emph  {regolarizzatore ricorrente L2}; \emph  {Liv} = livelli LSTM della rete.\relax }}{73}{table.6.6}}
+\newlabel{tab:dropoutERegolarizzatorePosenet}{{6}{73}{Risultati delle tecniche più promettenti applicate a tutto NTU-RGB+D, utilizzando PoseNet per l'estrazione delle pose e interrompendo l'allenamento alla $100$-esima epoca. I risultati sono ordinati per valor medio di accuratezza globale su gli splitting \emph {Cross subject} e \emph {Cross view}. In questa tabella sono rappresentati solo i $3$ migliori risultati per ogni tecnica. \emph {Media} = media delle accuratezze su Cross subject e Cross view; \emph {Cross subject} = accuratezza sullo splitting Cross subject; \emph {Cross view} = accuratezza sullo splitting Cross view; \emph {Drop} = valore percentuale di \emph {dropout} e \emph {dropout ricorrente} durante la fase di allenamento; \emph {Reg} = valore del \emph {regolarizzatore L2} e del \emph {regolarizzatore ricorrente L2}; \emph {Liv} = livelli LSTM della rete.\relax }{table.6.6}{}}
+\mph@setcol{ii:73}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{74}{section.6.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{74}{section.6.5}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Migliori risultati ottenuti rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.\relax }}{74}{table.caption.47}}
+\newlabel{tab:dropoutERegolarizzatore}{{7}{74}{Migliori risultati ottenuti rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.\relax }{table.caption.47}{}}
+\mph@setcol{ii:74}{\mph@nr}
 \citation{LieGroup}
 \citation{HRNN}
 \citation{DeppLSTM}
@@ -406,44 +430,44 @@
 \citation{PREV1}
 \citation{MMTM}
 \citation{PREV2}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{73}{chapter.7}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{75}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Sviluppi futuri}{73}{section.7.1}}
-\mph@setcol{ii:73}{\mph@nr}
-\@writefile{brf}{\backcite{LieGroup}{{74}{\caption@xref {??}{ on input line 1517}}{table.caption.47}}}
-\@writefile{brf}{\backcite{HRNN}{{74}{\caption@xref {??}{ on input line 1518}}{table.caption.47}}}
-\@writefile{brf}{\backcite{DeppLSTM}{{74}{\caption@xref {??}{ on input line 1519}}{table.caption.47}}}
-\@writefile{brf}{\backcite{DeppLSTM}{{74}{\caption@xref {??}{ on input line 1520}}{table.caption.47}}}
-\@writefile{brf}{\backcite{ST-LSTM+TS}{{74}{\caption@xref {??}{ on input line 1521}}{table.caption.47}}}
-\@writefile{brf}{\backcite{TemporalConv}{{74}{\caption@xref {??}{ on input line 1522}}{table.caption.47}}}
-\@writefile{brf}{\backcite{DSSCA-SSLM}{{74}{\caption@xref {??}{ on input line 1523}}{table.caption.47}}}
-\@writefile{brf}{\backcite{Skelemotion}{{74}{\caption@xref {??}{ on input line 1524}}{table.caption.47}}}
-\@writefile{brf}{\backcite{C-CNN+MTLN}{{74}{\caption@xref {??}{ on input line 1525}}{table.caption.47}}}
-\@writefile{brf}{\backcite{VA-LSTM}{{74}{\caption@xref {??}{ on input line 1526}}{table.caption.47}}}
-\@writefile{brf}{\backcite{Chained}{{74}{\caption@xref {??}{ on input line 1527}}{table.caption.47}}}
-\@writefile{brf}{\backcite{ST-GCN}{{74}{\caption@xref {??}{ on input line 1528}}{table.caption.47}}}
-\@writefile{brf}{\backcite{SR-TSL}{{74}{\caption@xref {??}{ on input line 1531}}{table.caption.47}}}
-\@writefile{brf}{\backcite{2D-3D-Softargmax}{{74}{\caption@xref {??}{ on input line 1532}}{table.caption.47}}}
-\@writefile{brf}{\backcite{GlimpseClouds}{{74}{\caption@xref {??}{ on input line 1533}}{table.caption.47}}}
-\@writefile{brf}{\backcite{PB-GCN}{{74}{\caption@xref {??}{ on input line 1534}}{table.caption.47}}}
-\@writefile{brf}{\backcite{MFAS}{{74}{\caption@xref {??}{ on input line 1535}}{table.caption.47}}}
-\@writefile{brf}{\backcite{FUSION}{{74}{\caption@xref {??}{ on input line 1536}}{table.caption.47}}}
-\@writefile{brf}{\backcite{PREV1}{{74}{\caption@xref {??}{ on input line 1537}}{table.caption.47}}}
-\@writefile{brf}{\backcite{MMTM}{{74}{\caption@xref {??}{ on input line 1538}}{table.caption.47}}}
-\@writefile{brf}{\backcite{PREV2}{{74}{\caption@xref {??}{ on input line 1539}}{table.caption.47}}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Risultati di \emph  {3-BAR-Detectron} e \emph  {3-BAR-Posenet} comparati allo stato dell'arte.\relax }}{74}{table.caption.47}}
-\newlabel{tab:nostriAlgoritmiNelMondo}{{5}{74}{Risultati di \emph {3-BAR-Detectron} e \emph {3-BAR-Posenet} comparati allo stato dell'arte.\relax }{table.caption.47}{}}
-\mph@setcol{ii:74}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Sviluppi futuri}{75}{section.7.1}}
+\mph@setcol{ii:75}{\mph@nr}
+\@writefile{brf}{\backcite{LieGroup}{{76}{\caption@xref {??}{ on input line 1624}}{table.caption.48}}}
+\@writefile{brf}{\backcite{HRNN}{{76}{\caption@xref {??}{ on input line 1625}}{table.caption.48}}}
+\@writefile{brf}{\backcite{DeppLSTM}{{76}{\caption@xref {??}{ on input line 1626}}{table.caption.48}}}
+\@writefile{brf}{\backcite{DeppLSTM}{{76}{\caption@xref {??}{ on input line 1627}}{table.caption.48}}}
+\@writefile{brf}{\backcite{ST-LSTM+TS}{{76}{\caption@xref {??}{ on input line 1628}}{table.caption.48}}}
+\@writefile{brf}{\backcite{TemporalConv}{{76}{\caption@xref {??}{ on input line 1629}}{table.caption.48}}}
+\@writefile{brf}{\backcite{DSSCA-SSLM}{{76}{\caption@xref {??}{ on input line 1630}}{table.caption.48}}}
+\@writefile{brf}{\backcite{Skelemotion}{{76}{\caption@xref {??}{ on input line 1631}}{table.caption.48}}}
+\@writefile{brf}{\backcite{C-CNN+MTLN}{{76}{\caption@xref {??}{ on input line 1632}}{table.caption.48}}}
+\@writefile{brf}{\backcite{VA-LSTM}{{76}{\caption@xref {??}{ on input line 1633}}{table.caption.48}}}
+\@writefile{brf}{\backcite{Chained}{{76}{\caption@xref {??}{ on input line 1634}}{table.caption.48}}}
+\@writefile{brf}{\backcite{ST-GCN}{{76}{\caption@xref {??}{ on input line 1635}}{table.caption.48}}}
+\@writefile{brf}{\backcite{SR-TSL}{{76}{\caption@xref {??}{ on input line 1638}}{table.caption.48}}}
+\@writefile{brf}{\backcite{2D-3D-Softargmax}{{76}{\caption@xref {??}{ on input line 1639}}{table.caption.48}}}
+\@writefile{brf}{\backcite{GlimpseClouds}{{76}{\caption@xref {??}{ on input line 1640}}{table.caption.48}}}
+\@writefile{brf}{\backcite{PB-GCN}{{76}{\caption@xref {??}{ on input line 1641}}{table.caption.48}}}
+\@writefile{brf}{\backcite{MFAS}{{76}{\caption@xref {??}{ on input line 1642}}{table.caption.48}}}
+\@writefile{brf}{\backcite{FUSION}{{76}{\caption@xref {??}{ on input line 1643}}{table.caption.48}}}
+\@writefile{brf}{\backcite{PREV1}{{76}{\caption@xref {??}{ on input line 1644}}{table.caption.48}}}
+\@writefile{brf}{\backcite{MMTM}{{76}{\caption@xref {??}{ on input line 1645}}{table.caption.48}}}
+\@writefile{brf}{\backcite{PREV2}{{76}{\caption@xref {??}{ on input line 1646}}{table.caption.48}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Risultati di \emph  {3-BAR-Detectron} e \emph  {3-BAR-Posenet} comparati allo stato dell'arte.\relax }}{76}{table.caption.48}}
+\newlabel{tab:nostriAlgoritmiNelMondo}{{8}{76}{Risultati di \emph {3-BAR-Detectron} e \emph {3-BAR-Posenet} comparati allo stato dell'arte.\relax }{table.caption.48}{}}
+\mph@setcol{ii:76}{\mph@nr}
 \citation{NTURGB120}
 \citation{MSR}
 \citation{NUCLA}
-\@writefile{brf}{\backcite{NTURGB120}{{75}{7.1}{section.7.1}}}
-\@writefile{brf}{\backcite{MSR}{{75}{7.1}{section.7.1}}}
-\@writefile{brf}{\backcite{NUCLA}{{75}{7.1}{section.7.1}}}
-\mph@setcol{ii:75}{\mph@nr}
-\mph@setcol{ii:76}{\mph@nr}
+\@writefile{brf}{\backcite{NTURGB120}{{77}{7.1}{section.7.1}}}
+\@writefile{brf}{\backcite{MSR}{{77}{7.1}{section.7.1}}}
+\@writefile{brf}{\backcite{NUCLA}{{77}{7.1}{section.7.1}}}
+\mph@setcol{ii:77}{\mph@nr}
+\mph@setcol{ii:78}{\mph@nr}
 \bibcite{PosenetArticle}{{1}{}{{}}{{}}}
 \bibcite{COCO-2016}{{2}{}{{}}{{}}}
 \bibcite{PosenetLink}{{3}{}{{}}{{}}}
@@ -457,7 +481,7 @@
 \bibcite{RFCN}{{11}{}{{}}{{}}}
 \bibcite{resNetXt}{{12}{}{{}}{{}}}
 \bibcite{resNet}{{13}{}{{}}{{}}}
-\mph@setcol{ii:77}{\mph@nr}
+\mph@setcol{ii:79}{\mph@nr}
 \bibcite{featurePyramid}{{14}{}{{}}{{}}}
 \bibcite{vgg16}{{15}{}{{}}{{}}}
 \bibcite{cascadeRCNN}{{16}{}{{}}{{}}}
@@ -469,7 +493,7 @@
 \bibcite{peepholeLSTM}{{22}{}{{}}{{}}}
 \bibcite{GRU}{{23}{}{{}}{{}}}
 \bibcite{PREV1}{{24}{}{{}}{{}}}
-\mph@setcol{ii:78}{\mph@nr}
+\mph@setcol{ii:80}{\mph@nr}
 \bibcite{PREV2}{{25}{}{{}}{{}}}
 \bibcite{QuoVadis}{{26}{}{{}}{{}}}
 \bibcite{Deformable}{{27}{}{{}}{{}}}
@@ -483,7 +507,7 @@
 \bibcite{TemporalConv}{{35}{}{{}}{{}}}
 \bibcite{C-CNN+MTLN}{{36}{}{{}}{{}}}
 \bibcite{VA-LSTM}{{37}{}{{}}{{}}}
-\mph@setcol{ii:79}{\mph@nr}
+\mph@setcol{ii:81}{\mph@nr}
 \bibcite{ST-GCN}{{38}{}{{}}{{}}}
 \bibcite{SR-TSL}{{39}{}{{}}{{}}}
 \bibcite{Chained}{{40}{}{{}}{{}}}
@@ -494,10 +518,10 @@
 \bibcite{Skelemotion}{{45}{}{{}}{{}}}
 \bibcite{PB-GCN}{{46}{}{{}}{{}}}
 \bibcite{MFAS}{{47}{}{{}}{{}}}
-\mph@setcol{ii:80}{\mph@nr}
+\mph@setcol{ii:82}{\mph@nr}
 \bibcite{MSR}{{48}{}{{}}{{}}}
 \bibcite{NUCLA}{{49}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\mph@setcol{ii:81}{\mph@nr}
-\gdef\mph@lastpage{82}
+\mph@setcol{ii:83}{\mph@nr}
+\gdef\mph@lastpage{84}
 \csname mph@do@warn\endcsname
