@@ -14,7 +14,7 @@
 \contentsline {section}{\numberline {3.1}PoseNet}{34}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Stima dei keypoint}{36}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Raggruppamento dei keypoint in istanze di persona}{37}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Detectron2}{38}{section.3.2}
+\contentsline {section}{\numberline {3.2}Detectron-2}{38}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Mask R-CNN}{41}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Predizione della posa con Mask R-CNN}{42}{subsection.3.2.2}
 \contentsline {chapter}{\numberline {4}Metodo proposto}{45}{chapter.4}
@@ -25,13 +25,12 @@
 \contentsline {subsection}{\numberline {4.4.1}Baricentro del frame}{50}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{51}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{52}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{53}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{54}{subsection.4.4.4}
 \contentsline {subsection}{\numberline {4.4.5}Tecnica delle distanze cumulate}{55}{subsection.4.4.5}
 \contentsline {subsection}{\numberline {4.4.6}Tecnica delle distanze relative}{56}{subsection.4.4.6}
-\contentsline {section}{\numberline {4.5}Normalizzazione}{56}{section.4.5}
-\contentsline {section}{\numberline {4.6}Smussamento}{58}{section.4.6}
-\contentsline {section}{\numberline {4.7}Struttura della rete}{58}{section.4.7}
-\contentsline {section}{\numberline {4.8}Criterio di arresto dell'allenamento}{60}{section.4.8}
+\contentsline {section}{\numberline {4.5}Normalizzazione}{57}{section.4.5}
+\contentsline {section}{\numberline {4.6}Struttura della rete}{58}{section.4.6}
+\contentsline {section}{\numberline {4.7}Criterio di arresto dell'addestramento}{60}{section.4.7}
 \contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{61}{chapter.5}
 \contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{63}{section.5.1}
 \contentsline {section}{\numberline {5.2}Criteri di valutazione}{65}{section.5.2}
@@ -43,6 +42,5 @@
 \contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{70}{section.6.3}
 \contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{72}{section.6.4}
 \contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{72}{section.6.5}
-\contentsline {section}{\numberline {6.6}FAI}{72}{section.6.6}
 \contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{73}{chapter.7}
 \contentsline {section}{\numberline {7.1}Sviluppi futuri}{73}{section.7.1}
