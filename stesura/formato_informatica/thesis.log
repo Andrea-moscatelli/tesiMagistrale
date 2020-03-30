@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  28 MAR 2020 18:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  30 MAR 2020 16:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1970,38 +1970,38 @@ File: imgs/normalizzazione.jpg Graphic file (type jpg)
 Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1162.
 (pdftex.def)             Requested size: 384.1122pt x 202.13866pt.
  [57 <./imgs/normalizzazione.jpg>] [58] [59]
-[60]
+[60] [61] [62
+
+
+]
 chapter 5.
-[61
-
-
-] <imgs/varietaNTURGB.jpeg, id=918, 1636.1125pt x 1515.6625pt>
+[63] <imgs/varietaNTURGB.jpeg, id=926, 1636.1125pt x 1515.6625pt>
 File: imgs/varietaNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/varietaNTURGB.jpeg>
-Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1244.
+Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1254.
 (pdftex.def)             Requested size: 345.69862pt x 320.2412pt.
- [62 <./imgs/varietaNTURGB.jpeg>]
-<imgs/giuntiNTURGB.jpeg, id=923, 1092.08pt x 1102.1175pt>
+ [64 <./imgs/varietaNTURGB.jpeg>]
+<imgs/giuntiNTURGB.jpeg, id=931, 1092.08pt x 1102.1175pt>
 File: imgs/giuntiNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/giuntiNTURGB.jpeg>
-Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1258.
+Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1268.
 (pdftex.def)             Requested size: 192.05609pt x 193.8152pt.
- [63 <./imgs/giuntiNTURGB.jpeg>]
-<imgs/disposizioneCamereNTURGB-3.jpg, id=930, 1924.18875pt x 529.98pt>
+ [65 <./imgs/giuntiNTURGB.jpeg>]
+<imgs/disposizioneCamereNTURGB-3.jpg, id=939, 1924.18875pt x 529.98pt>
 File: imgs/disposizioneCamereNTURGB-3.jpg Graphic file (type jpg)
 
 <use imgs/disposizioneCamereNTURGB-3.jpg>
 Package pdftex.def Info: imgs/disposizioneCamereNTURGB-3.jpg used on input line
- 1279.
+ 1289.
 (pdftex.def)             Requested size: 384.1122pt x 105.79195pt.
- [64 <./imgs/disposizioneCamereNTURGB-3.jpg>] [65] [66]
+ [66 <./imgs/disposizioneCamereNTURGB-3.jpg>] [67] [68]
 chapter 6.
-[67
+[69
 
 
-] [68]
+] [70]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -2034,15 +2034,15 @@ chapter 6.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- <imgs/esplorazione1L.jpg, id=966, 1080.53688pt x 1552.80125pt>
+ <imgs/esplorazione1L.jpg, id=974, 1080.53688pt x 1552.80125pt>
 File: imgs/esplorazione1L.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione1L.jpg>
-Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1374.
+Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1384.
 (pdftex.def)             Requested size: 473.73518pt x 680.77051pt.
- [69
+ [71
 
- <./imgs/esplorazione1L.jpg>] [70
+ <./imgs/esplorazione1L.jpg>] [72
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -2078,14 +2078,14 @@ Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1374.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-<imgs/esplorazione3Livelli.jpg, id=976, 1127.21124pt x 3384.645pt>
+<imgs/esplorazione3Livelli.jpg, id=985, 1127.21124pt x 3384.645pt>
 File: imgs/esplorazione3Livelli.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione3Livelli.jpg>
-Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1476.
+Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1486.
 
 (pdftex.def)             Requested size: 236.86758pt x 711.20961pt.
- [71
+ [73
 
  <./imgs/esplorazione3Livelli.jpg>]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -2121,53 +2121,58 @@ Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1476.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \vbox (badness 10000) detected at line 1517
+Underfull \vbox (badness 10000) detected at line 1527
  []
 
-[72
+[74
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 1550
+Underfull \vbox (badness 10000) detected at line 1560
  []
 
-[73] [74
+[75]
+Overfull \hbox (59.38152pt too wide) in paragraph at lines 1593--1600
+ [][] 
+ []
+
+[76
 
 ]
 chapter 7.
-[75
+[77
 
 
-] [76] (./thesis.brf)
+] [78] (./thesis.brf)
 \tf@brf=\write7
 \openout7 = `thesis.brf'.
 
- [77] [78
+ [79] [80
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1670--1670
+Underfull \hbox (badness 10000) in paragraph at lines 1676--1676
 \T1/pplj/m/it/12 (+12) human-pose-estimation-in-the-browser-with-tensorflow-js-
 7dd0bc881cd5
  []
 
-[79] [80] [81] [82] [83]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1768.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1768.
+[81] [82] [83] [84] [85]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1774.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1774.
  (./thesis.aux (./titlePage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1768.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1768.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1774.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1774.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B48AB99DEFA9347D42BAB7199177A474;3109.
 Package rerunfilecheck Info: File `thesis.brf' has not changed.
-(rerunfilecheck)             Checksum: 46D4230B6AE0A43D6CAD69C03CC20B02;5790.
+(rerunfilecheck)             Checksum: E99098C62A01A7EF09B771461554D1D8;5790.
  ) 
 Here is how much of TeX's memory you used:
- 30394 strings out of 492995
- 538894 string characters out of 6132704
+ 30398 strings out of 492995
+ 538920 string characters out of 6132704
  789142 words of memory out of 5000000
- 32405 multiletter control sequences out of 15000+600000
+ 32407 multiletter control sequences out of 15000+600000
  138287 words of font info for 743 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  50i,18n,87p,10393b,1075s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2189,10 +2194,10 @@ f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on thesis.pdf (85 pages, 27658070 bytes).
+Output written on thesis.pdf (87 pages, 27660377 bytes).
 PDF statistics:
- 1270 PDF objects out of 1440 (max. 8388607)
- 1109 compressed objects within 12 object streams
- 256 named destinations out of 1000 (max. 500000)
+ 1279 PDF objects out of 1440 (max. 8388607)
+ 1116 compressed objects within 12 object streams
+ 258 named destinations out of 1000 (max. 500000)
  100912 words of extra memory for PDF output out of 106986 (max. 10000000)
 

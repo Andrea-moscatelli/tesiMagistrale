@@ -1206,6 +1206,8 @@ dove $s_p$ è il valore che la rete neurale restituisce per la classe $p$.
 \item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche, di modo da testare velocemente ognuna di esse. Per le tecniche più promettenti è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$ interrompendo l'addestramento secondo il criterio scelto (spiegato nella prossima sezione).
 \item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati impostati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, è stato assegnato a entrambi un valore pari a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
 \item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore ricorrente} sono sempre stati settati entrambi allo stesso valore, inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-1}$, $10^{-2}$, $10^{-3}$, $10^{-4}$, $10^{-5}$, $10^{-6}$, $10^{-7}$ e $10^{-8}$. Ogni regolarizzatore utilizzato in questo lavoro di tesi è di tipo L2.
+\item \textbf{Data augmentation} - il dataset di pose estratte è stato aumentato applicano \emph{la tecnica dello specchio} e del \emph{jittering} di modo da quadruplicarne la dimensione. Nello specifico, per quanto riguarda la tecnica del \emph{jittering}, ad ogni coordinata è stato aggiunto un valore casuale scelto da una distribuzione di Gauss di media $0$ e varianza $2$.
+
 \end{itemize}
 
 \section{Criterio di arresto dell'addestramento}
@@ -1221,6 +1223,14 @@ In questo lavoro di tesi sono state testate, per ogni tecnica, entrambe le ipote
 \item l'$\boldsymbol{80\%}$ come effettivo dataset di allenamento
 \item il $\boldsymbol{20\%}$ come dataset di validazione.
 \end{itemize}
+
+Nel capitolo seguente verrà illustrato più in dettaglio NTU-RGB+D e sulla base delle ripetizioni e delle angolazioni di ripresa di questo dataset è stato scelto di creare il dataset di validazione come segue:
+\begin{itemize}
+\item per il criterio \textbf{Cross view} sono stati scelti in maniera casuale il 60\% delle riprese frontali registrate dalla telecamera 2 ed il 60\% delle riprese frontali registrate dalla telecamera 3. Cosi facendo il dataset di training contiene tutte le angolazioni di ripresa a 90\% ed il 40\% delle riprese frontali per un totale di $30336$ video mentre il dataset di training contiene il 40\% di tutte le riprese frontali per un totale di $7584$ video.
+\item per il criterio \textbf{Cross subject} i video sono stati raggruppati per triplette di ripetizioni e sono state selezionate in maniera casuale il 20\% di esse. Cosi facendo sono stati ottenuti un dataset di training e di validazione di $32256$ e $8064$ video rispettivamente. 
+\end{itemize}
+
+Ogni suddivisione è stata ovviamente fatta bilanciando equamente il numero di azioni su entrambi i dataset.
 
 
 %%%%%%  NTU RGB+D %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1494,7 +1504,7 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 \hline
 $84,30$ & $88,89$ & $79,71$ & rimoz $0$ + 3BAR + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
 $84,23$ & $88,66$ & $79,81$ &  rimoz $0$ + 3BAR + norm & $5$ &  & $3$ \\ \hline
-$83,86$ & $88,44$ & $79,28$ &  rimoz $0$ + 3BAR + norm & $15$ &  & $2$ \\ \hline
+$83,86$ & $88,44$ & $79,28$ &  rimoz $0$ + 3BAR + norm & $15$ &  & $3$ \\ \hline
 %$82,03$ & $85,5$ & $78,57$ &  rimoz $0$ + normXY & $5$ &  & $3$ \\ \hline
 %$80,98$ & $83,67$ & $78,3$ &  rimoz $0$ + normXY  (MIN LOSS) & $5$ &  & $3$ \\ \hline
 $80,66$ & $84,69$ & $76,62$ &  rimoz $0$ + 5BAR + norm & $10$ &  & $3$ \\ \hline
@@ -1530,7 +1540,7 @@ $70,93$ & $72,34$ & $69,52$ &  rimoz $0$ + 3BAR ASS + norm & $5$ & $10^{-7}$ & $
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
- $76,05$  & $80,09$ &    $72,00$ &   rimoz $0$ + 5BAR + norm & 5 &  $10^{-7}$ & $3$ \\ \hline 
+ $76,05$  & $80,09$ &    $72,00$ &   rimoz $0$ + 5BAR + norm & 15 &  $10^{-4}$ & $3$ \\ \hline 
  $75,84$  & $78,91$ &    $72,77$ &   rimoz $0$ + 3BAR + norm (MIN LOSS) & 10 &  $10^{-6}$ & $3$ \\ \hline 
  $75,81$  & $79,95$ &    $71,68$ &   rimoz $0$ + 3BAR + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
  $75,63$  & $78,87$ &    $72,38$ &   rimoz $0$ + 3BAR + norm & 10 &  $10^{-6}$ & $3$ \\ \hline 
@@ -1576,23 +1586,19 @@ Quest'ultima fase è dedicata a finalizzare la miglior tecnica trovata, rimuovend
 
 Per determinare quale fosse il picco massimo dell'accuratezza e il picco minimo della loss è stata usata la tecnica \emph{dell'asta}, ovvero è stato fissato un valore arbitrario di $150$ epoche di inattività sull'aggiornamento dei rispettivi estremi per decretarne il vincitore.
 
-L'addestramento cosi strutturato ha richiesto [...] epoche ed i risultati ottenuti al termine di questo lungo procedimento sono i seguenti:
-
+L'addestramento cosi strutturato ha richiesto circa 1200 epoche ed i risultati ottenuti al termine di questo lungo procedimento sono riassunti in tabella \ref{tab:risultatiFinali}.
 %\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm}
 \begin{table}[h]
 \centering
 \begin{tabular}{| c | c | c | l | c | c | c |}
 \hline
- \multicolumn{7}{|c|}{Detectron 2} \\
-\hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-$85,14$ & $89,39$ & $80,88$ & rimoz $0$ + 3BAR + norm & $5$ &  & $3$ \\ \hline
-$84,92$ & $90,33$ & $79,51$ &  rimoz $0$ + 3BAR + norm & $10$ &  & $4$ \\ \hline
-$84,72$ & $90,36$ & $79,08$ &  rimoz $0$ + 3BAR + norm & $15$ &  & $4$ \\ \hline
+$85,14$ & $89,39$ & $80,88$ & Detectron2 + rimoz $0$ + 3BAR + norm & $5$ &  & $3$ \\ \hline
+$78,45$ & $82,47$ & $74,42$ &  Posenet + rimoz $0$ + 3BAR + norm & $15$ &  $10^{-4}$  & $3$ \\ \hline
 \end{tabular}
 \caption{Migliori risultati ottenuti rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
-\label{tab:dropoutERegolarizzatore}
+\label{tab:risultatiFinali}
 \end{table}
 %\restoregeometry
 
@@ -1608,11 +1614,11 @@ Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una di
 
 Nello specifico, gli algoritmi che proponiamo sono:
 \begin{itemize}
-\item il classificatore ``\emph{3BAR-Detectron}" con un accuratezza CS: 90\% e CV 80\%
-\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza CS: -\% e CV -\%
+\item il classificatore ``\emph{3BAR-Detectron}" con un accuratezza Cross subject di $89,39\%$ e Cross view di $80,88\%$
+\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza Cross subject di $74,42\%$ e Cross view di $82,47\%$.
 \end{itemize}
 
-Questi due algoritmi, pur facendo uso dei soli video RGB, superano le performance di diversi lavori nel mondo scientifico dedicati al medesimo scopo, inoltre essendo non complessi sono facilmente migliorabili. 
+Questi due algoritmi, pur facendo uso dei soli video RGB, hanno prestazioni comparabili a molti altri lavori scientifici facenti uso dalla posizione dei giunti fornita da dataset stesso, inoltre per la loro semplicità sono facilmente migliorabili. 
 
 Una visione globale dei risultati ottenuti con i due algoritmi, comparati a quelli dello stato dell'arte, è sintetizzata in tabella \ref{tab:nostriAlgoritmiNelMondo}.
 \begin{table}
@@ -1627,13 +1633,13 @@ Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 \\ \hline
 PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 \\ \hline
 ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 \\ \hline
 Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 \\ \hline
+\rowcolor{highlightColor} \textbf{3-BAR-PoseNet} 	& &  \checkmark  & & \textbf{83.03}     &   \textbf{74.42} \\ \hline
 DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 \\ \hline 
 Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 \\ \hline 
 C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 \\ \hline
 VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 \\ \hline
 Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 \\ \hline
 ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 \\ \hline
-\rowcolor{highlightColor} \textbf{3-BAR-PoseNet} 	& &  \checkmark  & & \textbf{-}     &   \textbf{-} \\ \hline
 \rowcolor{highlightColor} \textbf{3-BAR-Detectron} 	& &  \checkmark  & & \textbf{89.39}     &   \textbf{80.88} \\ \hline
 SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 \\ \hline
 2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 \\ \hline
