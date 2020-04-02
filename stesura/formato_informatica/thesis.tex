@@ -225,8 +225,13 @@ In questa categoria di apprendimento ricadono la stragrande maggioranza dei prob
 
 \item \textbf{Apprendimento con rinforzo (Reinforcement Learning)} - questa metodologia di apprendimento simula il processo di apprendimento umano per tentativi ed errori. L'algoritmo si adatta gradualmente tramite un sistema di valutazione basato su ricompense e penalità a seconda della decisione presa. L'obbiettivo è quello di evolvere l'algoritmo massimizzando le ricompense ricevute.
 \end{itemize}
+
 \section{Deep learning}
-Il \emph{deep learning} (o \emph{apprendimento profondo} in italiano) è una delle tecniche di machine learning che ``insegna" ai computer una cosa estremamente naturale al cervello umano, ovvero \emph{imparare per esempi}. Il deep learning è la tecnologia chiave grazie alla quale abbiamo oggi automobili che si guidano da sole, riconoscimento e controllo vocale dei device, riconoscimento di tumori, traduzioni automatiche, colorazione automatica di vecchi filmati in bianco e nero e molte altre cose ritenute impossibili solo fino a pochi anni fa.
+Il \emph{deep learning} (o \emph{apprendimento profondo} in italiano) è una delle tecniche di machine learning che ``insegna" ai computer una cosa estremamente naturale al cervello umano, ovvero \emph{imparare per esempi}. 
+
+Il deep learning si basa su diversi livelli di rappresentazione, corrispondenti a gerarchie di caratteristiche di fattori o concetti, dove i concetti di alto livello sono definiti sulla base di quelli di basso. In altre parole per apprendimento profondo si intende un insieme di tecniche basate su reti neurali artificiali organizzate in diversi strati, dove ogni strato calcola i valori per quello successivo affinché l'informazione venga elaborata in maniera sempre più completa.
+
+Il deep learning è la tecnologia chiave grazie alla quale abbiamo oggi automobili che si guidano da sole, riconoscimento e controllo vocale dei device, riconoscimento di tumori, traduzioni automatiche, colorazione automatica di vecchi filmati in bianco e nero e molte altre cose ritenute impossibili solo fino a pochi anni fa.
 
 Nel deep learning un computer impara, ad esempio, un task di classificazione direttamente da immagini, testi e suoni e può raggiungere prestazioni allo stato dell'arte superando talvolta persino l'accuratezza umana. I modelli vengono allenati usando grandi dataset etichettati seguendo un'apprendimento di tipo supervisionato ed il sistema centrale sul quale è basato il deep learnig è la \emph{rete neurale}.
 
@@ -314,16 +319,30 @@ il prodotto dei gradienti decrescerà esponenzialmente al crescere della profondi
 La profondità delle reti ricorrenti è strettamente legata alla lunghezza della sequenza analizzata e raggiunge velocemente un numero di livelli intrattabile per l'algoritmo di backpropagation, rendendole di fatto inutilizzabili per i casi nel mondo reale.
 
 Per ovviare a questo problema, nel 1997 Sepp Hochreiter e Jürgen Schmidhuber proposero un nuovo tipo di rete ricorrente chiamato \emph{Long short-term memory (LSTM)} \cite{LSTM}.
-\section{Le reti LSTM}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=1\textwidth]{imgs/lstmFull}
+\includegraphics[width=0.9\textwidth]{imgs/lstmFull}
 \caption{Esempio di ``srotolamento" di una rete LSTM. In questa figura ogni unità di rete ``A'' prende in input al tempo $t$ un elemento $X_t$ della sequenza temporale $X$ e restituisce uno stato in output $h_t$. \emph{tanh} e $\sigma$ sono le funzioni di tangente iperbolica e sigmoidale rispettivamente, mentre ``$+$" e ``$\times$" sono rispettivamente le operazioni vettoriali di somma e moltiplicazione.}
 \label{fig:srotolamentoLSTM}
 \end{figure}
+\section{Le reti LSTM}
 Le reti Long Short-Term Memory, normalmente chiamate LSTM, sono delle particolari reti ricorrenti in grado di imparare non solo le dipendenze \emph{a lunga distanza} presenti in una sequenza in input ma anche di risolvere il problema della scomparsa del gradiente. 
 
 Come ogni altra rete ricorrente anche per le LSTM è possibile srotolarne la struttura ed ottenere una catena di ``pezzi di rete" chiamati anche \emph{unità} (figura \ref{fig:srotolamentoLSTM}). 
+
+\begin{figure}[!ht] 
+  \subfloat[Cell State\label{fig:cellState}]{% 
+    \includegraphics[width=.5\textwidth]{imgs/LSTMcellState}
+  } 
+  \hfill 
+  \subfloat[Gate\label{fig:gate}]{% 
+    \includegraphics[width=.15\textwidth]{imgs/LSTMgate}
+  } 
+  \caption{I concetti chiave di una LSTM.} 
+  \label{fig:LSTMcellStateAndGate}
+\end{figure}
+
+
 
 Il funzionamento di un'unità ricorrente LSTM ruota tutto intorno ai concetti
 di \emph{cell state} (figura \ref{fig:cellState}) e di \emph{gate} (figura \ref{fig:gate}), ovvero:
@@ -351,17 +370,7 @@ di \emph{cell state} (figura \ref{fig:cellState}) e di \emph{gate} (figura \ref{
 %\label{fig:LSTMcellStateAndGate}
 %\end{figure}
 
-\begin{figure}[!ht] 
-  \subfloat[Cell State\label{fig:cellState}]{% 
-    \includegraphics[width=.6\textwidth]{imgs/LSTMcellState}
-  } 
-  \hfill 
-  \subfloat[Gate\label{fig:gate}]{% 
-    \includegraphics[width=.2\textwidth]{imgs/LSTMgate}
-  } 
-  \caption{I concetti chiave di una LSTM.} 
-  \label{fig:LSTMcellStateAndGate}
-\end{figure}
+
 
 
 
@@ -499,10 +508,17 @@ Esiste infine un terzo approccio che recentemente sta riscuotendo un discreto in
 
 Ad oggi i migliori risultati sulla categorizzazione dei movimenti corporei possono essere riassunti nei seguenti articoli scientifici:
 \begin{itemize}
-\item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - 2018 \cite{PREV1}
+\item \textbf{Recognizing Human Actions as the Evolution of Pose Estimation Maps} - \emph{Mengyuan Liu, Junsong Yuan} - CVPR 2018 \cite{PREV1}
 \item \textbf{Action Machine: Rethinking Action Recognition in Trimmed Videos} - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang,
-Junjie Huang, Guan Huang, Dalong Du} - 2018  \cite{PREV2}
+Junjie Huang, Guan Huang, Dalong Du} - arXiv:1812.05770v2  [cs.CV], 2018  \cite{PREV2}
 %\item \textbf{Infrared and 3D skeleton feature fusion for RGB-D action recognition} - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020  \cite{PREV3}
+\end{itemize}
+
+Prima di entrare nel dettaglio dei due articoli scientifici occorre precisare che in entrambi i lavori l'accuratezza dei risultati viene espressa attraverso le metriche \emph{cross subject} e \emph{cross view} del dataset \emph{NTU-RGB+D}. Nel capitolo 5 spiegheremo dettagliatamente la struttura di questo dataset e le sue metriche, ma giusto per una migliore comprensione delle sezioni seguenti occorre precisare che:
+\begin{itemize}
+\item Il dataset NTU-RGB+D rappresenta un insieme di video ottenuti riprendendo 40 diversi attori, ognuno da 3 angolazioni diverse.
+\item il criterio \textbf{cross subject} rappresenta lo splitting training/test ottenuto separando i 40 attori in due gruppi distinti, uno per il training ed uno per il test, di modo da avere un insieme di test composto da attori esclusivi e non utilzzati nell'insieme di training.
+\item il criterio \textbf{cross view} invece definisce l'insieme di training e quello di test separando i video a seconda della loro angolazione di ripresa, ovvero tutti i video ripresi frontalmente fanno parte dell'insieme di test, mentre tutti gli altri dell'insieme di training.
 \end{itemize}
 
 Vediamo adesso più nel dettaglio come questi lavori hanno affrontato il problema del riconoscimenti di azioni umane.
@@ -578,7 +594,8 @@ dove $\eta \in \{\boldsymbol{p,q}\}$, $v^\eta_{s_i} \succ v^\eta_{s_j}$ indica l
 
 Gli esperimenti effettuati dagli autori sono molteplici e una delle caratteristiche principali sulla quale è necessario porre attenzione è la tipologie delle pose utilizzate: in alcuni casi hanno utilizzato delle pose 3D ottenute con delle telecamere di profondità, in altri casi hanno utilizzato pose 2D.
 
-Uno dei dataset utilizzati in questo lavoro è NTU-RGB+D \cite{NTURGB} che, come vedremo più in dettaglio nel capitolo 5, propone due metodi di valutazione distinti: \emph{cross-subject} e \emph{cross-view}. I migliori risultati ottenuti sono riassunti in tabella \ref{tab:risultati4}.
+
+Il dataset NTU-RGB+D è uno dei dataset utilizzati in questo lavoro ed i risultati ottenuti per esso sono riassunti in tabella \ref{tab:risultati4}.
 
 \begin{table}[ht]
 \centering
@@ -655,8 +672,8 @@ dove $\lambda_1, \lambda_2$ e $\lambda_3$ sono dei bilanciatori del peso che vog
 
 I risultati ottenuti con questo lavoro sono, ad oggi, i migliori su diversi dataset, tra i quali NTU-RGB+D dove Action machine è attualmente il miglior algoritmo con la seguente accuratezza:
 \begin{itemize}
-\item \textbf{97.2}\% per il criterio \emph{Cross-view}
-\item \textbf{94.3}\% per il criterio \emph{Cross-subject}.
+\item \textbf{97.2}\% per il criterio \emph{cross-view}
+\item \textbf{94.3}\% per il criterio \emph{cross-subject}.
 \end{itemize}
 
 
@@ -924,7 +941,11 @@ Più nello specifico, per ognuno dei $K$ keypoint di un'istanza il training targe
 \chapter{Metodo proposto}
 In questo capitolo vedremo sia quali sono state le tecniche adottate in questo lavoro di tesi che le decisioni prese durante l'iter operativo.
 
-Come vedremo nel capitolo seguente, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante esso fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) abbiamo preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirci di quest'ultima per il riconoscimento delle azioni svolte. Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+Come vedremo, il dataset utilizzato è NTU-RGB+D \cite{NTURGB} e nonostante esso fornisca anche i dati relativi alla posa dei soggetti inquadrati (quello che viene spesso indicato come \emph{skeleton}) abbiamo preferito non farne assolutamente uso ed utilizzare invece i soli video RGB, dai quali successivamente stimare la posa e servirci di quest'ultima per il riconoscimento delle azioni svolte. 
+
+Questa scelta è stata presa con lo scopo di favorire una maggiore generalizzazione e applicazione dell'algoritmo, adoperabile in contesti più diffusi dove la stima della posa non è data, ma abbiamo a disposizione solo un comunissimo video RGB.
+
+Inoltre siamo interessati a ideare un algoritmo che abbia una bassa latenza di inferenza ed una ridotta dimensione del modello utilizzato, di modo da poter essere installato anche su un qualsiasi dispositivo mobile e riconoscere le azioni motorie riprese dalla fotocamera integrata. Questa eventualità può essere possibile solo se il nostro algoritmo mantiene una struttura semplice senza pesanti fasi di raffinamento dei risultati.
 
 Passiamo adesso ad analizzare una ad una le varie fasi affrontate nel lavoro di tesi.
 \section{Estrazione delle pose}
@@ -957,11 +978,39 @@ Nome & \thead{Tempo di  \\ inferenza \\ (s/imm)} &  \thead{Box  \\ AP} &  \thead
  R101-FPN-3x 			& 0.076  	& 56.4 	& 66.1 \\ \hline
  \textbf{X101-FPN-3x} 	& 0.121  	& 57.3 	& 66.0 \\ \hline
 \end{tabular}
-\caption{Diversi modelli in Detectron-2 per l'estrazione della posa da un'immagine. Il tempo di inferenza viene misurato in \emph{secondi/immagine}; Box AP = ``Bounding box average precision" ; KP AP = ``Keypoint average precision"}
+\caption{Diversi modelli in Detectron-2 per l'estrazione della posa da un'immagine. Il tempo di inferenza viene misurato in \emph{secondi/immagine} e sono stati ottenuti su un server Big Basin  con 8 NVIDIA V100 GPU e NVLink. I software usati sono PyTorch 1.3, CUDA 9.2, cuDNN 7.4.2 o 7.6.3; Box AP = ``Bounding box average precision" ; KP AP = ``Keypoint average precision"}
 \label{proposteDetectronPosenet}
 \end{table}
 
-È stato quindi scelto il modello \emph{X101-FPN} per Detectron-2, in quanto quello con il miglior valore di accuratezza globale e PoseNet-101, per per una più facile comparazione dei risultati.
+Abbiamo comunque scelto di testare l'inferenza di ogni modello sul nostro server con le seguenti specifiche:
+\begin{itemize}
+\item scheda GPU NVIDIA Corporation GM200 GeForce GTX TITAN X da 12GB
+\item Pythorch 1.4.0+cu100
+\item CUDA  10.0.130
+\item cuDNN 7.3.1
+\end{itemize} 
+
+Per ogni modello sono stati generati i keypoints di circa $1000$ immagini ad una risoluzione $1280\times720$ dove la metà delle immagini raffiguravano una sola persona e l'altra metà due persone. Il tempo medio d'inferenza per ogni modello è schematizzato in tabella \ref{tab:tempiInferenze}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Detectron2}}  &  \multicolumn{2}{c|}{\textbf{PoseNet}}  \\
+\hline
+Modello & \thead{Tempo di  \\ inferenza \\ (s/imm)}  &  Modello &  \thead{Tempo di  \\ inferenza \\ (s/imm)}  \\
+\hline
+ R50-FPN-1x	 		& $0.1610$  	& PoseNet-50 			& $0.0780$  \\ \hline
+ R50-FPN-3x 			& $0.1642$  	& PoseNet-75 			& $0.0803$  \\ \hline
+ R101-FPN-3x 			& $0.2046$  	& PoseNet-100 		& $0.0911$  \\ \hline
+ \textbf{X101-FPN-3x}	& $0.3391$  	& \textbf{PoseNet-101} 	& $0.1004$  \\ \hline
+\end{tabular}
+\caption{Tempi di inferenza per ogni modello testati sul nostro server equipaggiato di scheda GPU GeForce GTX TITAN X da 12GB. I software usati sono PyTorch 1.4.0+cu100, CUDA 10.0.130
+, cuDNN 7.3.1.}
+\label{tab:tempiInferenze}
+\end{table}
+
+Il modello scelto è stato \emph{X101-FPN} per Detectron-2, in quanto quello con il miglior valore di accuratezza globale e PoseNet-101, per per una più facile comparazione dei risultati.
 
 \section{Assegnazione coerente delle pose}
 Quello che otteniamo per ogni video dalla fase precedente è una sequenza di pose umane estratte da ogni frame. Sia Detectron-2 che PoseNet sono in grado di riconoscere più persone all'interno di un'immagine, producendo una lista di pose $P_1, P_2, ..., P_n$ ordinata secondo le regole dell'algoritmo, ad esempio Detectron-2 le ordina per valore di \emph{score} decrescente, ovvero quel valore che indica quanto è sicuro l'algoritmo di aver correttamente stimato la posa di quella persona.
@@ -988,7 +1037,6 @@ Abbiamo però un ultimo problema da fronteggiare in questa fase, ovvero la variab
 Questo problema è stato risolto selezionando solo le pose con il miglior \emph{score medio} lungo tutto il video, si presuppone infatti che un riflesso sia mediamente meno convincente di una persona vera e propria. Più precisamente sono state mantenute solo le migliori due pose e scartate le altre, visto che in questo lavoro di tesi siamo interessati ad analizzare solo azioni individuali o di coppia.
 
 \section{Rimozione degli zeri}
-Come abbiamo appena visto, PoseNet e Detectron-2 talvolta in qualche frame possono non riconoscere un'intera persona o non riuscire a stimare la posizione di qualche giunto, se ad esempio coperti o sfocati. Entrambi gli algoritmi trattano questi due casi nella stessa maniera, ovvero assegnano il punto $(0,0)$ ad ogni giunto non riconosciuto. 
 
 \begin{figure}[h]
 \centering
@@ -996,6 +1044,8 @@ Come abbiamo appena visto, PoseNet e Detectron-2 talvolta in qualche frame posso
 \caption{Esempio di rimozione degli zeri. Nei frame 2-3-4-5 i giunti del braccio sinistro non sono stati identificati. Nei frame 2-3 verranno quindi rimpiazzati con quelli del frame 1, mentre nei frame 4-5 con quelli del frame 6.}
 \label{fig:rimozioneZeri}
 \end{figure}
+
+Come abbiamo appena visto, PoseNet e Detectron-2 talvolta in qualche frame possono non riconoscere un'intera persona o non riuscire a stimare la posizione di qualche giunto, se ad esempio coperti o sfocati. Entrambi gli algoritmi trattano questi due casi nella stessa maniera, ovvero assegnano il punto $(0,0)$ ad ogni giunto non riconosciuto. 
 
 Questo valore però è fortemente fuorviante considerando che le informazioni a nostra disposizione sono solo pochi punti corporei. Detectron-2 e PoseNet stimano una posa di soli 17 punti, quindi per ogni giunto non riconosciuto, non solo perdiamo 1/17 dell'informazione ma confonderemo anche il nostro algoritmo in fase di classificazione dell'azione facendogli analizzare per quel giunto un movimento inesistente verso il punto (0,0). È necessario quindi adottare una buona tecnica di rimozione degli zeri, che limiti la perdita d'informazione, mantenendo al contempo coerenza con le pose stimate.
 
@@ -1203,7 +1253,15 @@ $$
 dove $s_p$ è il valore che la rete neurale restituisce per la classe $p$.
 
 \item \textbf{Batch size} - La batch size, vista la dimensione del dataset ed il numero di categorie, è stata scelta pari a $10\times N$,  dove $N$ è il numero di categorie del dataset, di modo da consentire ad ogni iterazione una sufficiente variabilità del batch ed una corretta generalizzazione nell'aggiornamento dei pesi. Per l'allenamento della rete sul dataset completo la batch size è stata quindi fissata a $600$.
-\item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0$ dopo $100$ epoche, di modo da testare velocemente ognuna di esse. Per le tecniche più promettenti è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$ interrompendo l'addestramento secondo il criterio scelto (spiegato nella prossima sezione).
+\item \textbf{Ottimizzatore} - Per la fase iniziale degli esperimenti, ogni tecnica è stata testata utilizzando  \emph{RMSProp} \cite{RMSProp} come ottimizzatore, con un valore $\rho = 0.9$ ed un learning rate iniziale di $0.01$ decrementato gradualmente fino a $0,001$ in $100$ epoche (figura \ref{fig:schedulingLR}), di modo da testare velocemente ognuna di esse. Per le tecniche più promettenti è stato rimosso il vincolo delle $100$ epoche ed utilizzato un learning rate costante di $0,001$ dopo la $100$-esima epoca, interrompendo l'addestramento secondo il criterio scelto (spiegato nella prossima sezione).
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{imgs/LR_scheduling.jpeg}
+\caption{Scheduling del learning rate utilizzato per l'esplorazione di tutte le tecniche ideate. In questa fase l'addestramento è stato interrotto alla 100-esima epoca.}
+\label{fig:normalizzazione}
+\end{figure}
+
 \item \textbf{Dropout} e \textbf{Dropout ricorrente} - Per una maggiore semplicità di strutturazione degli esperimenti, il \emph{dropout} ed il \emph{dropout ricorrente} sono sempre stati impostati entrambi allo stesso valore. Inizialmente, durante la fase di esplorazione delle tecniche, è stato assegnato a entrambi un valore pari a $0$, successivamente, per le tecniche più promettenti, sono stati fatti variare a $0.5 , 0.4, 0.3, 0.2, 0.15, 0.1$ e $0.05$.
 \item \textbf{Regolarizzatore} e \textbf{Regolarizzatore ricorrente}  - Come per il dropout, anche il \emph{regolarizzatore} ed il \emph{regolarizzatore ricorrente} sono sempre stati settati entrambi allo stesso valore, inizialmente entrambi a $0$ e successivamente, per le tecniche più promettenti, sono stati fatti variare a $10^{-1}$, $10^{-2}$, $10^{-3}$, $10^{-4}$, $10^{-5}$, $10^{-6}$, $10^{-7}$ e $10^{-8}$. Ogni regolarizzatore utilizzato in questo lavoro di tesi è di tipo L2.
 \item \textbf{Data augmentation} - il dataset di pose estratte è stato aumentato applicano \emph{la tecnica dello specchio} e del \emph{jittering} di modo da quadruplicarne la dimensione. Nello specifico, per quanto riguarda la tecnica del \emph{jittering}, ad ogni coordinata è stato aggiunto un valore casuale scelto da una distribuzione di Gauss di media $0$ e varianza $2$.
@@ -1226,8 +1284,8 @@ In questo lavoro di tesi sono state testate, per ogni tecnica, entrambe le ipote
 
 Nel capitolo seguente verrà illustrato più in dettaglio NTU-RGB+D e sulla base delle ripetizioni e delle angolazioni di ripresa di questo dataset è stato scelto di creare il dataset di validazione come segue:
 \begin{itemize}
-\item per il criterio \textbf{Cross view} sono stati scelti in maniera casuale il 60\% delle riprese frontali registrate dalla telecamera 2 ed il 60\% delle riprese frontali registrate dalla telecamera 3. Cosi facendo il dataset di training contiene tutte le angolazioni di ripresa a 90\% ed il 40\% delle riprese frontali per un totale di $30336$ video mentre il dataset di training contiene il 40\% di tutte le riprese frontali per un totale di $7584$ video.
-\item per il criterio \textbf{Cross subject} i video sono stati raggruppati per triplette di ripetizioni e sono state selezionate in maniera casuale il 20\% di esse. Cosi facendo sono stati ottenuti un dataset di training e di validazione di $32256$ e $8064$ video rispettivamente. 
+\item per il criterio \textbf{cross view} sono stati scelti in maniera casuale il 60\% delle riprese frontali registrate dalla telecamera 2 ed il 60\% delle riprese frontali registrate dalla telecamera 3. Cosi facendo il dataset di training contiene tutte le angolazioni di ripresa a 90\% ed il 40\% delle riprese frontali per un totale di $30336$ video mentre il dataset di training contiene il 40\% di tutte le riprese frontali per un totale di $7584$ video.
+\item per il criterio \textbf{cross subject} i video sono stati raggruppati per triplette di ripetizioni e sono state selezionate in maniera casuale il 20\% di esse. Cosi facendo sono stati ottenuti un dataset di training e di validazione di $32256$ e $8064$ video rispettivamente. 
 \end{itemize}
 
 Ogni suddivisione è stata ovviamente fatta bilanciando equamente il numero di azioni su entrambi i dataset.
@@ -1247,32 +1305,41 @@ Il terzo punto da considerare per scelta di un buon dataset è il punto di vista 
 
 Come ultima cosa, probabilmente la più importante, l'insufficienza di video nei dataset ci impedisce spesso di applicare tecniche di machine-learning al nostro problema, portandoci inevitabilmente ad una situazione di overfitting.
 
-Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang Wang hanno creato nel 2016 \emph{NTU RGB+D} \cite{NTURGB}, un vasto e variegato dataset dedito all'analisi di attività umane in ambito 3D.
 
-\begin{figure} [htb!]
+\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm, top=1.5cm}
+\begin{figure} [htb]
 \centering
-\includegraphics[width=0.9\textwidth]{imgs/varietaNTURGB}
-\caption{Alcuni esempi di frames del dataset NTU RGB+D. Nelle prime 4 righe è possibile notare la varietà degli attori partecipanti al progetto e dei diversi punti di ripresa utilizzati. La quinta riga mostra la varietà intra-classe per una stessa azione. L'ultima riga mostra per uno stesso frame i valori RGB, i valori RGB + giunti, mappa di profondità,  mappa di profondità + giunti e i valori a infrarossi. }
+%\begin{minipage}[r]{1.2\textwidth}
+\includegraphics[width=1\textwidth]{imgs/varietaNTURGB}
+\caption{Alcuni esempi di frames del dataset NTU RGB+D. Nelle prime 5 righe è possibile notare la varietà degli attori partecipanti al progetto e dei diversi punti di ripresa utilizzati. La sesta riga mostra la varietà intra-classe per una stessa azione (scrivere alla tastiera). L'ultima riga mostra per uno stesso frame i valori RGB, i valori RGB + giunti, mappa di profondità ed i valori a infrarossi. }
 \label{fig:varietaNTURGB}
+
+%\end{minipage} 
 \end{figure}
 
+\restoregeometry
+
+Consapevoli di quanto detto finora Amir Shahroudy, Jun Liu, Tian-Tsong Ng e Gang Wang hanno creato nel 2016 \emph{NTU RGB+D} \cite{NTURGB}, un vasto e variegato dataset dedito all'analisi di attività umane in ambito 3D.
+
 NTU RGB+D si compone di 56880 RGB+D video, ottenuti riprendendo 40 differenti attori ed utilizzando Microsoft Kinect v2. Il dataset contiene i video RGB, le sequenze di profondità, lo skeleton dei soggetti (ovvero le posizioni 3D dei principali giunti corporei) ed i frames a infrarossi. I soggetti sono stati ripresi da 80 punti di vista differenti e la loro età varia dai 10 ai 35 anni, il che rende più realistica la variazione di qualità delle azioni svolte. Anche se tutte le riprese sono di tipo \emph{indoor}, gli scenari ricreati intorno agli attori sono estremamente vari.
+
+
 
 \section{NTU RGB+D in dettaglio}
 Ma vediamo adesso più nel dettaglio quali sono le informazioni a disposizione in questo dataset.
 
 \textbf{Tipologie di dati} - I dati raccolti sono stati ottenuti con sensori Microsoft Kinect v2 che consentono di estrapolare dalle riprese 4 tipologie di dato: mappe di profondità, informazioni 3D dei giunti corporei, frame RGB e sequenze a infrarossi.
 
-\begin{figure} [htb]
-\centering
-\includegraphics[width=0.5\textwidth]{imgs/giuntiNTURGB}
-\caption{La configurazione dei 25 giunti utilizzati in NTU RGB+D. Le etichette utilizzate per i giunti sono: 1 - base della colonna vetrebrale, 2 - punto medio della colonna vertebrale, 3 - collo, 4 - testa, 5 - spalla sinistra, 6 - gomito sinistro, 7 - polso sinistro, 8 - mano sinistra, 9 - spalla destra, 10 - gomito destro, 11 - polso destro, 12 - mano destra, 13 - anca sinistra, 14 - ginocchio sinistro, 15 - caviglia sinistra, 16 - piede sinistro, 17 - anca destra, 18 - ginocchio destro, 19 - caviglia destra, 20 - piede destro, 21 - colonna vertebrale, 22 - punta della mano sinistra, 23 - pollice sinistro, 24 - punta della mano destra, 25 - pollice destro.}
-\label{fig:giuntiNTURGB}
-\end{figure}
-
 Le \emph{mappe di profondità} sono sequenze di valori in millimetri che rappresentano la distanza di ogni punto dalla telecamera. Ogni mappa di profondità è stata  poi ridotta ad una risoluzione di $512 \times 424$ senza perdita di informazione.
 
 Le \emph{informazioni 3D dei giunti corporei} sono coordinate 3D dei 25 giunti corporei più importanti. Per ogni giunto e per ogni frame viene saltato il corrispondente pixel nel video RGB e la realtiva mappa di profondità. I 25 giunti corporei utilizzati sono raffigurati in figura \ref{fig:giuntiNTURGB}.
+
+\begin{figure} [htb!]
+\centering
+\includegraphics[width=0.45\textwidth]{imgs/giuntiNTURGB}
+\caption{La configurazione dei 25 giunti utilizzati in NTU RGB+D. Le etichette utilizzate per i giunti sono: 1 - base della colonna vetrebrale, 2 - punto medio della colonna vertebrale, 3 - collo, 4 - testa, 5 - spalla sinistra, 6 - gomito sinistro, 7 - polso sinistro, 8 - mano sinistra, 9 - spalla destra, 10 - gomito destro, 11 - polso destro, 12 - mano destra, 13 - anca sinistra, 14 - ginocchio sinistro, 15 - caviglia sinistra, 16 - piede sinistro, 17 - anca destra, 18 - ginocchio destro, 19 - caviglia destra, 20 - piede destro, 21 - colonna vertebrale, 22 - punta della mano sinistra, 23 - pollice sinistro, 24 - punta della mano destra, 25 - pollice destro.}
+\label{fig:giuntiNTURGB}
+\end{figure}
 
 I \emph{video RGB} sono normali video registrati con una risoluzione $1920 \times 1080$.
 
@@ -1286,7 +1353,7 @@ Le \emph{sequenze a infrarossi} sono, come per le mappe di profondità, salvate f
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=1\textwidth]{imgs/disposizioneCamereNTURGB-3}
+\includegraphics[width=0.85\textwidth]{imgs/disposizioneCamereNTURGB-3}
 \caption{Disposizione delle telecamere per ogni setup. La telecamera 1 ha ripreso ogni azione da una posizione centrale mentre le telecamere 2 e 3 hanno ripreso le azioni con un'angolazione di $\ang{45}$. Ogni attore ha ripetuto l'azione 2 volte: una rivolto verso la telecamere di destra e una verso quella di sinistra. }
 \label{fig:schemaTelecamere}
 \end{figure}
@@ -1633,14 +1700,14 @@ Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 \\ \hline
 PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 \\ \hline
 ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 \\ \hline
 Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 \\ \hline
-\rowcolor{highlightColor} \textbf{3-BAR-PoseNet} 	& &  \checkmark  & & \textbf{83.03}     &   \textbf{74.42} \\ \hline
+\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{-BAR-PoseNet} 	& &  \checkmark  & & \textbf{83.03}     &   \textbf{74.42} \\ \hline
 DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 \\ \hline 
 Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 \\ \hline 
 C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 \\ \hline
 VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 \\ \hline
 Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 \\ \hline
 ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 \\ \hline
-\rowcolor{highlightColor} \textbf{3-BAR-Detectron} 	& &  \checkmark  & & \textbf{89.39}     &   \textbf{80.88} \\ \hline
+\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{-BAR-Detectron} 	& &  \checkmark  & & \textbf{89.39}     &   \textbf{80.88} \\ \hline
 SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 \\ \hline
 2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 \\ \hline
 Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 \\ \hline 
@@ -1666,8 +1733,10 @@ Un altro possibile sviluppo di questo lavoro è testare gli algoritmi proposti an
 %--------------------------------------------------------------
 
 \begin{thebibliography}{99}
-\bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - 2018
-\bibitem{COCO-2016} Coco 2016 keypoint challenge - \emph{Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P.} - 2016
+\bibitem{PosenetArticle} PersonLab: Person Pose Estimation and Instance Segmentation with a Bottom-Up, Part-Based, Geometric Embedding Model - \emph{George Papandreou, Tyler Zhu, Liang-Chieh Chen, Spyros Gidaris, Jonathan Tompson, Kevin Murphy} - ECCV 2018
+
+\bibitem{COCO-2016} Coco 2016 keypoint challenge - \emph{Lin, T.Y., Cui, Y., Patterson, G., Ronchi, M.R., Bourdev, L., Girshick, R., Dollr,P.} - ECCV 2016
+
 \bibitem{PosenetLink} PoseNet with TensorFlow.js - \emph{https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5} 
 
 \bibitem{Detectron2Link} Detectron2 - \emph{Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, Ross Girshick - https://github.com/facebookresearch/detectron2} - 2019
@@ -1676,100 +1745,92 @@ Un altro possibile sviluppo di questo lavoro è testare gli algoritmi proposti an
 
 \bibitem{caffe2} Caffe2 - \emph{https://caffe2.ai/docs}
 
-\bibitem{maskRCNN} Mask R-CNN - \emph{Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick} - 2017
+\bibitem{maskRCNN} Mask R-CNN - \emph{Kaiming He, Georgia Gkioxari, Piotr Dollár, Ross Girshick} - IEEE Transactions on Pattern Analysis and Machine Intelligence. PP. 1-1. 10.1109/TPAMI.2018.2844175,  2018
 
-\bibitem{focalLossDetection} Focal Loss for Dense Object Detection - \emph{Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár} - 2017
+\bibitem{focalLossDetection} Focal Loss for Dense Object Detection - \emph{Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, Piotr Dollár} - IEEE Transactions on Pattern Analysis and Machine Intelligence. PP. 1-1. 10.1109/TPAMI.2018.2858826, 2018
 
-\bibitem{fasterRCNN} Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks - \emph{Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun} - 2015
+\bibitem{fasterRCNN} Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks - \emph{Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun} - Conference on Neural Information Processing Systems (NIPS), 2015
 
-\bibitem{fastRCNN} Fast R-CNN - \emph{Ross Girshick} - 2015
+\bibitem{fastRCNN} Fast R-CNN - \emph{Ross Girshick} - IEEE International Conference on Computer Vision (ICCV). 10.1109/ICCV.2015.169, 2015
 
-\bibitem{RFCN} R-FCN: Object Detection via Region-based Fully Convolutional Networks - \emph{Jifeng Dai, Yi Li, Kaiming He, Jian Sun} - 2016
+\bibitem{RFCN} R-FCN: Object Detection via Region-based Fully Convolutional Networks - \emph{Jifeng Dai, Yi Li, Kaiming He, Jian Sun} - arXiv:1605.06409v2  [cs.CV] 2016
 
-\bibitem{resNetXt} Aggregated Residual Transformations for Deep Neural Networks - \emph{Saining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He} - 2016
+\bibitem{resNetXt} Aggregated Residual Transformations for Deep Neural Networks - \emph{Saining Xie, Ross Girshick, Piotr Dollár, Zhuowen Tu, Kaiming He} - 5987-5995. 10.1109/CVPR.2017.634, 2017
 
-\bibitem{resNet} Deep Residual Learning for Image Recognition - \emph{Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun} - 2015
+\bibitem{resNet} Deep Residual Learning for Image Recognition - \emph{Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun} - 770-778. 10.1109/CVPR.2016.90, 2016
 
-\bibitem{featurePyramid} Feature Pyramid Networks for Object Detection - \emph{Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, Serge Belongie} - 2016
+\bibitem{featurePyramid} Feature Pyramid Networks for Object Detection - \emph{Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, Serge Belongie} - 936-944. 10.1109/CVPR.2017.106, 2017
 
-\bibitem{vgg16} Very Deep Convolutional Networks for Large-Scale Image Recognition - \emph{Karen Simonyan, Andrew Zisserman} - 2014
+\bibitem{vgg16} Very Deep Convolutional Networks for Large-Scale Image Recognition - \emph{Karen Simonyan, Andrew Zisserman} -  arXiv:1409.1556 [cs.CV] 2014
 
-\bibitem{cascadeRCNN} Cascade R-CNN: High Quality Object Detection and Instance Segmentation - \emph{Zhaowei Cai, Nuno Vasconcelos} - 2019
+\bibitem{cascadeRCNN} Cascade R-CNN: High Quality Object Detection and Instance Segmentation - \emph{Zhaowei Cai, Nuno Vasconcelos} - IEEE Transactions on Pattern Analysis and Machine Intelligence. PP. 1-1. 10.1109/TPAMI.2019.2956516,  2019
 
-\bibitem{panopticFeatures} Panoptic Feature Pyramid Networks - \emph{Alexander Kirillov, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
+\bibitem{panopticFeatures} Panoptic Feature Pyramid Networks - \emph{Alexander Kirillov, Ross Girshick, Kaiming He, Piotr Dollár} - 6392-6401. 10.1109/CVPR.2019.00656,  2019
 
-\bibitem{tensorMask} TensorMask: A Foundation for Dense Object Segmentation - \emph{Xinlei Chen, Ross Girshick, Kaiming He, Piotr Dollár} - 2019
+\bibitem{tensorMask} TensorMask: A Foundation for Dense Object Segmentation - \emph{Xinlei Chen, Ross Girshick, Kaiming He, Piotr Dollár} - 2061-2069. 10.1109/ICCV.2019.00215, 2019
 
-\bibitem{NTURGB} NTU RGB+D: A Large Scale Dataset for 3D Human Activity Analysis - \emph{Amir Shahroudy, Jun Liu, Tian-Tsong Ng, Gang Wang} - 2016
+\bibitem{NTURGB} NTU RGB+D: A Large Scale Dataset for 3D Human Activity Analysis - \emph{Amir Shahroudy, Jun Liu, Tian-Tsong Ng, Gang Wang} - 10.1109/CVPR.2016.115, 2016
 
-\bibitem{NTURGB120} NTU RGB+D 120: A Large-Scale Benchmark for 3D Human Activity Understanding - \emph{Jun Liu, Amir Shahroudy, Mauricio Perez, Gang Wang, Ling-Yu Duan and Alex C. Kot} - 2019
+\bibitem{NTURGB120} NTU RGB+D 120: A Large-Scale Benchmark for 3D Human Activity Understanding - \emph{Jun Liu, Amir Shahroudy, Mauricio Perez, Gang Wang, Ling-Yu Duan and Alex C. Kot} - IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2019
 
-\bibitem{LSTM} Long short-term memory - \emph{Sepp Hochreiter; Jürgen Schmidhuber} - 1997
-
-\bibitem{peepholeLSTM} Recurrent Nets that Time and Count - \emph{Felix A. Gers, Jurgen Schmidhuber} - 2000
+\bibitem{LSTM} Long short-term memory - \emph{Sepp Hochreiter; Jürgen Schmidhuber} - Neural computation. 9. 1735-80. 10.1162/neco.1997.9.8.1735, 1997
 
 
-\bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio } - 2014
+\bibitem{peepholeLSTM} Recurrent Nets that Time and Count - \emph{Felix A. Gers, Jurgen Schmidhuber} -  Proceedings of the International Joint Conference on Neural Networks. 3. 189 - 194 vol.3. 10.1109/IJCNN.2000.861302, 2000
 
-\bibitem{PREV1} Recognizing Human Actions as the Evolution of Pose Estimation Maps  - \emph{Mengyuan Liu, Junsong Yuan} - 2018
+\bibitem{GRU} Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation - \emph{Kyunghyun Cho; Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio } - 10.3115/v1/D14-1179, 2014
 
-\bibitem{PREV2} Action Machine: Rethinking Action Recognition in Trimmed Videos - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - 2018  
+\bibitem{PREV1} Recognizing Human Actions as the Evolution of Pose Estimation Maps  - \emph{Mengyuan Liu, Junsong Yuan} - 1159-1168. 10.1109/CVPR.2018.00127,  2018
 
-\bibitem{QuoVadis}  Quo vadis, action recognition? A new model and the kinetics dataset. \emph{J. Carreira, A. Zisserman} - 2017
+\bibitem{PREV2} Action Machine: Rethinking Action Recognition in Trimmed Videos - \emph{Jiagang Zhu, Wei Zou, Liang Xu, Yiming Hu, Zheng Zhu, Manyu Chang, Junjie Huang, Guan Huang, Dalong Du} - arXiv:1812.05770v2  [cs.CV], 2018 
 
-\bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} - 2017
+\bibitem{QuoVadis}  Quo vadis, action recognition? A new model and the kinetics dataset. \emph{J. Carreira, A. Zisserman} - 4724-4733. 10.1109/CVPR.2017.502,  2017
+
+\bibitem{Deformable} Deformable convolutional networks.  \emph{J. Dai, H. Qi, Y. Xiong, Y. Li, G. Zhang, H. Hu, and Y. Wei.} - DEStech Transactions on Computer Science and Engineering. 10.12783/dtcse/iteee2019/28747, 2017
 
 \bibitem{FUSION} Infrared and 3D skeleton feature fusion for RGB-D action recognition - \emph{Alban Main de Boissiere e Rita Noumeir} - 2020
  
-\bibitem{TempConv}Interpretable 3D human action analysis with temporal convolutional networks - \emph{T. S. Kim, A. Reiter} - 2017
+\bibitem{TempConv}Interpretable 3D human action analysis with temporal convolutional networks - \emph{T. S. Kim, A. Reiter} - 1623-1631. 10.1109/CVPRW.2017.207, 2017
 
-\bibitem{RMSProp} RMSProp and equilibrated adaptive learning rates for non-convex optimization - \emph{Yann N. Dauphin, Harm de Vries, Junyoung Chung, Yoshua Bengio} - 2015
+\bibitem{RMSProp} RMSProp and equilibrated adaptive learning rates for non-convex optimization - \emph{Yann N. Dauphin, Harm de Vries, Junyoung Chung, Yoshua Bengio} - arXiv. 35, 2015
 
-\bibitem{LieGroup} Human action recognition by representing 3d skeletons as points in a lie group - \emph{R. Vemulapalli, F. Arrate e R. Chellappa} - 2014
+\bibitem{LieGroup} Human action recognition by representing 3d skeletons as points in a lie group - \emph{R. Vemulapalli, F. Arrate e R. Chellappa} - Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition. 10.1109/CVPR.2014.82,  2014
 
-\bibitem{HRNN} Hierarchical recurrent neural network for skeleton based action recognition - \emph{Y. Du, W. Wang e L. Wang.} - 2015
+\bibitem{HRNN} Hierarchical recurrent neural network for skeleton based action recognition - \emph{Y. Du, W. Wang e L. Wang.} - 1110-1118. 10.1109/CVPR.2015.7298714, 2015
 
-\bibitem{DeppLSTM} Ntu rgb+d: A large scale dataset for 3d human activity analysis- \emph{A. Shahroudy, J. Liu, T.-T. Ng e G. Wang} - 2016
+\bibitem{DeppLSTM} Co-occurrence Feature Learning for Skeleton based Action Recognition using Regularized Deep LSTM Networks - \emph{Zhu, Wentao Lan, Cuiling Xing, Junliang  Li, Yanghao Shen, Li Zeng, Wenjun Xie, Xiaohui.} - 2016
 
-\bibitem{ST-LSTM+TS} Spatio-temporal lstm with trust gates for 3d human action recognition - \emph{J. Liu, A. Shahroudy, D. Xu e G. Wang} - 2016 
+\bibitem{ST-LSTM+TS} Spatio-temporal lstm with trust gates for 3d human action recognition - \emph{J. Liu, A. Shahroudy, D. Xu e G. Wang} - 9907. 10.1007/978-3-319-46487-9\_50, 2016 
 
-\bibitem{TemporalConv} Interpretable 3d human action analysis with temporal convolutional networks - \emph{T. S. Kim e A. Reiter} - 2017
+\bibitem{TemporalConv} Interpretable 3d human action analysis with temporal convolutional networks - \emph{T. S. Kim e A. Reiter} - 1623-1631. 10.1109/CVPRW.2017.207, 2017
 
-\bibitem{C-CNN+MTLN} A new representation of skeleton sequences for 3d action recognition - \emph{Q. Ke, M. Bennamoun, S. An, F. Sohel e F. Boussaid} - 2017
+\bibitem{C-CNN+MTLN} A new representation of skeleton sequences for 3d action recognition - \emph{Q. Ke, M. Bennamoun, S. An, F. Sohel e F. Boussaid} - 10.1109/CVPR.2017.486, 2017
 
-\bibitem{VA-LSTM} View adaptive recurrent neural networks for high performance human action recognition from skeleton data - \emph{P. Zhang, C. Lan, J. Xing, W. Zeng, J. Xue e N. Zheng} - 2017
+\bibitem{VA-LSTM} View adaptive recurrent neural networks for high performance human action recognition from skeleton data - \emph{P. Zhang, C. Lan, J. Xing, W. Zeng, J. Xue e N. Zheng} - 2136-2145. 10.1109/ICCV.2017.233, 2017
 
 \bibitem{ST-GCN} Spatial temporal graph convolutional networks for skeleton-based action recognition - \emph{S. Yan, Y. Xiong e D. Lin} - 2018
 
 \bibitem{SR-TSL} Skeletonbased action recognition with spatial reasoning and temporal stack learning - \emph{C. Si, Y. Jing, W. Wang, L. Wang e T. Tan} - 2018
 
-\bibitem{Chained} Chained multi-stream networks exploiting pose, motion, and appearance for action classification and detection - \emph{M. Zolfaghari, G. L. Oliveira, N. Sedaghat e T. Brox} - 2017
+\bibitem{Chained} Chained multi-stream networks exploiting pose, motion, and appearance for action classification and detection - \emph{M. Zolfaghari, G. L. Oliveira, N. Sedaghat e T. Brox} - 2923-2932. 10.1109/ICCV.2017.316, 2017
 
-\bibitem{DSSCA-SSLM} Deep multimodal feature analysis for action recognition in rgb+d videos - \emph{A. Shahroudy, T. Ng, Y. Gong e G. Wang} - 2018
+\bibitem{DSSCA-SSLM} Deep multimodal feature analysis for action recognition in rgb+d videos - \emph{A. Shahroudy, T. Ng, Y. Gong e G. Wang} - IEEE transactions on pattern analysis and machine intelligence. PP. 10.1109/TPAMI.2017.2691321, 2017
 
-\bibitem{2D-3D-Softargmax} 2d/3d pose estimation and action recognition using multitask deep learning - \emph{D. C. Luvizon, D. Picard e H. Tabia.} - 2018
+\bibitem{2D-3D-Softargmax} 2d/3d pose estimation and action recognition using multitask deep learning - \emph{D. C. Luvizon, D. Picard e H. Tabia.} - 5137-5146. 10.1109/CVPR.2018.00539, 2018
 
-\bibitem{GlimpseClouds} Glimpse clouds: Human activity recognition from unstructured feature points - \emph{F. Baradel, C. Wolf, J. Mille e G. W. Taylor} - 2018
+\bibitem{GlimpseClouds} Glimpse clouds: Human activity recognition from unstructured feature points - \emph{F. Baradel, C. Wolf, J. Mille e G. W. Taylor} - 469-478. 10.1109/CVPR.2018.00056, 2018
 
 \bibitem{MMTM} MMTM: Multimodal Transfer Module for CNN Fusion - \emph{H. R. V. Joze, A. Shaban, M. L. Iuzzolino, K. Koishida} - 2019
 
-
-\bibitem{Skelemotion} SkeleMotion: A New Representation of Skeleton Joint Sequences Based on Motion Information for 3D Action Recognition - \emph{C Caetano, J Sena, F Brémond, J. A. dos Santos, W. R. Schwartz} - 2019
-
+\bibitem{Skelemotion} SkeleMotion: A New Representation of Skeleton Joint Sequences Based on Motion Information for 3D Action Recognition - \emph{C Caetano, J Sena, F Brémond, J. A. dos Santos, W. R. Schwartz} - 10.1109/AVSS.2019.8909840, 2019
 
 \bibitem{PB-GCN} Part-based Graph Convolutional Network for Action Recognition - \emph{K Thakkar, P. J. Narayanan} - 2018
 
+\bibitem{MFAS} MFAS: Multimodal Fusion Architecture Search - \emph{J. Perez-Rua, V. Vielzeuf, S. Pateux, M. Baccouche, F. Jurie} - 6959-6968. 10.1109/CVPR.2019.00713, 2019
 
-\bibitem{MFAS} MFAS: Multimodal Fusion Architecture Search - \emph{J. Perez-Rua, V. Vielzeuf, S. Pateux, M. Baccouche, F. Jurie} - 2019
+\bibitem{MSR} Mining actionlet ensemble for action recognition with depth cameras - \emph{J. Wang, Z. Liu, Y. Wu, and J. Yuan.} - Proceedings / CVPR, IEEE Computer Society Conference on Computer Vision and Pattern Recognition. IEEE Computer Society Conference on Computer Vision and Pattern Recognition. 1290-1297. 10.1109/CVPR.2012.6247813, 2012
 
-\bibitem{MSR} Mining actionlet ensemble for action recognition with depth cameras - \emph{J. Wang, Z. Liu, Y. Wu, and J. Yuan.} - 2012
-
-\bibitem{NUCLA} Cross-view action modeling, learning and recognition - \emph{J. Wang, X. Nie, Y. Xia, Y. Wu, and S. Zhu.} - 2014
-
-
+\bibitem{NUCLA} Cross-view action modeling, learning and recognition - \emph{J. Wang, X. Nie, Y. Xia, Y. Wu, and S. Zhu.} - Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition. 10.1109/CVPR.2014.339, 2014
 
 \end{thebibliography}
-
-%--------------------------------------------------------------
 \end{document}
-%--------------------------------------------------------------
