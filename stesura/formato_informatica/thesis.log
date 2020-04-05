@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  2 APR 2020 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  5 APR 2020 12:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1281,11 +1281,7 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-(./thesis.aux (./titlePage.aux)
-
-LaTeX Warning: Label `fig:normalizzazione' multiply defined.
-
-)
+(./thesis.aux (./titlePage.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
@@ -1303,7 +1299,8 @@ LaTeX Font Info:    ... okay on input line 105.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 105.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 105.
 
- (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 105.
@@ -1953,45 +1950,41 @@ File: imgs/multiCentroVideo.jpg Graphic file (type jpg)
 <use imgs/multiCentroVideo.jpg>
 Package pdftex.def Info: imgs/multiCentroVideo.jpg used on input line 1108.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
- [55 <./imgs/multiCentroVideo.jpg>]
-<imgs/nextFrame.jpg, id=885, 346.12254pt x 172.57787pt>
+ [55 <./imgs/multiCentroVideo.jpg>] [56]
+<imgs/nextFrame.jpg, id=889, 346.12254pt x 172.57787pt>
 File: imgs/nextFrame.jpg Graphic file (type jpg)
 
 <use imgs/nextFrame.jpg>
-Package pdftex.def Info: imgs/nextFrame.jpg used on input line 1150.
+Package pdftex.def Info: imgs/nextFrame.jpg used on input line 1156.
 (pdftex.def)             Requested size: 384.1122pt x 191.53471pt.
- [56]
+
 <imgs/distanzeCumulate.jpg, id=890, 936.8579pt x 443.475pt>
 File: imgs/distanzeCumulate.jpg Graphic file (type jpg)
 
 <use imgs/distanzeCumulate.jpg>
-Package pdftex.def Info: imgs/distanzeCumulate.jpg used on input line 1168.
+Package pdftex.def Info: imgs/distanzeCumulate.jpg used on input line 1174.
 (pdftex.def)             Requested size: 384.1122pt x 181.82591pt.
  [57 <./imgs/nextFrame.jpg>] [58 <./imgs/distanzeCumulate.jpg>] <imgs/distanzeR
 elative.jpg, id=900, 765.86125pt x 633.36626pt>
 File: imgs/distanzeRelative.jpg Graphic file (type jpg)
 
 <use imgs/distanzeRelative.jpg>
-Package pdftex.def Info: imgs/distanzeRelative.jpg used on input line 1193.
+Package pdftex.def Info: imgs/distanzeRelative.jpg used on input line 1199.
 (pdftex.def)             Requested size: 268.87737pt x 222.35802pt.
  [59 <./imgs/distanzeRelative.jpg>]
 <imgs/normalizzazione.jpg, id=907, 3528.18124pt x 1856.9375pt>
 File: imgs/normalizzazione.jpg Graphic file (type jpg)
 
 <use imgs/normalizzazione.jpg>
-Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1212.
+Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1218.
 (pdftex.def)             Requested size: 384.1122pt x 202.13866pt.
  [60 <./imgs/normalizzazione.jpg>] [61]
-
-LaTeX Warning: Reference `fig:schedulingLR' on page 62 undefined on input line 
-1256.
-
-<imgs/LR_scheduling.jpeg, id=918, 1579.9025pt x 857.2025pt>
+<imgs/LR_scheduling.jpeg, id=919, 1579.9025pt x 857.2025pt>
 File: imgs/LR_scheduling.jpeg Graphic file (type jpg)
 
 <use imgs/LR_scheduling.jpeg>
-Package pdftex.def Info: imgs/LR_scheduling.jpeg used on input line 1260.
-(pdftex.def)             Requested size: 384.1122pt x 208.4011pt.
+Package pdftex.def Info: imgs/LR_scheduling.jpeg used on input line 1266.
+(pdftex.def)             Requested size: 345.69862pt x 187.5649pt.
  [62] [63 <./imgs/LR_scheduling.jpeg>] [64]
 chapter 5.
 [65
@@ -2030,29 +2023,29 @@ chapter 5.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- <imgs/varietaNTURGB.jpeg, id=939, 652.4375pt x 865.2325pt>
+ <imgs/varietaNTURGB.jpeg, id=940, 652.4375pt x 865.2325pt>
 File: imgs/varietaNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/varietaNTURGB.jpeg>
-Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1313.
+Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1319.
 (pdftex.def)             Requested size: 526.376pt x 698.1148pt.
  [66 <./imgs/varietaNTURGB.jpeg>]
-<imgs/giuntiNTURGB.jpeg, id=946, 1092.08pt x 1102.1175pt>
+<imgs/giuntiNTURGB.jpeg, id=947, 1092.08pt x 1102.1175pt>
 File: imgs/giuntiNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/giuntiNTURGB.jpeg>
-Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1339.
+Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1345.
 (pdftex.def)             Requested size: 172.8493pt x 174.42526pt.
  [67
 
 
 ]
-<imgs/disposizioneCamereNTURGB-3.jpg, id=953, 1924.18875pt x 529.98pt>
+<imgs/disposizioneCamereNTURGB-3.jpg, id=954, 1924.18875pt x 529.98pt>
 File: imgs/disposizioneCamereNTURGB-3.jpg Graphic file (type jpg)
 
 <use imgs/disposizioneCamereNTURGB-3.jpg>
 Package pdftex.def Info: imgs/disposizioneCamereNTURGB-3.jpg used on input line
- 1356.
+ 1362.
 (pdftex.def)             Requested size: 326.49771pt x 89.92557pt.
  [68 <./imgs/giuntiNTURGB.jpeg> <./imgs/disposizioneCamereNTURGB-3.jpg>] [69] [
 70]
@@ -2093,11 +2086,11 @@ chapter 6.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- <imgs/esplorazione1L.jpg, id=988, 1080.53688pt x 1552.80125pt>
+ <imgs/esplorazione1L.jpg, id=989, 1080.53688pt x 1552.80125pt>
 File: imgs/esplorazione1L.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione1L.jpg>
-Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1451.
+Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1457.
 (pdftex.def)             Requested size: 473.73518pt x 680.77051pt.
  [73
 
@@ -2137,11 +2130,11 @@ Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1451.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-<imgs/esplorazione3Livelli.jpg, id=998, 563.60562pt x 1692.3225pt>
+<imgs/esplorazione3Livelli.jpg, id=999, 563.60562pt x 1692.3225pt>
 File: imgs/esplorazione3Livelli.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione3Livelli.jpg>
-Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1553.
+Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1559.
 
 (pdftex.def)             Requested size: 236.86758pt x 711.23541pt.
  [75
@@ -2180,113 +2173,106 @@ Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1553.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \vbox (badness 10000) detected at line 1594
+Underfull \vbox (badness 10000) detected at line 1601
  []
 
 [76
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 1627
+Underfull \vbox (badness 10000) detected at line 1634
  []
 
 [77]
-Overfull \hbox (59.38152pt too wide) in paragraph at lines 1660--1667
+Overfull \hbox (29.23744pt too wide) in paragraph at lines 1663--1673
  [][] 
  []
 
 [78
 
+] [79] [80
+
+
 ]
 chapter 7.
-[79
 
+Overfull \hbox (32.46155pt too wide) in paragraph at lines 1720--1748
+ [][] 
+ []
 
-] [80] (./thesis.brf)
+[81] [82] (./thesis.brf)
 \tf@brf=\write7
 \openout7 = `thesis.brf'.
 
- [81] [82
+ [83] [84
 
 
-] [83]
-Underfull \hbox (badness 1009) in paragraph at lines 1767--1767
+] [85]
+Underfull \hbox (badness 1009) in paragraph at lines 1794--1794
 \T1/pplj/m/n/12 (+20) tions on Pat-tern Ana-ly-sis and Ma-chi-ne In-tel-li-gen-
 ce. PP. 1-1.
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 1771--1771
+Underfull \hbox (badness 1038) in paragraph at lines 1798--1798
 []\T1/pplj/m/n/12 (+20) TensorMask: A Foun-da-tion for Den-se Ob-ject Seg-men-t
 a-tion -
  []
 
-[84]
-Underfull \hbox (badness 1406) in paragraph at lines 1784--1784
+[86]
+Underfull \hbox (badness 1406) in paragraph at lines 1811--1811
 []\T1/pplj/m/n/12 (+20) Recognizing Hu-man Ac-tions as the Evo-lu-tion of Po-se
  Esti-
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 1784--1784
+Underfull \hbox (badness 4479) in paragraph at lines 1811--1811
 \T1/pplj/m/n/12 (+20) ma-tion Maps - \T1/pplj/m/it/12 (+20) Men-gyuan Liu, Jun-
 song Yuan \T1/pplj/m/n/12 (+20) - 1159-1168.
  []
 
-[85]
-Underfull \hbox (badness 1466) in paragraph at lines 1800--1800
+[87]
+Underfull \hbox (badness 1466) in paragraph at lines 1827--1827
 \T1/pplj/m/n/12 (+20) tion re-co-gni-tion - \T1/pplj/m/it/12 (+20) Y. Du, W. Wa
 ng e L. Wang. \T1/pplj/m/n/12 (+20) - 1110-1118.
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 1804--1804
+Underfull \hbox (badness 1389) in paragraph at lines 1831--1831
 []\T1/pplj/m/n/12 (+20) Spatio-temporal lstm with tru-st ga-tes for 3d hu-man a
 c-tion
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 1818--1818
+Underfull \hbox (badness 1824) in paragraph at lines 1845--1845
 []\T1/pplj/m/n/12 (+20) Deep mul-ti-mo-dal fea-tu-re ana-ly-sis for ac-tion re-
 co-gni-tion in
  []
 
-[86]
-Underfull \hbox (badness 4531) in paragraph at lines 1830--1830
+[88]
+Underfull \hbox (badness 4531) in paragraph at lines 1857--1857
 []\T1/pplj/m/n/12 (+20) MFAS: Mul-ti-mo-dal Fu-sion Ar-chi-tec-tu-re Search - \
 T1/pplj/m/it/12 (+20) J. Perez-
  []
 
-[87]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1836.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1836.
+[89]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1863.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1863.
  (./thesis.aux (./titlePage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1836.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1836.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1863.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1863.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B48AB99DEFA9347D42BAB7199177A474;3109.
-
-
-Package rerunfilecheck Warning: File `thesis.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `thesis.brf':
-(rerunfilecheck)             Before: 506F722496FA239A32C9405210050CFA;5749
-(rerunfilecheck)             After:  26A2D27AF96B1DE3D07A7E012B6FC011;5749.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
+Package rerunfilecheck Info: File `thesis.brf' has not changed.
+(rerunfilecheck)             Checksum: BFF45211A1C3F34B49956DC1B7ED1B59;5749.
  ) 
 Here is how much of TeX's memory you used:
- 30407 strings out of 492995
- 539121 string characters out of 6132704
+ 30420 strings out of 492995
+ 539311 string characters out of 6132704
  792142 words of memory out of 5000000
- 32416 multiletter control sequences out of 15000+600000
- 138001 words of font info for 739 fonts, out of 8000000 for 9000
+ 32421 multiletter control sequences out of 15000+600000
+ 138282 words of font info for 743 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  50i,18n,87p,10393b,1051s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -2307,10 +2293,10 @@ f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on thesis.pdf (89 pages, 18105106 bytes).
+Output written on thesis.pdf (91 pages, 18107788 bytes).
 PDF statistics:
- 1292 PDF objects out of 1440 (max. 8388607)
- 1127 compressed objects within 12 object streams
- 262 named destinations out of 1000 (max. 500000)
+ 1305 PDF objects out of 1440 (max. 8388607)
+ 1138 compressed objects within 12 object streams
+ 265 named destinations out of 1000 (max. 500000)
  100917 words of extra memory for PDF output out of 106986 (max. 10000000)
 
