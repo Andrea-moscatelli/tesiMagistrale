@@ -3,44 +3,44 @@
 \vspace {-\cftbeforepartskip }
 \contentsline {chapter}{\numberline {1}L'apprendimento automatico}{11}{chapter.1}
 \contentsline {section}{\numberline {1.1}Deep learning}{13}{section.1.1}
-\contentsline {section}{\numberline {1.2}Le reti neurali}{13}{section.1.2}
-\contentsline {section}{\numberline {1.3}Le reti neurali ricorrenti}{16}{section.1.3}
+\contentsline {section}{\numberline {1.2}Le reti neurali}{14}{section.1.2}
+\contentsline {section}{\numberline {1.3}Le reti neurali ricorrenti}{17}{section.1.3}
 \contentsline {section}{\numberline {1.4}Le reti LSTM}{18}{section.1.4}
 \contentsline {chapter}{\numberline {2}Lavori precedenti}{23}{chapter.2}
 \contentsline {section}{\numberline {2.1}Recognizing Human Actions as Evolution of Pose Estimation Maps (2018)}{24}{section.2.1}
 \contentsline {section}{\numberline {2.2}Action Machine: Rethinking Action Recognition in Trimmed Videos (2018)}{28}{section.2.2}
-\contentsline {section}{\numberline {2.3}Overview}{31}{section.2.3}
-\contentsline {chapter}{\numberline {3}Stima della posa}{33}{chapter.3}
-\contentsline {section}{\numberline {3.1}PoseNet}{34}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Stima dei keypoint}{36}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Raggruppamento dei keypoint in istanze di persona}{37}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Detectron-2}{38}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Mask R-CNN}{41}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Predizione della posa con Mask R-CNN}{42}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Metodo proposto}{45}{chapter.4}
-\contentsline {section}{\numberline {4.1}Estrazione delle pose}{45}{section.4.1}
-\contentsline {section}{\numberline {4.2}Assegnazione coerente delle pose}{46}{section.4.2}
-\contentsline {section}{\numberline {4.3}Rimozione degli zeri}{48}{section.4.3}
-\contentsline {section}{\numberline {4.4}Tecniche di rielaborazione}{49}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Baricentro del frame}{50}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{51}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{52}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{54}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Tecnica delle distanze cumulate}{55}{subsection.4.4.5}
-\contentsline {subsection}{\numberline {4.4.6}Tecnica delle distanze relative}{56}{subsection.4.4.6}
-\contentsline {section}{\numberline {4.5}Normalizzazione}{57}{section.4.5}
-\contentsline {section}{\numberline {4.6}Struttura della rete}{58}{section.4.6}
-\contentsline {section}{\numberline {4.7}Criterio di arresto dell'addestramento}{60}{section.4.7}
-\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{61}{chapter.5}
-\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{63}{section.5.1}
-\contentsline {section}{\numberline {5.2}Criteri di valutazione}{65}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{65}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{66}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{67}{chapter.6}
-\contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{68}{section.6.1}
-\contentsline {section}{\numberline {6.2}Fase 1: Test di tutte le tecniche}{68}{section.6.2}
-\contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{70}{section.6.3}
-\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{72}{section.6.4}
-\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{72}{section.6.5}
-\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{73}{chapter.7}
-\contentsline {section}{\numberline {7.1}Sviluppi futuri}{73}{section.7.1}
+\contentsline {section}{\numberline {2.3}Overview}{32}{section.2.3}
+\contentsline {chapter}{\numberline {3}Stima della posa}{35}{chapter.3}
+\contentsline {section}{\numberline {3.1}PoseNet}{36}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Stima dei keypoint}{38}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Raggruppamento dei keypoint in istanze di persona}{39}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Detectron-2}{40}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Mask R-CNN}{43}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Predizione della posa con Mask R-CNN}{44}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Metodo proposto}{47}{chapter.4}
+\contentsline {section}{\numberline {4.1}Estrazione delle pose}{47}{section.4.1}
+\contentsline {section}{\numberline {4.2}Assegnazione coerente delle pose}{49}{section.4.2}
+\contentsline {section}{\numberline {4.3}Rimozione degli zeri}{51}{section.4.3}
+\contentsline {section}{\numberline {4.4}Tecniche di rielaborazione}{52}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Baricentro del frame}{53}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Baricentro del video}{54}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Baricentri multipli}{55}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Tecnica ``Next frame"}{56}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Tecnica delle distanze cumulate}{58}{subsection.4.4.5}
+\contentsline {subsection}{\numberline {4.4.6}Tecnica delle distanze relative}{59}{subsection.4.4.6}
+\contentsline {section}{\numberline {4.5}Normalizzazione}{59}{section.4.5}
+\contentsline {section}{\numberline {4.6}Struttura della rete}{61}{section.4.6}
+\contentsline {section}{\numberline {4.7}Criterio di arresto dell'addestramento}{63}{section.4.7}
+\contentsline {chapter}{\numberline {5}Il dataset NTU RGB+D}{65}{chapter.5}
+\contentsline {section}{\numberline {5.1}NTU RGB+D in dettaglio}{67}{section.5.1}
+\contentsline {section}{\numberline {5.2}Criteri di valutazione}{69}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Valutazione Cross-subject}{70}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Valutazione Cross-view}{70}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{71}{chapter.6}
+\contentsline {section}{\numberline {6.1}Una porzione rappresentativa del dataset}{72}{section.6.1}
+\contentsline {section}{\numberline {6.2}Fase 1: Test di tutte le tecniche}{72}{section.6.2}
+\contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{74}{section.6.3}
+\contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{78}{section.6.4}
+\contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{78}{section.6.5}
+\contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{81}{chapter.7}
+\contentsline {section}{\numberline {7.1}Sviluppi futuri}{83}{section.7.1}

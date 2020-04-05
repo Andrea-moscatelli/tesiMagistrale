@@ -1,0 +1,135 @@
+%--------------------------------------------------------------
+% thesis.tex 
+%--------------------------------------------------------------
+% Corso di Laurea in Informatica 
+% http://if.dsi.unifi.it/
+% @Facolt\`a di Scienze Matematiche, Fisiche e Naturali
+% @Universit\`a degli Studi di Firenze
+%--------------------------------------------------------------
+% - template for the main file of Informatica@Unifi Thesis 
+% - based on Classic Thesis Style Copyright (C) 2008 
+%   Andr\'e Miede http://www.miede.de   
+%--------------------------------------------------------------
+\documentclass[twoside,openright,titlepage,fleqn,
+	headinclude,12pt,a4paper,BCOR5mm,footinclude]{scrbook}
+%--------------------------------------------------------------
+\newcommand{\myItalianTitle}{Riconoscimento di azioni umane usando tecniche di apprendimento profondo per la stima della posa\xspace}
+\newcommand{\myEnglishTitle}{Human action recognition using deep learning techniques for pose estimation\xspace}
+% use the right myDegree option
+\newcommand{\myDegree}{Corso di Laurea Magistrale in Informatica\xspace}
+%\newcommand{\myDegree}{
+	%Corso di Laurea Specialistica in Scienze e Tecnologie 
+	%dell'Informazione\xspace}
+\newcommand{\myName}{Andrea Moscatelli\xspace}
+\newcommand{\myProf}{Marco Bertini\xspace}
+\newcommand{\myOtherProf}{Correlatore2\xspace}
+\newcommand{\mySupervisor}{Nome Cognome\xspace}
+\newcommand{\myFaculty}{
+	Scuola di Scienze Matematiche, Fisiche e Naturali\xspace}
+\newcommand{\myUni}{\protect{
+	Universit\`a degli Studi di Firenze}\xspace}
+\newcommand{\myLocation}{Firenze\xspace}
+\newcommand{\myTime}{Anno Accademico 2018-2019\xspace}
+\newcommand{\myVersion}{Version 0.1\xspace}
+%--------------------------------------------------------------
+\usepackage[italian]{babel}
+\usepackage[latin1]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[square,numbers]{natbib} 
+\usepackage[fleqn]{amsmath}  
+\usepackage{ellipsis}
+\usepackage{listings}
+%\usepackage{subfig}
+\usepackage{caption}
+\usepackage{appendix}
+\usepackage{siunitx}
+%--------------------------------------------------------------
+\usepackage{dia-classicthesis-ldpkg}
+%--------------------------------------------------------------
+% Options for classicthesis.sty:
+% tocaligned eulerchapternumbers drafting linedheaders 
+% listsseparated subfig nochapters beramono eulermath parts 
+% minionpro pdfspacing
+\usepackage[eulerchapternumbers,linedheaders,beramono,eulermath,
+parts]{classicthesis}
+%--------------------------------------------------------------
+
+%------------------------- MY PACKAGES -------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{color, colortbl}
+\definecolor{highlightColor}{rgb}{0.88,1,1}
+\usepackage{adjustbox}
+%--------------------------------------------------------------
+
+\newlength{\abcd} % for ab..z string length calculation
+% how all the floats will be aligned
+\newcommand{\myfloatalign}{\centering} 
+\setlength{\extrarowheight}{3pt} % increase table row height
+\captionsetup{format=hang,font=small}
+%--------------------------------------------------------------
+% Layout setting
+%--------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	ignoremp,
+	bindingoffset = 1cm, 
+	textwidth     = 13.5cm,
+	textheight    = 21.5cm,
+	lmargin       = 3.5cm, % left margin
+	tmargin       = 4cm    % top margin 
+}
+
+\lstset{
+  	frame=tb,
+	language=Matlab,
+  	aboveskip=3mm,
+  	belowskip=3mm,
+  	showstringspaces=false,
+  	columns=flexible,
+  	basicstyle={\small\ttfamily},
+  	numbers=none,
+  	breaklines=true,
+  	breakatwhitespace=true,
+  	tabsize=3
+}
+
+%--------------------------------------------------------------
+\begin{document}
+\frenchspacing
+\raggedbottom
+\pagenumbering{roman}
+\pagestyle{plain}
+%--------------------------------------------------------------
+% Frontmatter
+%--------------------------------------------------------------
+\include{titlePage}
+\pagestyle{scrheadings}
+%--------------------------------------------------------------
+% Mainmatter
+%--------------------------------------------------------------
+\pagenumbering{arabic}
+% use \cleardoublepage here to avoid problems with pdfbookmark
+%\include{intro} % use \myChapter command instead of \chapter
+\cleardoublepage
+\thispagestyle{empty}
+
+\chapter{Abstract}
+I recenti progressi nel campo della visione artificiale hanno permesso alla comunità scientifica di spostarsi verso problemi ancora più articolati rispetto a quelli classici ed il riconoscimento di azioni corporee tramite l'analisi della posa umana sta attraendo recentemente una notevole attenzione. Il suo successo è senzaltro dovuto non solo agli ottimi risultati ottenuti, ma anche alla sua efficiente semplificazione della struttura umana riducendo di fatto i costi computazionali e le risorse necessarie allo stoccaggio dati.
+
+In questo lavoro di tesi ci siamo dedicati al riconoscimento e alla classificazione di azioni umane tramite tecniche di apprendimento profondo per la stima della posa. A tale scopo abbiamo deciso di ideare un algoritmo che non avesse bisogno di informazioni iniziali complesse, come ad esempio la posizione dei giunti dei soggetti inquadrati, ma che attraverso l'uso dei soli video RGB fosse in grado di estrapolare tutte le informazioni necessarie.
+
+Al fine di ottenere il miglior algoritmo abbiamo eseguito un serie di esperimenti strutturati secondo un procedimento ben preciso, che permettesse l'esplorazione rapida di ogni tecnica ideata affinando progressivamente i risultati per quelle più promettenti.
+
+Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una discreta capacità di classificazione della azioni umane e per la loro semplicità anche un'elevata portabilità.
+
+Questi due algoritmi, pur facendo uso dei soli video RGB, hanno prestazioni comparabili a molti altri lavori scientifici facenti uso dalla posizione dei giunti fornita da dataset stesso, inoltre per la loro semplicità sono facilmente migliorabili.
+
+\end{document}
