@@ -42,5 +42,6 @@
 \contentsline {section}{\numberline {6.3}Fase 2: Numero di livelli}{74}{section.6.3}
 \contentsline {section}{\numberline {6.4}Fase 3: Dropout e regolarizzatori}{78}{section.6.4}
 \contentsline {section}{\numberline {6.5}Fase 4: Allenamento completo tecnica migliore}{78}{section.6.5}
+\contentsline {section}{\numberline {6.6}Fase 5: Combinazione tecniche migliori}{79}{section.6.6}
 \contentsline {chapter}{\numberline {7}Conclusioni e sviluppi futuri}{81}{chapter.7}
 \contentsline {section}{\numberline {7.1}Sviluppi futuri}{83}{section.7.1}

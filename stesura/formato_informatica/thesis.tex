@@ -63,6 +63,7 @@ parts]{classicthesis}
 %\usepackage{subcaption}
 \usepackage{longtable}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{color, colortbl}
 \definecolor{highlightColor}{rgb}{0.88,1,1}
 \usepackage{adjustbox}
@@ -1226,7 +1227,7 @@ Per questo motivo occorre fare una distinzione fra due tipi di normalizzazione d
 \item \textbf{Normalizzazione separata} -  Questa tecnica, se applicata ad un dataset di valori semplici, funziona esattamente come una normalizzazione globale, se invece viene applicata ad un dataset di vettori allora ne normalizza i valori dimensione per dimensione, trattando cioè quest'ultime in maniera indipendente l'una dall'altra. Questa tecnica è concettualmente più corretta nel caso in cui si analizzi un dataset di punti nel piano, dove vogliamo separare la normalizzazione dei valori dell'asse $x$ da quella dell'asse $y$ (figura \ref{fig:normalizzazione}).
 \end{itemize}
 
-Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro.
+%Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro.
 
 
 \section{Struttura della rete}
@@ -1413,7 +1414,7 @@ La legenda di ogni tabella in questo capito sarà la seguente
 \item \textbf{DIST REL} - tecnica delle distanze relative
 \item \textbf{DIST CUM} - tecnica delle distanze cumulate
 \item \textbf{NEXT} - tecnica del next frame con S=1
-\item \textbf{NEXT 3-5-15} - tecnica del next frame con S=3-5-15
+\item \textbf{NEXT 3-7-15} - tecnica del next frame con S=3-7-15
 \item \textbf{norm} - normalizzazione globale
 \item \textbf{normXY} - normalizzazione separata
 \item \textbf{MIN LOSS} - i risultati sono stati ottenuti interropendo l'allenamento secondo il criterio del \emph{minor valore della loss di validazione}, se non specificato allora viene sottinteso del \emph{maggior valore dell'accuratezza di validazione}.
@@ -1577,12 +1578,16 @@ Come si può evincere dai risultati in tabella \ref{tab:incrementoLivelli}, incre
 \hline
 $84,30$ & $88,89$ & $79,71$ & rimoz $0$ + 3BAR + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
 
-$84,23$ & $88,66$ & $79,81$ &  rimoz $0$ + 3BAR + norm  & $15$ &  & $4$ \\ \hline
-$83,86$ & $88,44$ & $79,28$ &  rimoz $0$ + 3BAR + norm (MIN LOSS) & $15$ &  & $4$ \\ \hline
+$84,23$ & $88,66$ & $79,81$ &  rimoz $0$ + 3BAR + norm  & $15$ &    & $4$ \\ \hline
+$83,86$ & $87,64$ & $80,08$ &  rimoz $0$ + NEXT 3 + norm& $15$ &  $10^{-5}$ & $4$ \\ \hline
+$83,76$ & $88,54$ & $78,98$ &  rimoz $0$ + 3BAR + norm (MIN LOSS) & $15$ &  & $4$ \\ \hline
+
+$83,56$ & $88,04$ & $79,08$ &  rimoz $0$ + NEXT 3 + norm & $10$ &  & $4$ \\ \hline
 %$82,03$ & $85,5$ & $78,57$ &  rimoz $0$ + normXY & $5$ &  & $3$ \\ \hline
 %$80,98$ & $83,67$ & $78,3$ &  rimoz $0$ + normXY  (MIN LOSS) & $5$ &  & $3$ \\ \hline
 $80,66$ & $84,69$ & $76,62$ &  rimoz $0$ + 5BAR + norm & $10$ &  & $4$ \\ \hline
 $80,61$ & $84,59$ & $76,62$ &  rimoz $0$ + 5BAR + norm  (MIN LOSS) & $10$ &  & $4$ \\ \hline
+$80,26$ & $84,54$ & $75,98$ &  rimoz $0$ + NEXT 3 + norm (MIN LOSS) & $15$ &  $10^{-5}$ & $4$ \\ \hline
 $80,21$ & $84,83$ & $75,58$ &  rimoz $0$ + 5BAR + norm  (MIN LOSS) & $10$ & $10^{-6}$ & $3$ \\ \hline
 $80,04$ & $85,42$ & $74,67$ &  rimoz $0$ + VIDEO + norm  (MIN LOSS) & $5$ &  & $3$ \\ \hline
 %$79,91$ & $84,98$ & $74,84$ &  rimoz $0$ + norm & $$ &  & $3$ \\ \hline
@@ -1615,9 +1620,13 @@ $70,93$ & $72,34$ & $69,52$ &  rimoz $0$ + 3BAR ASS + norm & $5$ & $10^{-7}$ & $
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
  $76,05$  & $80,09$ &    $72,00$ &   rimoz $0$ + 3BAR + norm & 15 &  $$ & $4$ \\ \hline 
+$75,99$  & $79,82$ &    $72,15$ &   rimoz $0$ + NEXT 3 + norm & 15 &  $10^{-6}$ & $4$ \\ \hline 
  $75,84$  & $78,91$ &    $72,77$ &   rimoz $0$ + 3BAR + norm (MIN LOSS) & 10 &  $10^{-6}$ & $4$ \\ \hline 
+$75,83$  & $78,69$ &    $72,97$ &   rimoz $0$ + NEXT 3 + norm & 10 &  $10^{-6}$ & $4$ \\ \hline 
  $75,81$  & $79,95$ &    $71,68$ &   rimoz $0$ + 5BAR + norm & 5 &  $10^{-6}$ & $4$ \\ \hline 
  $75,63$  & $78,87$ &    $72,38$ &   rimoz $0$ + 3BAR + norm & 10 &  $10^{-6}$ & $4$ \\ \hline 
+ $75,61$  & $78,63$ &    $72,58$ &   rimoz $0$ + NEXT 3 + norm  (MIN LOSS) & 10 &  $10^{-6}$ & $4$ \\ \hline 
+ 
  $75,59$  & $79,86$ &    $71,32$ &   rimoz $0$ + 5BAR + norm (MIN LOSS) & 5 &  $$ & $3$ \\ \hline 
  $74,48$  & $76,78$ &    $72,17$ &   rimoz $0$ + 5BAR + norm (MIN LOSS) & 10 &  $10^{-7}$ & $3$ \\ \hline 
  $74,03$  & $76,31$ &    $71,75$ &   rimoz $0$ + VIDEO + norm & 5 &  $10^{-6}$ & $3$ \\ \hline 
@@ -1653,10 +1662,8 @@ Adesso che abbiamo un'idea di quali sono le tecniche più efficienti possiamo rid
 I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERegolarizzatoreDetectron} e \ref{tab:dropoutERegolarizzatorePosenet}
 
 
-
-
 \section{Fase 4: Allenamento completo tecnica migliore}
-Quest'ultima fase è dedicata a finalizzare le miglior tecniche trovate, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset di validazione.
+Quest'ultima fase è dedicata a finalizzare le migliori tecniche trovate, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ oltre la 100-esima epocha e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset di validazione.
 
 \begin{table}[h]
 \centering
@@ -1666,9 +1673,9 @@ Quest'ultima fase è dedicata a finalizzare le miglior tecniche trovate, rimuoven
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-$\boldsymbol{86,06}$  & $91,69$ & $80,43$ & rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
-$85,70$ & $89,80$ & $\boldsymbol{81.59}$ & rimoz $0$ + 3BAR + norm & $15$ &  & $4$ \\ \hline
-$85,18$ & $\boldsymbol{91,86}$ & $78,50$ & rimoz $0$ + 3BAR + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$86,84$  & $91,89$ & $81,78$ & rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$85,70$ &  $89,80$ &  $81,59$ & rimoz $0$ + 3BAR + norm & $15$ & & $4$ \\ \hline
+$85,35$ &  $89,22$ &  $81,47$ & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
 \end{tabular}
 \caption{Migliori risultati ottenuti con Detectron2 rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
 \label{tab:risultatiFinaliDetectron}
@@ -1681,7 +1688,9 @@ $85,18$ & $\boldsymbol{91,86}$ & $78,50$ & rimoz $0$ + 3BAR + norm & $15$ & $10^
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-$\boldsymbol{80,89}$  & $\boldsymbol{85,99}$  & $\boldsymbol{75,80}$ & rimoz $0$ + 3BAR + norm & $15$ &  $$  & $4$ \\ \hline
+$82,51$  & $87,47$  & $77,55$ & rimoz $0$ + 3BAR + norm & $10$ &   & $4$ \\ \hline
+$81,55$  & $85,60$  & $77,50$ & rimoz $0$ + 3BAR GLOB + norm & $15$ &   & $4$ \\ \hline
+$79,39$  & $83,78$  & $74,99$ & rimoz $0$ + NEXT 3 + norm & $15$ &  $10^{-5}$ & $4$ \\ \hline
 \end{tabular}
 \caption{Migliori risultati ottenuti con PoseNet rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
 \label{tab:risultatiFinaliPosenet}
@@ -1692,9 +1701,49 @@ In questa fase, visti i risultati ottenuti nella fase precedente dalla tecnica d
 Per determinare quale fosse il picco massimo dell'accuratezza e il picco minimo della loss è stata usata la tecnica \emph{dell'asta}, ovvero è stato fissato un valore arbitrario di $150$ epoche di inattività sull'aggiornamento dei rispettivi estremi per decretarne il vincitore. Terminato questo addestramento è stata addestrata la rete per altre 300 epoche utilizzando anche i dati del dataset di validazione.
 
 L'addestramento cosi strutturato ha richiesto circa 1200 epoche ed i risultati ottenuti al termine di questo lungo procedimento sono riassunti in tabella \ref{tab:risultatiFinaliDetectron} e \ref{tab:risultatiFinaliPosenet}.
-%\newgeometry{left=1cm, right=1.5cm, bottom=0.1cm}
 
-%\restoregeometry
+\section{Fase 5: Combinazione tecniche migliori}
+Adesso che siamo riusciti a trovare quali le tecniche migliori su tutto il dataset possiamo combinarle fra loro per verificare se una loro cooperazione può aiutare o meno la classificazione. Il risultato finale sarà quindi la media delle inferenze generate dai due modelli in combinazione. Per ogni combinazione abbiamo ripetuto l'addestramento seguendo lo stesso procedimento adottato per gli altri test e quello che abbiamo ottenuto è rappresentato in tabella \ref{tab:combinazioneTecnicheDetectron} e \ref{tab:combinazioneTecnichePosenet}.
+
+% DETECTRON2
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | l | c | c | c |}
+\hline
+ \multicolumn{7}{|c|}{Detectron2} \\
+\hline
+\thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
+\hline
+\multirow{2}{*}{$88,12$}  &  \multirow{2}{*}{$92,91$}  &  \multirow{2}{*}{$83,32$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\multirow{2}{*}{$85,05$}  &  \multirow{2}{*}{$90,23$}  &  \multirow{2}{*}{$79,87$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + 3 BAR + norm & $15$ & & $4$ \\ \hline
+\end{tabular}
+\caption{Migliori risultati ottenuti combinando le migliori tecniche per Detectron2.}
+\label{tab:combinazioneTecnicheDetectron}
+\end{table}
+
+% POSENET
+\begin{table}
+\centering
+\begin{tabular}{| c | c | c | l | c | c | c |}
+\hline
+ \multicolumn{7}{|c|}{PoseNet} \\
+\hline
+\thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
+\hline
+\multirow{2}{*}{$81,56$}  &  \multirow{2}{*}{$85,39$}  &  \multirow{2}{*}{$77,74$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\multirow{2}{*}{$...$}  &  \multirow{2}{*}{$...$}  &  \multirow{2}{*}{$...$}& rimoz $0$ + 3BAR PERS + norm & $10$ &  & $4$ \\
+ & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\end{tabular}
+\caption{Migliori risultati ottenuti combinando le migliori tecniche per Posenet.}
+\label{tab:combinazioneTecnichePosenet}
+\end{table}
+
+\newpage
+\ 
+
 
 %% Esperimenti svolti e risultati %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusioni e sviluppi futuri}
@@ -1708,8 +1757,8 @@ Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una di
 
 Nello specifico, gli algoritmi che proponiamo sono:
 \begin{itemize}
-\item il classificatore ``\emph{3BAR-Detectron}" con un accuratezza Cross subject di $91,86\%$ e Cross view di $81,59\%$
-\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza Cross subject di $75,80\%$ e Cross view di $85,99\%$.
+\item il classificatore ``\emph{3BAR-NEXT-Detectron}" con un accuratezza Cross subject di $83,32\%$ e Cross view di $93,69\%$  
+\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza Cross subject di $77,55\%$ e Cross view di $87,47\%$.
 \end{itemize}
 
 Questi due algoritmi, pur facendo uso dei soli video RGB, hanno prestazioni comparabili a molti altri lavori scientifici facenti uso dalla posizione dei giunti fornita da dataset stesso, inoltre per la loro semplicità sono facilmente migliorabili. 
@@ -1727,22 +1776,22 @@ Deep LSTM \cite{DeppLSTM} 				& \checkmark  &  & & 67.3     &   60.7 & 64.00\\ \
 PA-LSTM \cite{DeppLSTM}   				& \checkmark  &  & & 70.3     &   62.9 & 66.60\\ \hline
 ST-LSTM+TS \cite{ST-LSTM+TS} 			& \checkmark  &  & & 77.7     &   69.2 & 73.45 \\ \hline
 Temporal Conv \cite{TemporalConv}   		& \checkmark  &  &  &83.1     &   74.3 & 78.78\\ \hline
-DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 & - \\ \hline 
 Skelemotion \cite{Skelemotion} 			&  \checkmark &   & & 84.7 	&  76.5 & 80.60\\ \hline 
-\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{-BAR-PoseNet} 	& &  \checkmark  & & \textbf{85.99}     &   \textbf{75.80} & \textbf{80.89}\\ \hline
 C-CNN+MTLN \cite{C-CNN+MTLN}  		& \checkmark  &   & & 84.8     &   79.6 & 82.20 \\ \hline
 VA-LSTM \cite{VA-LSTM}					& \checkmark  &   & & 87.6     &   79.4 & 83.50 \\ \hline
-Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 & - \\ \hline
 ST-GCN \cite{ST-GCN}   					& \checkmark  &   & & 88.3     &   81.5 &  84.90\\ \hline
-\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{-BAR-Detectron} 	& &  \checkmark  & & \textbf{91.86}     &   \textbf{81.59} & \textbf{86.73}\\ \hline
 SR-TSL \cite{SR-TSL} 					& \checkmark  &   & & 92.4     &   84.8 & 88.60 \\ \hline
-2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 & - \\ \hline
-Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 & 89.90\\ \hline 
 PB-GCN  \cite{PB-GCN}					& \checkmark  &  & & 93.2     &   87.5 & 90.35\\ \hline 
 MFAS \cite{MFAS}						&  \checkmark & \checkmark & & - &   90.04 & - \\ \hline
 FUSION \cite{FUSION}					&  \checkmark &  & \checkmark& 94.5 &   91.6 & 93.05\\ \hline
 PoseMap \cite{PREV1}					& \checkmark & \checkmark & & 95.2     &   91.7 & 93.45\\ \hline
 MMTM \cite{MMTM}						&  \checkmark & \checkmark & & -  &   91.99 & - \\ \hline
+DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 & - \\ \hline 
+\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{BAR-PoseNet} 	& &  \checkmark  & & \textbf{87.47}     &   \textbf{77.55} & \textbf{82.51}\\ \hline
+Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 & - \\ \hline
+\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{BAR-NEXT-Detectron} 	& &  \checkmark  & & \textbf{93.69}     &   \textbf{83.32} & \textbf{88.51}\\ \hline
+2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 & - \\ \hline
+Glimpse Clouds \cite{GlimpseClouds}		&   & \checkmark & & 93.2     &   86.6 & 89.90\\ \hline 
 Action Machine \cite{PREV2}				&   & \checkmark & & 97.2     &   94.3 & 95.75 \\ \hline
 \end{tabular}
 \caption{Risultati di \emph{3-BAR-Detectron} e \emph{3-BAR-Posenet} comparati allo stato dell'arte.}
