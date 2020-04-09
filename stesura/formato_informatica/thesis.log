@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  8 APR 2020 15:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  9 APR 2020 14:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1990,7 +1990,7 @@ Package pdftex.def Info: imgs/normalizzazione.jpg used on input line 1219.
 File: imgs/LR_scheduling.jpeg Graphic file (type jpg)
 
 <use imgs/LR_scheduling.jpeg>
-Package pdftex.def Info: imgs/LR_scheduling.jpeg used on input line 1267.
+Package pdftex.def Info: imgs/LR_scheduling.jpeg used on input line 1266.
 (pdftex.def)             Requested size: 345.69862pt x 187.5649pt.
  [62] [63 <./imgs/LR_scheduling.jpeg>] [64]
 chapter 5.
@@ -2034,14 +2034,14 @@ chapter 5.
 File: imgs/varietaNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/varietaNTURGB.jpeg>
-Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1320.
+Package pdftex.def Info: imgs/varietaNTURGB.jpeg used on input line 1319.
 (pdftex.def)             Requested size: 526.376pt x 698.1148pt.
  [66 <./imgs/varietaNTURGB.jpeg>]
 <imgs/giuntiNTURGB.jpeg, id=952, 1092.08pt x 1102.1175pt>
 File: imgs/giuntiNTURGB.jpeg Graphic file (type jpg)
 
 <use imgs/giuntiNTURGB.jpeg>
-Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1346.
+Package pdftex.def Info: imgs/giuntiNTURGB.jpeg used on input line 1345.
 (pdftex.def)             Requested size: 172.8493pt x 174.42526pt.
  [67
 
@@ -2052,7 +2052,7 @@ File: imgs/disposizioneCamereNTURGB-3.jpg Graphic file (type jpg)
 
 <use imgs/disposizioneCamereNTURGB-3.jpg>
 Package pdftex.def Info: imgs/disposizioneCamereNTURGB-3.jpg used on input line
- 1363.
+ 1362.
 (pdftex.def)             Requested size: 326.49771pt x 89.92557pt.
  [68 <./imgs/giuntiNTURGB.jpeg> <./imgs/disposizioneCamereNTURGB-3.jpg>] [69] [
 70]
@@ -2097,7 +2097,7 @@ chapter 6.
 File: imgs/esplorazione1L.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione1L.jpg>
-Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1458.
+Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1457.
 (pdftex.def)             Requested size: 473.73518pt x 680.77051pt.
  [73
 
@@ -2141,7 +2141,7 @@ Package pdftex.def Info: imgs/esplorazione1L.jpg used on input line 1458.
 File: imgs/esplorazione3Livelli.jpg Graphic file (type jpg)
 
 <use imgs/esplorazione3Livelli.jpg>
-Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1560.
+Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1559.
 
 (pdftex.def)             Requested size: 236.86758pt x 711.23541pt.
  [75
@@ -2180,45 +2180,30 @@ Package pdftex.def Info: imgs/esplorazione3Livelli.jpg used on input line 1560.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \vbox (badness 10000) detected at line 1603
+Underfull \vbox (badness 10000) detected at line 1602
  []
 
 [76
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 1640
+Underfull \vbox (badness 10000) detected at line 1639
  []
 
 [77]
-Overfull \hbox (23.76552pt too wide) in paragraph at lines 1670--1680
- [][] 
- []
-
-
-Overfull \hbox (23.76552pt too wide) in paragraph at lines 1685--1695
- [][] 
- []
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [78
 
 ]
-Overfull \hbox (23.76552pt too wide) in paragraph at lines 1711--1722
- [][] 
- []
 
-
-Overfull \hbox (23.76552pt too wide) in paragraph at lines 1729--1740
- [][] 
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [79] [80]
 chapter 7.
 
-Overfull \hbox (36.16959pt too wide) in paragraph at lines 1769--1797
+Overfull \hbox (36.16959pt too wide) in paragraph at lines 1790--1818
  [][] 
  []
 
@@ -2233,64 +2218,64 @@ Overfull \hbox (36.16959pt too wide) in paragraph at lines 1769--1797
 
 
 ] [85]
-Underfull \hbox (badness 1009) in paragraph at lines 1843--1843
+Underfull \hbox (badness 1009) in paragraph at lines 1864--1864
 \T1/pplj/m/n/12 (+20) tions on Pat-tern Ana-ly-sis and Ma-chi-ne In-tel-li-gen-
 ce. PP. 1-1.
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 1847--1847
+Underfull \hbox (badness 1038) in paragraph at lines 1868--1868
 []\T1/pplj/m/n/12 (+20) TensorMask: A Foun-da-tion for Den-se Ob-ject Seg-men-t
 a-tion -
  []
 
 [86]
-Underfull \hbox (badness 1406) in paragraph at lines 1860--1860
+Underfull \hbox (badness 1406) in paragraph at lines 1881--1881
 []\T1/pplj/m/n/12 (+20) Recognizing Hu-man Ac-tions as the Evo-lu-tion of Po-se
  Esti-
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 1860--1860
+Underfull \hbox (badness 4479) in paragraph at lines 1881--1881
 \T1/pplj/m/n/12 (+20) ma-tion Maps - \T1/pplj/m/it/12 (+20) Men-gyuan Liu, Jun-
 song Yuan \T1/pplj/m/n/12 (+20) - 1159-1168.
  []
 
 [87]
-Underfull \hbox (badness 1466) in paragraph at lines 1876--1876
+Underfull \hbox (badness 1466) in paragraph at lines 1897--1897
 \T1/pplj/m/n/12 (+20) tion re-co-gni-tion - \T1/pplj/m/it/12 (+20) Y. Du, W. Wa
 ng e L. Wang. \T1/pplj/m/n/12 (+20) - 1110-1118.
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 1880--1880
+Underfull \hbox (badness 1389) in paragraph at lines 1901--1901
 []\T1/pplj/m/n/12 (+20) Spatio-temporal lstm with tru-st ga-tes for 3d hu-man a
 c-tion
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 1894--1894
+Underfull \hbox (badness 1824) in paragraph at lines 1915--1915
 []\T1/pplj/m/n/12 (+20) Deep mul-ti-mo-dal fea-tu-re ana-ly-sis for ac-tion re-
 co-gni-tion in
  []
 
 [88]
-Underfull \hbox (badness 4531) in paragraph at lines 1906--1906
+Underfull \hbox (badness 4531) in paragraph at lines 1927--1927
 []\T1/pplj/m/n/12 (+20) MFAS: Mul-ti-mo-dal Fu-sion Ar-chi-tec-tu-re Search - \
 T1/pplj/m/it/12 (+20) J. Perez-
  []
 
 [89]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1912.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1912.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1933.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1933.
  (./thesis.aux (./titlePage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1912.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1912.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1933.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1933.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: F99C6926735234A72A9922EF1035287C;3194.
 Package rerunfilecheck Info: File `thesis.brf' has not changed.
-(rerunfilecheck)             Checksum: 9769090F08FA5DD282E7359DA5E7958E;5749.
+(rerunfilecheck)             Checksum: 917CA16C167D164CDF35E10A6F93FE2C;5749.
  ) 
 Here is how much of TeX's memory you used:
  30482 strings out of 492995
@@ -2318,7 +2303,7 @@ f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2017/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on thesis.pdf (91 pages, 18074019 bytes).
+Output written on thesis.pdf (91 pages, 18075642 bytes).
 PDF statistics:
  1314 PDF objects out of 1440 (max. 8388607)
  1147 compressed objects within 12 object streams

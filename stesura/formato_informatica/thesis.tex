@@ -1227,8 +1227,7 @@ Per questo motivo occorre fare una distinzione fra due tipi di normalizzazione d
 \item \textbf{Normalizzazione separata} -  Questa tecnica, se applicata ad un dataset di valori semplici, funziona esattamente come una normalizzazione globale, se invece viene applicata ad un dataset di vettori allora ne normalizza i valori dimensione per dimensione, trattando cioè quest'ultime in maniera indipendente l'una dall'altra. Questa tecnica è concettualmente più corretta nel caso in cui si analizzi un dataset di punti nel piano, dove vogliamo separare la normalizzazione dei valori dell'asse $x$ da quella dell'asse $y$ (figura \ref{fig:normalizzazione}).
 \end{itemize}
 
-%Specifichiamo comunque che in entrambi i casi la normalizzazione avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro.
-
+Specifichiamo comunque che nel caso della normalizzazione separata quest'ultima avviene video per video, di modo da renderli totalmente indipendenti l'uno dall'altro mentre per quella globale l'intero dataset viene normalizzato interamente come fosse un unico grande vettore. Ovviamente in questo secondo caso, il dataset di test non può essere usato per il calcolo della media e della varianza.
 
 \section{Struttura della rete}
 Per quanto riguarda la rete neurale adottata per la classificazione delle azioni è stato scelto di usare le LSTM. Queste reti, nel mondo del machine learning, hanno già dimostrato la loro grande capacità espressiva quando si tratta di analizzare sequenze temporali in input. 
@@ -1663,62 +1662,81 @@ I risultati ottenuti in questa fase sono elencati in tabella \ref{tab:dropoutERe
 
 
 \section{Fase 4: Allenamento completo tecnica migliore}
-Quest'ultima fase è dedicata a finalizzare le migliori tecniche trovate, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ oltre la 100-esima epocha e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset di validazione.
+Quest'ultima fase è dedicata a finalizzare le migliori tecniche trovate, rimuovendo il vincolo delle 100 epoche, fissando il learning rate a $0,001$ oltre la 100-esima epocha e interrompendo l'allenamento al raggiungimento del miglior valore di accuratezza sul dataset di validazione. Inoltre solo per quest'ultima fase è stato deciso di testare anche l'aggiunta della normalizzazione separata prima di ogni tecnica ed in virtù dei risultati ottenuti nella fase precedente dalla tecnica dei 3 baricentri è stato deciso di testare anche la variante dei \emph{3 baricentri globali}, indicato in tabella con \emph{3BAR GLOB}.
 
 \begin{table}[h]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{| c | c | c | l | c | c | c |}
 \hline
  \multicolumn{7}{|c|}{Detectron2} \\
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-$86,84$  & $91,89$ & $81,78$ & rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$86,84$  & $91,89$ & $81,78$ & rimoz $0$  + normXY + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$86,62$  & $91,72$ & $81,52$ & rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$86,10$ &  $90,72$ &  $81,47$ & rimoz $0$ + normXY + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
 $85,70$ &  $89,80$ &  $81,59$ & rimoz $0$ + 3BAR + norm & $15$ & & $4$ \\ \hline
-$85,35$ &  $89,22$ &  $81,47$ & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$85,35$ &  $89,22$ &  $80,74$ & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+$85,18$ &  $89,02$ &  $81,33$ & rimoz $0$ + normXY + 3BAR + norm & $15$ & & $4$ \\ \hline
+
 \end{tabular}
+}
 \caption{Migliori risultati ottenuti con Detectron2 rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
 \label{tab:risultatiFinaliDetectron}
 \end{table}
+
 \begin{table}[h]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{| c | c | c | l | c | c | c |}
 \hline
  \multicolumn{7}{|c|}{PoseNet} \\
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-$82,51$  & $87,47$  & $77,55$ & rimoz $0$ + 3BAR + norm & $10$ &   & $4$ \\ \hline
+$82,51$  & $87,47$  & $77,55$ & rimoz $0$ + normXY + 3BAR + norm & $10$ &   & $4$ \\ \hline
+$82,15$  & $86,98$  & $77,32$ & rimoz $0$ + 3BAR + norm & $10$ &   & $4$ \\ \hline
 $81,55$  & $85,60$  & $77,50$ & rimoz $0$ + 3BAR GLOB + norm & $15$ &   & $4$ \\ \hline
-$79,39$  & $83,78$  & $74,99$ & rimoz $0$ + NEXT 3 + norm & $15$ &  $10^{-5}$ & $4$ \\ \hline
+$80,01$  & $84,64$  & $75,38$ & rimoz $0$ + normXY + 3BAR GLOB + norm & $15$ &   & $4$ \\ \hline
+$78,90$  & $82,74$  & $75,06$ & rimoz $0$ + normXY + NEXT 3 + norm & $15$ &  $10^{-5}$ & $4$ \\ \hline
+$77,64$  & $81,74$  & $73,53$ & rimoz $0$ + NEXT 3 + norm & $15$ &  $10^{-5}$ & $4$ \\ \hline
+
 \end{tabular}
+}
 \caption{Migliori risultati ottenuti con PoseNet rimuovendo il vincolo delle 100 epoche e interrompendo l'addestramento seguendo il criterio d'arresto spiegato nel capitolo 4.}
 \label{tab:risultatiFinaliPosenet}
 \end{table}
-
-In questa fase, visti i risultati ottenuti nella fase precedente dalla tecnica dei 3 baricentri è stato deciso di testare anche la variante dei 3 baricentri globali indicato con \emph{3BAR GLOB} in tabella.
 
 Per determinare quale fosse il picco massimo dell'accuratezza e il picco minimo della loss è stata usata la tecnica \emph{dell'asta}, ovvero è stato fissato un valore arbitrario di $150$ epoche di inattività sull'aggiornamento dei rispettivi estremi per decretarne il vincitore. Terminato questo addestramento è stata addestrata la rete per altre 300 epoche utilizzando anche i dati del dataset di validazione.
 
 L'addestramento cosi strutturato ha richiesto circa 1200 epoche ed i risultati ottenuti al termine di questo lungo procedimento sono riassunti in tabella \ref{tab:risultatiFinaliDetectron} e \ref{tab:risultatiFinaliPosenet}.
 
 \section{Fase 5: Combinazione tecniche migliori}
-Adesso che siamo riusciti a trovare quali le tecniche migliori su tutto il dataset possiamo combinarle fra loro per verificare se una loro cooperazione può aiutare o meno la classificazione. Il risultato finale sarà quindi la media delle inferenze generate dai due modelli in combinazione. Per ogni combinazione abbiamo ripetuto l'addestramento seguendo lo stesso procedimento adottato per gli altri test e quello che abbiamo ottenuto è rappresentato in tabella \ref{tab:combinazioneTecnicheDetectron} e \ref{tab:combinazioneTecnichePosenet}.
+Adesso che siamo riusciti a trovare quali sono le tecniche migliori su tutto il dataset possiamo combinarle fra loro per verificare se una loro cooperazione può aiutare o meno la classificazione. Il risultato finale sarà quindi la media delle inferenze generate dai due modelli in combinazione. Per ogni combinazione abbiamo ripetuto l'addestramento seguendo lo stesso procedimento adottato per gli altri test ed utilizzando la seguente funzione loss,
+$$
+\mathcal{L} = \alpha\cdot\mathcal{L}_1+\alpha\cdot\mathcal{L}_2
+$$
+dove $\mathcal{L}_1$ e $\mathcal{L}_2$ sono le funzioni loss delle due tecniche in combinazione e $\alpha$ è stato impostato a $0.5$.
+
+I risultati così ottenuti sono rappresentati in tabella \ref{tab:combinazioneTecnicheDetectron} e \ref{tab:combinazioneTecnichePosenet}.
 
 % DETECTRON2
 \begin{table}[h]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{| c | c | c | l | c | c | c |}
 \hline
  \multicolumn{7}{|c|}{Detectron2} \\
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-\multirow{2}{*}{$88,12$}  &  \multirow{2}{*}{$92,91$}  &  \multirow{2}{*}{$83,32$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
- & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
-\multirow{2}{*}{$85,05$}  &  \multirow{2}{*}{$90,23$}  &  \multirow{2}{*}{$79,87$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
- & &  & rimoz $0$ + 3 BAR + norm & $15$ & & $4$ \\ \hline
+\multirow{2}{*}{$88,51$}  &  \multirow{2}{*}{$93,69$}  &  \multirow{2}{*}{$83,32$}& rimoz $0$ + normXY + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + normXY + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\multirow{2}{*}{$85,05$}  &  \multirow{2}{*}{$90,23$}  &  \multirow{2}{*}{$79,87$}& rimoz $0$ + normXY + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + normXY + 3 BAR + norm & $15$ & & $4$ \\ \hline
 \end{tabular}
+}
 \caption{Migliori risultati ottenuti combinando le migliori tecniche per Detectron2.}
 \label{tab:combinazioneTecnicheDetectron}
 \end{table}
@@ -1726,17 +1744,20 @@ Adesso che siamo riusciti a trovare quali le tecniche migliori su tutto il datas
 % POSENET
 \begin{table}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{| c | c | c | l | c | c | c |}
 \hline
  \multicolumn{7}{|c|}{PoseNet} \\
 \hline
 \thead{Media  \\ (\%) } & \thead{Cross  \\ View \\(\%)} &  \thead{Cross  \\ Subject \\(\%)} &  \multicolumn{1}{c|}{Tecnica} & \thead{Drop  \\ (\%) }  &  Reg & Liv \\
 \hline
-\multirow{2}{*}{$81,56$}  &  \multirow{2}{*}{$85,39$}  &  \multirow{2}{*}{$77,74$}& rimoz $0$ + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
- & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
-\multirow{2}{*}{$...$}  &  \multirow{2}{*}{$...$}  &  \multirow{2}{*}{$...$}& rimoz $0$ + 3BAR PERS + norm & $10$ &  & $4$ \\
- & &  & rimoz $0$ + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\multirow{2}{*}{$83,43$}  &  \multirow{2}{*}{$87.79$}  &  \multirow{2}{*}{$79,06$}& rimoz $0$ + normXY + 3BAR PERS + norm & $10$ &  & $4$ \\
+ & &  & rimoz $0$ + normXY + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+\multirow{2}{*}{$81,56$}  &  \multirow{2}{*}{$85,39$}  &  \multirow{2}{*}{$77,74$}& rimoz $0$ + normXY + 3BAR GLOB + norm & $15$ & $10^{-5}$ & $4$ \\
+ & &  & rimoz $0$ + normXY + NEXT 3 + norm & $15$ & $10^{-5}$ & $4$ \\ \hline
+
 \end{tabular}
+}
 \caption{Migliori risultati ottenuti combinando le migliori tecniche per Posenet.}
 \label{tab:combinazioneTecnichePosenet}
 \end{table}
@@ -1758,7 +1779,7 @@ Quello che abbiamo ottenuto alla fine del processo sono due algoritmi con una di
 Nello specifico, gli algoritmi che proponiamo sono:
 \begin{itemize}
 \item il classificatore ``\emph{3BAR-NEXT-Detectron}" con un accuratezza Cross subject di $83,32\%$ e Cross view di $93,69\%$  
-\item il classificatore ``\emph{3BAR-Posenet}" con un accuratezza Cross subject di $77,55\%$ e Cross view di $87,47\%$.
+\item il classificatore ``\emph{3BAR-NEXT-Posenet}" con un accuratezza Cross subject di $79,06\%$ e Cross view di $87,79\%$.
 \end{itemize}
 
 Questi due algoritmi, pur facendo uso dei soli video RGB, hanno prestazioni comparabili a molti altri lavori scientifici facenti uso dalla posizione dei giunti fornita da dataset stesso, inoltre per la loro semplicità sono facilmente migliorabili. 
@@ -1787,7 +1808,7 @@ FUSION \cite{FUSION}					&  \checkmark &  & \checkmark& 94.5 &   91.6 & 93.05\\ 
 PoseMap \cite{PREV1}					& \checkmark & \checkmark & & 95.2     &   91.7 & 93.45\\ \hline
 MMTM \cite{MMTM}						&  \checkmark & \checkmark & & -  &   91.99 & - \\ \hline
 DSSCA-SSLM \cite{DSSCA-SSLM} 			&  & \checkmark  & & -     	&  74.9 & - \\ \hline 
-\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{BAR-PoseNet} 	& &  \checkmark  & & \textbf{87.47}     &   \textbf{77.55} & \textbf{82.51}\\ \hline
+\rowcolor{highlightColor} $\boldsymbol{3}$\textbf{BAR-NEXT-PoseNet} 	& &  \checkmark  & & \textbf{87.79}     &   \textbf{79.06} & \textbf{83.43}\\ \hline
 Chained  \cite{Chained} 					&   & \checkmark  & & -     	&   80.8 & - \\ \hline
 \rowcolor{highlightColor} $\boldsymbol{3}$\textbf{BAR-NEXT-Detectron} 	& &  \checkmark  & & \textbf{93.69}     &   \textbf{83.32} & \textbf{88.51}\\ \hline
 2D-3D-Softargmax \cite{2D-3D-Softargmax} 	&   & \checkmark  & & -     	&   85.5 & - \\ \hline
