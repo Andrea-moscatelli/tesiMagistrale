@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  30 MAR 2020 18:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.30)  9 APR 2020 16:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1500,7 +1500,7 @@ LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 \openout2 = `titlePage.aux'.
 
  (./titlePage.tex
-<logo/LOGO.pdf, id=8, 996.72375pt x 483.8075pt>
+<logo/LOGO.pdf, id=12, 996.72375pt x 483.8075pt>
 File: logo/LOGO.pdf Graphic file (type pdf)
  <use logo/LOGO.pdf>
 Package pdftex.def Info: logo/LOGO.pdf used on input line 10.
@@ -1543,9 +1543,9 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              deprecated \float@addtolist interface .
 
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.30756pt on input line 135.
+(Font)              scaled to size 9.30756pt on input line 137.
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 5.10004pt on input line 135.
+(Font)              scaled to size 5.10004pt on input line 137.
 [1
 
 
@@ -1553,31 +1553,42 @@ LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/pplj/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+ [2]
+chapter 2.
+[3
+
+
+] [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 158.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 158.
  (./abstract.aux (./titlePage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 158.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 158.
 Package rerunfilecheck Info: File `abstract.out' has not changed.
-(rerunfilecheck)             Checksum: FACBF678686AFCC2539E37F6F198C9AC;43.
+(rerunfilecheck)             Checksum: C39F1AB872AA46F54E5EEEDDBA4AF3FC;115.
  ) 
 Here is how much of TeX's memory you used:
- 28542 strings out of 492995
- 512660 string characters out of 6132704
- 750146 words of memory out of 5000000
- 31477 multiletter control sequences out of 15000+600000
- 63853 words of font info for 213 fonts, out of 8000000 for 9000
+ 28623 strings out of 492995
+ 513385 string characters out of 6132704
+ 751146 words of memory out of 5000000
+ 31482 multiletter control sequences out of 15000+600000
+ 72480 words of font info for 271 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 50i,11n,73p,10395b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,13n,73p,10395b,845s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on abstract.pdf (3 pages, 104007 bytes).
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2017
+/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-
+dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on abstract.pdf (6 pages, 120695 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
- 68110 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 84 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 72214 words of extra memory for PDF output out of 74296 (max. 10000000)
 
