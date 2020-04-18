@@ -1078,6 +1078,14 @@ Applicando questa tecnica, ogni posa $\mathcal{P}_f$ è stata sostituita con l'in
 $$
 \boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{P}_f} \ \ \ \ \text{e} \ \ \ \overline{\mathcal{P}_f} = \frac{\sum_{j=1}^K p_{jf}}{K}.
 $$
+%$$
+%\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{G}_f}
+%$$
+%$$
+% \overline{\mathcal{G}_f} = \frac{\overline{\mathcal{P}_{1,f}} + \overline{\mathcal{P}_{2,f}}}{2}
+%$$
+
+
 Questa tecnica ha il vantaggio di relativizzare la posa ovunque essa si trovi all'interno del frame e sintetizzarne efficientemente il movimento circoscritto al frame. Allo stesso tempo però, utilizzando un punto di vista sempre e solo focalizzato sul singolo frame, questa tecnica potrebbe non riuscire a mappare correttamente il movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è schematizzato in figura \ref{fig:centroFrame}.
 
 Nel caso di più persone nel video, ovvero quando analiziamo azioni di coppia, questa tecnica stima un unico baricentro per ogni frame, adattando le due pose di conseguenza. A tal proposito è stata quindi testata anche una seconda variante, ovvero quella del \emph{baricentro del frame per persona}, dove cioè viene settato un baricentro diverso per ogni persona rappresentata nel frame.
@@ -1095,7 +1103,15 @@ $$
 \overline{\mathcal{V}} = \frac{\sum_{f=1}^L \overline{\mathcal{P}_f}}{L}.
 $$
 
+%$$
+%\overline{\mathcal{V}_G} = \frac{\sum_{f=1}^L \overline{\mathcal{G}_f}}{L}.
+%$$
+
 Come per la tecnica precedente, anche qui sostituiremo ogni posa con l'insieme dei vettori-distanze dal baricentro, ovvero $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{V}} $. 
+
+%$$
+%\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{V}_G}
+%$$
 
 Il vantaggio aggiuntivo di questa tecnica rispetto alla precedente è la capacità di saper immagazzinare anche l'informazione sul movimento globale della posa lungo tutto il video. Un esempio di questa tecnica è rappresentato in figura \ref{fig:baricentroVideo}.
 
@@ -1113,17 +1129,31 @@ Come vedremo nel capitolo 6, la tecnica del \emph{baricentro del video} avrà ris
 
 Se suddividiamo il corpo umano in $B$ gruppi e definiamo ogni giunto corporeo come appartenente ad uno (e uno solo) di questi gruppi, allora possiamo trasformare ogni posa in un insieme di vettori-distanza fra ogni giunto ed il baricentro del gruppo corrispondente. 
 
-Più precisamente, se suddividiamo l'insieme $\mathcal{K} = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ tale che: 
+Più precisamente, se suddividiamo l'insieme $K = \{\mathcal{K}_1, ..., \mathcal{K}_B\}$ tale che: 
 \begin{itemize}
-\item $\bigcup_{b=1}^B   \mathcal{K}_b = \mathcal{K}$
-\item $  \mathcal{K}_i \bigcap \mathcal{K}_j= \emptyset, \ \ \ \forall \  \mathcal{K}_i ,\mathcal{K}_j \in \mathcal{K}$ 
+\item $\bigcup_{b=1}^B   \mathcal{K}_b = K $
+\item $  \mathcal{K}_i \bigcap \mathcal{K}_j= \emptyset, \ \ \ \forall \  \mathcal{K}_i ,\mathcal{K}_j \in K$ 
 \end{itemize}
 allora ogni posa $\mathcal{P}_f$ può essere sostituita con la sua trasformazione $\mathcal{T}_f = \{\boldsymbol{t}_{1f}, ..., \boldsymbol{t}_{Kf} \}$ dove, come per le tecniche precedenti, ogni $\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{B}_b}$ e 
 
 $$
-%\overline{\mathcal{B}} = \bigcup_{b=1}^B 
- \overline{\mathcal{B}_b} = \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^L\boldsymbol{p}_{if}}{L}.
+\boldsymbol{t}_{if} = |\boldsymbol{p}_{if} - \overline{\mathcal{B}_b}|
 $$
+
+%$$
+%\boldsymbol{t}_{if} = \boldsymbol{p}_{if} - \overline{\mathcal{G}_b}
+%$$
+
+$$
+%\overline{\mathcal{B}} = \bigcup_{b=1}^B 
+ \overline{\mathcal{B}_b} = \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^L\boldsymbol{p}_{if}}{L}
+$$
+
+%$$
+%%\overline{\mathcal{B}} = \bigcup_{b=1}^B 
+% \overline{\mathcal{G}_b} = \frac{\bigcup_{i\in\mathcal{B}_b}\sum_{f=1}^Lmean(\boldsymbol{p}_{1if},\boldsymbol{p}_{2if})}{L}
+%$$
+
 
 In questo lavoro di tesi sono state testate 3 varianti di questa tecnica, ovvero:
 \begin{itemize}
@@ -1146,8 +1176,12 @@ Come vedremo nel capitolo dedicato ai risultati sperimentali, la tecnica dei 3 b
 Un altro approccio nella classificazione delle sequenze di pose è quello di concentrarci su ciò che accade fra un frame e l'altro, dato che è proprio in questo lasso di tempo che abbiamo il movimento del soggetto o dei soggetti inquadrati. 
 
 Seguendo questa idea trasformeremo tutte le nostre pose in un insieme di vettori-distanza fra la posizione dei giunti al frame $f$ e quelli al frame $f+1$. La nostra posa trasformata $\mathcal{T}_f$ sarà quindi, $\mathcal{T}_f = \mathcal{P}_{f+1} - \mathcal{P}_f$, ovvero
+
+%$$
+%\mathcal{T}_f = \mathcal{P}_{f+S} - \mathcal{P}_f
+%$$
 $$
-\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+1} - p_{k,f}
+\mathcal{T}_f = \bigcup_{k \in K} p_{k,f+1} - p_{k,f}
 $$
 
 Un esempio visivo di questa tecnica è rappresentato in figura \ref{fig:nextframe}.
@@ -1163,7 +1197,7 @@ Questa tecnica analizza cioè le differenze di posizione dei giunti fra frame con
 
 Quello che allora possiamo fare è memorizzare le differenze dei giunti fra frame a distanza $S >1$, ovvero
 $$
-\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} p_{k,f+S} - p_{k,f}
+\mathcal{T}_f = \bigcup_{k \in K} p_{k,f+S} - p_{k,f}
 $$
 
 In questo lavoro di tesi sono stati testati i valori di $S = \{1, 3, 7, 15\}$ per capire se e quali miglioramenti porta questa variazione di distanza.
@@ -1178,9 +1212,16 @@ In questo lavoro di tesi sono stati testati i valori di $S = \{1, 3, 7, 15\}$ pe
 \end{figure}
 
 Come abbiamo visto nella tecnica precedente, la distinzione fra valori spesso troppo piccoli e il rumore derivante dall'approssimazione della posizione del giunto non è un compito semplice. Per tentare di ovviare a questo problema, un'altra tecnica testata è quella delle \emph{distanze cumulate}, ovvero trasformare ogni posa $\mathcal{P}_f$ nella somma dei vettori distanza calcolati fino a quel punto con la tecnica del \emph{next frame}, ovvero
+
+
 $$
-\mathcal{T}_f = \bigcup_{k \in \mathcal{K}} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
+\mathcal{T}_f = \bigcup_{k \in K} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
 $$
+
+%\begin{align}
+%\mathcal{T}_f &= \sum_{j=1}^{f-1} \mathcal{P}_{j+1} - \mathcal{P}_j\\
+%&= \bigcup_{k \in K} \sum_{j=1}^{f-1} p_{k,j+1} - p_{k,j}
+%\end{align}
 
 Quello che ci aspettiamo di ottenere sono variazioni evidenti per i giunti più dinamici nel video, mentre per quelli statici, che quindi si presuppone non caratterizzino eccessivamente il movimento, ci aspettiamo variazioni minori. In figura \ref{fig:distanzeCumulate} abbiamo una schematizzazione di ciò che otterremmo con la tecnica delle distanze cumulate se analizzassimo una porzione di video dove il soggetto inquadrato alza e abbassa il braccio destro.
 
@@ -1188,6 +1229,12 @@ Quello che ci aspettiamo di ottenere sono variazioni evidenti per i giunti più d
 
 \subsection{Tecnica delle distanze relative}
 Questa tecnica riprende quella del \emph{centro del frame} con la differenza che ogni posa viene trasformata in una matrice di distanze fra ogni coppia di giunti. Più precisamente per ogni posa $\mathcal{P}_f$, che ricordiamo essere appartenente all'insieme $\mathbb{R}^{K\times 2}$, otterremo la rispettiva trasformazione $\mathcal{T}_f \in \mathbb{R}^{K\times K}$, composta dai valori
+
+%\begin{align*}
+%\mathcal{P}_f &\in \mathbb{R}^{K\times 2}\ \ \  \longrightarrow \ \ \  \mathcal{T}_f \in \mathbb{R}^{K\times K}\\
+% \mathcal{T}_f &= \bigcup_{i \in K} \bigcup_{j \in K} t_{ij} \\
+% &= \bigcup_{i \in K} \bigcup_{j \in K} eucl(p_{if},p_{jf})
+%\end{align*}
 $$
 t_{ij} = eucl(p_{if},p_{jf})
 $$
@@ -1247,7 +1294,7 @@ dove $N_{samples}$ è il numero di esempi del \emph{training set}, $N_{in}$ e $N_
 \item \textbf{Loss function} - Visto che siamo in un contesto di classificazione multi-classe, dove però ogni azione appartiene ad una e una sola categoria, la \emph{loss function} scelta è la \emph{``categorical crossentropy"} ovvero l'unione fra un'attivazione \emph{soft-max} e una \emph{cross-entropy loss},
 
 $$
-f(s)_i = \frac{e^{s_i}}{\sum_j^C e^{s_j}} \ \ \ \ CCE = -\sum_i^C t_i \cdot log(f(s)_i)
+f(s)_i = \frac{e^{s_i}}{\sum_j^C e^{s_j}} \ \ \ \ CCE = -\sum_i^C t_i \cdot log \Big(f(s)_i\Big)
 %L(y,\hat{y}) = - \sum_{j=0}^M \sum_{i=0}^N (y_{ij} * log(\hat{y}_{ij}))
 $$
 dove $C$ è il numero totale di classi, $s_i$ è lo score uscente dalla rete neurale per la classe $i$ e $t_i$ è il valore target per la classe $i$. 
